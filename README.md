@@ -1,2 +1,2 @@
 # city-hcid.github.io
-Repository Human-Computer Interaction Design (HCID)
+Repository for Human-Computer Interaction Design (HCID)
