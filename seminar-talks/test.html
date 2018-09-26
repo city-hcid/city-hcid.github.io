@@ -1,25 +1,26 @@
 <html>
 <!-- https://medium.com/row-and-table/an-basic-intro-to-the-airtable-api-9ef978bb0729  -->
 <head>
+	<title>Menu Items</title>
 </head>
 <body>
-	
-	
+
 	<div id="app">
-	            <h1>Menu Items</h1>
-	            <ul>
-	                <li v-for="item in items">
-	                    <h3>{{ item['fields']['full-name'] }}</h3>
-	                    <p>{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}</p>
-	                    <p><strong>Time: </strong>${{ item['fields']['date'] }}</p>
-	                    <p><strong>Room: </strong>{{ item['fields']['room'] }}</p>
-	                    <img :src="item['fields']['Photo'][0]['thumbnails']['large']['url']" alt="" v-if="item['fields']['Photo']" width="150">
-	                </li>
-	            </ul>            
-	        </div><!--app-->
+		<h1>Menu Items</h1>
+		<ul>
+			<li v-for="item in items">
+				<h3>{{ item['fields']['full-name'] }}</h3>
+				<p>{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}</p>
+				<p><strong>Time: </strong>${{ item['fields']['date'] }}</p>
+				<p><strong>Room: </strong>{{ item['fields']['room'] }}</p>
+			</li>
+		</ul>
+	</div><!--app-->
 	
+	<!-- Include Dependancy Scripts -->
 	<script type="text/javascript" src="https://unpkg.com/vue"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	
 	<script type = "text/javascript" >
 		var app = new Vue({
 				el: '#app',
