@@ -320,9 +320,8 @@ Blockchain technologies are wild in their hype, and vast in their potential appl
 							</li>
 						</ul>
 					</div>
-					<div class="col hide-on-small-only m3 xl3">
-						<div class="toc-wrapper pin-top" style="top: 0px">
-							<ul class="section table-of-contents">
+					<div class="col hide-on-small-only m3 l2">
+							<ul id="toc" class="section table-of-contents">
 								<li>
 									<a href="#sep">September</a>
 								</li>
@@ -401,7 +400,42 @@ Blockchain technologies are wild in their hype, and vast in their potential appl
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script><!--JavaScript at end of body for optimised loading-->
 		 
 		<script>
+			function fixmetotop() {
+			  var fixmeTop = $('.table-of-contents').offset().top;
+			  $(window).scroll(function() {
+			    //aktuelle Scrollposition auslesen
+			    var currentScroll = $(window).scrollTop(),
+			    //+1em rechnen
+			    currentScroll = currentScroll + 15,
+			    actualBottom = $('#bodybox').offset().top + $('#bodybox').outerHeight(true),
+			    heightSideNav = $('.table-of-contents').outerHeight(true);
+			    if (currentScroll >= fixmeTop && currentScroll <= actualBottom - heightSideNav) {
+			      //CSS für fixed setzen
+			      $('.table-of-contents').css({
+			        position: 'fixed',
+			        top: '0',
+			        bottom: ''
+			      });
+			    } else {
+			      if(currentScroll >= actualBottom - heightSideNav) {
+			        $('.table-of-contents').css({
+			          position: 'fixed',
+			          bottom: '0',
+			          top: ''
+			        });
+			      } else {
+			        //CSS für nicht fixed setzen
+			        $('.table-of-contents').css({
+			          position: 'static',
+			          bottom: '',
+			          top: ''
+			        });
+			      }
+			    }
+			  });
+			}
 			$(document).ready(function(){
+				fixmetotop();
 				$('.scrollspy').scrollSpy();
 			});
 		</script>
