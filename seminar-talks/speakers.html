@@ -140,7 +140,10 @@
 							"https://api.airtable.com/v0/"+app_id+"/speakers?&view=Grid%20view", {
 								headers: {
 									Authorization: "Bearer " + app_key
-								}
+								},
+								sort: [
+									{field: 'last', direction: 'asc'}
+								    ],
 							}
 						).then(function(response) {
 							self.items = response.data.records
