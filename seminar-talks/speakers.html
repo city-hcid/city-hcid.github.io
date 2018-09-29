@@ -51,12 +51,10 @@
 							<h3>
 								{{ item['fields']['full-name'] }}
 							</h3>
+							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
 							<p>
-								{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
-							</p>
-							<p>
-								<strong>Talk title:</strong> {{ item['fields']['title'] }}
-								<br />
+								<strong>Talk title:</strong> {{ item['fields']['talk-title'] }}
+							<br />
 								<strong>Time:</strong> {{ item['fields']['date-str'] }}
 							<br />
 								<strong>Room:</strong> {{ item['fields']['room'] }}

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- https://medium.com/row-and-table/an-basic-intro-to-the-airtable-api-9ef978bb0729  -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="HCID, seminar, talks" />
+		<meta name="altitude" content="16.55646896362305" />
+		<meta name="created" content="2018-07-31 06:32:18 +0000" />
+		<meta name="latitude" content="51.5335291950512" />
+		<meta name="longitude" content="-0.06743953563279234" />
+		<meta name="updated" content="2018-09-12 10:21:34 +0000" /><!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /><!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" /><!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Speakers</title>
+</head>
+<body>
+<header>
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m9 l10">
+				<div class="section" id="heading">
+					<h1>
+						HCID Seminar Series
+					</h1>
+					<p>
+						The <a href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a> (HCID) has a tradition of hosting current and lively presentations and discussions as part of its seminar series. The talks are largely focused on <a href="https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction" title="Human–computer interaction - Wikipedia">Human-Computer Interaction</a> and design related research, but also veer into related areas including discussions linked to methodology and theory, and related to <a href="https://en.wikipedia.org/wiki/Science_and_technology_studies" title="Science and technology studies - Wikipedia">science and technology studies</a> (STS), cognition and behaviour, language and linguistics, and healthcare.
+					</p>
+					<p>
+						As a centre, we try to host at least one external speaker a month and two talks/workshops given by internal researchers or research students. All are meant to be open to students, academics and interested members of the public.
+					</p>
+					<p>
+						Below is the list of speakers, so far, for the 2018-19 academic year. To view the calendar go <a href="http://j.mp/hcid-seminar-calendar">here</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<main>
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m9 l10" id="bodybox">
+				<div id="app">
+					<h1>
+						Speakers
+					</h1>
+					<ul>
+						<li v-for="item in items">
+							<h3>
+								{{ item['fields']['full-name'] }}
+							</h3>
+							<p>
+								{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
+							</p>
+							<p>
+								<strong>Talk title:</strong> {{ item['fields']['talk-title'] }}
+								<br />
+								<strong>Time:</strong> {{ item['fields']['date-str'] }}
+							<br />
+								<strong>Room:</strong> {{ item['fields']['room'] }}
+							</p>
+						</li>
+					</ul>
+				</div><!--app-->
+			</div>
+		</div>
+	</div>
+</main>
+<footer class="red darken-1" style="padding-bottom:2rem">
+	<div class="container">
+		<div class="row">
+			<div class="col l6 s12">
+				<h5 class="white-text">
+					HCID Seminar Series
+				</h5>
+				<p class="grey-text text-lighten-4">
+					Hosted by the Centre for Human-Computer Interaction
+				</p>
+			</div>
+			<div class="col l4 offset-l2 s12">
+				<h5 class="white-text">
+					Address
+				</h5>
+				<ul>
+					<li>
+						<a class="grey-text text-lighten-3" href="https://goo.gl/maps/QbdWpuT8ycp">City, University of London</a>
+					</li>
+					<li>
+						<a class="grey-text text-lighten-3" href="https://goo.gl/maps/QbdWpuT8ycp">College Building</a>
+					</li>
+					<li>
+						<a class="grey-text text-lighten-3" href="https://goo.gl/maps/QbdWpuT8ycp">276-284 St John Street</a>
+					</li>
+					<li>
+						<a class="grey-text text-lighten-3" href="https://goo.gl/maps/QbdWpuT8ycp">Clerkenwell</a>
+					</li>
+					<li>
+						<a class="grey-text text-lighten-3" href="https://goo.gl/maps/QbdWpuT8ycp">London, EC1V 4PB</a>
+					</li>
+					<li>
+						<a class="grey-text text-lighten-1 small" href="https://goo.gl/maps/QbdWpuT8ycp">Google Map</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer-copyright">
+		<div class="container grey-text text-lighten-1">
+			<a class="grey-text text-lighten-1" href="https://www.gnu.org/licenses/copyleft.en.html" title="What is Copyleft? - GNU Project - Free Software Foundation">Copyleft</a> © 2018 GNU <a class="grey-text text-lighten-1" href="https://www.gnu.org/licenses/gpl.html" title="The GNU General Public License v3.0 - GNU Project - Free Software Foundation">General Public License</a>
+		</div>
+	</div>
+</footer>
+
+	
+	<!-- Include Dependancy Scripts -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script><!--JavaScript at end of body for optimised loading-->
+	<script type="text/javascript" src="https://unpkg.com/vue"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<script type = "text/javascript" >
+		var app = new Vue({
+				el: '#app',
+				data: {
+					items: []
+				},
+				mounted: function() {
+					this.loadItems();
+				},
+				methods: {
+					loadItems: function() {
+
+						// Init variables
+						var self = this
+						var app_id = "appVrmQAGy96E1jEP";
+						var app_key = "keyC83ksN49wS10kX";
+						this.items = []
+						axios.get(
+							"https://api.airtable.com/v0/"+app_id+"/speakers?&view=Grid%20view", {
+								headers: {
+									Authorization: "Bearer " + app_key
+								}
+							}
+						).then(function(response) {
+							self.items = response.data.records
+						}).catch(function(error) {
+							console.log(error)
+						})
+					}
+				}
+			}) 
+		</script>
+</body>
+</html>
