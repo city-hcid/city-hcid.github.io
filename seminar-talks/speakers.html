@@ -48,13 +48,15 @@
 					</h1>
 					<ul>
 						<li v-for="item in items">
-							<h3>
+							<h3 style="margin-bottom:.2rem;">
 								{{ item['fields']['full-name'] }}
 							</h3>
 							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
 							<p>
+								
 								<strong>Talk title:</strong> {{ item['fields']['talk-title'] }}
-							<br />
+							</p>
+							<p>
 								<strong>Time:</strong> {{ item['fields']['date-str'] }}
 							<br />
 								<strong>Room:</strong> {{ item['fields']['room'] }}
