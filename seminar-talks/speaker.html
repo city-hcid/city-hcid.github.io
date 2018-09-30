@@ -122,12 +122,15 @@
 					loadItems: function() {
 
 						// Init variables
+						var url_string = window.location.href;
+						var url = new URL(url_string);
+						var last = url.searchParams.get("last");
 						var self = this
 						var app_id = "appVrmQAGy96E1jEP";
 						var app_key = "keyC83ksN49wS10kX";
 						this.items = []
 						axios.get(
-							"https://api.airtable.com/v0/"+app_id+"/speakers?filterByFormula=(FIND(%22Butler%22%2C%7BLast%7D))", {
+							"https://api.airtable.com/v0/"+app_id+"/speakers?filterByFormula=(FIND(%22"+last+"%22%2C%7BLast%7D))", {
 								headers: {
 									Authorization: "Bearer " + app_key
 								}
