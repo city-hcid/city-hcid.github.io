@@ -46,14 +46,18 @@
 							</h3>
 							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
 							<p>
-								<strong>Talk title:</strong>
+								<strong>Talk title: </strong>
 									<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
 									<span v-else>TBA</span>
 							</p>
 							<p>
-								<strong>Time:</strong> {{ item['fields']['date-str'] }}
+								<strong>Time: </strong>
+									<span v-if="item['fields']['date-str']">{{ item['fields']['date-str'] }}</span>
+									<span v-else>TBA</span>
 							<br />
-								<strong>Room:</strong> {{ item['fields']['room'] }}
+								<strong>Room: </strong>
+									<span v-if="item['fields']['room']">{{ item['fields']['room'] }}</span>
+									<span v-else>TBA</span>
 							</p>
 						</li>
 					</ul>
