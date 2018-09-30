@@ -47,8 +47,8 @@
 							</p>
 							<p>
 								<strong>Talk Title: </strong>
-									<div v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</div>
-									<div v-else>TBA</div>
+									<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									<span v-else>TBA</span>
 								<br />
 								<strong>Time: </strong>{{ item['fields']['date-str'] }}
 								<br />
