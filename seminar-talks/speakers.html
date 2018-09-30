@@ -40,7 +40,7 @@
 						Speakers
 					</h2>
 					<ul>
-						<li v-for="item in items" style="margin-bottom:2rem;">
+						<li v-for="item in items" style="margin-bottom:3rem;">
 							<h3 style="margin-bottom:.2rem;">
 								{{ item['fields']['full-name'] }}
 							</h3>
@@ -133,10 +133,7 @@
 							"https://api.airtable.com/v0/"+app_id+"/speakers?sortField=last&sortDirection=asc", {
 								headers: {
 									Authorization: "Bearer " + app_key
-								},
-								sort: [
-									{Field: 'last', Direction: 'asc'}
-								    ],
+								}
 							}
 						).then(function(response) {
 							self.items = response.data.records
