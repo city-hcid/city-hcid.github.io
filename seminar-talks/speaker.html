@@ -42,9 +42,9 @@
 								{{ item['fields']['full-name'] }}
 							</h2>
 							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
-							<div if-v="item['fields']['bio'] > 0">
+							<p v-show="item['fields']['bio']">
 								<strong>Bio:</strong> {{ item['fields']['bio'] }}
-							</div>
+							</p>
 							<p>
 								<strong>Talk Title:</strong> {{ item['fields']['talk-title'] }}
 								<br />
