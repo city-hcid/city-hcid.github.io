@@ -42,15 +42,15 @@
 								{{ item['fields']['full-name'] }}
 							</h2>
 							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
-							<p>
+							<p if-v="item['fields']['full-name']">
 								<strong>Bio:</strong> {{ item['fields']['bio'] }}
 							</p>
 							<p>
+								<strong>Talk Title:</strong> {{ item['fields']['talk-title'] }}
+								<br />
 								<strong>Time:</strong> {{ item['fields']['date-str'] }}
-							<br />
+								<br />
 								<strong>Room:</strong> {{ item['fields']['room'] }}
-							<br />
-								<strong>Taile:</strong> {{ item['fields']['talk-title'] }}
 							</p>
 						</li>
 					</ul>
