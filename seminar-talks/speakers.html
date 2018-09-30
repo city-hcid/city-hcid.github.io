@@ -46,7 +46,9 @@
 							</h3>
 							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
 							<p>
-								<strong>Talk title:</strong> {{ item['fields']['talk-title'] }}
+								<strong>Talk title:</strong>
+									<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									<span v-else>TBA</span>
 							</p>
 							<p>
 								<strong>Time:</strong> {{ item['fields']['date-str'] }}
