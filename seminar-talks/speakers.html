@@ -42,7 +42,7 @@
 					<ul>
 						<li v-for="item in items" style="margin-bottom:3rem;">
 							<h3 style="margin-bottom:.2rem;">
-								<a href= "https://city-hcid.github.io/seminar-talks/speaker" + "?last=Butler">{{ item['fields']['full-name'] }}</a>
+								<a href= "https://city-hcid.github.io/seminar-talks/speaker" + last_param>{{ item['fields']['full-name'] }}</a>
 							</h3>
 							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
 							<p>
@@ -128,6 +128,7 @@
 						var self = this
 						var app_id = "appVrmQAGy96E1jEP";
 						var app_key = "keyC83ksN49wS10kX";
+						var last_param = "?last=Butler";
 						this.items = []
 						axios.get(
 							"https://api.airtable.com/v0/"+app_id+"/speakers?sortField=last&sortDirection=asc", {
