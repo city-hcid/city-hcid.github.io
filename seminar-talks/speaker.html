@@ -42,7 +42,7 @@
 								{{ item['fields']['full-name'] }}
 							</h2>
 							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
-							<div if-v="item['fields']['bio']">
+							<div if-v="item['fields']['bio'] > 0">
 								<strong>Bio:</strong> {{ item['fields']['bio'] }}
 							</div>
 							<p>
