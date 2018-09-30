@@ -43,11 +43,11 @@
 		<div class="row">
 			<div class="col s12 m9 l10" id="bodybox">
 				<div id="app">
-					<h1>
+					<h2>
 						Speakers
-					</h1>
+					</h2>
 					<ul>
-						<li v-for="item in items">
+						<li v-for="item in items" style="margin-bottom:1rem;">
 							<h3 style="margin-bottom:.2rem;">
 								{{ item['fields']['full-name'] }}
 							</h3>
@@ -60,7 +60,6 @@
 								<strong>Time:</strong> {{ item['fields']['date-str'] }}
 							<br />
 								<strong>Room:</strong> {{ item['fields']['room'] }}
-							<br />
 							</p>
 						</li>
 					</ul>
