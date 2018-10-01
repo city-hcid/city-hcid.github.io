@@ -131,7 +131,8 @@
 									</h2>
 								</li>
 								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Nov'">
-									<img v-bind:src="item['fields']['photo-url']" alt="" class="circle" />
+									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+									<span v-else ><i class="material-icons circle">people</i><span>
 									<div>
 										<p>
 											<a v-bind:href= "'/seminar-talks/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
