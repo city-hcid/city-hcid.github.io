@@ -49,11 +49,12 @@
 									</h2>
 								</li>
 							
-								<li class="collection-item avatar" v-bind:id="item['fields']['full-name']" v-for="item in items" style="margin-bottom:3rem;" v-if="item['fields']['full-name']">
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" style="margin-bottom:3rem;" v-if="item['fields']['full-name']">
 										<img v-bind:src="item['fields']['photo-url']" alt="" class="circle" />
 										<div>
 											<p>
-												<a href="https://elsden.me/about/">{{ item['fields']['full-name'] }}</a>, {{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+												<a v-bind:href="item['fields']['bio-url']">{{ item['fields']['full-name'] }}</a><br />
+												{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
 												<span v-if="item['fields']['date-str']">{{ item['fields']['date-str'] }}</span><br />
 												<span v-if="item['fields']['room']">{{ item['fields']['room'] }}</span>
 											</p>
@@ -509,7 +510,7 @@
 						var app_key = "keyC83ksN49wS10kX";
 						this.items = []
 						axios.get(
-							"https://api.airtable.com/v0/"+app_id+"/speakers?fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&sort%5B0%5D%5Bfield%5D=date&sort%5B0%5D%5Bdirection%5D=asc", {
+							"https://api.airtable.com/v0/"+app_id+"/speakers?fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&fields%5B%5D=date-str&sort%5B0%5D%5Bfield%5D=date&sort%5B0%5D%5Bdirection%5D=asc", {
 								headers: {
 									Authorization: "Bearer " + app_key
 								}
