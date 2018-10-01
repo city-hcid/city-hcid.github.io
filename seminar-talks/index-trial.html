@@ -12,9 +12,7 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /><!--Import materialize.css-->
 		<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" /><!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>
-			HCID Seminar Series
-		</title>
+		<title>HCID Seminar Series</title>
 	</head>
 	<body>
 		<header>
@@ -51,8 +49,8 @@
 									</h2>
 								</li>
 							
-								<li v-for="item in items" style="margin-bottom:3rem;" v-if="item['fields']['full-name']">
-										<img src="https://openlab.ncl.ac.uk/wp-content/uploads/userphoto/142.thumbnail.jpg" alt="" class="circle" />
+								<li class="collection-item avatar" v-bind:id="'item['fields']['full-name']'" v-for="item in items" style="margin-bottom:3rem;" v-if="item['fields']['full-name']">
+										<img v-bind:src="'item['fields']['photo-url']'" alt="" class="circle" />
 										<div>
 											<p>
 												<a href="https://elsden.me/about/">{{ item['fields']['full-name'] }}</a>, {{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
@@ -511,7 +509,7 @@
 						var app_key = "keyC83ksN49wS10kX";
 						this.items = []
 						axios.get(
-							"https://api.airtable.com/v0/"+app_id+"/speakers?fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&sort%5B0%5D%5Bfield%5D=date&sort%5B0%5D%5Bdirection%5D=asc", {
+							"https://api.airtable.com/v0/"+app_id+"/speakers?fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&sort%5B0%5D%5Bfield%5D=date&sort%5B0%5D%5Bdirection%5D=asc", {
 								headers: {
 									Authorization: "Bearer " + app_key
 								}
