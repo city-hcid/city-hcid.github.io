@@ -140,8 +140,8 @@
 										</p>
 										<br />
 										<p>
-											Date: <span v-if="item['fields']['date-str']">{{ item['fields']['date-str'] }}</span><br />
-											Room: <span v-if="item['fields']['room']">{{ item['fields']['room'] }}</span>
+											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
 										</p>
 										<h3 v-if="item['fields']['talk-title']">
 											Title
