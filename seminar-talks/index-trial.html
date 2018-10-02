@@ -656,11 +656,11 @@
 							console.log(error)
 						})
 
-						var valObj = this.items.filter(function(elem){
-						    if(elem.Name == "last") return elem.Value;
+						var valObj = this.items.records.fields.filter(function(elem){
+						    if(elem.month == "Dec") console.log("Dec");
 						});
 						if(valObj.length > 0)
-						    console.log(valObj[0].Value)
+						    console.log("Dec")
 					}
 				}
 			}) 
