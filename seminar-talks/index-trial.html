@@ -209,13 +209,13 @@
 								</li>
 								
 							</ul>
-							<ul class="collection with-header scrollspy" id="jan" v-for="item in items" v-if="item['fields']['month'] == 'Jan'">
+							<ul class="collection with-header scrollspy" id="jan">
 								<li class="collection-header">
 									<h2>
 										January 2019
 									</h2>
 								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']">
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Jan'">
 									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
 									<span v-else ><i class="material-icons circle">people</i></span>
 									<div>
@@ -249,13 +249,13 @@
 									</div>
 								</li>
 							</ul>
-							<ul class="collection with-header scrollspy" id="feb" v-for="item in items" v-if="item['fields']['month'] == 'Feb'">
+							<ul class="collection with-header scrollspy" id="feb">
 								<li class="collection-header">
 									<h2>
 										February 2019
 									</h2>
 								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']">
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Feb'">
 									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
 									<span v-else ><i class="material-icons circle">people</i></span>
 									<div>
@@ -289,13 +289,13 @@
 									</div>
 								</li>
 							</ul>
-							<ul class="collection with-header scrollspy" id="apr" v-for="item in items" v-if="item['fields']['month'] == 'Apr'">
+							<ul class="collection with-header scrollspy" id="apr">
 								<li class="collection-header">
 									<h2>
 										April 2018
 									</h2>
 								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']">
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Apr'">
 									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
 									<span v-else ><i class="material-icons circle">people</i></span>
 									<div>
@@ -329,13 +329,13 @@
 									</div>
 								</li>
 							</ul>
-							<ul class="collection with-header scrollspy" id="may" v-for="item in items" v-if="item['fields']['month'] == 'May'">
+							<ul class="collection with-header scrollspy" id="may">
 								<li class="collection-header">
 									<h2>
 										May 2019
 									</h2>
 								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']">
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'May'">
 									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
 									<span v-else ><i class="material-icons circle">people</i></span>
 									<div>
@@ -369,13 +369,13 @@
 									</div>
 								</li>
 							</ul>
-							<ul class="collection with-header scrollspy" id="jun" v-for="item in items" v-if="item['fields']['month'] == 'Jun'">
+							<ul class="collection with-header scrollspy" id="jun">
 								<li class="collection-header scrollspy">
 									<h2>
 										June 2019
 									</h2>
 								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']">
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Jun'">
 									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
 									<span v-else ><i class="material-icons circle">people</i></span>
 									<div>
@@ -409,13 +409,13 @@
 									</div>
 								</li>
 							</ul>
-							<ul class="collection with-header scrollspy" id="jul" v-for="item in items" v-if="item['fields']['month'] == 'Jul'">
+							<ul class="collection with-header scrollspy" id="jul">
 								<li class="collection-header scrollspy">
 									<h2>
 										July 2019
 									</h2>
 								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']">
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Jul'">
 									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
 									<span v-else ><i class="material-icons circle">people</i></span>
 									<div>
@@ -449,13 +449,13 @@
 									</div>
 								</li>
 							</ul>
-							<ul class="collection with-header scrollspy" id="aug" v-for="item in items" v-if="item['fields']['month'] == 'Aug'">
+							<ul class="collection with-header scrollspy" id="aug">
 								<li class="collection-header scrollspy">
 									<h2>
 										August 2019
 									</h2>
 								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']">
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Aug'">
 									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
 									<span v-else ><i class="material-icons circle">people</i></span>
 									<div>
@@ -489,13 +489,13 @@
 									</div>
 								</li>
 							</ul>
-							<ul class="collection with-header scrollspy" id="sep_19" v-for="item in items" v-if="item['fields']['month'] == 'Sep_19'">
+							<ul class="collection with-header scrollspy" id="sep_19">
 								<li class="collection-header scrollspy">
 									<h2>
 										September 2019
 									</h2>
 								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']">
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Sep_19'">
 									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
 									<span v-else ><i class="material-icons circle">people</i></span>
 									<div>
