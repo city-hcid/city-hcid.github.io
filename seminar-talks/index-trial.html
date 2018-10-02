@@ -642,6 +642,9 @@
 						var self = this
 						var app_id = "appVrmQAGy96E1jEP";
 						var app_key = "keyC83ksN49wS10kX";
+						var valObj = data.items.filter(function(elem){
+						    if(elem.Name == "Dec") return elem.length;
+						});
 						this.items = []
 						axios.get(
 							"https://api.airtable.com/v0/"+app_id+"/speakers?fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&fields%5B%5D=date-str&fields%5B%5D=month&sort%5B0%5D%5Bfield%5D=date&sort%5B0%5D%5Bdirection%5D=asc", {
@@ -654,6 +657,8 @@
 						}).catch(function(error) {
 							console.log(error)
 						})
+						if(valObj.length > 0)
+						    console.log(valObj[0].Value)
 					}
 				}
 			}) 
