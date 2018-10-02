@@ -657,10 +657,12 @@
 						})
 
 						var valObj = self.items.filter(function(elem){
-						    if(elem.month == "Dec") console.log("Dec");
+						    return (elem.month == "Dec")
 						});
-						if(1 > 0)
+						if(valObj.length)
 						    console.log("Dec")
+						else
+							console.log("none")
 					}
 				}
 			}) 
