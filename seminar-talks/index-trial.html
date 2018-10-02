@@ -167,7 +167,7 @@
 									</div>
 								</li>
 							</ul>
-							<ul class="collection with-header scrollspy" id="dec" v-if="item['fields']['month'] == 'Dec'">
+							<ul class="collection with-header scrollspy" id="dec" v-for="items in items" v-if="items['fields']['month'] == 'Dec'">
 								<li class="collection-header">
 									<h2>
 										December 2018
