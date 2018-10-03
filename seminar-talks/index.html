@@ -197,7 +197,7 @@
 											Abstract
 										</h3>
 										<p>
-											<span v-bind:id="item['fields']['last'] + '-abstract'" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+											<span v-bind:id="item['fields']['last'] + 'abstract'" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
 										</p>
 										<h3 v-if="item['fields']['bio']">
 											Bio
@@ -703,21 +703,16 @@
 				});
 			}
 			function replaceBr() {
-				var abstract = document.getElementById("Taylor-abstract").innerHTML;
+				var abstract = document.getElementById("Taylorabstract").innerHTML;
 				var replace = abstract.replace(/.br./g,'.<br>');
-				document.getElementById("Taylor-abstract").innerHTML = replace;
+				document.getElementById("Taylorabstract").innerHTML = replace;
 			}
 			$(document).ready(function() {
 				fixmetotop();
 				$('.scrollspy').scrollSpy();
 			});
 			(function(window, document, undefined){
-
-			// code that should be taken care of right away
-
-			window.onload = replaceBr;
-
-
+				window.onload = replaceBr;
 			})(window, document, undefined);
 		</script>
 	</body>
