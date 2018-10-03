@@ -705,6 +705,11 @@
 			$(document).ready(function() {
 				fixmetotop();
 				$('.scrollspy').scrollSpy();
+				$('body :not(script)').contents().filter(function() {
+				    return this.nodeType === 3;
+				  }).replaceWith(function() {
+				      return this.nodeValue.replace('.br.','.<br>');
+				  });
 				//$("body").html($("body").html().replace(/{\/p}/g,'</p>'));
 			});
 		</script>
