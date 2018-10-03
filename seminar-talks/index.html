@@ -713,7 +713,7 @@
 			});
 			(function(window, document, undefined){
 				if(document.readyState === 'loading') {
-				    document.addEventListener('DOMContentLoaded', afterLoaded);
+				    document.addEventListener('DOMContentLoaded', replaceBr);
 				} else {
 				    //The DOMContentLoaded event has already fired. Just run the code.
 				    replaceBr();
