@@ -197,7 +197,7 @@
 											Abstract
 										</h3>
 										<p>
-											<span v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+											<span class="talk-absract" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
 										</p>
 										<h3 v-if="item['fields']['bio']">
 											Bio
@@ -705,11 +705,9 @@
 			$(document).ready(function() {
 				fixmetotop();
 				$('.scrollspy').scrollSpy();
-				$('body :not(script)').contents().filter(function() {
-				    return this.nodeType === 3;
-				  }).replaceWith(function() {
-				      return this.nodeValue.replace(/.br./g,'.<br>');
-				  });
+				var abstract = document.getElementsByClassName("talk-absract").innerHTML;
+				var replace = abstract.replace(/.br./g,'.<br>');
+				document.getElementsByClassName("talk-absract").innerHTML = replace;
 				//$("body").html($("body").html().replace(/{\/p}/g,'</p>'));
 			});
 		</script>
