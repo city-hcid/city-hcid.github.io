@@ -711,12 +711,12 @@
 				    //The DOMContentLoaded event has already fired. Just run the code.
 				    replaceBr();
 				}
+				function replaceBr() {
+					var abstract = document.getElementById("Taylorabstract").innerHTML;
+					var replace = abstract.replace(/.br./g,'.<br>');
+					document.getElementById("Taylorabstract").innerHTML = replace;
+				}
 			});
-			function replaceBr() {
-				var abstract = document.getElementById("Taylorabstract").innerHTML;
-				var replace = abstract.replace(/.br./g,'.<br>');
-				document.getElementById("Taylorabstract").innerHTML = replace;
-			}
 		</script>
 	</body>
 </html>
