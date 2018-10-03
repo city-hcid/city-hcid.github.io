@@ -702,23 +702,21 @@
 					}
 				});
 			}
-			function replaceBr() {
-				var abstract = document.getElementById("Taylorabstract").innerHTML;
-				var replace = abstract.replace(/.br./g,'.<br>');
-				document.getElementById("Taylorabstract").innerHTML = replace;
-			}
 			$(document).ready(function() {
 				fixmetotop();
 				$('.scrollspy').scrollSpy();
-			});
-			(function(window, document, undefined){
 				if(document.readyState === 'loading') {
 				    document.addEventListener('DOMContentLoaded', replaceBr);
 				} else {
 				    //The DOMContentLoaded event has already fired. Just run the code.
 				    replaceBr();
 				}
-			})(window, document, undefined);
+			});
+			function replaceBr() {
+				var abstract = document.getElementById("Taylorabstract").innerHTML;
+				var replace = abstract.replace(/.br./g,'.<br>');
+				document.getElementById("Taylorabstract").innerHTML = replace;
+			}
 		</script>
 	</body>
 </html>
