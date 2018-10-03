@@ -167,7 +167,7 @@
 									</div>
 								</li>
 							</ul>
-							<ul class="collection with-header scrollspy" id="dec" v-if="items.length">
+							<ul class="collection with-header scrollspy" id="dec">
 								<li class="collection-header">
 									<h2>
 										December 2018
@@ -712,7 +712,12 @@
 				$('.scrollspy').scrollSpy();
 			});
 			(function(window, document, undefined){
-				window.onload = replaceBr;
+				if(document.readyState === 'loading') {
+				    document.addEventListener('DOMContentLoaded', afterLoaded);
+				} else {
+				    //The DOMContentLoaded event has already fired. Just run the code.
+				    replaceBr();
+				}
 			})(window, document, undefined);
 		</script>
 	</body>
