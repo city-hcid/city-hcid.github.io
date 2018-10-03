@@ -710,8 +710,9 @@
 				}
 				function replaceBr() {
 					var abstract = document.getElementById("Taylorabstract").innerHTML;
-					var replace = abstract.replace(/.br./g,'.<br>');
-					document.getElementById("Taylorabstract").innerHTML = replace;
+					var replaceBr = abstract.replace(/.br./g,'.<br>');
+					document.getElementById("Taylorabstract").innerHTML = replaceBr;
+					console.log("replaceBr fired")
 				}
 			});
 		</script>
