@@ -709,5 +709,12 @@
 				$("[/p]").replaceWith("</p>");
 			});
 		</script>
+		<script>
+			document.getElementById("dec").addEventListener("load", pReplace);
+
+			function pReplace() {
+			    $("[p]").replaceWith("<p>");
+			}
+		</script>
 	</body>
 </html>
