@@ -708,7 +708,7 @@
 				$('body :not(script)').contents().filter(function() {
 				    return this.nodeType === 3;
 				  }).replaceWith(function() {
-				      return this.nodeValue.replace('.br.','.<br>');
+				      return this.nodeValue.replace(/.br./g,'.<br>');
 				  });
 				//$("body").html($("body").html().replace(/{\/p}/g,'</p>'));
 			});
