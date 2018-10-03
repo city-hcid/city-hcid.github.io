@@ -706,7 +706,7 @@
 				fixmetotop();
 				$('.scrollspy').scrollSpy();
 				if(document.readyState === 'complete') {
-				    document.addEventListener('DOMContentLoaded', replaceBr);
+				    replaceBr();
 				}
 				function replaceBr() {
 					var abstract = document.getElementById("Taylorabstract").innerHTML;
