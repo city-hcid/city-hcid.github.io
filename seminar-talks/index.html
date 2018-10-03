@@ -705,11 +705,8 @@
 			$(document).ready(function() {
 				fixmetotop();
 				$('.scrollspy').scrollSpy();
-				if(document.readyState === 'loading') {
+				if(document.readyState === 'complete') {
 				    document.addEventListener('DOMContentLoaded', replaceBr);
-				} else {
-				    //The DOMContentLoaded event has already fired. Just run the code.
-				    replaceBr();
 				}
 				function replaceBr() {
 					var abstract = document.getElementById("Taylorabstract").innerHTML;
