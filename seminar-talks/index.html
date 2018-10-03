@@ -702,13 +702,15 @@
 					}
 				});
 			}
-			$(document).ready(function() {
-				fixmetotop();
-				$('.scrollspy').scrollSpy();
+			function replaceBr() {
 				var abstract = document.getElementById("Taylor-abstract").innerHTML;
 				var replace = abstract.replace(/.br./g,'.<br>');
 				document.getElementById("Taylor-abstract").innerHTML = replace;
-				//$("body").html($("body").html().replace(/{\/p}/g,'</p>'));
+			}
+			$(document).ready(function() {
+				fixmetotop();
+				$('.scrollspy').scrollSpy();
+				replaceBr();
 			});
 		</script>
 	</body>
