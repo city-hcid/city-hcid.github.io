@@ -710,8 +710,15 @@
 			$(document).ready(function() {
 				fixmetotop();
 				$('.scrollspy').scrollSpy();
-				replaceBr();
-			});
+			})
+			(function(window, document, undefined){
+
+			// code that should be taken care of right away
+
+			window.onload = replaceBr;
+
+
+			})(window, document, undefined);;
 		</script>
 	</body>
 </html>
