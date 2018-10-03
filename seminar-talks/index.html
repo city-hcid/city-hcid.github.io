@@ -705,15 +705,14 @@
 			$(document).ready(function() {
 				fixmetotop();
 				$('.scrollspy').scrollSpy();
-				$("[p]").replaceWith("<p>");
-				$("{/p}").replaceWith("</p>");
+				$("body").html($("body").html().replace(/{\/p}/g,'</p>'));
 			});
 		</script>
 		<script>
 			document.getElementById("dec").addEventListener("load", pReplace);
 
 			function pReplace() {
-			    $("{p}").replaceWith("<p>");
+			    $("body").html($("body").html().replace(/{p}/g,'<p>'));
 			}
 		</script>
 	</body>
