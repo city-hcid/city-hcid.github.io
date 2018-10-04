@@ -2618,6 +2618,10 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+p.lbr {
+    white-space: pre-wrap;
+}
+
 .valign-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
