@@ -42,9 +42,31 @@
 								</tr>
 								<tr class="collection-item">
 									<td>
-										Hello World
+										<ul>
+											<li v-for="item in items">
+												<p>{{ item['fields']['last-name'] }}</p>
+											</li>
+										</ul>
 									</td>
 								</tr>
+									
+									
+									
+									<!-- <td v-for="item in items" v-if="item['fields']['full-time']">
+										<div v-if="item['fields']['photo-url']">
+											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" class="circle" />
+										</div>
+										<div v-else >
+											<i class="material-icons circle">people</i>
+										</div>
+										<br>
+										<div>
+											<p>
+												{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+											</p>
+										</div>
+									</td>
+								</tr> -->
 							</table>
 							
 							<table style="width:100%" class="collection with-header scrollspy" id="pt1">
