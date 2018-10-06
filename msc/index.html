@@ -43,10 +43,10 @@
 								<tr class="collection-item">
 									<td style="display: inline-block;" v-for="item in items" v-if="item['fields']['status'] == 'full-time'">
 										<div v-if="item['fields']['photo-url']">
-											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" class="circle" />
+											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
 										</div>
 										<div v-else >
-											<i class="material-icons circle">people</i>
+											<i class="large black material-icons" style="border-radius: 5%;">assignment_ind</i>
 										</div>
 										<br>
 										<div>
