@@ -6,10 +6,9 @@
 
 
 
-#ft td, #ft div {
+#ft td {
   display: inline-block;
-  margin: 0 1.2rem;
-  align: center;
+  width: 25%
 }
 
 
