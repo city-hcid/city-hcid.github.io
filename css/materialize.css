@@ -4,6 +4,17 @@
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
 
+.table #ft {
+  display: block;
+}
+
+#ft td {
+  display: inline-block;
+  margin: 0 1rem 0 1rem;
+}
+
+
+
 .collapsible-header.active i {
 	-ms-transform: rotate(90deg); /* IE 9 */
 	-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */

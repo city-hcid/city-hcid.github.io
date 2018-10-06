@@ -41,19 +41,7 @@
 									</th>
 								</tr>
 								<tr class="collection-item">
-									<!-- <td>
-										<ul>
-											<li v-for="item in items" v-if="item['fields']['status'] == 'full-time'">
-												<p>{{ item['fields']['last-name'] }}</p>
-												<p>{{ item['fields']['status'] }}</p>
-											</li>
-										</ul>
-									</td>
-								</tr>-->
-									
-									
-									
-									<td style="display: inline-block;" v-for="item in items"  v-if="item['fields']['status'] == 'full-time'">
+									<td style="display: inline-block;" v-for="item in items" v-if="item['fields']['status'] == 'full-time'">
 										<div v-if="item['fields']['photo-url']">
 											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" class="circle" />
 										</div>
@@ -62,9 +50,7 @@
 										</div>
 										<br>
 										<div>
-											<p>
-												{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
-											</p>
+											{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
 										</div>
 									</td>
 								</tr> 
