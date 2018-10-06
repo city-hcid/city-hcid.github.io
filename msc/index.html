@@ -47,7 +47,7 @@
 									<table style="width:100%">
 										<tr>
 											<td v-if="item['fields']['full-time']">
-												<div><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + item['fields']['last-name']" class="circle" />
+												<div v-if="item['fields']['photo-url']"><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + item['fields']['last-name']" class="circle" />
 												</div>
 												<div v-else ><i class="material-icons circle">people</i>
 												</div>
