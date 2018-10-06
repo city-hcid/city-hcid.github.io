@@ -6,7 +6,7 @@
 
 
 
-#ft td {
+#ft td, #pt1 td, #pt2 td {
   display: inline-block;
   width: 25%
 }
