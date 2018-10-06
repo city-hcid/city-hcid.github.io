@@ -43,8 +43,9 @@
 								<tr class="collection-item">
 									<td>
 										<ul>
-											<li v-for="item in items">
+											<li v-for="item in items" v-if="item['fields']['full-time']">
 												<p>{{ item['fields']['last-name'] }}</p>
+												<p>{{ item['fields']['status'] }}</p>
 											</li>
 										</ul>
 									</td>
