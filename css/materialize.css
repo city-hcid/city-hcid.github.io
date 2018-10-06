@@ -4,11 +4,11 @@
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
 
-.table #ft {
+#ft {
   display: block;
 }
 
-#ft td {
+#ft td, #ft div {
   display: inline-block;
   margin: 0 1.5rem;
   align: center;
