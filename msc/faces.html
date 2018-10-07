@@ -25,7 +25,7 @@
 						
 							<table class="centered">
 								<tr>
-									<td v-for="item in items" v-if="item['fields']['rec-no'] == Math.floor((Math.random() * 173) + 100)">
+									<td id="even-photo" v-for="item in items" v-if="item['fields']['rec-no'] == Math.floor((Math.random() * 173) + 100)">
 										<div v-if="item['fields']['photo-url']">
 											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
 										</div>
@@ -37,7 +37,7 @@
 										</div>
 									</td>
 
-									<td v-for="item in items" v-if="item['fields']['rec-no'] == Math.floor((Math.random() * 173) + 100) && item['fields']['rec-no']%2 == 0">
+									<td id="odd-photo" v-for="item in items" v-if="item['fields']['rec-no'] == Math.floor((Math.random() * 173) + 100) && item['fields']['rec-no']%2 == 0">
 										<div v-if="item['fields']['photo-url']">
 											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
 										</div>
@@ -105,6 +105,7 @@
 				if ((rnd_No % 2) == 0) {
 					even_Number = rnd_No;
 					console.log(even_Number);
+					document.getElementById('even-photo').setAttribute('class', 'item[\'fields\'][\'rec-no\'] == 10');
 				}
 				else {
 					odd_Number = rnd_No;
