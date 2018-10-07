@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="HCID, seminar, talks" />
+		<meta name="altitude" content="16.55646896362305" />
+		<meta name="created" content="2018-07-31 06:32:18 +0000" />
+		<meta name="latitude" content="51.5335291950512" />
+		<meta name="longitude" content="-0.06743953563279234" />
+		<meta name="updated" content="2018-09-12 10:21:34 +0000" /><!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /><!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" /><!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>HCID MSc Students</title>
+	</head>
+	<body>
+		<header>
+		</header>
+		<main>
+			<div class="container">
+				<div id="app">
+					<div class="row">
+						<div class="col s12 m9 l10" id="bodybox">
+						
+							<table class="centered">
+								<tr>
+									<td v-for="item in items" v-if="item['fields']['count'] == 101">
+										<div v-if="item['fields']['photo-url']">
+											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
+										</div>
+										<div v-else >
+											<i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+										</div>
+										<div>
+											{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+										</div>
+									</td>
+
+									<td v-for="item in items" v-if="item['fields']['count'] == 100">
+										<div v-if="item['fields']['photo-url']">
+											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
+										</div>
+										<div v-else >
+											<i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+										</div>
+										<div>
+											{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+										</div>
+									</td>
+								</tr> 
+							</table>
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+		</footer>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script><!--JavaScript at end of body for optimised loading-->
+		<script type="text/javascript" src="https://unpkg.com/vue"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+		<script type = "text/javascript" >
+			var app = new Vue({
+				el: '#app',
+				data: {
+					items: []
+				},
+				mounted: function() {
+					this.loadItems();
+				},
+				methods: {
+					loadItems: function() {
+
+						// Init variables
+						var self = this
+						var app_id = "appaTssw36NjXo3tt";
+						var app_key = "keyC83ksN49wS10kX";
+						this.items = []
+						axios.get(
+							"https://api.airtable.com/v0/"+app_id+"/students?view=Grid%20view", {
+								headers: {
+									Authorization: "Bearer " + app_key
+								}
+							}
+						).then(function(response) {
+							self.items = response.data.records
+						}).catch(function(error) {
+							console.log(error)
+						})
+					}
+				}
+			}) 
+		</script>
+	</body>
+</html>
