@@ -102,12 +102,12 @@
 			
 			while (even_Number == 0 || odd_Number == 0) {
 				rnd_No = Math.floor((Math.random() * record_Max) + 100);
-				if ((rnd_No % 2) == 0) {
+				if (even_Number == 0 && (rnd_No % 2) == 0) {
 					even_Number = rnd_No;
 					console.log(even_Number);
 					document.getElementById('even-photo').setAttribute('class', 'new');
 				}
-				else {
+				else if ( odd_Number == 0 && (rnd_No % 2) != 0 ) {
 					odd_Number = rnd_No;
 					console.log(odd_Number);
 				}
