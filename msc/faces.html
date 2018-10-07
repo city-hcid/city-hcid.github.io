@@ -62,7 +62,7 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script><!--JavaScript at end of body for optimised loading-->
 		<script type="text/javascript" src="https://unpkg.com/vue"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-		<script type = "text/javascript" >
+		<script type="text/javascript">
 			var app = new Vue({
 				el: '#app',
 				data: {
@@ -94,7 +94,7 @@
 				}
 			}) 
 		</script>
-		<script>
+		<script type="text/javascript">
 			var record_Max = 173;
 			var rnd_No;
 			var even_Number = 0;
@@ -105,7 +105,7 @@
 				if (even_Number == 0 && (rnd_No % 2) == 0) {
 					even_Number = rnd_No;
 					console.log(even_Number);
-					document.getElementById('even-photo').setAttribute('class', 'new');
+					document.getElementById('even-photo').setAttribute('id', 'new');
 				}
 				else if ( odd_Number == 0 && (rnd_No % 2) != 0 ) {
 					odd_Number = rnd_No;
