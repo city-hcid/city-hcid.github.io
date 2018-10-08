@@ -69,6 +69,7 @@
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script type="text/javascript">
+        var itemNo;
         var app = new Vue({
             el: '#app',
             data: {
@@ -92,8 +93,9 @@
                             }
                         }
                     ).then(function(response) {
-                        self.items = response.data.records
-                        console.log(self.items.length)
+                        self.items = response.data.records;
+                        itemNo = self.items.length - 1;
+                        console.log(itemNo);
                     }).catch(function(error) {
                         console.log(error)
                     })
