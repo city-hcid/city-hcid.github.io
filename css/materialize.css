@@ -3180,7 +3180,7 @@ td, th {
 
 .collection.with-header .collection-header {
   background-color: #fff;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: none;
   padding: 10px 20px;
 }
 
@@ -5879,7 +5879,7 @@ body.keyboard-focused .dropdown-content li:focus {
   line-height: 1.5;
   padding: 1rem;
   background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  border-bottom: none;
 }
 
 .collapsible-header:focus {
@@ -5900,7 +5900,7 @@ body.keyboard-focused .dropdown-content li:focus {
 
 .collapsible-body {
   display: none;
-  border-bottom: 1px solid #ddd;
+  border-bottom: none;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 2rem;
