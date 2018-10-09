@@ -109,19 +109,18 @@
         var even_Number = 0;
         var odd_Number = 0;
 
+        function getRndRecNo() {
+            return Math.floor(Math.random() * record_Max) + 100);
+        }
+
         while (even_Number == 0) {
-            rnd_No = Math.floor((Math.random() * record_Max) + 100);
-            if ((rnd_No % 2) == 0) {
+            rnd_No = getRndRecNo();
+            if (rnd_No % 2 == 0) {
                 even_Number = rnd_No;
                 console.log(even_Number);
                 // $('#even-photo').attr('class', 'even_Number'); 
-            }
-        }
-
-        while (odd_Number == 0) {
-            rnd_No = Math.floor((Math.random() * record_Max) + 100);
-            if ((rnd_No % 2) != 0) {
-                odd_Number = rnd_No;
+                else
+                    odd_Number = rnd_No;
                 console.log(odd_Number);
                 // $('#even-photo').attr('class', 'even_Number'); 
             }
