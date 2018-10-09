@@ -30,7 +30,7 @@
 
                         <table class="centered">
                             <tr>
-                                <td v-for="item in items" v-if="item['fields']['rec-no'] == 102">
+                                <td v-for="item in items" v-if="item['fields']['rec-no'] == Math.floor((Math.random() * 173) + 100">
                                     <div v-if="item['fields']['photo-url']">
                                         <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
                                     </div>
@@ -42,7 +42,7 @@
                                     </div>
                                 </td>
 
-                                <td v-for="item in items" v-if="item['fields']['rec-no'] == 153">
+                                <td v-for="item in items" v-if="item['fields']['rec-no'] == Math.floor((Math.random() * 173) + 100">
                                     <div v-if="item['fields']['photo-url']">
                                         <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
                                     </div>
@@ -87,7 +87,7 @@
                     var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/students?view=Grid%20view", {
+                        "https://api.airtable.com/v0/" + app_id + "/students?fields%5B%5D=last-name&fields%5B%5D=first-name&fields%5B%5D=rec-no&fields%5B%5D=photo-url&view=Grid%2520view", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
