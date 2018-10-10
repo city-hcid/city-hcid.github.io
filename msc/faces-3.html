@@ -74,16 +74,18 @@
                     var self = this
                     var app_id = "appaTssw36NjXo3tt";
                     var app_key = "keyC83ksN49wS10kX";
+                    var rndPhoto = Math.floor(Math.random() * 174) + 100);
+
                     this.items = []
                     axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/students?view=Grid%20view&filterByFormula=OR(FIND(%22103%22%2C%7Bno%7D)%2CFIND(%22110%22%2C%7Bno%7D))", {
+                        "https://api.airtable.com/v0/" + app_id + "/students?view=Grid%20view&filterByFormula=OR(FIND(%22" + rndPhoto + "%22%2C%7Bno%7D)%2CFIND(%22" + rndPhoto + "%22%2C%7Bno%7D))", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        itemNo = self.items.length - 1;
+                        itemNo = self.items.length;
                         console.log(itemNo);
                     }).catch(function(error) {
                         console.log(error)
