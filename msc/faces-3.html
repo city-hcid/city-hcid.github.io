@@ -74,11 +74,12 @@
                     var self = this
                     var app_id = "appaTssw36NjXo3tt";
                     var app_key = "keyC83ksN49wS10kX";
-                    var rndPhoto = Math.floor((Math.random() * 174) + 100);
+                    var rndPhoto_1 = Math.floor((Math.random() * 174) + 100);
+                    var rndPhoto_2 = Math.floor((Math.random() * 174) + 100);
 
                     this.items = []
                     axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/students?view=Grid%20view&filterByFormula=OR(FIND(%22" + rndPhoto + "%22%2C%7Bno%7D)%2CFIND(%22" + rndPhoto + "%22%2C%7Bno%7D))", {
+                        "https://api.airtable.com/v0/" + app_id + "/students?view=Grid%20view&filterByFormula=OR(FIND(%22" + rndPhoto_1 + "%22%2C%7Bno%7D)%2CFIND(%22" + rndPhoto_2 + "%22%2C%7Bno%7D))", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
@@ -103,21 +104,6 @@
 
         function getRndRecNo() {
             return Math.floor((Math.random() * record_Max) + 100);
-        }
-
-        while (even_Number == 0) {
-            rnd_No = getRndRecNo();
-            if (rnd_No % 2 == 0) {
-                even_Number = rnd_No;
-                console.log(even_Number);
-                // $('#even-photo').attr('class', 'even_Number'); 
-            }
-            else {
-                    odd_Number = rnd_No;
-                console.log(odd_Number);
-                // $('#even-photo').attr('class', 'even_Number');
-                }
-            }
         }
     </script>
 </body>
