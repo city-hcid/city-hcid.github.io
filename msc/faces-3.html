@@ -102,7 +102,7 @@
         var odd_Number = 0;
 
         function getRndRecNo() {
-            return (Math.floor(Math.random() * record_Max) + 100);
+            return Math.floor((Math.random() * record_Max) + 100);
         }
 
         while (even_Number == 0) {
@@ -111,10 +111,12 @@
                 even_Number = rnd_No;
                 console.log(even_Number);
                 // $('#even-photo').attr('class', 'even_Number'); 
-                else
+            }
+            else {
                     odd_Number = rnd_No;
                 console.log(odd_Number);
-                // $('#even-photo').attr('class', 'even_Number'); 
+                // $('#even-photo').attr('class', 'even_Number');
+                }
             }
         }
     </script>
