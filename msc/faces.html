@@ -30,19 +30,7 @@
 
                         <table class="centered">
                             <tr>
-                                <td v-for="item in items" v-if="item['fields']['rec-no'] == Math.floor(Math.random() * 173) + 100">
-                                    <div v-if="item['fields']['photo-url']">
-                                        <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
-                                    </div>
-                                    <div v-else>
-                                        <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
-                                    </div>
-                                    <div>
-                                        {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
-                                    </div>
-                                </td>
-
-                                <td v-for="item in items" v-if="item['fields']['rec-no'] == Math.floor(Math.random() * 173) + 100">
+                                <td v-for="item in items">
                                     <div v-if="item['fields']['photo-url']">
                                         <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
                                     </div>
@@ -87,7 +75,7 @@
                     var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/students?view=Grid%20view", {
+                        "https://api.airtable.com/v0/" + app_id + "/students?view=Grid%20view&filterByFormula=OR(FIND("103",{no}),FIND("110",{no}))", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
