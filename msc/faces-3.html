@@ -28,25 +28,32 @@
                 <div class="row">
                     <div class="col s12 m9 l10" id="bodybox">
 
-                        <table class="centered collection with-header" id="diptic">
-                            <tr class="collection-header">
-                                <th>
-                                    <h2>Full Time</h2>
-                                </th>
-                            </tr>
-                            <tr class="collection-item">
-                                <td style="display: inline-block;" v-for="item in items" v-if="item['fields']['status'] == 'full-time'">
+                        <table class="centered">
+                            <tr>
+                                <td id="even-photo" v-for="item in items" v-if="item['fields']['rec-no'] == (Math.floor((Math.random() * 86) + 50))*2">
                                     <div v-if="item['fields']['photo-url']">
                                         <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
                                     </div>
-                                    <div v-else >
+                                    <div v-else>
                                         <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
                                     </div>
                                     <div>
                                         {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
                                     </div>
                                 </td>
-                            </tr> 
+
+                                <td id="odd-photo" v-for="item in items" v-if="item['fields']['rec-no'] == ((Math.floor((Math.random() * 86) + 50))*2)+1">
+                                    <div v-if="item['fields']['photo-url']">
+                                        <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
+                                    </div>
+                                    <div v-else>
+                                        <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+                                    </div>
+                                    <div>
+                                        {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+                                    </div>
+                                </td>
+                            </tr>
                         </table>
 
                     </div>
@@ -78,8 +85,6 @@
                     var self = this
                     var app_id = "appaTssw36NjXo3tt";
                     var app_key = "keyC83ksN49wS10kX";
-                    var record_Max = 100 + itemNo;
-                    var rndNo = Math.floor(Math.random() * record_Max) + 100);
                     this.items = []
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/students?view=Grid%20view", {
@@ -89,7 +94,7 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        itemNo = self.items.length;
+                        itemNo = self.items.length - 1;
                         console.log(itemNo);
                     }).catch(function(error) {
                         console.log(error)
@@ -97,6 +102,29 @@
                 }
             }
         })
+    </script>
+    <script type="text/javascript">
+        var record_Max = 100 + itemNo;
+        var rnd_No;
+        var even_Number = 0;
+        var odd_Number = 0;
+
+        function getRndRecNo() {
+            return Math.floor(Math.random() * record_Max) + 100);
+        }
+
+        while (even_Number == 0) {
+            rnd_No = getRndRecNo();
+            if (rnd_No % 2 == 0) {
+                even_Number = rnd_No;
+                console.log(even_Number);
+                // $('#even-photo').attr('class', 'even_Number'); 
+                else
+                    odd_Number = rnd_No;
+                console.log(odd_Number);
+                // $('#even-photo').attr('class', 'even_Number'); 
+            }
+        }
     </script>
 </body>
 
