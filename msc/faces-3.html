@@ -16,7 +16,7 @@
     <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HCID MSc Students</title>
+    <title>HCID Photos</title>
 </head>
 
 <body>
@@ -27,13 +27,11 @@
             <div id="app">
                 <div class="row">
                     <div class="col s12 m9 l10" id="bodybox">
-
-                        <table class="centered" style="margin:30% 15%">
-
-
+                        <table class="centered" style="margin:30% 10%">
+                            <tr>
                                 <td id="odd-photo" v-for="item in items">
                                     <div v-if="item['fields']['photo-url']">
-                                        <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
+                                        <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" width="180" />
                                     </div>
                                     <div v-else>
                                         <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
