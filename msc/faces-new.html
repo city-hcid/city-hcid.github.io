@@ -64,7 +64,7 @@
                     var app_id = "appaTssw36NjXo3tt";
                     var app_key = "keyC83ksN49wS10kX";
                     var rndPhoto_1 = getRndRecNo();
-                    var rndPhoto_2 = Math.floor((Math.random() * 74) + 101);
+                    var rndPhoto_2 = getRndRecNo();
 
                     this.items = []
                     axios.get(
@@ -90,7 +90,7 @@
         })
     </script>
     <script>
-        $( "img" ).ready(function() {
+        $( "img" ).load(function() {
             $( "img:hidden:first" ).fadeIn( "slow" );
         });
     </script>
