@@ -29,9 +29,9 @@
                     <div class="col s12 m9 l10" id="bodybox">
                         <table class="centered" style="margin:30% 10%">
                             <tr>
-                                <td class="scale-transition scale-in" v-for="item in items" style="margin:0 5rem">
+                                <td v-for="item in items" style="margin:0 5rem">
                                     <div v-if="item['fields']['photo-url']">
-                                            <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" height="300" />
+                                            <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5px;" height="300" />
                                     </div>
                                     <div v-else>
                                         <i class="large material-icons">assignment_ind</i>
@@ -56,7 +56,6 @@
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script type="text/javascript">
-        var itemNo;
         var app = new Vue({
             el: '#app',
             data: {
@@ -67,6 +66,7 @@
             },
             methods: {
                 loadItems: function() {
+                    function getRndRecNo() { return Math.floor((Math.random() * 74) + 100); }
 
                     // Init variables
                     var self = this
