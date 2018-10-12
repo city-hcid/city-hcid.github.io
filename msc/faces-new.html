@@ -8,6 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCID Photos</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            $( "div.fadeup:hidden:first" ).fadeIn( "slow" );
+            console.log( "document loaded" );
+        });
+    </script>
     <style>
         .fade-up {
             -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
@@ -75,10 +81,8 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        var itemNo = self.items.length;
                         console.log(rndPhoto_1);
                         console.log(rndPhoto_2);
-                        console.log(itemNo);
                         setTimeout(function(){
                             window.location.reload(1);
                         }, 5000);
@@ -88,12 +92,6 @@
                 }
             }
         })
-    </script>
-    <script>
-        $( document ).ready(function() {
-            $( "div.fadeup:hidden:first" ).fadeIn( "slow" );
-            console.log( "document loaded" );
-        });
     </script>
 </body>
 
