@@ -8,6 +8,12 @@
     <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCID Photos</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".tabl").fadeIn(3000);
+        });
+    </script>
 </head>
 
 <body>
@@ -37,7 +43,6 @@
             </div>
         </div>
     </main>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
@@ -52,14 +57,14 @@
             },
             methods: {
                 loadItems: function() {
-                    function getRndRecNo() { return Math.floor((Math.random() * 74) + 100); }
+                    function getRndRecNo() { return Math.floor((Math.random() * 74) + 101); }
 
                     // Init variables
                     var self = this
                     var app_id = "appaTssw36NjXo3tt";
                     var app_key = "keyC83ksN49wS10kX";
-                    var rndPhoto_1 = Math.floor((Math.random() * 74) + 100);
-                    var rndPhoto_2 = Math.floor((Math.random() * 74) + 100);
+                    var rndPhoto_1 = Math.floor((Math.random() * 74) + 101);
+                    var rndPhoto_2 = Math.floor((Math.random() * 74) + 101);
 
                     this.items = []
                     axios.get(
@@ -71,7 +76,6 @@
                     ).then(function(response) {
                         self.items = response.data.records;
                         itemNo = self.items.length;
-                        console.log(itemNo);
                         console.log(rndPhoto_1);
                         console.log(rndPhoto_2);
                         setTimeout(function(){
@@ -83,19 +87,6 @@
                 }
             }
         })
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $(".tabl").fadeIn(3000);
-        });
-        var record_Max = 100 + itemNo;
-        var rnd_No;
-        var even_Number = 0;
-        var odd_Number = 0;
-
-        function getRndRecNo() {
-            return Math.floor((Math.random() * record_Max) + 100);
-        }
     </script>
 </body>
 
