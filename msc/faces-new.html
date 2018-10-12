@@ -7,6 +7,14 @@
     <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCID Photos</title>
+    <style>
+        .fade-in {
+            -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+            -moz-animation: fadein 2s; /* Firefox < 16 */
+                -ms-animation: fadein 2s; /* Internet Explorer */
+                -o-animation: fadein 2s; /* Opera < 12.1 */
+                    animation: fadein 2s;
+        }
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
@@ -19,7 +27,7 @@
                             <tr>
                                 <td v-for="item in items" style="margin:0 5rem">
                                     <div v-if="item['fields']['photo-url']">
-                                            <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 10px; -webkit-animation: fadein 2s;" height="220" />
+                                            <img class="fade-in" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 10px;" height="220" />
                                     </div>
                                     <div v-else>
                                         <i class="large material-icons">assignment_ind</i>
