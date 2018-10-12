@@ -29,22 +29,16 @@
                     <div class="col s12 m9 l10" id="bodybox">
                         <table class="centered" style="margin:30% 10%">
                             <tr>
-                                <td v-for="item in items" style="margin:0 5rem">
-                                    <div class="card medium">
-                                        <div class="card-image">
-                                            <div v-if="item['fields']['photo-url']">
-                                                <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" height="300" />
-                                            </div>
-                                            <div v-else>
-                                                <i class="large material-icons">assignment_ind</i>
-                                            </div>
-                                        </div>
-                                        <div class="card-content">
-                                            <p>
-                                                {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
-                                            </p>
-                                        </div>
+                                <td class="scale-transition scale-in" v-for="item in items" style="margin:0 5rem">
+                                    <div v-if="item['fields']['photo-url']">
+                                            <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" height="300" />
                                     </div>
+                                    <div v-else>
+                                        <i class="large material-icons">assignment_ind</i>
+                                    </div>
+                                    <p>
+                                        {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+                                    </p>
                                 </td>
                             </tr>
                         </table>
