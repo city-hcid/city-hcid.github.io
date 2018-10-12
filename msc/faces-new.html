@@ -23,7 +23,7 @@
                         <table class="centered tabl" style="margin:30% 10%">
                             <tr>
                                 <td v-for="item in items" style="margin:0 5rem">
-                                    <div>
+                                    <div class="fadeup">
                                         <div v-if="item['fields']['photo-url']">
                                             <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 10px;" height="220" />
                                         </div>
@@ -90,8 +90,9 @@
         })
     </script>
     <script>
-        $( "img" ).load(function() {
-            $( "img:hidden:first" ).fadeIn( "slow" );
+        $( document ).ready(function() {
+            $( "div.fadeup:hidden:first" ).fadeIn( "slow" );
+            console.log( "document loaded" );
         });
     </script>
 </body>
