@@ -9,11 +9,19 @@
     <title>HCID Photos</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
-        .fade-up {
-        -webkit-transition: all 4s ease-in-out;
-        -moz-transition: all 4s ease-in-out;
-        -o-transition: all 4s ease-in-out;
-        transition: all 4s ease-in-out;
+        .fade-in {
+            opacity:0;  /* make things invisible upon start */
+            -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+            -moz-animation:fadeIn ease-in 1;
+            animation:fadeIn ease-in 1;
+
+            -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+            -moz-animation-fill-mode:forwards;
+            animation-fill-mode:forwards;
+
+            -webkit-animation-duration:1s;
+            -moz-animation-duration:1s;
+            animation-duration:1s;
         }
     </style>
 </head>
@@ -26,7 +34,7 @@
                         <table class="centered tabl" style="margin:30% 10%">
                             <tr>
                                 <td v-for="item in items" style="margin:0 5rem">
-                                    <div class="fade-up">
+                                    <div class="fade-in">
                                         <div v-if="item['fields']['photo-url']">
                                             <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 10px;" height="220" />
                                         </div>
