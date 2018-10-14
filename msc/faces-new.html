@@ -10,9 +10,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
 
-        @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-        @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @-webkit-keyframes fadeIn { 0% { opacity:0; } 50% { opacity:1; } 100%  { opacity:0; } }
+        @-moz-keyframes fadeIn { 0% { opacity:0; } 50% { opacity:1; } 100%  { opacity:0; } }
+        @keyframes fadeIn { 0% { opacity:0; } 50% { opacity:1; } 100%  { opacity:0; } }
 
         .fade-in {
             opacity:0;  /* make things invisible upon start */
@@ -24,9 +24,9 @@
             -moz-animation-fill-mode:forwards;
             animation-fill-mode:forwards;
 
-            -webkit-animation-duration:1s;
-            -moz-animation-duration:1s;
-            animation-duration:1s;
+            -webkit-animation-duration:4s;
+            -moz-animation-duration:4s;
+            animation-duration:4s;
 
             -webkit-animation-delay: 0.7s;
             -moz-animation-delay: 0.7s;
@@ -44,13 +44,13 @@
                             <tr>
                                 <td v-for="item in items" style="margin:0 5rem">
                                     <div class="fade-in">
-                                        <div v-if="item['fields']['photo-url']">
+                                        <div v-if="item['fields']['photo-url']" >
                                             <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 10px;" height="220" />
                                         </div>
                                         <div v-else>
                                             <i class="large material-icons">assignment_ind</i>
                                         </div>
-                                        <h2 class="flow-text">
+                                        <h2 class="flow-text strong">
                                             {{ item['fields']['first-name'] }} {{ item['fields']['last-name'] }}
                                         </h2>
                                     </div>
