@@ -43,6 +43,9 @@
 							</h2>
 							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
 							<p v-if="item['fields']['bio']">
+								<strong>Twitter:</strong> {{ item['fields']['twitter'] }}
+							</p>
+							<p v-if="item['fields']['bio']">
 								<strong>Bio:</strong> {{ item['fields']['bio'] }}
 							</p>
 							<p>
