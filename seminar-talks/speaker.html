@@ -47,7 +47,7 @@
 								<a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
 							</p>
 
-							<p v-if="item['fields']['scholar-orcid'].includes(\"scholar\")">
+							<p v-if="item['fields']['scholar-orcid'].includes(\'scholar\')">
 								<strong>Publications: </strong> 
 								<a v-bind:href= "item['fields']['scholar-orcid']">Google Scholar</a>
 							</p>
