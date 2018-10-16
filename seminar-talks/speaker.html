@@ -45,7 +45,7 @@
 								{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
 							</span>
 							<p>
-								<span>v-if="item['fields']['twitter']">
+								<span v-if="item['fields']['twitter']">
 									<strong>Twitter: </strong><a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
 								</span>
 							<br>
