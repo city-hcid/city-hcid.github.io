@@ -1,0 +1,270 @@
+{
+	"records": [
+		{
+			"id": "rec5ArSAhVpqvrhch",
+			"fields": {
+				"first": "Carol",
+				"bio": "Carol Butler is a Collaborative Doctoral Student based at the British Library and City, University of London, in the Centre for Human Computer Interaction Design.",
+				"bio-url": "https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design/people/carol-butler",
+				"last": "Butler",
+				"talk-title": "Digital Publishing, Technology and the Reader",
+				"date": "2018-10-12T12:00:00.000Z",
+				"room": "A214",
+				"photo-url": "https://www.city.ac.uk/__data/assets/image/0006/339414/CarolButler-600.png",
+				"Pronoun": "her",
+				"group-dept": "HCID",
+				"title": "Ms",
+				"org": "City, University of London",
+				"talk-abstract": "A perception of a boundary between Fiction Authors and their Readers has influenced how, when and where they interact. Opportunities to connect in-person have been traditionally limited to events, e.g. panel talks; book signings and readings. Here, authors discuss their books and life as a writer, and readers can ask them questions and give feedback. How these events are mediated follow similar, highly structured conventions, e.g. the audience may be seated in rows; questions asked through a panel chair; access managed by queueing and ticketing systems.\t\t\t\t\t\t\t\n\nToday, the use of social networking sites (SNS) by authors is widespread, enabling them to connect with their audience directly. The structures which previously mediated their interactions have been collapsed, and the boundary between them challenged by this new online social context. The impact of these changes on either party is currently little understood - particularly from an HCI perspective.\n\nIn this transfer presentation, Carol will describe her methodological approach to, and results from, a qualitative interview study with genre fiction authors and readers. This study sought to understand the experiences, behaviours and needs of both parties when interacting together online. She will provide a background of prior research around the historic relationship between author and reader, and how it has been traditionally mediated. She will then present a model which illustrates how the move from offline to online impacts their current interaction behaviours.\n\t\t\t\t\t\t\t\tThe study results revealed that whilst there are benefits to using SNS for both parties, there are also several complex asymmetries at play, which make it difficult to design technology to effectively support their interactions - or to even be certain what type of interactions should be supported at all.\n\nShe will explain her current plans for future research, which will develop a richer understanding of the complex dynamics between them, towards defining how technology can better support connections between them in the future.",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "carol.butler@city.ac.uk",
+				"full-name": " Carol Butler",
+				"date-str": "12:00 Friday 12 October 2018",
+				"month": "Oct"
+			},
+			"createdTime": "2018-05-31T00:16:16.000Z"
+		},
+		{
+			"id": "recDzKHsD4D3tZCzS",
+			"fields": {
+				"first": "Jennifer",
+				"bio-url": "https://iris.ucl.ac.uk/iris/browse/profile?upi=JRODE41",
+				"last": "Rode",
+				"date": "2018-11-16T13:00:00.000Z",
+				"Pronoun": "her",
+				"group-dept": "Knowledge Lab",
+				"title": "Dr",
+				"org": "UCL",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "j.rode@ucl.ac.uk",
+				"full-name": "Dr Jennifer Rode",
+				"date-str": "13:00 Friday 16 November 2018",
+				"month": "Nov"
+			},
+			"createdTime": "2018-10-01T21:36:35.000Z"
+		},
+		{
+			"id": "recGpOCwtR10pJBDV",
+			"fields": {
+				"first": "Alex",
+				"bio-url": "https://ast.io/about-alex-taylor",
+				"last": "Taylor",
+				"date": "2018-12-14T13:00:00.000Z",
+				"photo-url": "https://www.city.ac.uk/__data/assets/image/0004/377347/alex-taylor-200px.jpg",
+				"Pronoun": "him",
+				"group-dept": "HCID",
+				"title": "Dr",
+				"org": "City, University of London",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "alex.taylor@city.ac.uk",
+				"full-name": "Dr Alex Taylor",
+				"date-str": "13:00 Friday 14 December 2018",
+				"month": "Dec"
+			},
+			"createdTime": "2018-10-02T16:38:22.000Z"
+		},
+		{
+			"id": "recREmnvgMZSkxnVn",
+			"fields": {
+				"first": "Stuart",
+				"bio-url": "https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design/people/stuart-scott",
+				"last": "Scott",
+				"date": "2018-11-09T13:00:00.000Z",
+				"photo-url": "https://www.city.ac.uk/__data/assets/image/0013/334102/stuart_scott.jpg",
+				"Pronoun": "him",
+				"group-dept": "HCID",
+				"title": "Mr",
+				"org": "City, University of London",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "stuart.scott.2@city.ac.uk",
+				"full-name": " Stuart Scott",
+				"date-str": "13:00 Friday 9 November 2018",
+				"month": "Nov"
+			},
+			"createdTime": "2018-10-01T21:23:09.000Z"
+		},
+		{
+			"id": "recVJt6XSO9y2wq95",
+			"fields": {
+				"first": "Sara",
+				"bio": "My research interests are in participatory design, sustainability, smart cities, and more-than-human worlds. In my current research, I am developing creative methods such as Speculative Participatory Design to increase participation of diverse citizens in the design of digital technologies for urban food futures, and interrogating how the visions produced counter traditional top-down, technocentric, and utilitarian narratives of the eco-smart-city. I am also interested in the ways in which humans and other species participate and stake a claim in the digital urban commons.\n\nBefore joining Newcastle University, I was a Researcher Co-Investigator on Connected Seeds and Sensors, an 18-month EPSRC-funded Research in the Wild – Internet of Things (IoT) project based at Queen Mary University of London, where I investigated co-designing digital technologies with urban agricultural communities to support more sustainable food consumption and production in the city. The project involved smart sensors, data collection, and an interactive seed library to raise awareness, empower communities and increase participation in sustainable urban food practices. Connected Seeds and Sensors grew out of my PhD work, which I completed at the Media and Arts Technology Doctoral Training Centre at QMUL. I also have an established career as an independent, award-winning artist and designer. My project Priviled Tactics I (together with Franc Purg), won a UNESCO Digital Art Award, and dealt with the topic of urban sustainability and Internet of Things.\n\nMy commitment to furthering environmentally sustainable and socially inclusive cities underpins my role as a trustee for the charity Spitalfields City Farm in east London, where I help advise on strategy and management.",
+				"bio-url": "http://saraheitlinger.net",
+				"last": "Heitlinger",
+				"talk-title": "What Else Could a Sustainable Smart City Be?",
+				"date": "2018-11-02T13:00:00.000Z",
+				"room": "B103",
+				"photo-url": "images/Sara-Heitlinger.jpg",
+				"scholar-orchid": "https://orcid.org/0000-0001-6148-350X",
+				"Pronoun": "her",
+				"group-dept": "APL",
+				"title": "Dr",
+				"twitter": "@saralara_heit",
+				"org": "Newcastle University",
+				"talk-abstract": "Environmental concerns have driven an interest in sustainable smart cities, through the monitoring and optimisation of networked infrastructure processes. At the same time, there are concerns about who these interventions and services are for, and who benefits. HCI researchers and designers interested in civic life have started to call for the democratisation of urban space through resistance and political action to challenge state and corporate claims, by involving citizens in the design of Internet of Things particularly in the context of marginalised and ethnically diverse urban communities. I will present a case study that involved co-designing networked environmental sensors, data visualisation, and an interactive seed library to support sustainable food practices with urban agricultural communities as an example of a design research project in this space. I will discuss how the study surfaces three alternative visions of what sustainable smart cities could be – The More-than-Human City, the Slow City, and the Commons-based City – and reflect on the role of design and HCI in creating more socially and environmentally just urban space.",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "sara.heitlinger@newcastle.ac.uk",
+				"full-name": "Dr Sara Heitlinger",
+				"date-str": "13:00 Friday 2 November 2018",
+				"month": "Nov"
+			},
+			"createdTime": "2018-09-26T20:49:59.000Z"
+		},
+		{
+			"id": "rechHlufeBJA0mCsS",
+			"fields": {
+				"first": "Waleed",
+				"bio-url": "https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design/people/waleed-al-nuwaiser",
+				"last": "Al Nuwaiser",
+				"talk-title": "Exploring the Impact of Polysemous Icons in Mobile Web Interfaces Using Semiotic Analysis",
+				"date": "2018-10-05T13:00:00.000Z",
+				"room": "AG08",
+				"photo-url": "https://www.city.ac.uk/__data/assets/image/0004/345838/Waleed.jpg",
+				"dietary": [
+					"Halal"
+				],
+				"Pronoun": "him",
+				"group-dept": "HCID",
+				"title": "Mr",
+				"org": "City, University of London",
+				"talk-abstract": "The growth of the Internet and digital communications has given rise to a large number of devices and graphical user interfaces (GUIs). Icons are fundamental elements in GUIs. They are mechanisms of interaction between humans and devices (including mobile devices), and they enable users to achieve tasks. Users typically act on icons as a consequence of their understanding of the icon’s visual representation. Meaningful icons enhance users' understanding, whereas polysemous icons – those that are visually identical but have different meanings – may increase users’ confusion. There has been previous research regarding how to design meaningful icons and reduce users’ confusion. However, there is scant knowledge of how users’ understanding is affected by polysemous icons.  The overall aim of this research is to progress our understanding of how users interpret similar and dissimilar icons in mobile web interfaces; in this seminar, we present the results of an initial study where we investigated the effect of pairs of polysemous icons that were seen in a sequence of interaction on users’ interpretations. Two groups of participants were presented with three pairs of polysemous icons while performing two tasks in two different orders. The results revealed that the accuracy of users’ interpretations varied. In the majority of cases in both groups, the previous interaction in the sequence erroneously influenced the interpretation of the second icon in a given pair of polysemous icons. The results suggest that users in both groups drew on long-term, short-term and working memory for interpretations.",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "waleed.al-nuwaiser@city.ac.uk",
+				"full-name": " Waleed Al Nuwaiser",
+				"date-str": "13:00 Friday 5 October 2018",
+				"month": "Oct"
+			},
+			"createdTime": "2018-05-31T00:16:16.000Z"
+		},
+		{
+			"id": "recqYU1dKL1QiJniB",
+			"fields": {
+				"first": "Helen",
+				"bio-url": "https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design/people/helen-calderon",
+				"last": "Calderon",
+				"date": "2018-12-07T13:30:00.000Z",
+				"Pronoun": "her",
+				"group-dept": "HCID",
+				"title": "Ms",
+				"org": "City, University of London",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "helen.calderon.2@city.ac.uk",
+				"full-name": " Helen Calderon",
+				"date-str": "13:30 Friday 7 December 2018",
+				"month": "Dec"
+			},
+			"createdTime": "2018-10-02T19:31:03.000Z"
+		},
+		{
+			"id": "rect1QdHtUDVe8C8Z",
+			"fields": {
+				"first": "Ernesto",
+				"bio-url": "https://www.city.ac.uk/people/academics/ernesto-priego",
+				"last": "Priego",
+				"date": "2018-11-23T13:00:00.000Z",
+				"photo-url": "https://www.city.ac.uk/__data/assets/image/0020/205418/SBBJ743.jpg",
+				"Pronoun": "him",
+				"group-dept": "HCID",
+				"title": "Dr",
+				"org": "City, University of London",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "ernesto.priego.1@city.ac.uk",
+				"full-name": "Dr Ernesto Priego",
+				"date-str": "13:00 Friday 23 November 2018",
+				"month": "Nov"
+			},
+			"createdTime": "2018-10-01T21:39:22.000Z"
+		},
+		{
+			"id": "rectISE6T2Vdk2dSy",
+			"fields": {
+				"first": "Chris",
+				"bio": "Chris Elsden is an HCI researcher, with a background in sociology, and expertise in the human experience of a data-driven life. Using and developing innovative design research methods, he undertakes diverse, qualitative and often speculative engagements with participants to investigate emerging relationships with technology – particularly data-driven tools and blockchain technologies. His research seeks to reveal the many nuanced relationships people have with data in everyday life, and use these insights to identify new opportunities for design.\nHe is currently a post-doctoral researcher in the School of Design at Northumbria University, and a visiting researcher in Design Informatics, Edinburgh University, working on the EPSRC OxChain project. He completed his doctoral research at Open Lab, Newcastle University in 2017.",
+				"bio-url": "https://elsden.me/about/",
+				"last": "Elsden",
+				"talk-title": "Unpacking blockchain technologies: Designing for formality, transactions, contracts and conditionality\nBlockchain technologies are wild in their hype, and vast in their potential applications. ",
+				"date": "2018-09-27T13:00:00.000Z",
+				"room": "B103",
+				"photo-url": "https://openlab.ncl.ac.uk/wp-content/uploads/userphoto/142.thumbnail.jpg",
+				"scholar-orchid": "https://scholar.google.co.uk/citations?user=eOm_WDkAAAAJ&hl=en",
+				"dietary": [
+					"None"
+				],
+				"Pronoun": "him",
+				"group-dept": "School of Design",
+				"title": "Dr",
+				"twitter": "@ElsdenChris",
+				"org": "Northumbria University",
+				"talk-abstract": " In this talk, I try to cut through to some of the intriguing underlying properties of blockchain technologies, and suggest areas of research for human-centred and design-led research. In particular, I will discuss the extent to which blockchains demand formal record-keeping and the creation of hard logics, classifications and accountability that all data-driven technologies depend upon. Drawing on examples from the EPSRC OxChain research project – exploring blockchain applications for international development and charitable giving –  I propose the opportunity For HCI and design researchers, to consider design for formality, transactions, contracts and conditionality.",
+				"related-event": [
+					"recD0fPwHESu1ur5b"
+				],
+				"email": "chris.elsden@northumbria.ac.uk",
+				"full-name": "Dr Chris Elsden",
+				"date-str": "13:00 Thursday 27 September 2018",
+				"month": "Sep"
+			},
+			"createdTime": "2018-05-31T00:16:16.000Z"
+		},
+		{
+			"id": "recuxWbWA9c41UTvN",
+			"fields": {
+				"first": "Graeme",
+				"bio-url": "https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design/people/graeme-aymer",
+				"last": "Aymer",
+				"date": "2018-12-07T13:00:00.000Z",
+				"photo-url": "https://www.city.ac.uk/__data/assets/image/0004/347017/graeme_aymer.jpg",
+				"Pronoun": "him",
+				"group-dept": "HCID",
+				"title": "Mr",
+				"org": "City, University of London",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "graeme.aymer@city.ac.uk",
+				"full-name": " Graeme Aymer",
+				"date-str": "13:00 Friday 7 December 2018",
+				"month": "Dec"
+			},
+			"createdTime": "2018-10-02T16:38:08.000Z"
+		},
+		{
+			"id": "recxnRI3XXpIqfjox",
+			"fields": {
+				"first": "Adrian",
+				"bio-url": "https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design/people/adrian-bussone",
+				"last": "Bussone",
+				"date": "2018-10-19T13:00:00.000Z",
+				"room": "A108",
+				"photo-url": "https://www.city.ac.uk/__data/assets/image/0004/339124/bussone-640.png",
+				"Pronoun": "her",
+				"group-dept": "HCID",
+				"title": "Dr",
+				"org": "City, University of London",
+				"related-event": [
+					"recX4rcNb11X2qhOW"
+				],
+				"email": "adrian.bussone.1@city.ac.uk",
+				"full-name": "Dr Adrian Bussone",
+				"date-str": "13:00 Friday 19 October 2018",
+				"month": "Oct"
+			},
+			"createdTime": "2018-05-31T00:51:11.000Z"
+		}
+	]
+}
