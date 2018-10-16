@@ -41,15 +41,17 @@
 							<h2 style="margin-bottom:.2rem;">
 								{{ item['fields']['full-name'] }}
 							</h2>
-							{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
-							<p v-if="item['fields']['twitter']">
-								<strong>Twitter: </strong> 
-								<a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
-							</p>
-
-							<p v-if="item['fields']['scholar-orcid']">
-								<strong>Publications: </strong> 
-								<a v-bind:href= "item['fields']['scholar-orcid']">Google Scholar/ORCID</a>
+							<span>
+								{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
+							</span>
+							<p>
+								<span>v-if="item['fields']['twitter']">
+									<strong>Twitter: </strong><a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
+								</span>
+							<br>
+								<span v-if="item['fields']['scholar-orcid']">
+									<strong>Academic record: </strong><a v-bind:href= "item['fields']['scholar-orcid']">Google Scholar/ORCID</a>
+								</span>
 							</p>
 							<p v-if="item['fields']['bio']">
 								<strong>Bio:</strong> {{ item['fields']['bio'] }}
