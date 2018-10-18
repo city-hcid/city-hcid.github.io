@@ -12,22 +12,33 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /><!--Import materialize.css-->
 		<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" /><!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>HCID MSc Students</title>
+		<title>HCID | MSc Students</title>
 	</head>
 	<body>
-		<header>
-			<div class="container">
-				<div class="row">
-					<div class="col s12 m9 l10">
-						<div class="section" id="heading">
-							<h1>
-								HCID MSc Students
+			<header>
+				<!-- Dropdown Trigger -->
+				<a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Menu</a>
+	
+				<!-- Dropdown Structure -->
+				<ul id='dropdown1' class='dropdown-content'>
+					<li><a href="../">HCID</a></li>
+					<li><a href="../hcid/members">HCID Staff</a></li>
+					<li class="divider" tabindex="-1"></li>
+					<li><a href="../seminar/">Seminar Series</a></li>
+					<li><a href="../seminar/speakers">Speakers</a></li>
+					<li class="divider" tabindex="-1"></li>
+					<li><a href="../msc/student-photos">MSc Students</a></li>
+				</ul>
+				<div class="container" style="padding-bottom:5rem;">
+					<div class="row">
+						<div class="col s12 m9 l10">
+							<h1 style="font-size:100px;font-weight:900;margin-bottom:1rem">
+								<a class="black-text" href="../">HCID</a><span class="red-text">:<br>MSc Students</span>
 							</h1>
 						</div>
 					</div>
 				</div>
-			</div>
-		</header>
+			</header>
 		<main>
 			<div class="container">
 				<div id="app">
@@ -235,6 +246,7 @@
 				});
 			}
 			$(document).ready(function() {
+                $('.dropdown-trigger').dropdown();
 				fixmetotop();
 				$('.scrollspy').scrollSpy();
 			});
