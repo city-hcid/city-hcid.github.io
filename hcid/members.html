@@ -57,7 +57,7 @@
 								<tr class="collection-item">
 									<td style="display: inline-block;" v-for="item in items" v-if="item['fields']['status'] == 'staff' || item['fields']['status'] == 'research' || item['fields']['status'] == 'phd'">
 										<div v-if="item['fields']['photo-url']">
-											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" />
+											<img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" height="120px"/>
 										</div>
 										<div v-else >
 											<i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
