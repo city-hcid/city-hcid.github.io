@@ -12,6 +12,10 @@
 	display: inline-block;
 	width: 25%
 }
+
+tr {
+	border-bottom: none;
+  }
   
 .collapsible-header.active i {
 	-ms-transform: rotate(90deg); /* IE 9 */
@@ -27,7 +31,8 @@ img.head-shot-lg {
 
 .big-strong {
 	font-weight: 800;
-	font-size: 1.3rem;
+	font-size: 1.6rem;
+	margin-top: 10px;
 }
 
 @-webkit-keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100%  { opacity:0; } }
