@@ -1,8 +1,23 @@
 /*!
- * Additional styles for https://hcid.city
- * Copyleft
- * https://www.gnu.org/licenses/gpl.html
- */
+* Additional styles for https://hcid.city
+* Copyleft
+* https://www.gnu.org/licenses/gpl.html
+*/
+
+#ft th, #pt1 th, #pt2 th {
+	width: 100%
+}
+  
+#ft td, #pt1 td, #pt2 td {
+	display: inline-block;
+	width: 25%
+}
+  
+.collapsible-header.active i {
+	-ms-transform: rotate(90deg); /* IE 9 */
+	-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+	transform: rotate(90deg);
+}
 
 img.head-shot-lg {
 	border-radius: 10px;

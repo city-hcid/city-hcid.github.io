@@ -4,21 +4,6 @@
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
 
-#ft th, #pt1 th, #pt2 th {
-  width: 100%
-}
-
-#ft td, #pt1 td, #pt2 td {
-  display: inline-block;
-  width: 25%
-}
-
-.collapsible-header.active i {
-	-ms-transform: rotate(90deg); /* IE 9 */
-	-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-	transform: rotate(90deg);
-}
-
 .materialize-red {
   background-color: #e51c23 !important;
 }
