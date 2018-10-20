@@ -6,6 +6,7 @@
     <meta name="keywords" content="HCID" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="/css/materialize.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCID Photos</title>
 </head>
@@ -21,7 +22,7 @@
                             <tr>
                                 <td id="odd-photo" v-for="item in items">
                                     <div v-if="item['fields']['photo-url']">
-                                        <img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" style="border-radius: 5%;" width="180" />
+                                        <img class="head-shot-lg" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" />
                                     </div>
                                     <div v-else>
                                         <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
