@@ -7,30 +7,6 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="css/style.css" />
     <title>HCID Photos</title>
-    <style>
-        @-webkit-keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100%  { opacity:0; } }
-        @-moz-keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100%  { opacity:0; } }
-        @keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100%  { opacity:0; } }
-
-        .fade-in {
-            opacity:0;  /* make things invisible upon start */
-            -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-            -moz-animation:fadeIn ease-in 1;
-            animation:fadeIn ease-in 1;
-
-            -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-            -moz-animation-fill-mode:forwards;
-            animation-fill-mode:forwards;
-
-            -webkit-animation-duration:4s;
-            -moz-animation-duration:4s;
-            animation-duration:4s;
-
-            -webkit-animation-delay: 0.7s;
-            -moz-animation-delay: 0.7s;
-            animation-delay: 0.7s;
-        }
-    </style>
 </head>
 <body>
     <main>
@@ -38,10 +14,10 @@
             <div id="app">
                 <div class="row">
                     <div class="col s12 m9 l10" id="bodybox">
-                        <table class="centered tabl" style="margin:30% 10%">
+                        <table class="striped centered tabl" style="margin:30% 10%">
                             <tr>
                                 <td v-for="item in items" style="margin:0 5rem">
-                                    <div class="fade-in">
+                                    <div class="fade-up-down">
                                         <div v-if="item['fields']['photo-url']" >
                                             <img class="head-shot-lg" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" />
                                         </div>
@@ -93,11 +69,9 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        console.log(rndPhoto_1);
-                        console.log(rndPhoto_2);
                         setTimeout(function(){
                             window.location.reload(1);
-                        }, 5000);
+                        }, 5500);
                     }).catch(function(error) {
                         console.log(error)
                     })
