@@ -31,8 +31,8 @@ img.head-shot-lg {
 
 .big-strong {
 	font-weight: 800;
-	font-size: 1.6rem;
-	margin-top: 10px;
+	font-size: 2rem;
+	margin-top: 1.5rem;
 }
 
 @-webkit-keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100%  { opacity:0; } }
