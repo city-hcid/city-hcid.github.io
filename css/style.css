@@ -13,7 +13,7 @@
 	width: 25%
 }
 
-tr {
+table, tr {
 	border-bottom: none;
   }
   
