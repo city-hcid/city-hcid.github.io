@@ -31,9 +31,13 @@ img.head-shot-lg {
 
 div.big-strong {
 	font-weight: 800;
-	font-size: 10rem;
-	margin-top: 10rem;
+	font-size: 1.6rem;
+	margin-top: 2rem;
 }
+
+@-webkit-keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100%  { opacity:0; } }
+@-moz-keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100%  { opacity:0; } }
+@keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100%  { opacity:0; } }
 
 .fade-up-down {
 	opacity:0;  /* make things invisible upon start */
