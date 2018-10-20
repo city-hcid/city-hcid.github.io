@@ -1,0 +1,10 @@
+/*!
+ * Additional styles for https://hcid.city
+ * Copyleft
+ * https://www.gnu.org/licenses/gpl.html
+ */
+
+img.head-shot-lg {
+	border-radius: 5%;
+	width: 180px;
+}
