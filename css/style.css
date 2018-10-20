@@ -6,6 +6,10 @@
 
 img.head-shot-lg {
 	border-radius: 10px;
-	height: 220px;
 	width: auto;
+	height: 220px;
+}
+
+h2.big-strong {
+	font-weight: 800;
 }
