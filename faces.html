@@ -3,50 +3,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HCID" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="css/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCID Photos</title>
 </head>
 <body>
-    <header>
-    </header>
     <main>
         <div class="container">
             <div id="app">
                 <div class="row">
                     <div class="col s12 m9 l10" id="bodybox">
-                        <table class="centered" style="margin:30% 10%">
+                        <table class="centered tabl" style="margin:30% 10%">
                             <tr>
-                                <td id="odd-photo" v-for="item in items">
-                                    <div v-if="item['fields']['photo-url']">
-                                        <img class="head-shot-lg" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" />
-                                    </div>
-                                    <div v-else>
-                                        <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
-                                    </div>
-                                    <div>
-                                        {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+                                <td v-for="item in items" style="margin:0 5rem">
+                                    <div class="fade-up-down">
+                                        <div v-if="item['fields']['photo-url']" >
+                                            <img class="head-shot-lg" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" />
+                                        </div>
+                                        <div v-else>
+                                            <i class="large material-icons">assignment_ind</i>
+                                        </div>
+                                        <div class="big-strong">
+                                            {{ item['fields']['first-name'] }} {{ item['fields']['last-name'] }}
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
                         </table>
-
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <footer>
-    </footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script type="text/javascript">
-        var itemNo;
         var app = new Vue({
             el: '#app',
             data: {
@@ -57,13 +51,14 @@
             },
             methods: {
                 loadItems: function() {
+                    function getRndRecNo() { return Math.floor((Math.random() * 74) + 101); }
 
                     // Init variables
                     var self = this
                     var app_id = "appaTssw36NjXo3tt";
                     var app_key = "keyC83ksN49wS10kX";
-                    var rndPhoto_1 = Math.floor((Math.random() * 74) + 101);
-                    var rndPhoto_2 = Math.floor((Math.random() * 74) + 101);
+                    var rndPhoto_1 = getRndRecNo();
+                    var rndPhoto_2 = getRndRecNo();
 
                     this.items = []
                     axios.get(
@@ -74,13 +69,9 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        itemNo = self.items.length;
-                        console.log(itemNo);
-                        console.log(rndPhoto_1);
-                        console.log(rndPhoto_2);
                         setTimeout(function(){
                             window.location.reload(1);
-                        }, 5000);
+                        }, 5500);
                     }).catch(function(error) {
                         console.log(error)
                     })
@@ -88,16 +79,5 @@
             }
         })
     </script>
-    <script type="text/javascript">
-        var record_Max = 100 + itemNo;
-        var rnd_No;
-        var even_Number = 0;
-        var odd_Number = 0;
-
-        function getRndRecNo() {
-            return Math.floor((Math.random() * record_Max) + 100);
-        }
-    </script>
 </body>
-
 </html>
