@@ -49,7 +49,10 @@
 										<div v-else >
 											<i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
 										</div>
-										<div>
+										<div v-if="item['fields']['bio-url']">
+											<a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a> 
+										</div>
+										<div v-else >
 											{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
 										</div>
 									</td>
