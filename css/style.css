@@ -61,3 +61,41 @@ div.big-strong {
 	-moz-animation-delay: 0.7s;
 	animation-delay: 0.7s;
 }
+
+h1.page-title {
+	font-size:100px;
+	font-weight:900;
+	margin-bottom:1rem
+}
+
+
+@media only screen and (min-width: 1201px) {
+	h1.page-title {
+		font-size:100px;
+		font-weight:900;
+		margin-bottom:1rem
+	}
+  }
+  
+  @media only screen and (min-width: 993px) {
+	h1.page-title {
+		font-size:100px;
+		font-weight:900;
+		margin-bottom:1rem
+	}
+  }
+  
+  @media only screen and (min-width: 601px) and (max-width: 992px) {
+	h1.page-title {
+		font-size:90px;
+		font-weight:800;
+		margin-bottom:.5rem
+	}
+  }
+  
+  @media only screen and (max-width: 600px) {
+	h1.page-title {
+		font-size:70px;
+		font-weight:700;
+	}
+  }
