@@ -62,6 +62,12 @@ div.big-strong {
 	animation-delay: 0.7s;
 }
 
+h1.page-title {
+	font-size:100px;
+	font-weight:900;
+	margin-bottom:1rem
+}
+
 @media only screen and (min-width: 1201px) {
 	h1.page-title {
 		font-size:100px;
