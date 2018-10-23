@@ -23,6 +23,10 @@ table, tr {
 	transform: rotate(90deg);
 }
 
+img.head-shot {
+	border-radius: 5%;
+}
+
 img.head-shot-lg {
 	border-radius: 10px;
 	width: auto;
