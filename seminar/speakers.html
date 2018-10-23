@@ -46,7 +46,7 @@
 							<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
 							<span v-else ><i class="material-icons circle">people</i></span>
 							<div>
-								<div class="big-strong" style="margin-bottom:.2rem;">
+								<div class="strong" style="margin-bottom:.2rem;">
 									<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a>
 								</div>
 								{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}
