@@ -94,7 +94,7 @@ h1.page-title {
   
   @media only screen and (max-width: 600px) {
 	h1.page-title {
-		font-size:70px;
-		font-weight:700;
+		font-size:65px;
+		font-weight:800;
 	}
   }
