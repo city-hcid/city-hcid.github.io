@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="HCID Centre" />
+		<meta name="updated" content="2018-09-12 10:21:34 +0000" />
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+		<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
+		<link type="text/css" rel="stylesheet" href="../css/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HCID | Calendar</title>
+	</head>
+	<body>
+        <header>
+            <!-- Dropdown Trigger -->
+            <a class='dropdown-trigger btn waves-effect waves-light light-blue darken-1' href='#' data-target='dropdown1'><i class="material-icons left">menu</i>Menu</a>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a class="light-blue-text text-darken-1" href="../">HCID</a></li>
+                <li><a class="light-blue-text text-darken-1" href="../hcid/members">Members</a></li>
+                <li><a class="grey-text text-darken-2" href="../hcid/calendar">Calendar</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a class="light-blue-text text-darken-1" href="../seminar/">Seminar Series</a></li>
+                <li><a class="light-blue-text text-darken-1" href="../seminar/speakers">Speakers</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a class="light-blue-text text-darken-1" href="../msc/student-photos">MSc Students</a></li>
+            </ul>
+            <div class="container" style="padding-bottom:5rem;">
+                <div class="row">
+                    <div class="col s12 m9 l10">
+						<h1 class="page-title">
+                            <a class="black-text" href="../">HCID</a><span class="red-text">:<br>Calendar</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main style="min-height: 32vh">
+            <div class="container" style="padding-bottom:5rem;">
+                <div class="row">
+                    <div class="col s12 m9 l10">
+                        <iframe class="airtable-embed" src="https://airtable.com/embed/shrScMwAyBLIAUtyb?backgroundColor=red&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="grey-text text-darken-4" style="font-weight:700;">
+                            HCID
+                        </h5>
+                        <span>
+                            <a class="grey-text text-darken-4" href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a>
+                        </span>
+                    </div>
+                    <div id="address" class="col l4 offset-l2 s12" style="margin-top:2.5rem;">
+                        <h6 class="grey-text text-darken-1">
+                            Address
+                        </h6>
+                        <ul>
+                            <li>
+                                <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">City, University of London</a>
+                            </li>
+                            <li>
+                                <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">College Building</a>
+                            </li>
+                            <li>
+                                <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">276-284 St John Street</a>
+                            </li>
+                            <li>
+                                <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">Clerkenwell</a>
+                            </li>
+                            <li>
+                                <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">London, EC1V 4PB</a>
+                            </li>
+                            <li>
+                                <a class="grey-text text-lighten-1" href="https://goo.gl/maps/QbdWpuT8ycp">Google Map</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container grey-text text-lighten-2">
+                    <a class="grey-text text-lighten-2" href="https://www.gnu.org/licenses/copyleft.en.html" title="What is Copyleft? - GNU Project - Free Software Foundation">Copyleft</a> © 2018 GNU <a class="grey-text text-lighten-2" href="https://www.gnu.org/licenses/gpl.html" title="The GNU General Public License v3.0 - GNU Project - Free Software Foundation">General Public License</a>
+                </div>
+            </div>
+        </footer>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.dropdown-trigger').dropdown();
+            });
+        </script>
+	</body>
+</html>
