@@ -130,12 +130,12 @@
 
 						// Init variables
 						var self = this
-						var app_id = "appaTssw36NjXo3tt";
+						var app_id = "appVrmQAGy96E1jEP";
 						var app_key = "keyC83ksN49wS10kX";
 						this.items = []
 						axios.get(
 							//https://api.airtable.com/v0/appaTssw36NjXo3tt/students?filterByFormula=OR((FIND(%22phd%22,{status})),(FIND(%22staff%22,{status})),(FIND(%22research%22,{status})))&sortField=last-name&sortDirection=asc&api_key=keyC83ksN49wS10kX
-							"https://api.airtable.com/v0/"+app_id+"/students?filterByFormula=OR((FIND(%22phd%22%2C%7Bstatus%7D))%2C(FIND(%22staff%22%2C%7Bstatus%7D))%2C(FIND(%22research%22%2C%7Bstatus%7D)))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
+							"https://api.airtable.com/v0/"+app_id+"/members?filterByFormula=OR((FIND(%22phd%22%2C%7Bstatus%7D))%2C(FIND(%22staff%22%2C%7Bstatus%7D))%2C(FIND(%22research%22%2C%7Bstatus%7D)))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
 							//"https://api.airtable.com/v0/"+app_id+"/students?sortField=last-name&sortDirection=asc", {
 								headers: {
 									Authorization: "Bearer " + app_key
