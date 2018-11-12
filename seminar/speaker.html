@@ -64,8 +64,10 @@
 									<strong>Academic record: </strong><a v-bind:href= "item['fields']['scholar-orcid']">Google Scholar/ORCID</a>
 								</span>
 							</p>
-							<p v-if="item['fields']['bio']">
-								<strong>Bio:</strong> {{ item['fields']['bio'] }}
+							<p>
+								<span class="lbr" v-if="item['fields']['bio']">
+									<strong>Bio:</strong> {{ item['fields']['bio'] }}
+								</span>
 							</p>
 							<p>
 								<strong>Talk Title: </strong>
@@ -82,7 +84,7 @@
 									<span v-else>TBA</span>
 							</p>
 							<p><strong>Abstract: </strong>
-								<span v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+								<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
 								<span v-else>TBA</span></p>
 						</li>
 					</ul>
