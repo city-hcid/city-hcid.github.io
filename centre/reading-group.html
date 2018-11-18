@@ -29,8 +29,8 @@
 			<ul id='dropdown1' class='dropdown-content'>
 				<li><a class="light-blue-text text-darken-1" href="../">HCID</a></li>
 				<li><a class="light-blue-text text-darken-1" href="../centre/members">Members</a></li>
-				<li><a class="light-blue-text text-darken-1" href="../centre/calendar">Calendar</a></li>
-				<li><a class="grey-text text-darken-2" href="../centre/reading-group">Calendar</a></li>
+				<li><a class="light-blue-text text-darken-1" href="../centre/calendar">Centre Calendar</a></li>
+				<li><a class="grey-text text-darken-2" href="../centre/reading-group">Reading Group</a></li>
 				<li class="divider" tabindex="-1"></li>
 				<li><a class="light-blue-text text-darken-1" href="../seminar/">Seminar Series</a></li>
 				<li><a class="light-blue-text text-darken-1" href="../seminar/speakers">Speakers</a></li>
@@ -74,7 +74,7 @@
 								<li class="collection-item" v-for="item in items">
 									<div>
 										<p>
-											<span v-if="item['fields']['date']">Date: {{ item['fields']['date'] }}</span><br />
+											<span v-if="item['fields']['date']">Date: {{ item['fields']['date-str'] }}</span><br />
 										</p>
 										<h3 v-if="item['fields']['title']">
 											{{ item['fields']['title'] }}
