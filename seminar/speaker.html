@@ -61,7 +61,7 @@
 								</span>
 							<br>
 								<span v-if="item['fields']['scholar-orcid']">
-									<strong>Academic record: </strong><a v-bind:href= "item['fields']['scholar-orcid']">Google Scholar/ORCID</a>
+									<strong>Academic record: </strong><a v-bind:href="item['fields']['scholar-orcid']">Google Scholar/ORCID</a>
 								</span>
 							</p>
 							<p>
@@ -175,11 +175,11 @@
 					}
 				}
 			}) 
-		</script>
-		<script>
+	</script>
+	<script>
 			$(document).ready(function() {
 				$('.dropdown-trigger').dropdown();
 			});
-		</script>
+	</script>
 	</body>
 </html>
