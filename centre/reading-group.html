@@ -71,12 +71,12 @@
 								</li>
 								<li class="collection-item" v-for="item in items">
 									<div>
-										<p>
-											<span v-if="item['fields']['date']">Date: {{ item['fields']['date-str'] }}</span><br />
-										</p>
 										<h3 v-if="item['fields']['title']">
 											{{ item['fields']['title'] }}
 										</h3>
+										<p>
+											<span v-if="item['fields']['date']">{{ item['fields']['date-str'] }}</span><br />
+										</p>
 										<p>
 											<span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
 										</p>
