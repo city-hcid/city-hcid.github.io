@@ -88,8 +88,8 @@
 													<span v-if="item['fields']['library-link-1']"><a v-bind:href="item['fields']['library-link-1']"> Library</a></span>
 													<span v-else-if="item['fields']['download-link-1']"><a v-bind:href="item['fields']['download-link-1']"> URL</a></span>
 												</p>
-												<p>
-													<span class="lbr" v-if="item['fields']['abstract-1']">{{ item['fields']['abstract-1'] }}</span>
+												<p v-if="item['fields']['abstract-1']">ABSTRACT:<br>
+													<span class="lbr">{{ item['fields']['abstract-1'] }}</span>
 												</p>
 											</div>
 											<div v-if="item['fields']['reference-2']">
@@ -99,8 +99,8 @@
 													<span v-if="item['fields']['library-link-2']"><a v-bind:href="item['fields']['library-link-2']"> Library</a></span>
 													<span v-else-if="item['fields']['download-link-2']"><a v-bind:href="item['fields']['download-link-2']"> URL</a></span>
 												</p>
-												<p>
-													<span class="lbr" v-if="item['fields']['abstract-2']">{{ item['fields']['abstract-2'] }}</span>
+												<p v-if="item['fields']['abstract-2']">ABSTRACT:<br>
+													<span class="lbr">{{ item['fields']['abstract-2'] }}</span>
 												</p>
 											</div>
 										</blockquote>
