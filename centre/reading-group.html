@@ -28,17 +28,18 @@
 			<!-- Dropdown Structure -->
 			<ul id='dropdown1' class='dropdown-content'>
 				<li><a class="light-blue-text text-darken-1" href="../">HCID</a></li>
-				<li><a class="light-blue-text text-darken-1" href="../centre/members">Members</a></li>
-				<li><a class="light-blue-text text-darken-1" href="../centre/calendar">Centre Calendar</a></li>
+				<li><a class="light-blue-text text-darken-1" href="../centre/members"> Members</a></li>
+				<li><a class="light-blue-text text-darken-1" href="../centre/calendar"> Calendar</a></li>
+				<li class="divider" tabindex="-1"></li>
 				<li><a class="grey-text text-darken-2" href="../centre/reading-group">Reading Group</a></li>
-				<li><a class="light-blue-text text-darken-1" href="../centre/reading-group-calendar">Reading Group Calendar</a></li>
+				<li><a class="light-blue-text text-darken-1" href="../centre/reading-group-calendar"> Calendar</a></li>
 				<li class="divider" tabindex="-1"></li>
 				<li><a class="light-blue-text text-darken-1" href="../seminar/">Seminar Series</a></li>
-				<li><a class="light-blue-text text-darken-1" href="../seminar/speakers">Speakers</a></li>
-                <li><a class="light-blue-text text-darken-1" href="../seminar/calendar">Calendar</a></li>
+				<li><a class="light-blue-text text-darken-1" href="../seminar/speakers"> Speakers</a></li>
+                <li><a class="light-blue-text text-darken-1" href="../seminar/calendar"> Calendar</a></li>
 				<li class="divider" tabindex="-1"></li>
 				<li><a class="light-blue-text text-darken-1" href="../msc/student-photos">MSc Students</a></li>
-                <li><a class="light-blue-text text-darken-1" href="../msc/calendar">MSc Calendar</a></li>
+                <li><a class="light-blue-text text-darken-1" href="../msc/calendar"> Calendar</a></li>
 			</ul>
 			<div class="container" style="padding-bottom:5rem;">
 				<div class="row">
@@ -81,23 +82,27 @@
 											<span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
 										</p>
 										<blockquote>
-											<p>
-												<span class="lbr" v-if="item['fields']['reference-1']">{{ item['fields']['reference-1'] }}</span>
-												<span v-if="item['fields']['library-link-1']"><a v-bind:href="item['fields']['library-link-1']"> Library</a></span>
-												<span v-else-if="item['fields']['download-link-1']"><a v-bind:href="item['fields']['download-link-1']"> URL</a></span>
-											</p>
-											<p>
-												<span class="lbr" v-if="item['fields']['abstract-1']">{{ item['fields']['abstract-1'] }}</span>
-											</p>
-											<br>
-											<p>
-												<span class="lbr" v-if="item['fields']['reference-2']">{{ item['fields']['reference-2'] }}</span>
-												<span v-if="item['fields']['library-link-2']"><a v-bind:href="item['fields']['library-link-2']"> Library</a></span>
-												<span v-else-if="item['fields']['download-link-2']"><a v-bind:href="item['fields']['download-link-2']"> URL</a></span>
-											</p>
-											<p>
-												<span class="lbr" v-if="item['fields']['abstract-2']">{{ item['fields']['abstract-2'] }}</span>
-											</p>
+											<div v-if="item['fields']['reference-1']">
+												<p>
+													<span class="lbr">{{ item['fields']['reference-1'] }}</span>
+													<span v-if="item['fields']['library-link-1']"><a v-bind:href="item['fields']['library-link-1']"> Library</a></span>
+													<span v-else-if="item['fields']['download-link-1']"><a v-bind:href="item['fields']['download-link-1']"> URL</a></span>
+												</p>
+												<p>
+													<span class="lbr" v-if="item['fields']['abstract-1']">{{ item['fields']['abstract-1'] }}</span>
+												</p>
+												<br>
+											</div>
+											<div v-if="item['fields']['reference-2']">
+												<p>
+													<span class="lbr">{{ item['fields']['reference-2'] }}</span>
+													<span v-if="item['fields']['library-link-2']"><a v-bind:href="item['fields']['library-link-2']"> Library</a></span>
+													<span v-else-if="item['fields']['download-link-2']"><a v-bind:href="item['fields']['download-link-2']"> URL</a></span>
+												</p>
+												<p>
+													<span class="lbr" v-if="item['fields']['abstract-2']">{{ item['fields']['abstract-2'] }}</span>
+												</p>
+											</div>
 										</blockquote>
 									</div>
 								</li>
