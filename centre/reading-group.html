@@ -81,66 +81,32 @@
 										<p>
 											<span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
 										</p>
-										<div class="card large sticky-action" v-if="item['fields']['reference-1']">
-											<div class="card-content">
-												<span class="card-title activator grey-text text-darken-4">{{ item['fields']['reference-1'] }}<i class="material-icons right">more_vert</i></span>
-											</div>
-											<div class="card-action">
-												<p>
-													<span v-if="item['fields']['library-link-1']"><a v-bind:href="item['fields']['library-link-1']"> Library</a></span>
-													<span v-else-if="item['fields']['download-link-1']"><a v-bind:href="item['fields']['download-link-1']"> URL</a></span>
-												</p>
-											</div>
-											<div class="card-reveal">
-												<span class="card-title grey-text text-darken-4">{{ item['fields']['reference-1'] }}<i class="material-icons right">close</i></span>
+
+										<div class="card medium blue-grey darken-1 col s12 m6" v-if="item['fields']['reference-1']">
+											<div class="card-content white-text">
+												<span class="card-title">{{ item['fields']['reference-1'] }}</span>
 												<p v-if="item['fields']['abstract-1']">ABSTRACT:<br>
 													<span class="lbr">{{ item['fields']['abstract-1'] }}</span>
 												</p>
 											</div>
+											<div class="card-action">
+												<span v-if="item['fields']['library-link-1']"><a v-bind:href="item['fields']['library-link-1']"> Library</a></span>
+												<span v-else-if="item['fields']['download-link-1']"><a v-bind:href="item['fields']['download-link-1']"> URL</a></span>
+											</div>
 										</div>
 
-										<div class="card large sticky-action" v-if="item['fields']['reference-2']">
-											<div class="card-content">
-												<span class="card-title activator grey-text text-darken-4">{{ item['fields']['reference-2'] }}<i class="material-icons right">more_vert</i></span>
+										<div class="card medium blue-grey darken-1 col s12 m6" v-if="item['fields']['reference-2']">
+											<div class="card-content white-text">
+												<span class="card-title">{{ item['fields']['reference-2'] }}</span>
+												<p v-if="item['fields']['abstract-2']">ABSTRACT:<br>
+													<span class="lbr">{{ item['fields']['abstract-2'] }}</span>
+												</p>
 											</div>
 											<div class="card-action">
-												<p>
-													<span v-if="item['fields']['library-link-2']"><a v-bind:href="item['fields']['library-link-2']"> Library</a></span>
-													<span v-else-if="item['fields']['download-link-2']"><a v-bind:href="item['fields']['download-link-2']"> URL</a></span>
-												</p>
-											</div>
-											<div class="card-reveal">
-												<span class="card-title grey-text text-darken-4">{{ item['fields']['reference-2'] }}<i class="material-icons right">close</i></span>
-												<p v-if="item['fields']['abstract-2']">ABSTRACT:<br>
-													<span class="lbr">{{ item['fields']['abstract-2'] }}</span>
-												</p>
+												<span v-if="item['fields']['library-link-2']"><a v-bind:href="item['fields']['library-link-2']"> Library</a></span>
+												<span v-else-if="item['fields']['download-link-2']"><a v-bind:href="item['fields']['download-link-2']"> URL</a></span>
 											</div>
 										</div>
-
-
-										<blockquote>
-											<div v-if="item['fields']['reference-1']">
-												<p>
-													<span class="lbr">{{ item['fields']['reference-1'] }}</span>
-													<span v-if="item['fields']['library-link-1']"><a v-bind:href="item['fields']['library-link-1']"> Library</a></span>
-													<span v-else-if="item['fields']['download-link-1']"><a v-bind:href="item['fields']['download-link-1']"> URL</a></span>
-												</p>
-												<p v-if="item['fields']['abstract-1']">ABSTRACT:<br>
-													<span class="lbr">{{ item['fields']['abstract-1'] }}</span>
-												</p>
-											</div>
-											<div v-if="item['fields']['reference-2']">
-												<br>
-												<p>
-													<span class="lbr">{{ item['fields']['reference-2'] }}</span>
-													<span v-if="item['fields']['library-link-2']"><a v-bind:href="item['fields']['library-link-2']"> Library</a></span>
-													<span v-else-if="item['fields']['download-link-2']"><a v-bind:href="item['fields']['download-link-2']"> URL</a></span>
-												</p>
-												<p v-if="item['fields']['abstract-2']">ABSTRACT:<br>
-													<span class="lbr">{{ item['fields']['abstract-2'] }}</span>
-												</p>
-											</div>
-										</blockquote>
 									</div>
 								</li>
 							</ul>
