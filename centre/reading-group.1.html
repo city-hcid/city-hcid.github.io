@@ -63,25 +63,17 @@
 								Below is the list of readings and group meetings, so far. To view the calendar go <a href="./reading-group-calendar">here</a>.
 							</p>
 						</div>
-						<div id="app-next">
-							<ul class="collection with-header">
-								<li class="collection-header">
-									<h2>
-										Next Reading
-									</h2>
-								</li>
-								<li class="collection-item" v-for="item in items">
-									<div>
-										<h3 v-if="item['fields']['title']">
-											{{ item['fields']['title'] }}
-										</h3>
+						<div id="app-next">	
+							<ul class="collapsible">
+								<li class="active" v-for="item in items">
+									<div class="collapsible-header" v-if="item['fields']['title']"><h2>Next Reading: {{ item['fields']['title'] }}</h2>
+									<div class="collapsible-body">
 										<p>
 											<span v-if="item['fields']['date']">{{ item['fields']['date-str'] }}</span><br />
 										</p>
 										<p>
 											<span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
 										</p>
-
 										<div class="row">
 											<div class="card blue-grey darken-1 col s12 m7" v-if="item['fields']['reference-1']">
 												<div class="card-content white-text">
@@ -98,7 +90,6 @@
 												</div>
 											</div>
 										</div>
-
 										<div class="row">
 											<div class="card blue-grey darken-1 col s12 m7" v-if="item['fields']['reference-2']">
 												<div class="card-content white-text">
@@ -120,7 +111,6 @@
 							</ul>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</main>
