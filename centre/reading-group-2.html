@@ -217,34 +217,33 @@
         </script>
 		<script type = "text/javascript" >
 			var app = new Vue({
-					el: '#app',
-					data: {
-						items: []
-					},
-					mounted: function() {
-						this.loadItems();
-					},
-					methods: {
-						loadItems: function() {
-							var self = this
-							var app_id = "appVrmQAGy96E1jEP";
-							var app_key = "keyC83ksN49wS10kX";
-							this.items = []
-							axios.get(
-								"https://api.airtable.com/v0/"+app_id+"/reading-group?sort%5B0%5D%5Bfield%5D=date&sort%5B0%5D%5Bdirection%5D=desc", {
-									headers: {
-										Authorization: "Bearer " + app_key
-									}
-								}
-							).then(function(response) {
-								self.items = response.data.records
-							}).catch(function(error) {
-								console.log(error)
-							})
-						}
-					}
-				}) 
-
+                el: '#app',
+                data: {
+                    items: []
+                },
+                mounted: function() {
+                    this.loadItems();
+                },
+                methods: {
+                    loadItems: function() {
+                        var self = this
+                        var app_id = "appVrmQAGy96E1jEP";
+                        var app_key = "keyC83ksN49wS10kX";
+                        this.items = []
+                        axios.get(
+                            "https://api.airtable.com/v0/"+app_id+"/reading-group?sort%5B0%5D%5Bfield%5D=date&sort%5B0%5D%5Bdirection%5D=desc", {
+                                headers: {
+                                    Authorization: "Bearer " + app_key
+                                }
+                            }
+                        ).then(function(response) {
+                            self.items = response.data.records
+                        }).catch(function(error) {
+                            console.log(error)
+                        })
+                    }
+                }
+            }) 
 		</script>
 		<script>
 				$(document).ready(function() {
