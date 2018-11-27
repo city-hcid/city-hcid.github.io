@@ -54,15 +54,15 @@
 		<main>
 
 			<div class="container">
-				<div id="app-next">
-					<div class="row">
-						<div class="col s12 m9 l10" id="next-reading">
-							<h2>Next Reading</h2>
-                            <p v-if="item['fields']['date']">{{ item['fields']['date-str'] }}
-                            </p><br />
-							<h3 v-if="item['fields']['title']">{{ item['fields']['title'] }}</h3>
-						</div>
-					</div>
+                <div class="row">
+                    <div class="col s12 m9 l10" id="next-reading">
+                        <h2>Next Reading</h2>
+                            <div id="app-next">
+                                <p v-if="item['fields']['date']">{{ item['fields']['date-str'] }}
+                                </p><br />
+                                <h3 v-if="item['fields']['title']">{{ item['fields']['title'] }}</h3>
+                            </div>
+                    </div>
 				</div>
 
 				<div id="app">
