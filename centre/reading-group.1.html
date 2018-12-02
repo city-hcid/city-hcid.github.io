@@ -70,9 +70,9 @@
 									The next reading group is <b>{{ item['fields']['date-phrase'] }}</b>. <span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
 								</p>
 								<p>
-									<span v-if="item['fields']['reference-2']">They'll be two readings this week. </span>The full reference of the <span v-if="item['fields']['reference-2']">first </span>paper is:
+									<span v-if="item['fields']['reference-2']">They'll be two readings this week. </span>The full reference for the <span v-if="item['fields']['reference-2']">first </span>piece is:
 								</p>
-								<div class="col s10 offset-s1"  v-if="item['fields']['reference-1']">
+								<div class="col s10 offset-s1" v-if="item['fields']['reference-1']">
 									<p>
 									{{ item['fields']['reference-1'] }}&nbsp;
 									<span v-if="item['fields']['library-link-1']">
@@ -88,7 +88,7 @@
 								</div>
 								<p v-if="item['fields']['reference-2']">
 									<br>
-									The full reference for the second paper is:
+									The full reference for the second piece is:
 								</p>
 								<div class="col s11 offset-s1">
 									<p>
@@ -165,36 +165,61 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 		<script type = "text/javascript" >
 			var app = new Vue({
-					el: '#app-next',
-					data: {
-						items: []
-					},
-					mounted: function() {
-						this.loadItems();
-					},
-					methods: {
-						loadItems: function() {
-							var url_string = window.location.href;
-							var url = new URL(url_string);
-							var last = url.searchParams.get("last");
-							var self = this
-							var app_id = "appVrmQAGy96E1jEP";
-							var app_key = "keyC83ksN49wS10kX";
-							this.items = []
-							axios.get(
-								"https://api.airtable.com/v0/"+app_id+"/reading-group?view=next-reading", {
-									headers: {
-										Authorization: "Bearer " + app_key
-									}
+				el: '#app-next',
+				data: {
+					items: []
+				},
+				mounted: function() {
+					this.loadItems();
+				},
+				methods: {
+					loadItems: function() {
+						var self = this
+						var app_id = "appVrmQAGy96E1jEP";
+						var app_key = "keyC83ksN49wS10kX";
+						this.items = []
+						axios.get(
+							"https://api.airtable.com/v0/"+app_id+"/reading-group?view=next-reading", {
+								headers: {
+									Authorization: "Bearer " + app_key
 								}
-							).then(function(response) {
-								self.items = response.data.records
-							}).catch(function(error) {
-								console.log(error)
-							})
-						}
+							}
+						).then(function(response) {
+							self.items = response.data.records
+						}).catch(function(error) {
+							console.log(error)
+						})
 					}
-				}) 
+				}
+			}) 
+			var app = new Vue({
+				el: '#app-future',
+				data: {
+					items: []
+				},
+				mounted: function() {
+					this.loadItems();
+				},
+				methods: {
+					loadItems: function() {
+						var self = this
+						var app_id = "appVrmQAGy96E1jEP";
+						var app_key = "keyC83ksN49wS10kX";
+						this.items = []
+						axios.get(
+							"https://api.airtable.com/v0/"+app_id+"/reading-group?view=future-readings", {
+								headers: {
+									Authorization: "Bearer " + app_key
+								}
+							}
+						).then(function(response) {
+							self.items = response.data.records
+						}).catch(function(error) {
+							console.log(error)
+						})
+					}
+				}
+			}) 
 		</script>
 		<script>
 				$(document).ready(function() {
