@@ -63,28 +63,6 @@
 								Below is the list of readings and group meetings, so far. To view the calendar go <a href="./reading-group-calendar">here</a>.
 							</p>
 						</div>
-						<div id="app">
-							<div v-if="item['fields']['reference-1']">
-								<p>
-									The next reading group is {{ item['fields']['date-phrase'] }}. <span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
-								</p>
-								<p>
-									The full reference of the <span v-if="item['fields']['reference-2']">first </span>paper is:<br>
-									<div>
-										<span class="card-title">{{ item['fields']['reference-1'] }}</span><br>
-										<p v-if="item['fields']['abstract-1']">ABSTRACT:<br>
-											<span class="lbr">{{ item['fields']['abstract-1'] }}</span>
-										</p>
-									</div>
-									<div v-if="item['fields']['library-link-1']">
-										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
-									</div>
-									<div v-else-if="item['fields']['download-link-1']">
-										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
-									</div>
-								</p>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -150,6 +128,9 @@
 					},
 					methods: {
 						loadItems: function() {
+							var url_string = window.location.href;
+							var url = new URL(url_string);
+							var last = url.searchParams.get("last");
 							var self = this
 							var app_id = "appVrmQAGy96E1jEP";
 							var app_key = "keyC83ksN49wS10kX";
