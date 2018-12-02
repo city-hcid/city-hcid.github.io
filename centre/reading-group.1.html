@@ -63,7 +63,7 @@
 								Below is the list of readings and group meetings, so far. To view the calendar go <a href="./reading-group-calendar">here</a>.
 							</p>
 						</div>
-						<div id="app-next">	
+						<div id="app">	
 							<ul class="collapsible">
 								<li class="active" v-for="item in items">
 									<div class="collapsible-header" v-if="item['fields']['title']"><h2>Next Reading: {{ item['fields']['title'] }}</h2>
@@ -166,7 +166,7 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 		<script type = "text/javascript" >
 			var app = new Vue({
-					el: '#app-next',
+					el: '#app',
 					data: {
 						items: []
 					},
