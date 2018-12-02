@@ -63,7 +63,7 @@
 								Below is the list of readings and group meetings, so far. To view the calendar go <a href="./reading-group-calendar">here</a>.
 							</p>
 						</div>
-						<div id="app">
+						<div id="app-next">
 							<div v-for="item in items" v-if="item['fields']['reference-1']">
 								<h2>Next Reading</h2>
 								<p>
@@ -72,7 +72,7 @@
 								<p>
 									<span v-if="item['fields']['reference-2']">They'll be two readings this week. </span>The full reference of the <span v-if="item['fields']['reference-2']">first </span>paper is:
 								</p>
-								<div class="col s11 offset-s1"  v-if="item['fields']['reference-1']">
+								<div class="col s10 offset-s1"  v-if="item['fields']['reference-1']">
 									<p>
 									{{ item['fields']['reference-1'] }}&nbsp;
 									<span v-if="item['fields']['library-link-1']">
@@ -105,6 +105,9 @@
 									</p>
 								</div>
 							</div>
+						</div>
+						<div>
+							<h2>Future Readings</h2>
 						</div>
 					</div>
 				</div>
@@ -162,7 +165,7 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 		<script type = "text/javascript" >
 			var app = new Vue({
-					el: '#app',
+					el: '#app-next',
 					data: {
 						items: []
 					},
