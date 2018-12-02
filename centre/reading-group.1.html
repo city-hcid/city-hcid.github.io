@@ -152,6 +152,51 @@
 							</div>
 							<div v-else>Coming soon.</div>
 						</div>
+						<div id="app-past">
+							<h2>Past Readings</h2>
+							<div v-for="item in items" v-if="item['fields']['title']">
+								<p>
+									<h3>{{ item['fields']['title'] }}</h3>
+									<b>{{ item['fields']['date-str'] }}</b>
+									<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
+								</p>
+								<p>
+									<span v-if="item['fields']['reference-2']">Reading 1:</span>
+								</p>
+								<div class="col s10 offset-s1" v-if="item['fields']['reference-1']">
+									<p>
+									{{ item['fields']['reference-1'] }}&nbsp;
+									<span v-if="item['fields']['library-link-1']">
+										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
+									</span>
+									<span v-else-if="item['fields']['download-link-1']">
+										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
+									</span>
+									</p>
+									<p v-if="item['fields']['abstract-1']">
+										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
+									</p>
+								</div>
+								<p v-if="item['fields']['reference-2']">
+									<br>
+									Reading 2:
+								</p>
+								<div class="col s11 offset-s1">
+									<p>
+										{{ item['fields']['reference-2'] }}&nbsp;
+										<span v-if="item['fields']['library-link-2']">
+											<a v-bind:href="item['fields']['library-link-2']"> Library</a>
+										</span>
+										<span v-else-if="item['fields']['download-link-2']">
+											<a v-bind:href="item['fields']['download-link-2']"> URL</a>
+										</span>
+									</p>
+									<p v-if="item['fields']['abstract-2']">
+										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -251,6 +296,34 @@
 						this.items = []
 						axios.get(
 							"https://api.airtable.com/v0/"+app_id+"/reading-group?view=future-readings", {
+								headers: {
+									Authorization: "Bearer " + app_key
+								}
+							}
+						).then(function(response) {
+							self.items = response.data.records
+						}).catch(function(error) {
+							console.log(error)
+						})
+					}
+				}
+			}) 
+			var app = new Vue({
+				el: '#app-past',
+				data: {
+					items: []
+				},
+				mounted: function() {
+					this.loadItems();
+				},
+				methods: {
+					loadItems: function() {
+						var self = this
+						var app_id = "appVrmQAGy96E1jEP";
+						var app_key = "keyC83ksN49wS10kX";
+						this.items = []
+						axios.get(
+							"https://api.airtable.com/v0/"+app_id+"/reading-group?view=past-readings", {
 								headers: {
 									Authorization: "Bearer " + app_key
 								}
