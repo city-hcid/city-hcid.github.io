@@ -64,8 +64,25 @@
 							</p>
 						</div>
 						<div id="app">
-							<div v-for="item in items">
-								<span>{{ item['fields']['reference-1'] }}</span>
+							<div v-for="item in items" v-if="item['fields']['reference-1']">
+								<p>
+									The next reading group is {{ item['fields']['date-phrase'] }}. <span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
+								</p>
+								<p>
+									The full reference of the <span v-if="item['fields']['reference-2']">first </span>paper is:<br>
+									<div>
+										<span class="card-title">{{ item['fields']['reference-1'] }}</span><br>
+										<p v-if="item['fields']['abstract-1']">ABSTRACT:<br>
+											<span class="lbr">{{ item['fields']['abstract-1'] }}</span>
+										</p>
+									</div>
+									<div v-if="item['fields']['library-link-1']">
+										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
+									</div>
+									<div v-else-if="item['fields']['download-link-1']">
+										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
+									</div>
+								</p>
 							</div>
 						</div>
 					</div>
