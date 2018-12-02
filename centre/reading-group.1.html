@@ -74,18 +74,16 @@
 								</p>
 								<div class="col s11 offset-s1"  v-if="item['fields']['reference-1']">
 									<p>
-									{{ item['fields']['reference-1'] }}
+									{{ item['fields']['reference-1'] }}&nbsp;
+									<span v-if="item['fields']['library-link-1']">
+										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
+									</span>
+									<span v-else-if="item['fields']['download-link-1']">
+										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
+									</span>
 									</p>
 									<p v-if="item['fields']['abstract-1']">
 										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
-									</p>
-									<p v-if="item['fields']['library-link-1']">
-										LINK:<br>
-										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
-									</p>
-									<p v-else-if="item['fields']['download-link-1']">
-										LINK:<br>
-										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
 									</p>
 								</div>
 								<p v-if="item['fields']['reference-2']">
@@ -94,18 +92,16 @@
 								</p>
 								<div class="col s11 offset-s1">
 									<p>
-										{{ item['fields']['reference-2'] }}
+										{{ item['fields']['reference-2'] }}&nbsp;
+										<span v-if="item['fields']['library-link-2']">
+											<a v-bind:href="item['fields']['library-link-2']"> Library</a>
+										</span>
+										<span v-else-if="item['fields']['download-link-2']">
+											<a v-bind:href="item['fields']['download-link-2']"> URL</a>
+										</span>
 									</p>
 									<p v-if="item['fields']['abstract-2']">
 										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
-									</p>
-									<p v-if="item['fields']['library-link-2']">
-										LINK:<br>
-										<a v-bind:href="item['fields']['library-link-2']"> Library</a>
-									</p>
-									<p v-else-if="item['fields']['download-link-2']">
-										LINK:<br>
-										<a v-bind:href="item['fields']['download-link-2']"> URL</a>
 									</p>
 								</div>
 							</div>
