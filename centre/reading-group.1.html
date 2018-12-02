@@ -57,7 +57,7 @@
 					<div class="col s12 m9 l10">
 						<div>
 							<p>
-								The <a href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a> (HCID) runs a two-weekly reading group. We aim to read papers from across HCI and a variety of related (and sometimes unrelated) areas of research and scholarship.
+								The <a href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a> (HCID) runs a regular reading group. We aim to read papers from across HCI and a variety of related (and sometimes unrelated) areas of research and scholarship.
 							</p>
 							<p>
 								Below is the list of readings and group meetings, so far. To view the calendar go <a href="./reading-group-calendar">here</a>.
@@ -65,24 +65,46 @@
 						</div>
 						<div id="app">
 							<div v-for="item in items" v-if="item['fields']['reference-1']">
-								<p>
-									The next reading group is {{ item['fields']['date-phrase'] }}. <span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
-								</p>
-								<p>
-									The full reference of the <span v-if="item['fields']['reference-2']">first </span>paper is:<br>
-									<div>
-										<span class="card-title">{{ item['fields']['reference-1'] }}</span><br>
-										<p v-if="item['fields']['abstract-1']">ABSTRACT:<br>
-											<span class="lbr">{{ item['fields']['abstract-1'] }}</span>
-										</p>
-									</div>
-									<div v-if="item['fields']['library-link-1']">
-										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
-									</div>
-									<div v-else-if="item['fields']['download-link-1']">
-										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
-									</div>
-								</p>
+								<div>
+									The next reading group is <b>{{ item['fields']['date-phrase'] }}</b>. <span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
+								</div>
+								<div>
+									<span v-if="item['fields']['reference-2']">They'll be two readings this week. </span>The full reference of the <span v-if="item['fields']['reference-2']">first </span>paper is:
+								</div>
+								<div v-if="item['fields']['reference-1']">
+									{{ item['fields']['reference-1'] }}
+								</div>
+								<div v-if="item['fields']['abstract-1']">
+									ABSTRACT:<br>
+									<span class="lbr">
+										{{ item['fields']['abstract-1'] }}
+									</span>
+								</div>
+								<div v-if="item['fields']['library-link-1']">
+									<a v-bind:href="item['fields']['library-link-1']"> Library</a>
+								</div>
+								<div v-else-if="item['fields']['download-link-1']">
+									<a v-bind:href="item['fields']['download-link-1']"> URL</a>
+								</div>
+
+								<div v-if="item['fields']['reference-2']">
+									The full reference for the second paper is:
+								</div>
+								<div>
+									{{ item['fields']['reference-2'] }}
+								</div>
+								<div v-if="item['fields']['abstract-2']">
+									ABSTRACT:<br>
+									<span class="lbr">
+										{{ item['fields']['abstract-2'] }}
+									</span>
+								</div>
+								<div v-if="item['fields']['library-link-2']">
+									<a v-bind:href="item['fields']['library-link-2']"> Library</a>
+								</div>
+								<div v-else-if="item['fields']['download-link-2']">
+									<a v-bind:href="item['fields']['download-link-2']"> URL</a>
+								</div>
 							</div>
 						</div>
 					</div>
