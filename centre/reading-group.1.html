@@ -84,7 +84,7 @@
 												<a v-bind:href="item['fields']['download-link-1']"> URL</a>
 											</span>
 											</p>
-											<p v-if="item['fields']['abstract-1']">
+											<p v-if="item['fields']['abstract-1']"><br>
 												ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
 											</p>
 										</div>
@@ -110,7 +110,7 @@
 								</div>
 							</div><br>
 						</div>
-						<div id="app-future">
+						<div class="col s12 m9 l10" id="app-future">
 							<h2>Future Readings</h2>
 							<div v-for="item in items" v-if="item['fields']['title']">
 								<p>
