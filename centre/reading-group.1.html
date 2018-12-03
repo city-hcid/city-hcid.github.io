@@ -73,8 +73,6 @@
 									<span v-if="item['fields']['reference-2']">They'll be two readings this week.</span>
 								</p>
 								<div class="col s12 m7 z-depth-2"  v-if="item['fields']['reference-1']">
-									<div class="card blue-grey darken-1">
-										<div class="card-content white-text">
 											<p>
 											{{ item['fields']['reference-1'] }}&nbsp;
 											<span v-if="item['fields']['library-link-1']">
@@ -87,8 +85,6 @@
 											<p v-if="item['fields']['abstract-1']"><br>
 												ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
 											</p>
-										</div>
-									</div>
 								</div>
 								<div class="col s12 m7 z-depth-3"  v-if="item['fields']['reference-2']">
 									<div class="card blue-grey darken-1">
