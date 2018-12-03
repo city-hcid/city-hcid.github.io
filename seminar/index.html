@@ -311,6 +311,46 @@
 									</div>
 								</li>
 							</ul>
+							<ul class="collection with-header scrollspy" id="mar">
+								<li class="collection-header">
+									<h2>
+										March 2019
+									</h2>
+								</li>
+								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Mar'">
+									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+									<span v-else ><i class="material-icons circle">people</i></span>
+									<div>
+										<p>
+											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+										</p>
+										<br />
+										<p>
+											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+										</p>
+										<h3 v-if="item['fields']['talk-title']">
+											Title
+										</h3>
+										<p>
+											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+										</p>
+										<h3 v-if="item['fields']['talk-abstract']">
+											Abstract
+										</h3>
+										<p>
+											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+										</p>
+										<h3 v-if="item['fields']['bio']">
+											Bio
+										</h3>
+										<p>
+											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+										</p>
+									</div>
+								</li>
+							</ul>
 							<ul class="collection with-header scrollspy" id="apr">
 								<li class="collection-header">
 									<h2>
