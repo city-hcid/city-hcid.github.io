@@ -33,7 +33,7 @@ img.head-shot-lg {
 	height: 220px;
 }
 
-div.big-strong {
+div.big-strong, h2.big-strong {
 	font-weight: 800;
 	font-size: 1.6rem;
 	margin-top: 1.2rem;
