@@ -112,13 +112,13 @@
 						<br>
 					</div>
 
-					<div class="col s12 m9 l10 section">
+					<div id="app-future" class="col s12 m9 l10 section">
 						<h2 class="big-strong">
 							FUTURE READINGS.
 						</h2>
 
 
-						<div  id="app-future" class="col s12 m9 l10" v-for="item in items" v-if="item['fields']['title']">
+						<div v-for="item in items" v-if="item['fields']['title']">
 							<ul class="collection with-header">
 								<li class="collection-header">
 									<h3>{{ item['fields']['title'] }}</h3>
