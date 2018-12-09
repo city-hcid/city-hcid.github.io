@@ -65,7 +65,11 @@
 						</div>
 						<div id="app-next">
 							<div v-for="item in items" v-if="item['fields']['reference-1']">
-								<h2><div class="big-strong">NEXT READING</div></h2>
+								<h2>
+									<div class="big-strong">
+										NEXT READING
+									</div>
+								</h2>
 								<p>
 									The next reading group is <b>{{ item['fields']['date-phrase'] }}</b>. <span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
 								</p>
@@ -103,7 +107,9 @@
 							</div><br>
 						</div>
 						<div class="col s12 m9 l10" id="app-future">
-							<h2><div class="big-strong">FUTURE READINGS</div></h2>
+							<h2>
+								<div class="big-strong">FUTURE READINGS</div>
+							</h2>
 							<div class="col s12 m9 l10" v-for="item in items" v-if="item['fields']['title']">
 								<p>
 									<h3>{{ item['fields']['title'] }}</h3>
@@ -137,12 +143,18 @@
 									<p v-if="item['fields']['abstract-2']">
 										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
 									</p>
-								</h2>
+								</div>
 							</div>
-							<div v-else>Coming soon.</div>
+							<div v-else>
+								Coming soon.
+							</div>
 						</div>
 						<div class="col s12 m9 l10" id="app-past">
-							<h2><div class="big-strong">PAST READINGS</div></h2>
+							<h2>
+								<div class="big-strong">
+									PAST READINGS
+								</div>
+							</h2>
 							<div class="col s12 m9 l10" v-for="item in items" v-if="item['fields']['title']">
 								<p>
 									<h3>{{ item['fields']['title'] }}</h3>
@@ -176,7 +188,7 @@
 									<p v-if="item['fields']['abstract-2']">
 										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
 									</p>
-								</h2>
+								</div>
 							</div>
 						</div>
 					</div>
