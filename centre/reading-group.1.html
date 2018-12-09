@@ -65,7 +65,7 @@
 						</div>
 						<div id="app-next">
 							<div v-for="item in items" v-if="item['fields']['reference-1']">
-								<div class="big-strong">Next Reading</div>
+								<div class="big-strong">NEXT READING</div>
 								<p>
 									The next reading group is <b>{{ item['fields']['date-phrase'] }}</b>. <span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
 								</p>
@@ -74,7 +74,7 @@
 								</p>
 								<div class="col s12 m7 z-depth-2 hoverable"  v-if="item['fields']['reference-1']">
 									<p>
-									{{ item['fields']['reference-1'] }}&nbsp;
+									<b>{{ item['fields']['reference-1'] }}</b>&nbsp;
 									<span v-if="item['fields']['library-link-1']">
 										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
 									</span>
@@ -88,7 +88,7 @@
 								</div>
 								<div class="col s12 m7 z-depth-3 hoverable"  v-if="item['fields']['reference-2']">
 									<p>
-										{{ item['fields']['reference-2'] }}&nbsp;
+									<b>{{ item['fields']['reference-2'] }}</b>&nbsp;
 										<span v-if="item['fields']['library-link-2']">
 											<a v-bind:href="item['fields']['library-link-2']"> Library</a>
 										</span>
