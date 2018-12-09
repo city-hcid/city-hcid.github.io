@@ -72,7 +72,7 @@
 								<p>
 									<span v-if="item['fields']['reference-2']">They'll be two readings this week.</span>
 								</p>
-								<div class="col s12 m7 z-depth-2"  v-if="item['fields']['reference-1']">
+								<div class="col s12 m7 z-depth-2 hoverable"  v-if="item['fields']['reference-1']">
 									<p>
 									{{ item['fields']['reference-1'] }}&nbsp;
 									<span v-if="item['fields']['library-link-1']">
@@ -86,7 +86,7 @@
 										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
 									</p>
 								</div>
-								<div class="col s12 m7 z-depth-3"  v-if="item['fields']['reference-2']">
+								<div class="col s12 m7 z-depth-3 hoverable"  v-if="item['fields']['reference-2']">
 									<p>
 										{{ item['fields']['reference-2'] }}&nbsp;
 										<span v-if="item['fields']['library-link-2']">
