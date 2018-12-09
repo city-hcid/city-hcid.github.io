@@ -127,7 +127,7 @@
 									<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
 								</li>
 								<li class="collection-item">
-									<div class="col s12 m6 z-depth-2 hoverable"  v-if="item['fields']['reference-1']">
+									<div v-if="item['fields']['reference-1']">
 										<p>
 										<b>{{ item['fields']['reference-1'] }}</b>&nbsp;
 										<span v-if="item['fields']['library-link-1']">
@@ -142,7 +142,7 @@
 										</p>
 										<br>
 									</div>
-									<div class="col s12 m6 z-depth-2 hoverable"  v-if="item['fields']['reference-2']">
+									<div v-if="item['fields']['reference-2']">
 										<p>
 										<b>{{ item['fields']['reference-2'] }}</b>&nbsp;
 											<span v-if="item['fields']['library-link-2']">
