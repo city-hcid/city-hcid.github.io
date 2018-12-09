@@ -63,138 +63,146 @@
 								Below is the list of readings and group meetings, so far. To view the calendar go <a href="./reading-group-calendar">here</a>.
 							</p>
 						</div>
-						<div id="app-next">
-							<div v-for="item in items" v-if="item['fields']['reference-1']">
-								<h2>
-									<div class="big-strong">
-										NEXT READING
-									</div>
-								</h2>
-								<p>
-									The next reading group is <b>{{ item['fields']['date-phrase'] }}</b>. <span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
-								</p>
-								<p>
-									<span v-if="item['fields']['reference-2']">They'll be two readings this week.</span>
-								</p>
-								<div class="col s12 m7 z-depth-2 hoverable"  v-if="item['fields']['reference-1']">
-									<p>
-									<b>{{ item['fields']['reference-1'] }}</b>&nbsp;
-									<span v-if="item['fields']['library-link-1']">
-										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
-									</span>
-									<span v-else-if="item['fields']['download-link-1']">
-										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
-									</span>
-									</p>
-									<p v-if="item['fields']['abstract-1']"><br>
-										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
-									</p>
-								</div>
-								<div class="col s12 m7 z-depth-3 hoverable"  v-if="item['fields']['reference-2']">
-									<p>
-									<b>{{ item['fields']['reference-2'] }}</b>&nbsp;
-										<span v-if="item['fields']['library-link-2']">
-											<a v-bind:href="item['fields']['library-link-2']"> Library</a>
-										</span>
-										<span v-else-if="item['fields']['download-link-2']">
-											<a v-bind:href="item['fields']['download-link-2']"> URL</a>
-										</span>
-									</p>
-									<p v-if="item['fields']['abstract-2']">
-										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
-									</p>
-								</div>
-							</div><br>
-						</div>
-						<div class="col s12 m9 l10" id="app-future">
-							<h2>
-								<div class="big-strong">FUTURE READINGS</div>
-							</h2>
-							<div class="col s12 m9 l10" v-for="item in items" v-if="item['fields']['title']">
-								<p>
-									<h3>{{ item['fields']['title'] }}</h3>
-									<b>{{ item['fields']['date-str'] }}</b>
-									<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
-								</p>
-								<div class="col s12 m7 z-depth-2"  v-if="item['fields']['reference-1']">
-									<p>
-									{{ item['fields']['reference-1'] }}&nbsp;
-									<span v-if="item['fields']['library-link-1']">
-										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
-									</span>
-									<span v-else-if="item['fields']['download-link-1']">
-										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
-									</span>
-									</p>
-									<p v-if="item['fields']['abstract-1']"><br>
-										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
-									</p>
-								</div>
-								<div class="col s12 m7 z-depth-3"  v-if="item['fields']['reference-2']">
-									<p>
-										{{ item['fields']['reference-2'] }}&nbsp;
-										<span v-if="item['fields']['library-link-2']">
-											<a v-bind:href="item['fields']['library-link-2']"> Library</a>
-										</span>
-										<span v-else-if="item['fields']['download-link-2']">
-											<a v-bind:href="item['fields']['download-link-2']"> URL</a>
-										</span>
-									</p>
-									<p v-if="item['fields']['abstract-2']">
-										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
-									</p>
-								</div>
-							</div>
-							<div v-else>
-								Coming soon.
-							</div>
-						</div>
-						<div class="col s12 m9 l10" id="app-past">
+					</div>
+
+
+					<div class="col s12 m9 l10" id="app-next">
+						<div v-for="item in items" v-if="item['fields']['reference-1']">
 							<h2>
 								<div class="big-strong">
-									PAST READINGS
+									NEXT READING.
 								</div>
 							</h2>
-							<div class="col s12 m9 l10" v-for="item in items" v-if="item['fields']['title']">
+							<p>
+								The next reading group is <b>{{ item['fields']['date-phrase'] }}</b>. <span class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</span>
+							</p>
+							<p>
+								<span v-if="item['fields']['reference-2']">They'll be two readings this week.</span>
+							</p>
+							<div class="col s12 m7 z-depth-2 hoverable"  v-if="item['fields']['reference-1']">
 								<p>
-									<h3>{{ item['fields']['title'] }}</h3>
-									<b>{{ item['fields']['date-str'] }}</b>
-									<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
+								<b>{{ item['fields']['reference-1'] }}</b>&nbsp;
+								<span v-if="item['fields']['library-link-1']">
+									<a v-bind:href="item['fields']['library-link-1']"> Library</a>
+								</span>
+								<span v-else-if="item['fields']['download-link-1']">
+									<a v-bind:href="item['fields']['download-link-1']"> URL</a>
+								</span>
 								</p>
-								<div class="col s12 m7 z-depth-2"  v-if="item['fields']['reference-1']">
-									<p>
-									{{ item['fields']['reference-1'] }}&nbsp;
-									<span v-if="item['fields']['library-link-1']">
-										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
+								<p v-if="item['fields']['abstract-1']"><br>
+									Abstract:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
+								</p>
+							</div>
+							<div class="col s12 m7 z-depth-3 hoverable"  v-if="item['fields']['reference-2']">
+								<p>
+								<b>{{ item['fields']['reference-2'] }}</b>&nbsp;
+									<span v-if="item['fields']['library-link-2']">
+										<a v-bind:href="item['fields']['library-link-2']"> Library</a>
 									</span>
-									<span v-else-if="item['fields']['download-link-1']">
-										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
+									<span v-else-if="item['fields']['download-link-2']">
+										<a v-bind:href="item['fields']['download-link-2']"> URL</a>
 									</span>
-									</p>
-									<p v-if="item['fields']['abstract-1']"><br>
-										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
-									</p>
-								</div>
-								<div class="col s12 m7 z-depth-3"  v-if="item['fields']['reference-2']">
-									<p>
-										{{ item['fields']['reference-2'] }}&nbsp;
-										<span v-if="item['fields']['library-link-2']">
-											<a v-bind:href="item['fields']['library-link-2']"> Library</a>
-										</span>
-										<span v-else-if="item['fields']['download-link-2']">
-											<a v-bind:href="item['fields']['download-link-2']"> URL</a>
-										</span>
-									</p>
-									<p v-if="item['fields']['abstract-2']">
-										ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
-									</p>
-								</div>
+								</p>
+								<p v-if="item['fields']['abstract-2']">
+									Abstract:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
+								</p>
+							</div>
+						</div><br>
+					</div>
+
+					<div class="col s12 m9 l10" id="app-future">
+						<h2>
+							<div class="big-strong">
+								FUTURE READINGS.
+							</div>
+						</h2>
+						<div class="ol s12 m9 l10" v-for="item in items" v-if="item['fields']['title']">
+							<p>
+								<h3>{{ item['fields']['title'] }}</h3>
+								<b>{{ item['fields']['date-str'] }}</b>
+								<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
+							</p>
+							<div class="col s12 m7 z-depth-2"  v-if="item['fields']['reference-1']">
+								<p>
+								{{ item['fields']['reference-1'] }}&nbsp;
+								<span v-if="item['fields']['library-link-1']">
+									<a v-bind:href="item['fields']['library-link-1']"> Library</a>
+								</span>
+								<span v-else-if="item['fields']['download-link-1']">
+									<a v-bind:href="item['fields']['download-link-1']"> URL</a>
+								</span>
+								</p>
+								<p v-if="item['fields']['abstract-1']"><br>
+									ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
+								</p>
+							</div>
+							<div class="col s12 m7 z-depth-3 hoverable"  v-if="item['fields']['reference-2']">
+								<p>
+									{{ item['fields']['reference-2'] }}&nbsp;
+									<span v-if="item['fields']['library-link-2']">
+										<a v-bind:href="item['fields']['library-link-2']"> Library</a>
+									</span>
+									<span v-else-if="item['fields']['download-link-2']">
+										<a v-bind:href="item['fields']['download-link-2']"> URL</a>
+									</span>
+								</p>
+								<p v-if="item['fields']['abstract-2']">
+									ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
+								</p>
+							</div>
+						</div>
+						<div v-else>
+							Coming soon.
+						</div>
+					</div>
+
+					<div class="col s12 m9 l10" id="app-past">
+						<h2>
+							<div class="big-strong">
+								PAST READINGS.
+							</div>
+						</h2>
+						<div class="col s12 m9 l10" v-for="item in items" v-if="item['fields']['title']">
+							<p>
+								<h3>{{ item['fields']['title'] }}</h3>
+								<b>{{ item['fields']['date-str'] }}</b>
+								<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
+							</p>
+							<div class="col s12 m7 z-depth-2"  v-if="item['fields']['reference-1']">
+								<p>
+								{{ item['fields']['reference-1'] }}&nbsp;
+								<span v-if="item['fields']['library-link-1']">
+									<a v-bind:href="item['fields']['library-link-1']"> Library</a>
+								</span>
+								<span v-else-if="item['fields']['download-link-1']">
+									<a v-bind:href="item['fields']['download-link-1']"> URL</a>
+								</span>
+								</p>
+								<p v-if="item['fields']['abstract-1']"><br>
+									ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-1'] }}</span>
+								</p>
+							</div>
+							<div class="col s12 m7 z-depth-3"  v-if="item['fields']['reference-2']">
+								<p>
+									{{ item['fields']['reference-2'] }}&nbsp;
+									<span v-if="item['fields']['library-link-2']">
+										<a v-bind:href="item['fields']['library-link-2']"> Library</a>
+									</span>
+									<span v-else-if="item['fields']['download-link-2']">
+										<a v-bind:href="item['fields']['download-link-2']"> URL</a>
+									</span>
+								</p>
+								<p v-if="item['fields']['abstract-2']">
+									ABSTRACT:<br><span class="lbr">{{ item['fields']['abstract-2'] }}</span>
+								</p>
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</main>
+		
         <footer class="grey lighten-5">
             <div class="container">
                 <div class="row">
