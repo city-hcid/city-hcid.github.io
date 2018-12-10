@@ -93,7 +93,7 @@
 								</p>
 							</div><br />
 							<br />
-							<div class="col s12 m7 z-depth-2 hoverable"  v-if="item['fields']['reference-2']">
+							<div class="col s12 m8 z-depth-2 hoverable"  v-if="item['fields']['reference-2']">
 								<p>
 									<b>{{ item['fields']['reference-2'] }}</b>&nbsp;
 									<span v-if="item['fields']['library-link-2']">
@@ -110,13 +110,14 @@
 							</div>
 						</div><br />
 						<br />
-					</div>
+					</div>><br />
+					<br />
 
 					<div id="app-future" class="col s12 m9 l10 section">
 						<h2 class="big-strong">
 							FUTURE READINGS.
 						</h2>
-						<div v-for="item in items" v-if="item['fields']['title']">
+						<div class="col s12 m6 l10" v-for="item in items" v-if="item['fields']['title']">
 							<h3>{{ item['fields']['title'] }}</h3>
 							<b>{{ item['fields']['date-str'] }}</b>
 							<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
@@ -161,7 +162,7 @@
 						<h2 class="big-strong">
 							PAST READINGS.
 						</h2>
-						<div v-for="item in items" v-if="item['fields']['title']">
+						<div class="col s12 m6 l10" v-for="item in items" v-if="item['fields']['title']">
 							<h3>{{ item['fields']['title'] }}</h3>
 							<b>{{ item['fields']['date-str'] }}</b>
 							<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
