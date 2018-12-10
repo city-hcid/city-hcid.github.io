@@ -117,11 +117,11 @@
 						<h2 class="big-strong">
 							FUTURE READINGS.
 						</h2>
-						<div class="col s12 m6 l10" v-for="item in items" v-if="item['fields']['title']">
+						<div v-for="item in items" v-if="item['fields']['title']">
 							<h3>{{ item['fields']['title'] }}</h3>
 							<b>{{ item['fields']['date-str'] }}</b>
 							<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
-							<div v-if="item['fields']['reference-1']">
+							<div class="col s12 m6 l10" v-if="item['fields']['reference-1']">
 								<p>
 									<b>{{ item['fields']['reference-1'] }}</b>&nbsp;
 									<span v-if="item['fields']['library-link-1']">
@@ -136,7 +136,7 @@
 								</p><br />
 								<br />
 							</div>
-							<div v-if="item['fields']['reference-2']">
+							<div class="col s12 m6 l10" v-if="item['fields']['reference-2']">
 								<p>
 								<b>{{ item['fields']['reference-2'] }}</b>&nbsp;
 									<span v-if="item['fields']['library-link-2']">
@@ -162,11 +162,11 @@
 						<h2 class="big-strong">
 							PAST READINGS.
 						</h2>
-						<div class="col s12 m6 l10" v-for="item in items" v-if="item['fields']['title']">
+						<div v-for="item in items" v-if="item['fields']['title']">
 							<h3>{{ item['fields']['title'] }}</h3>
 							<b>{{ item['fields']['date-str'] }}</b>
 							<p class="lbr" v-if="item['fields']['overview']">{{ item['fields']['overview'] }}</p>
-							<div v-if="item['fields']['reference-1']">
+							<div class="col s12 m6 l10" v-if="item['fields']['reference-1']">
 								<p>
 									<b>{{ item['fields']['reference-1'] }}</b>&nbsp;
 									<span v-if="item['fields']['library-link-1']">
@@ -181,7 +181,7 @@
 								</p><br />
 								<br />
 							</div>
-							<div v-if="item['fields']['reference-2']">
+							<div class="col s12 m6 l10" v-if="item['fields']['reference-2']">
 								<p>
 								<b>{{ item['fields']['reference-2'] }}</b>&nbsp;
 									<span v-if="item['fields']['library-link-2']">
