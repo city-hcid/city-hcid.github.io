@@ -16,6 +16,11 @@
 table, tr {
 	border-bottom: none;
   }
+
+.section {
+padding-top: 1rem;
+padding-bottom: 1rem;
+}
   
 .collapsible-header.active i {
 	-ms-transform: rotate(90deg); /* IE 9 */
