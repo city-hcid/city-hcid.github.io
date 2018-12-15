@@ -4,6 +4,10 @@
 * https://www.gnu.org/licenses/gpl.html
 */
 
+.page-footer {
+	padding-bottom: 20px;
+}
+
 h1 {
 	font-size: 3rem;
 	line-height: 110%;
@@ -163,6 +167,7 @@ h1.page-title {
 	}*/
 	
 	.parallax-text {
-		font-size: 1.2rem;
+		font-size: 1.1rem;
+		font-weight: bold;
 		text-rendering: optimizeLegibility;
 	}
