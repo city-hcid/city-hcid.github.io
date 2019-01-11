@@ -53,596 +53,612 @@
 		</header>
 		<main>
 			<div class="container">
-				<div id="app">
-					<div class="row">
-						<div class="col s12 m9 l10" id="bodybox">
-							<div>
-								<p>
-									The <a href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a> (HCID) has a tradition of hosting current and lively presentations and discussions as part of its seminar series. The talks are largely focused on <a href="https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction" title="Human–computer interaction - Wikipedia">Human-Computer Interaction</a> and design related research, but also veer into related areas including discussions linked to methodology and theory, and related to <a href="https://en.wikipedia.org/wiki/Science_and_technology_studies" title="Science and technology studies - Wikipedia">science and technology studies</a> (STS), cognition and behaviour, language and linguistics, and healthcare.
-								</p>
-								<p>
-									As a centre, we try to host at least one external speaker a month and two talks/workshops given by internal researchers or research students. All are meant to be open to students, academics and interested members of the public.
-								</p>
-								<p>
-									Below is the list of talks organised, so far, for the 2018-19 academic year. To view the calendar go <a href="https://hcid.city/seminar/calendar">here</a>.
-								</p>
-							</div>
+				<div class="row">
+					<div class="col s12 m6 offset-m1">
+						<p>The next HCID Seminar talk is:</p>
+					</div>
+				</div>
+				<div class="row valign-wrapper">
+					<div class="col s12 m6 offset-m2" id="app-next" style="margin-bottom:10%;">
+						<div v-for="item in items" v-if="item['fields']['date']">
+							<p class="flow-text" v-if="item['fields']['talk-title']" style="font-weight:800;">
+								{{ item['fields']['talk-title'] }}
+							</p>
+							<p class="right-align">
+								&mdash; From <span v-if="item['fields']['full-name']"><a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a></span>
+								<br /><span v-if="item['fields']['date-str']">{{ item['fields']['date-str'] }}</span>
+								<br /><span v-if="item['fields']['room']">Room {{ item['fields']['room'] }}</span>
+							</p>
+						</div>
+					</div>
+				</div>
 
-							<div>
+				<div class="row">
+					<div class="col s12 m9 l10">
+						<p>
+							The <a href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a> (HCID) has a tradition of hosting current and lively presentations and discussions as part of its seminar series. The talks are largely focused on <a href="https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction" title="Human–computer interaction - Wikipedia">Human-Computer Interaction</a> and design related research, but also veer into related areas including discussions linked to methodology and theory, and related to <a href="https://en.wikipedia.org/wiki/Science_and_technology_studies" title="Science and technology studies - Wikipedia">science and technology studies</a> (STS), cognition and behaviour, language and linguistics, and healthcare.
+						</p>
+						<p>
+							As a centre, we try to host at least one external speaker a month and two talks/workshops given by internal researchers or research students. All are meant to be open to students, academics and interested members of the public.
+						</p>
+						<p>
+							Below is the list of talks organised, so far, for the 2018-19 academic year. To view the calendar go <a href="https://hcid.city/seminar/calendar">here</a>.
+						</p>
+					</div>
+				</div>
+
+				<div class="row" id="app">
+					<div class="col s12 m9 l10" id="bodybox">
+						<ul class="collection with-header scrollspy" id="sep">
+							<li class="collection-header">
+								<h2>
+									September 2018
+								</h2>
+							</li>
 						
-							<ul class="collection with-header scrollspy" id="sep">
-								<li class="collection-header">
-									<h2>
-										September 2018
-									</h2>
-								</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Sep'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
 							
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Sep'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-								
-							</ul>
-							<ul class="collection with-header scrollspy" id="oct">
-								<li class="collection-header">
-									<h2>
-										October 2018
-									</h2>
-								</li>
-								
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Oct'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-								
-							</ul>
-							<ul class="collection with-header scrollspy" id="nov">
-								<li class="collection-header">
-									<h2>
-										November 2018
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Nov'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<ul class="collection with-header scrollspy" id="dec">
-								<li class="collection-header">
-									<h2>
-										December 2018
-									</h2>
-								</li>
-								
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Dec'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-bind:id="item['fields']['last'] + 'abstract'" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-								
-							</ul>
-							<ul class="collection with-header scrollspy" id="jan">
-								<li class="collection-header">
-									<h2>
-										January 2019
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Jan'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<ul class="collection with-header scrollspy" id="feb">
-								<li class="collection-header">
-									<h2>
-										February 2019
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Feb'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<ul class="collection with-header scrollspy" id="mar">
-								<li class="collection-header">
-									<h2>
-										March 2019
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Mar'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<ul class="collection with-header scrollspy" id="apr">
-								<li class="collection-header">
-									<h2>
-										April 2018
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Apr'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<ul class="collection with-header scrollspy" id="may">
-								<li class="collection-header">
-									<h2>
-										May 2019
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'May'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<ul class="collection with-header scrollspy" id="jun">
-								<li class="collection-header scrollspy">
-									<h2>
-										June 2019
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Jun'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<ul class="collection with-header scrollspy" id="jul">
-								<li class="collection-header scrollspy">
-									<h2>
-										July 2019
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Jul'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<ul class="collection with-header scrollspy" id="aug">
-								<li class="collection-header scrollspy">
-									<h2>
-										August 2019
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Aug'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-							<ul class="collection with-header scrollspy" id="sep_19">
-								<li class="collection-header scrollspy">
-									<h2>
-										September 2019
-									</h2>
-								</li>
-								<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Sep_19'">
-									<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-									<span v-else ><i class="material-icons circle">people</i></span>
-									<div>
-										<p>
-											<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
-											{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
-										</p>
-										<br />
-										<p>
-											<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
-											<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-title']">
-											Title
-										</h3>
-										<p>
-											<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['talk-abstract']">
-											Abstract
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
-										</p>
-										<h3 v-if="item['fields']['bio']">
-											Bio
-										</h3>
-										<p>
-											<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
-										</p>
-									</div>
-								</li>
-							</ul>
-
-							</div>
-						
-						</div>
-						<div class="col hide-on-small-only m3 l2">
-							<ul id="toc" class="section table-of-contents">
-								<li>
-									<a href="#sep">September</a>
-								</li>
-								<li>
-									<a href="#oct">October</a>
-								</li>
-								<li>
-									<a href="#nov">November</a>
-								</li>
-								<li>
-									<a href="#dec">December</a>
-								</li>
-								<li>
-									<a href="#jan">January</a>
-								</li>
-								<li>
-									<a href="#feb">February</a>
-								</li>
-								<li>
-									<a href="#mar">March</a>
-								</li>
-								<li>
-									<a href="#apr">April</a>
-								</li>
-								<li>
-									<a href="#may">May</a>
-								</li>
-								<li>
-									<a href="#jun">June</a>
-								</li>
-								<li>
-									<a href="#jul">July</a>
-								</li>
-								<li>
-									<a href="#aug">August</a>
-								</li>
-								<li>
-									<a href="#sep_19">September</a>
-								</li>
-							</ul>
-						</div>
+						</ul>
+						<ul class="collection with-header scrollspy" id="oct">
+							<li class="collection-header">
+								<h2>
+									October 2018
+								</h2>
+							</li>
+							
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Oct'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+							
+						</ul>
+						<ul class="collection with-header scrollspy" id="nov">
+							<li class="collection-header">
+								<h2>
+									November 2018
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Nov'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<ul class="collection with-header scrollspy" id="dec">
+							<li class="collection-header">
+								<h2>
+									December 2018
+								</h2>
+							</li>
+							
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Dec'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-bind:id="item['fields']['last'] + 'abstract'" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+							
+						</ul>
+						<ul class="collection with-header scrollspy" id="jan">
+							<li class="collection-header">
+								<h2>
+									January 2019
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Jan'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<ul class="collection with-header scrollspy" id="feb">
+							<li class="collection-header">
+								<h2>
+									February 2019
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Feb'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<ul class="collection with-header scrollspy" id="mar">
+							<li class="collection-header">
+								<h2>
+									March 2019
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Mar'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<ul class="collection with-header scrollspy" id="apr">
+							<li class="collection-header">
+								<h2>
+									April 2018
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Apr'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<ul class="collection with-header scrollspy" id="may">
+							<li class="collection-header">
+								<h2>
+									May 2019
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'May'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<ul class="collection with-header scrollspy" id="jun">
+							<li class="collection-header scrollspy">
+								<h2>
+									June 2019
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Jun'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<ul class="collection with-header scrollspy" id="jul">
+							<li class="collection-header scrollspy">
+								<h2>
+									July 2019
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Jul'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<ul class="collection with-header scrollspy" id="aug">
+							<li class="collection-header scrollspy">
+								<h2>
+									August 2019
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Aug'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<ul class="collection with-header scrollspy" id="sep_19">
+							<li class="collection-header scrollspy">
+								<h2>
+									September 2019
+								</h2>
+							</li>
+							<li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['month'] == 'Sep_19'">
+								<span v-if="item['fields']['photo-url']" ><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
+								<span v-else ><i class="material-icons circle">people</i></span>
+								<div>
+									<p>
+										<a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br />
+										{{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+									</p>
+									<br />
+									<p>
+										<span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
+										<span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-title']">
+										Title
+									</h3>
+									<p>
+										<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['talk-abstract']">
+										Abstract
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+									</p>
+									<h3 v-if="item['fields']['bio']">
+										Bio
+									</h3>
+									<p>
+										<span class="lbr" v-if="item['fields']['bio']">{{ item['fields']['bio'] }}</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="col hide-on-small-only m3 l2">
+						<ul id="toc" class="section table-of-contents">
+						<li>
+							<a href="#sep">September</a>
+						</li>
+						<li>
+							<a href="#oct">October</a>
+						</li>
+						<li>
+							<a href="#nov">November</a>
+						</li>
+						<li>
+							<a href="#dec">December</a>
+						</li>
+						<li>
+							<a href="#jan">January</a>
+						</li>
+						<li>
+							<a href="#feb">February</a>
+						</li>
+						<li>
+							<a href="#mar">March</a>
+						</li>
+						<li>
+							<a href="#apr">April</a>
+						</li>
+						<li>
+							<a href="#may">May</a>
+						</li>
+						<li>
+							<a href="#jun">June</a>
+						</li>
+						<li>
+							<a href="#jul">July</a>
+						</li>
+						<li>
+							<a href="#aug">August</a>
+						</li>
+						<li>
+							<a href="#sep_19">September</a>
+						</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -777,7 +793,7 @@
 					if (currentScroll >= fixmeTop && currentScroll <= actualBottom - heightSideNav) {
 						$('.table-of-contents').css({
 							position: 'fixed',
-							top: '0',
+							top: '10rem',
 							bottom: ''
 						});
 					} else {
