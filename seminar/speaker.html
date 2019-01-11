@@ -54,15 +54,14 @@
                                 <h2 style="margin-bottom:.2rem;">
                                     {{ item['fields']['full-name'] }}
                                 </h2>
-                                <span v-if="item['fields']['group-dept']">
-									<span v-if="item['fields']['org']">
+                                <div v-if="item['fields']['group-dept']">
+                                    <span v-if="item['fields']['org']">
 										{{ item['fields']['group-dept'] }}, 
 									</span>
-                                <span v-else>
+                                    <span v-else>
 										{{ item['fields']['group-dept'] }} 
 									</span>
-                                </span>
-
+                                </div>
                                 <span v-if="item['fields']['org']">
 									{{ item['fields']['org'] }}
 								</span>
