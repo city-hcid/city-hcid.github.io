@@ -57,14 +57,14 @@
                                     <div class="strong" style="margin-bottom:.2rem;">
                                         <a v-bind:href="'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a>
                                     </div>
-                                    <div v-if="item['fields']['group-dept']">
+                                    <span v-if="item['fields']['group-dept']">
                                         <span v-if="item['fields']['org']">
 											{{ item['fields']['group-dept'] }}, 
 										</span>
-                                        <span v-else>
+                                    <span v-else>
 											{{ item['fields']['group-dept'] }} 
 										</span>
-                                    </div>
+                                    </span>
                                     <span v-if="item['fields']['org']">
 										{{ item['fields']['org'] }}
 									</span>
