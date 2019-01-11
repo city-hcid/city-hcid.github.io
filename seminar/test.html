@@ -53,20 +53,23 @@
 		</header>
 		<main>
 			<div class="container">
-				<div class="row">
-					<div class="col s12">
-						<div id="app-next">
-							<p>The Next talk is:</p>
-							<div v-for="item in items" v-if="item['fields']['date']">
-								<p>
-									<span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-								</p>
-							</div>
+				<div class="row" id="bodybox">
+					<div class="col m11 offset-m1">
+						<p>The next Seminar talk is:</p>
+					</div>
+					<div class="col s12 m6 offset-m2" id="app-next">
+						<div v-for="item in items" v-if="item['fields']['date']">
+							<p class="flow-text">
+								<span v-if="item['fields']['talk-title']"><strong>{{ item['fields']['talk-title'] }}</strong></span>
+							</p>
+							<p class="right-align">
+								&mdash; From <span v-if="item['fields']['full-name']"><strong><a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a></strong></span>
+							</p>
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col s12 m9 l10" id="bodybox">
+					<div class="col s12 m9 l10">
 						<div>
 							<p>
 								The <a href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a> (HCID) has a tradition of hosting current and lively presentations and discussions as part of its seminar series. The talks are largely focused on <a href="https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction" title="Human–computer interaction - Wikipedia">Human-Computer Interaction</a> and design related research, but also veer into related areas including discussions linked to methodology and theory, and related to <a href="https://en.wikipedia.org/wiki/Science_and_technology_studies" title="Science and technology studies - Wikipedia">science and technology studies</a> (STS), cognition and behaviour, language and linguistics, and healthcare.
