@@ -5,159 +5,211 @@
 */
 
 .page-footer {
-	padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 h1 {
-	font-size: 3rem;
-	line-height: 110%;
-	margin: 2.8rem 0 1.68rem 0;
+    font-size: 3rem;
+    line-height: 110%;
+    margin: 2.8rem 0 1.68rem 0;
 }
 
 h2 {
-font-size: 2.2rem;
-line-height: 110%;
-margin: 2.3733333333rem 0 1.424rem 0;
+    font-size: 2.2rem;
+    line-height: 110%;
+    margin: 2.3733333333rem 0 1.424rem 0;
 }
 
 h3 {
-font-size: 1.5rem;
-line-height: 110%;
-margin: 1.9466666667rem 0 1.168rem 0;
+    font-size: 1.5rem;
+    line-height: 110%;
+    margin: 1.9466666667rem 0 1.168rem 0;
 }
 
 h4 {
-font-size: 1.3rem;
-line-height: 110%;
-margin: 1.52rem 0 0.912rem 0;
+    font-size: 1.3rem;
+    line-height: 110%;
+    margin: 1.52rem 0 0.912rem 0;
 }
 
 h5 {
-font-size: 1.2rem;
-line-height: 110%;
-margin: 1.0933333333rem 0 0.656rem 0;
+    font-size: 1.2rem;
+    line-height: 110%;
+    margin: 1.0933333333rem 0 0.656rem 0;
 }
 
 h6 {
-font-size: 1.05rem;
-line-height: 110%;
-margin: 0.7666666667rem 0 0.46rem 0;
+    font-size: 1.05rem;
+    line-height: 110%;
+    margin: 0.7666666667rem 0 0.46rem 0;
 }
 
-#ft th, #pt1 th, #pt2 th {
-	width: 100%
-}
-  
-#ft td, #pt1 td, #pt2 td {
-	display: inline-block;
-	width: 25%
+#ft th,
+#pt1 th,
+#pt2 th {
+    width: 100%
 }
 
-table, tr {
-	border-bottom: none;
+#ft td,
+#pt1 td,
+#pt2 td {
+    display: inline-block;
+    width: 25%
+}
+
+table,
+tr {
+    border-bottom: none;
 }
 
 .section {
-padding-top: 1rem;
-padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
-  
+
 .collapsible-header.active i {
-	-ms-transform: rotate(90deg); /* IE 9 */
-	-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-	transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    /* IE 9 */
+    -webkit-transform: rotate(90deg);
+    /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
 }
 
 img.head-shot {
-	border-radius: 5%;
+    border-radius: 5%;
 }
 
 img.head-shot-lg {
-	border-radius: 10px;
-	width: auto;
-	height: 220px;
+    border-radius: 10px;
+    width: auto;
+    height: 220px;
 }
 
-div.big-strong, h2.big-strong {
-	font-weight: 800;
-	font-size: 1.6rem;
-	margin-top: 1.2rem;
+div.big-strong,
+h2.big-strong {
+    font-weight: 800;
+    font-size: 1.6rem;
+    margin-top: 1.2rem;
 }
 
-@-webkit-keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100% { opacity:0; } }
-@-moz-keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100% { opacity:0; } }
-@keyframes fadeIn { 0% { opacity:0; } 40% { opacity:1; } 60% { opacity:1; } 100% { opacity:0; } }
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
 .fade-up-down {
-	opacity:0;  /* make things invisible upon start */
-	-webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-	-moz-animation:fadeIn ease-in 1;
-	animation:fadeIn ease-in 1;
-
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-	-moz-animation-fill-mode:forwards;
-	animation-fill-mode:forwards;
-
-	-webkit-animation-duration:4s;
-	-moz-animation-duration:4s;
-	animation-duration:4s;
-
-	-webkit-animation-delay: 0.7s;
-	-moz-animation-delay: 0.7s;
-	animation-delay: 0.7s;
+    opacity: 0;
+    /* make things invisible upon start */
+    -webkit-animation: fadeIn ease-in 1;
+    /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+    -moz-animation: fadeIn ease-in 1;
+    animation: fadeIn ease-in 1;
+    -webkit-animation-fill-mode: forwards;
+    /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+    -moz-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-duration: 4s;
+    -moz-animation-duration: 4s;
+    animation-duration: 4s;
+    -webkit-animation-delay: 0.7s;
+    -moz-animation-delay: 0.7s;
+    animation-delay: 0.7s;
 }
 
 h1.page-title {
-	font-size:100px;
-	font-weight:900;
-	margin-bottom:1rem
+    font-size: 100px;
+    font-weight: 900;
+    margin-bottom: 1rem
 }
 
 @media only screen and (min-width: 1201px) {
-	h1.page-title {
-		font-size:100px;
-		font-weight:900;
-		margin-bottom:1rem
-	}
-  }
-  
-  @media only screen and (min-width: 993px) {
-	h1.page-title {
-		font-size:100px;
-		font-weight:900;
-		margin-bottom:1rem
-	}
-  }
-  
-  @media only screen and (min-width: 601px) and (max-width: 992px) {
-	h1.page-title {
-		font-size:90px;
-		font-weight:800;
-		margin-bottom:.5rem
-	}
-  }
-  
-  @media only screen and (max-width: 600px) {
-	h1.page-title {
-		font-size:65px;
-		font-weight:800;
-	}
-	}
-	
-	/* For Parallax overlay */
-	.overlay {
-		width: 100%;
-		font-size: 3em;
-		letter-spacing: .11em;
-		font-weight: bold;
-		text-rendering: optimizeLegibility;
-	}
-	
-	.h100 {
-		height: 100%;
-	}
-	
-	/*.header {
+    h1.page-title {
+        font-size: 100px;
+        font-weight: 900;
+        margin-bottom: 1rem
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    h1.page-title {
+        font-size: 100px;
+        font-weight: 900;
+        margin-bottom: 1rem
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    h1.page-title {
+        font-size: 90px;
+        font-weight: 800;
+        margin-bottom: .5rem
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    h1.page-title {
+        font-size: 65px;
+        font-weight: 800;
+    }
+}
+
+
+/* For Parallax overlay */
+
+.overlay {
+    width: 100%;
+    font-size: 3em;
+    letter-spacing: .11em;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}
+
+.h100 {
+    height: 100%;
+}
+
+
+/*.header {
 		font-family: 'Lato', sans-serif;
 		font-size: 1em;
 		font-style: italic;
@@ -165,9 +217,9 @@ h1.page-title {
 		margin: 10px;
 		text-rendering: optimizeLegibility;
 	}*/
-	
-	.parallax-text {
-		font-size: 1.1rem;
-		font-weight: bold;
-		text-rendering: optimizeLegibility;
-	}
+
+.parallax-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}
