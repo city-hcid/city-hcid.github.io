@@ -44,6 +44,10 @@ h6 {
     margin: 0.7666666667rem 0 0.46rem 0;
 }
 
+#dropdown1 {
+    width: 160px !important;
+}
+
 #ft th,
 #pt1 th,
 #pt2 th {
@@ -55,6 +59,24 @@ h6 {
 #pt2 td {
     display: inline-block;
     width: 25%
+}
+
+.menu-header {
+    font-weight: 600;
+}
+
+.menu-subheader::before {
+    content: "\2002";
+}
+
+.menu-subheader,
+.menu-header {
+    color: #039be5 !important;
+}
+
+.menu-selection {
+    font-weight: 800;
+    color: #616161 !important;
 }
 
 table,
