@@ -6,10 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CS REF 2021 | Submissions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 <body>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <div class="content">
+                            <div class="tags is-pulled-left">
+                                <span class="tag is-small is-danger">CS REF website links</span>
+                                <span class="tag is-small is-info">REF Guide page numbers</span>
+                                <span class="tag is-small is-black">Downloads</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
 
     <section class="hero is-success is-bold is-fullheight">
         <div class="hero-body">
@@ -126,6 +144,7 @@
                         </h2>
                         <div class="tags">
                             <span class="tag is-small is-danger"><a class="has-text-white" href="./assessment_criteria.html">assessment criteria</a></span>
+                            <span class="tag is-small is-danger"><a class="has-text-white" href="./impact.html">impact</a></span>
                             <span class="tag is-small is-info"><a class="has-text-white" target="_blank" href="https://www.ref.ac.uk/publications/draft-guidance-on-submissions-201801/">Annex A</a></span>
                         </div>
                     </div>
@@ -164,20 +183,36 @@
 
     <section class="section">
         <div class="container">
-            <div class="container">
-                <div class="columns">
-                    <div class="column is-12">
-                        <p class="is-size-6 has-text-right">
-                            <a class="has-text-danger has-text-weight-bold" href="./results.html">REF results</a> will include an overall <strong>Quality Profile</strong> and three <em>sub-profiles</em> aligned with the three <a class="has-text-danger"
-                                href="./assessment_criteria.html">assessment criteria</a>.
-                        </p>
-                        <br />
-                        <div class="tags is-pulled-right">
-                            <span class="tag is-small is-danger"><a class="has-text-white" href="./results.html">results</a></span>
-                            <span class="tag is-small is-info"><a class="has-text-white" target="_blank" href="https://www.ref.ac.uk/publications/draft-guidance-on-submissions-201801/">38</a></span>
-                            <span class="tag is-small is-info"><a class="has-text-white" target="_blank" href="https://www.ref.ac.uk/publications/draft-guidance-on-submissions-201801/">Annex A/B</a></span>
-                        </div>
+            <div class="columns">
+                <div class="column is-12">
+                    <p class="is-size-6 has-text-right">
+                        <a class="has-text-danger has-text-weight-bold" href="./results.html">REF results</a> will include an overall <strong>Quality Profile</strong> and three <em>sub-profiles</em> aligned with the three <a class="has-text-danger" href="./assessment_criteria.html">assessment criteria</a>.
+                    </p>
+                    <br />
+                    <div class="tags is-pulled-right">
+                        <span class="tag is-small is-danger"><a class="has-text-white" href="./levels.html">levels</a></span>
+                        <span class="tag is-small is-danger"><a class="has-text-white" href="./results.html">results</a></span>
+                        <span class="tag is-small is-info"><a class="has-text-white" target="_blank" href="https://www.ref.ac.uk/publications/draft-guidance-on-submissions-201801/">38</a></span>
+                        <span class="tag is-small is-info"><a class="has-text-white" target="_blank" href="https://www.ref.ac.uk/publications/draft-guidance-on-submissions-201801/">Annex A/B</a></span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6">
+                    <p>
+                        <strong>REF 2014 Quality Profile for City Computer Science</strong>
+                    </p>
+                </div>
+            </div>
+            <br />
+            <div class="columns is-centered">
+                <div class="column is-6">
+                    <div class="ct-chart ct-golden-section" id="overall-2014-profile"></div>
                 </div>
             </div>
         </div>
@@ -185,6 +220,58 @@
 
     <footer>
     </footer>
+    <script>
+        // Labels along the x-axis
+        var levels = ["4*", "3*", "2*", "1*", "U/C"];
+        // Quality scores
+        var overall = [15, 47, 36, 2, 0];
+        var outputs = [10.5, 47.6, 38.7, 3.2, 0];
+        var impact = [40, 50, 10, 0, 0];
+        var environment = [0, 4, 6, 0, 0];
+        var data = {
+            // A labels array that can contain any sort of values
+            labels: levels,
+            // Our series array that contains series objects or in this case series data arrays
+            series: [
+                overall,
+                outputs,
+                impact,
+                environment
+            ]
+        };
+        // As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
+        // as you saw in the previous example
+        var options = {
+            seriesBarDistance: 15,
+            horizontalBars: true,
+            axisX: {
+                // We can disable the grid for this axis
+                showGrid: false
+            },
+        };
+        var responsiveOptions = [
+            ['screen and (min-width: 641px) and (max-width: 1024px)', {
+                seriesBarDistance: 10,
+                axisX: {
+                    labelInterpolationFnc: function(value) {
+                        return value;
+                    }
+                }
+            }],
+            ['screen and (max-width: 640px)', {
+                seriesBarDistance: 8,
+                axisX: {
+                    labelInterpolationFnc: function(value) {
+                        return value[0];
+                    }
+                }
+            }]
+        ];
+        // Create a new line chart object where as first parameter we pass in a selector
+        // that is resolving to our chart container element. The Second parameter
+        // is the actual data object.
+        new Chartist.Bar('#overall-2014-profile', data, options, responsiveOptions);
+    </script>
 </body>
 
 </html>
