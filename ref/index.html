@@ -7,6 +7,7 @@
     <title>CS REF 2021 | Submissions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
@@ -20,7 +21,7 @@
                         <div class="content">
                             <div class="tags is-pulled-left">
                                 <span class="tag is-small is-danger">CS REF website links</span>
-                                <span class="tag is-small is-info">REF Guide page numbers</span>
+                                <span class="tag is-small is-info">REF Guidance content</span>
                                 <span class="tag is-small is-black">Downloads</span>
                             </div>
                         </div>
@@ -175,18 +176,20 @@
                         "<a class="has-text-info" target="_blank" href="https://www.ref.ac.uk/publications/consultation-on-the-panel-criteria-and-working-methods-201802/"><strong>Panel criteria</strong></a>" will set out generic assessment criteria, and
                         set out the working methods of the main and sub-panels in undertaking their roles.
                     </p>
+                    <br />
                 </div>
             </div>
         </div>
 
     </section>
 
-    <section class="section">
+    <section class="section has-background-grey-lighter">
         <div class="container">
             <div class="columns">
-                <div class="column is-12">
+                <div class="column is-12 has-text-white">
                     <p class="is-size-6 has-text-right">
-                        <a class="has-text-danger has-text-weight-bold" href="./results.html">REF results</a> will include an overall <strong>Quality Profile</strong> and three <em>sub-profiles</em> aligned with the three <a class="has-text-danger" href="./assessment_criteria.html">assessment criteria</a>.
+                        <a class="has-text-white has-text-weight-bold" href="./results.html">REF results</a> will include an overall <span class="has-text-weight-semibold">Quality Profile</span> and three <span class="has-text-weight-semibold">sub-profiles</span>                        aligned with the three
+                        <a class="has-text-white" href="./assessment_criteria.html">assessment criteria</a>.
                     </p>
                     <br />
                     <div class="tags is-pulled-right">
@@ -203,16 +206,36 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-6">
-                    <p>
-                        <strong>REF 2014 Quality Profile for City Computer Science</strong>
-                    </p>
+                <div class="column is-5">
+                    <h1 class="has-text-weight-bold is-size-2">
+                        City Computer Science<br /> REF 2014 Results
+                    </h1>
+                </div>
+            </div>
+            <br />
+            <div class="columns is-centered">
+                <div class="column is-3">
+                    <div class="ct-chart ct-golden-section" id="city-overall-2014"></div>
+                    <p class="has-text-centered has-text-grey is-size-7">Overall</p>
+                </div>
+                <div class="column is-3">
+                    <div class="ct-chart ct-golden-section" id="city-outputs-2014"></div>
+                    <p class="has-text-centered has-text-grey is-size-7">Output</p>
+                </div>
+                <div class="column is-3">
+                    <div class="ct-chart ct-golden-section" id="city-impact-2014"></div>
+                    <p class="has-text-centered has-text-grey is-size-7">Impact</p>
+                </div>
+                <div class="column is-3">
+                    <div class="ct-chart ct-golden-section" id="city-environment-2014"></div>
+                    <p class="has-text-centered has-text-grey is-size-7">Environment</p>
                 </div>
             </div>
             <br />
             <div class="columns is-centered">
                 <div class="column is-6">
-                    <div class="ct-chart ct-golden-section" id="overall-2014-profile"></div>
+                    <div class="ct-chart ct-golden-section" id="city-all-2014"></div>
+                    <p class="has-text-centered has-text-grey is-size-7">Combined</p>
                 </div>
             </div>
         </div>
@@ -228,7 +251,43 @@
         var outputs = [10.5, 47.6, 38.7, 3.2, 0];
         var impact = [40, 50, 10, 0, 0];
         var environment = [0, 4, 6, 0, 0];
-        var data = {
+        var cityOverall2014 = {
+            // A labels array that can contain any sort of values
+            labels: levels,
+            // Our series array that contains series objects or in this case series data arrays
+            series: [{
+                className: 'overall-series',
+                data: outputs,
+            }]
+        };
+        var cityOutputs2014 = {
+            // A labels array that can contain any sort of values
+            labels: levels,
+            // Our series array that contains series objects or in this case series data arrays
+            series: [{
+                className: 'outputs-series',
+                data: outputs,
+            }]
+        };
+        var cityImpact2014 = {
+            // A labels array that can contain any sort of values
+            labels: levels,
+            // Our series array that contains series objects or in this case series data arrays
+            series: [{
+                className: 'impact-series',
+                data: impact,
+            }]
+        };
+        var cityEnvironment2014 = {
+            // A labels array that can contain any sort of values
+            labels: levels,
+            // Our series array that contains series objects or in this case series data arrays
+            series: [{
+                className: 'environment-series',
+                data: environment,
+            }]
+        };
+        var cityAll2014 = {
             // A labels array that can contain any sort of values
             labels: levels,
             // Our series array that contains series objects or in this case series data arrays
@@ -242,11 +301,20 @@
         // As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
         // as you saw in the previous example
         var options = {
-            seriesBarDistance: 15,
+            seriesBarDistance: 12,
             horizontalBars: true,
             axisX: {
                 // We can disable the grid for this axis
-                showGrid: false
+                showGrid: false,
+                high: 50
+            },
+        };
+        var options2 = {
+            seriesBarDistance: 12,
+            axisX: {
+                // We can disable the grid for this axis
+                showGrid: false,
+                high: 50
             },
         };
         var responsiveOptions = [
@@ -270,7 +338,11 @@
         // Create a new line chart object where as first parameter we pass in a selector
         // that is resolving to our chart container element. The Second parameter
         // is the actual data object.
-        new Chartist.Bar('#overall-2014-profile', data, options, responsiveOptions);
+        new Chartist.Bar('#city-overall-2014', cityOverall2014, options, responsiveOptions);
+        new Chartist.Bar('#city-outputs-2014', cityOutputs2014, options, responsiveOptions);
+        new Chartist.Bar('#city-impact-2014', cityImpact2014, options, responsiveOptions);
+        new Chartist.Bar('#city-environment-2014', cityEnvironment2014, options, responsiveOptions);
+        new Chartist.Bar('#city-all-2014', cityAll2014, options2, responsiveOptions);
     </script>
 </body>
 
