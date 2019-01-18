@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CS REF 2021 | Submissions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
@@ -216,26 +215,14 @@
             <div class="columns is-centered">
                 <div class="column is-6">
                     <p class="has-text-centered has-text-grey is-size-7">Combined</p>
-                    <div class="ct-chart ct-golden-section" id="city-all-2014"></div>
+                    <canvas id="city-cs-combined-2014" width="200" height="200"></canvas>
                 </div>
             </div>
             <br />
             <div class="columns is-centered">
-                <div class="column is-3">
+                <div class="column is-6">
                     <p class="has-text-centered has-text-grey is-size-7">Overall</p>
-                    <div class="ct-chart ct-golden-section" id="city-overall-2014"></div>
-                </div>
-                <div class="column is-3">
-                    <p class="has-text-centered has-text-grey is-size-7">Output</p>
-                    <div class="ct-chart ct-golden-section" id="city-outputs-2014"></div>
-                </div>
-                <div class="column is-3">
-                    <p class="has-text-centered has-text-grey is-size-7">Impact</p>
-                    <div class="ct-chart ct-golden-section" id="city-impact-2014"></div>
-                </div>
-                <div class="column is-3">
-                    <p class="has-text-centered has-text-grey is-size-7">Environment</p>
-                    <div class="ct-chart ct-golden-section" id="city-environment-2014"></div>
+                    <canvas id="city-cs-overall-2014" width="200" height="200"></canvas>
                 </div>
             </div>
             <br />
@@ -245,7 +232,7 @@
     <footer>
     </footer>
 
-    <script src="./scripts/ref-2014.js"></script>
+    <script src="./scripts/ref-2014-chart.js"></script>
 
 </body>
 
