@@ -7,7 +7,8 @@
     <title>CS REF 2021 | Submissions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
+
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
@@ -205,34 +206,152 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-5">
-                    <h1 class="has-text-weight-bold is-size-2">
-                        City Computer Science<br /> REF 2014 Results
+
+                <div class="column is-4-tablet">
+                    <h1 class="has-text-weight-bold is-size-2-desktop is-size-3-tablet">
+                        City Computer Science REF 2014 Results
                     </h1>
+                    <div class="tags">
+                        <span class="tag is-small is-info"><a class="has-text-white" target="_blank" href="https://results.ref.ac.uk/(S(pf1difltr0g4l5wgrteinvtx))/Results/BySubmission/2245">City CS Results</a></span>
+                    </div>
+                </div>
+                <div class="column is-5 is-offset-3-tablet">
+                    <br />
+                    <div id="app">
+                        <table class="table is-hoverable">
+                            <thread>
+                                <tr>
+                                    <th>PROFILE</th>
+                                    <th>4*</th>
+                                    <th>3*</th>
+                                    <th>2*</th>
+                                    <th>1*</th>
+                                    <th><abbr title="Not classified">N/C</abbr></th>
+                                </tr>
+                            </thread>
+                            <tbody>
+                                <tr v-for="item in items">
+                                    <th>
+                                        {{ item['fields']['Profile'] }}
+                                    </th>
+                                    <td v-if="item['fields']['4*']">
+                                        {{ item['fields']['4*'] }}
+                                    </td>
+                                    <td v-else>
+                                        -
+                                    </td>
+                                    <td v-if="item['fields']['3*']">
+                                        {{ item['fields']['3*'] }}
+                                    </td>
+                                    <td v-else>
+                                        -
+                                    </td>
+                                    <td v-if="item['fields']['2*']">
+                                        {{ item['fields']['2*'] }}
+                                    </td>
+                                    <td v-else>
+                                        -
+                                    </td>
+                                    <td v-if="item['fields']['1*']">
+                                        {{ item['fields']['1*'] }}
+                                    </td>
+                                    <td v-else>
+                                        -
+                                    </td>
+                                    <td v-if="item['fields']['N/C']">
+                                        {{ item['fields']['N/C'] }}
+                                    </td>
+                                    <td v-else>
+                                        -
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                    </div>
                 </div>
             </div>
-            <br />
-            <div class="columns is-centered">
-                <div class="column is-6">
-                    <p class="has-text-centered has-text-grey is-size-7">Combined</p>
-                    <canvas id="city-cs-combined-2014" width="200" height="200"></canvas>
-                </div>
-            </div>
-            <br />
-            <div class="columns is-centered">
-                <div class="column is-6">
-                    <p class="has-text-centered has-text-grey is-size-7">Overall</p>
-                    <canvas id="city-cs-overall-2014" width="200" height="200"></canvas>
-                </div>
-            </div>
-            <br />
+
         </div>
+        <br />
+        <div class="columns is-centered">
+            <div class="column is-4">
+                <p class="has-text-centered has-text-grey is-size-7">Combined</p>
+                <canvas id="city-cs-combined-2014" width="200" height="150"></canvas>
+            </div>
+        </div>
+        <br />
+        <div class="columns is-centered">
+            <div class="column is-4">
+                <p class="has-text-centered has-text-grey is-size-7">Overall</p>
+                <canvas id="city-cs-overall-2014" width="200" height="150"></canvas>
+            </div>
+        </div>
+        <!--         <br />
+        <div class="columns is-centered">
+            <div class="column is-4">
+                <div class="app-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">{{message}}</h1>
+                    <bar-chart></bar-chart>
+                </div>
+            </div>
+        </div>
+ -->
+
+        <br />
+        <div class="columns is-centered">
+            <div class="column is-4">
+
+                <template>
+                    <div class="container">
+                        <line-chart
+                        v-if="loaded"
+                        :chartdata="chartdata"
+                        :options="options"/>
+                    </div>
+                </template>
+
+            </div>
+        </div>
+
+
     </section>
 
     <footer>
     </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+    <script src="./scripts/ref-2014-chart-v0.2.js"></script>
+    <!-- <script src="./scripts/ref-vue-charts-v0.2.js"></script> -->
+    <script>
+        import LineChart from './LineChart.js'
 
-    <script src="./scripts/ref-2014-chart.js"></script>
+        export default {
+            name: 'LineChartContainer',
+            components: {
+                LineChart
+            },
+            data: () => ({
+                loaded: false,
+                chartdata: null
+            }),
+            async mounted() {
+                this.loaded = false
+                try {
+                    const {
+                        userlist
+                    } = await fetch('/api/userlist')
+                    this.chartData = userlist
+                    this.loaded = true
+                } catch (e) {
+                    console.error(e)
+                }
+            }
+        }
+    </script>
 
 </body>
 
