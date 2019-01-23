@@ -217,7 +217,7 @@
                 </div>
                 <div class="column is-5 is-offset-3-tablet">
                     <br />
-                    <div id="app">
+                    <div id="app-2">
                         <table class="table is-hoverable">
                             <thread>
                                 <tr>
@@ -230,7 +230,7 @@
                                 </tr>
                             </thread>
                             <tbody>
-                                <tr v-for="item in items">
+                                <tr v-for="item in items" v-if="item['fields']['code'] === 'CityCS2014'">
                                     <th>
                                         {{ item['fields']['Profile'] }}
                                     </th>
@@ -273,7 +273,7 @@
             </div>
 
         </div>
-        <br />
+        <!--         <br />
         <div class="columns is-centered">
             <div class="column is-4">
                 <p class="has-text-centered has-text-grey is-size-7">Combined</p>
@@ -286,34 +286,39 @@
                 <p class="has-text-centered has-text-grey is-size-7">Overall</p>
                 <canvas id="city-cs-overall-2014" width="200" height="150"></canvas>
             </div>
-        </div>
-        <!--         <br />
-        <div class="columns is-centered">
-            <div class="column is-4">
-                <div class="app-2">
-                    <h1 class="has-text-centered has-text-grey is-size-7">{{message}}</h1>
-                    <bar-chart></bar-chart>
-                </div>
-            </div>
-        </div>
- -->
-
+        </div> -->
         <br />
         <div class="columns is-centered">
             <div class="column is-4">
-
-                <template>
-                    <div class="container">
-                        <line-chart
-                        v-if="loaded"
-                        :chartdata="chartdata"
-                        :options="options"/>
+                <div class="app-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">CS Combined</h1>
+                    <!-- <div v-show="loading">
+                        <span class="icon has-text-info">
+                            <i class="fas fa-spinner fa-pulse"></i>
+                        </span>
+                    </div> -->
+                    <div v-show="chart != null">
+                        <canvas id="city-cs-outputs-2014" width="200" height="150"></canvas>
                     </div>
-                </template>
-
+                </div>
             </div>
         </div>
-
+        <br />
+        <div class="columns is-centered">
+            <div class="column is-4">
+                <div class="app-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">Sociology Combined</h1>
+                    <!--<div v-show="loading">
+                        <span class="icon has-text-info">
+                            <i class="fas fa-spinner fa-pulse"></i>
+                        </span>
+                    </div> -->
+                    <div v-show="chart != null">
+                        <canvas id="city-soc-overall-2014" width="200" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </section>
 
@@ -324,34 +329,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
-    <script src="./scripts/ref-2014-chart-v0.2.js"></script>
-    <!-- <script src="./scripts/ref-vue-charts-v0.2.js"></script> -->
-    <script>
-        import LineChart from './LineChart.js'
-
-        export default {
-            name: 'LineChartContainer',
-            components: {
-                LineChart
-            },
-            data: () => ({
-                loaded: false,
-                chartdata: null
-            }),
-            async mounted() {
-                this.loaded = false
-                try {
-                    const {
-                        userlist
-                    } = await fetch('/api/userlist')
-                    this.chartData = userlist
-                    this.loaded = true
-                } catch (e) {
-                    console.error(e)
-                }
-            }
-        }
-    </script>
+    <script src="./scripts/chart-data.js"></script>
+    <script src="./scripts/charts.js"></script>
 
 </body>
 

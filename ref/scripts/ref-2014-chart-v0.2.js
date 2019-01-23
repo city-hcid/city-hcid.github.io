@@ -1,4 +1,4 @@
-var app = new Vue({
+/* var app = new Vue({
     el: '#app',
     data: {
         items: []
@@ -20,15 +20,14 @@ var app = new Vue({
                     }
                 }
             ).then(function(response) {
-                var i, j, x = "";
+                var i = "";
                 self.items = response.data.records;
                 obj = response.data.records;
-                var length = self.items.length;
-                var value = response.data.records[0].fields["array"]; // this works
-                console.log(length + " and " + value);
-                console.log(obj[0].fields);
+                //var length = self.items.length;
+                //var value = response.data.records[0].fields["array"]; // this works
+                //console.log(length + " and " + value);
+                //console.log(obj[0].fields);
                 for (i in obj) {
-                    //x += obj[i].fields['Profile'] + 'CityCS2014' + ' = ' + obj[i].fields['array'];
                     eval(obj[i].fields['Profile'] + 'CityCS2014' + ' = ' + obj[i].fields['array'] + ";");
 
                 }
@@ -41,7 +40,7 @@ var app = new Vue({
         }
     }
 
-})
+}) */
 
 // Labels along the x-axis
 var levels = ["4*", "3*", "2*", "1*", "U/C"];
@@ -130,6 +129,5 @@ var citycsoChart = new Chart(citycso, {
 });
 
 $(document).ready(function() {
-    //alert("Hello, world!");
-    console.log("hello")
+    console.log("done")
 });
