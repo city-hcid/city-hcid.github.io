@@ -37,8 +37,11 @@ var app = new Vue({
                     console.log(OverallCityCS2014);
                     console.log(OverallCityCS2014Dataset);
 
-                    var citycsc = document.getElementById("city-cs-combined-2014");
-                    this.chartcsc = new Chart(citycsc, {
+                    // combined, overall, outputs, impact, environment
+                    //var levels_abrev = [c, o, op, i, e];
+
+                    var citycsc = document.getElementById("cityCsCombined_2014");
+                    this.cityCsCombined_2014 = new Chart(citycsc, {
                         type: 'bar',
                         data: {
                             labels: levels,
@@ -52,8 +55,8 @@ var app = new Vue({
                         options: options
                     });
 
-                    var citycso = document.getElementById("city-cs-overall-2014").getContext('2d');
-                    this.chartcso = new Chart(citycso, {
+                    var citycso = document.getElementById("cityCsOverall_2014").getContext('2d');
+                    this.cityCsOverall_2014 = new Chart(citycso, {
                         type: 'bar',
                         data: {
                             labels: levels,
@@ -64,8 +67,8 @@ var app = new Vue({
                         options: options
                     });
 
-                    var citycsop = document.getElementById("city-cs-outputs-2014").getContext('2d');
-                    this.chartcsop = new Chart(citycsop, {
+                    var citycsop = document.getElementById("cityCsOutputs_2014").getContext('2d');
+                    this.cityCsOutputs_2014 = new Chart(citycsop, {
                         type: 'bar',
                         data: {
                             labels: levels,
@@ -76,8 +79,8 @@ var app = new Vue({
                         options: options
                     });
 
-                    var citycsi = document.getElementById("city-cs-impact-2014").getContext('2d');
-                    this.chartcsi = new Chart(citycsi, {
+                    var citycsi = document.getElementById("cityCsImpact_2014").getContext('2d');
+                    this.cityCsImpact_2014 = new Chart(citycsi, {
                         type: 'bar',
                         data: {
                             labels: levels,
@@ -88,8 +91,8 @@ var app = new Vue({
                         options: options
                     });
 
-                    var citycse = document.getElementById("city-cs-environment-2014").getContext('2d');
-                    this.chartcse = new Chart(citycse, {
+                    var citycse = document.getElementById("cityCsEnvironment_2014").getContext('2d');
+                    this.cityCsEnvironment_2014 = new Chart(citycse, {
                         type: 'bar',
                         data: {
                             labels: levels,
@@ -98,6 +101,54 @@ var app = new Vue({
                             ]
                         },
                         options: options
+                    });
+
+                    var citycso_p = document.getElementById("cityCsOverall_p_2014").getContext('2d');
+                    this.cityCsOverall_p_2014 = new Chart(citycso_p, {
+                        type: 'polarArea',
+                        data: {
+                            labels: levels,
+                            datasets: [
+                                OverallCityCS2014Dataset
+                            ]
+                        },
+                        options: polarOptionsB
+                    });
+
+                    var citycsop_p = document.getElementById("cityCsOutputs_p_2014").getContext('2d');
+                    this.cityCsOutputs_p_2014 = new Chart(citycsop_p, {
+                        type: 'polarArea',
+                        data: {
+                            labels: levels,
+                            datasets: [
+                                OutputsCityCS2014Dataset
+                            ]
+                        },
+                        options: polarOptionsB
+                    });
+
+                    var citycsi_p = document.getElementById("cityCsImpact_p_2014").getContext('2d');
+                    this.cityCsImpact_p_2014 = new Chart(citycsi_p, {
+                        type: 'polarArea',
+                        data: {
+                            labels: levels,
+                            datasets: [
+                                ImpactCityCS2014Dataset
+                            ]
+                        },
+                        options: polarOptionsB
+                    });
+
+                    var citycse_p = document.getElementById("cityCsEnvironment_p_2014").getContext('2d');
+                    this.cityCsEnvironment_p_2014 = new Chart(citycse_p, {
+                        type: 'polarArea',
+                        data: {
+                            labels: levels,
+                            datasets: [
+                                EnvironmentCityCS2014Dataset
+                            ]
+                        },
+                        options: polarOptionsB
                     });
                 })
                 .catch(function(error) {
