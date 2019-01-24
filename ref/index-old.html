@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CS REF 2021 | Submissions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css">
     <link rel="stylesheet" href="./css/styles.css">
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
@@ -206,131 +206,46 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-
-                <div class="column is-4-tablet">
-                    <h1 class="has-text-weight-bold is-size-2-desktop is-size-3-tablet">
-                        City Computer Science REF 2014 Results
+                <div class="column is-5">
+                    <h1 class="has-text-weight-bold is-size-2">
+                        City Computer Science<br /> REF 2014 Results
                     </h1>
-                    <div class="tags">
-                        <span class="tag is-small is-info"><a class="has-text-white" target="_blank" href="https://results.ref.ac.uk/(S(pf1difltr0g4l5wgrteinvtx))/Results/BySubmission/2245">City CS Results</a></span>
-                    </div>
-                </div>
-                <div class="column is-5 is-offset-3-tablet">
-                    <br />
-                    <div id="app-2">
-                        <table class="table is-hoverable">
-                            <thread>
-                                <tr>
-                                    <th>PROFILE</th>
-                                    <th>4*</th>
-                                    <th>3*</th>
-                                    <th>2*</th>
-                                    <th>1*</th>
-                                    <th><abbr title="Not classified">N/C</abbr></th>
-                                </tr>
-                            </thread>
-                            <tbody>
-                                <tr v-for="item in items" v-if="item['fields']['code'] === 'CityCS2014'">
-                                    <th>
-                                        {{ item['fields']['Profile'] }}
-                                    </th>
-                                    <td v-if="item['fields']['4*']">
-                                        {{ item['fields']['4*'] }}
-                                    </td>
-                                    <td v-else>
-                                        -
-                                    </td>
-                                    <td v-if="item['fields']['3*']">
-                                        {{ item['fields']['3*'] }}
-                                    </td>
-                                    <td v-else>
-                                        -
-                                    </td>
-                                    <td v-if="item['fields']['2*']">
-                                        {{ item['fields']['2*'] }}
-                                    </td>
-                                    <td v-else>
-                                        -
-                                    </td>
-                                    <td v-if="item['fields']['1*']">
-                                        {{ item['fields']['1*'] }}
-                                    </td>
-                                    <td v-else>
-                                        -
-                                    </td>
-                                    <td v-if="item['fields']['N/C']">
-                                        {{ item['fields']['N/C'] }}
-                                    </td>
-                                    <td v-else>
-                                        -
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <br />
-                    </div>
                 </div>
             </div>
-
-        </div>
-        <!--         <br />
-        <div class="columns is-centered">
-            <div class="column is-4">
-                <p class="has-text-centered has-text-grey is-size-7">Combined</p>
-                <canvas id="city-cs-combined-2014" width="200" height="150"></canvas>
-            </div>
-        </div>
-        <br />
-        <div class="columns is-centered">
-            <div class="column is-4">
-                <p class="has-text-centered has-text-grey is-size-7">Overall</p>
-                <canvas id="city-cs-overall-2014" width="200" height="150"></canvas>
-            </div>
-        </div> -->
-        <br />
-        <div class="columns is-centered">
-            <div class="column is-4">
-                <div class="app-2">
-                    <h1 class="has-text-centered has-text-grey is-size-7">CS Combined</h1>
-                    <!-- <div v-show="loading">
-                        <span class="icon has-text-info">
-                            <i class="fas fa-spinner fa-pulse"></i>
-                        </span>
-                    </div> -->
-                    <div v-show="chart != null">
-                        <canvas id="city-cs-outputs-2014" width="200" height="150"></canvas>
-                    </div>
+            <br />
+            <div class="columns is-centered">
+                <div class="column is-6">
+                    <p class="has-text-centered has-text-grey is-size-7">Combined</p>
+                    <div class="ct-chart ct-golden-section" id="city-all-2014"></div>
                 </div>
             </div>
-        </div>
-        <br />
-        <div class="columns is-centered">
-            <div class="column is-4">
-                <div class="app-2">
-                    <h1 class="has-text-centered has-text-grey is-size-7">Sociology Combined</h1>
-                    <!--<div v-show="loading">
-                        <span class="icon has-text-info">
-                            <i class="fas fa-spinner fa-pulse"></i>
-                        </span>
-                    </div> -->
-                    <div v-show="chart != null">
-                        <canvas id="city-soc-overall-2014" width="200" height="150"></canvas>
-                    </div>
+            <br />
+            <div class="columns is-centered">
+                <div class="column is-3">
+                    <p class="has-text-centered has-text-grey is-size-7">Overall</p>
+                    <div class="ct-chart ct-golden-section" id="city-overall-2014"></div>
+                </div>
+                <div class="column is-3">
+                    <p class="has-text-centered has-text-grey is-size-7">Output</p>
+                    <div class="ct-chart ct-golden-section" id="city-outputs-2014"></div>
+                </div>
+                <div class="column is-3">
+                    <p class="has-text-centered has-text-grey is-size-7">Impact</p>
+                    <div class="ct-chart ct-golden-section" id="city-impact-2014"></div>
+                </div>
+                <div class="column is-3">
+                    <p class="has-text-centered has-text-grey is-size-7">Environment</p>
+                    <div class="ct-chart ct-golden-section" id="city-environment-2014"></div>
                 </div>
             </div>
+            <br />
         </div>
-
     </section>
 
     <footer>
     </footer>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
-    <script src="./scripts/chart-data.js"></script>
-    <script src="./scripts/charts.js"></script>
+
+    <script src="./scripts/ref-2014.js"></script>
 
 </body>
 

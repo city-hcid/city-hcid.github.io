@@ -14,7 +14,7 @@ var app = new Vue({
             var self = this;
             var app_id = "appYnSjlUbAA4VSHc";
             var app_key = "keyC83ksN49wS10kX";
-            this.items = []
+            this.items = [];
             axios.get(
                     // https://api.airtable.com/v0/appYnSjlUbAA4VSHc/results?api_key=keyC83ksN49wS10kX&view=Grid%20view
                     "https://api.airtable.com/v0/" + app_id + "/results?view=Grid%20view&fields%5B%5D=Profile&fields%5B%5D=4*&fields%5B%5D=3*&fields%5B%5D=2*&fields%5B%5D=1*&fields%5B%5D=N%2FC&fields%5B%5D=array&fields%5B%5D=code", {
@@ -37,8 +37,8 @@ var app = new Vue({
                     console.log(OverallCityCS2014);
                     console.log(OverallCityCS2014Dataset);
 
-                    var citycso = document.getElementById("city-cs-outputs-2014").getContext('2d');
-                    this.chart = new Chart(citycso, {
+                    var citycsc = document.getElementById("city-cs-combined-2014");
+                    this.chartcsc = new Chart(citycsc, {
                         type: 'bar',
                         data: {
                             labels: levels,
@@ -52,16 +52,49 @@ var app = new Vue({
                         options: options
                     });
 
-                    var citysoco = document.getElementById("city-soc-overall-2014").getContext('2d');
-                    this.chartsoc = new Chart(citysoco, {
+                    var citycso = document.getElementById("city-cs-overall-2014").getContext('2d');
+                    this.chartcso = new Chart(citycso, {
                         type: 'bar',
                         data: {
                             labels: levels,
                             datasets: [
-                                OverallCitySoc2014Dataset,
-                                OutputsCitySoc2014Dataset,
-                                ImpactCitySoc2014Dataset,
-                                EnvironmentCitySoc2014Dataset
+                                OverallCityCS2014Dataset
+                            ]
+                        },
+                        options: options
+                    });
+
+                    var citycsop = document.getElementById("city-cs-outputs-2014").getContext('2d');
+                    this.chartcsop = new Chart(citycsop, {
+                        type: 'bar',
+                        data: {
+                            labels: levels,
+                            datasets: [
+                                OutputsCityCS2014Dataset
+                            ]
+                        },
+                        options: options
+                    });
+
+                    var citycsi = document.getElementById("city-cs-impact-2014").getContext('2d');
+                    this.chartcsi = new Chart(citycsi, {
+                        type: 'bar',
+                        data: {
+                            labels: levels,
+                            datasets: [
+                                ImpactCityCS2014Dataset
+                            ]
+                        },
+                        options: options
+                    });
+
+                    var citycse = document.getElementById("city-cs-environment-2014").getContext('2d');
+                    this.chartcse = new Chart(citycse, {
+                        type: 'bar',
+                        data: {
+                            labels: levels,
+                            datasets: [
+                                EnvironmentCityCS2014Dataset
                             ]
                         },
                         options: options
