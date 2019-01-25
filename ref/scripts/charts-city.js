@@ -1,3 +1,4 @@
+var inst = 'City';
 var app = new Vue({
     el: '#app',
     data: {
@@ -17,7 +18,7 @@ var app = new Vue({
             this.items = [];
             axios.get(
                     // https://api.airtable.com/v0/appYnSjlUbAA4VSHc/results?api_key=keyC83ksN49wS10kX&view=Grid%20view
-                    "https://api.airtable.com/v0/" + app_id + "/results?view=Grid%20view&fields%5B%5D=Profile&fields%5B%5D=4*&fields%5B%5D=3*&fields%5B%5D=2*&fields%5B%5D=1*&fields%5B%5D=N%2FC&fields%5B%5D=array&fields%5B%5D=code", {
+                    "https://api.airtable.com/v0/" + app_id + "/results?view=Grid%20view&filterByFormula=(FIND(%22" + inst + "%22%2C%7Binst%7D))", {
                         headers: {
                             Authorization: "Bearer " + app_key
                         }
@@ -25,6 +26,10 @@ var app = new Vue({
                 )
                 .then(function(response) {
                     var i = "";
+                    var a = "";
+                    var b = "";
+                    var c = "";
+
                     this.message = "combined";
                     self.items = response.data.records;
                     obj = response.data.records;
@@ -35,20 +40,31 @@ var app = new Vue({
                         eval('var ' + obj[i].fields['Profile'] + obj[i].fields['code'] + 'Dataset  = { data: ' + obj[i].fields['Profile'] + obj[i].fields['code'] + ',' + 'backgroundColor: col_array, borderColor: col_array, borderWidth: 1 }');
                     }
 
-                    var citycso = document.getElementById("city-cs-overall-2014");
-                    this.chartcso = new Chart(citycso, {
-                        type: 'polarArea',
-                        data: {
-                            labels: levels,
-                            datasets: [
-                                OverallCityCS2014Dataset
-                            ]
-                        },
-                        options: polarOptionsA
-                    });
+                    for (j in obj) {
+                        a = obj[j].fields['uoa'] + obj[j].fields['Profile'];
+                        b = obj[j].fields['inst'] + obj[j].fields['uoa'] + obj[j].fields['Profile'] + '_' + obj[j].fields['year'];
+                        c = obj[j].fields['Profile'] + obj[j].fields['code'] + 'Dataset';
+                        console.log(a);
+                        console.log(b);
+                        console.log(c);
 
-                    var citygeo = document.getElementById("city-geneng-overall-2014");
-                    this.chartgeo = new Chart(citygeo, {
+                        a = document.getElementById(b);
+                        this.b = new Chart(a, {
+                            type: 'polarArea',
+                            data: {
+                                labels: levels,
+                                datasets: [
+                                    eval(c)
+                                ]
+                            },
+                            options: polarOptionsC
+                        });
+                    }
+
+
+
+                    var citygeo = document.getElementById("CityGenEngOverall_2014");
+                    this.CityGenEngOverall_2014 = new Chart(citygeo, {
                         type: 'polarArea',
                         data: {
                             labels: levels,
@@ -56,11 +72,11 @@ var app = new Vue({
                                 OverallCityGenEng2014Dataset
                             ]
                         },
-                        options: polarOptionsA
+                        options: polarOptionsC
                     });
 
-                    var citysoco = document.getElementById("city-soc-overall-2014");
-                    this.chartsoc = new Chart(citysoco, {
+                    var citysoco = document.getElementById("CitySocOverall_2014");
+                    this.CitySocOverall_2014 = new Chart(citysoco, {
                         type: 'polarArea',
                         data: {
                             labels: levels,
@@ -68,7 +84,7 @@ var app = new Vue({
                                 OverallCitySoc2014Dataset
                             ]
                         },
-                        options: polarOptionsA
+                        options: polarOptionsC
                     });
                 })
                 .catch(function(error) {

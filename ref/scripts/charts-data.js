@@ -110,3 +110,32 @@ var polarOptionsB = {
         }
     }
 };
+
+var polarOptionsC = {
+    legend: { display: false },
+    tooltips: {
+        displayColors: false
+    },
+    layout: {
+        padding: {
+            left: 5,
+            right: 5,
+            top: 5,
+            bottom: 5
+        }
+    },
+    scale: {
+        label: {
+            display: false
+        },
+        gridLines: {
+            color: 'rgba(201, 203, 207, 0.2)'
+        },
+        ticks: {
+            backdropColor: 'rgba(201, 203, 207, 0.1)',
+            fontColor: 'rgba(80, 80, 80, 0.3)',
+            maxTicksLimit: 9,
+            max: 90
+        }
+    }
+};
