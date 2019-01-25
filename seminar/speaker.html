@@ -178,7 +178,7 @@
                     var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/speakers?filterByFormula=(FIND(%22" + last + "%22%2C%7BLast%7D))", {
+                        "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?filterByFormula=(FIND(%22" + last + "%22%2C%7BLast%7D))", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
