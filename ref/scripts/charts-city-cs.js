@@ -16,8 +16,8 @@ var app = new Vue({
             var app_key = "keyC83ksN49wS10kX";
             this.items = [];
             axios.get(
-                    // https://api.airtable.com/v0/appYnSjlUbAA4VSHc/results?api_key=keyC83ksN49wS10kX&view=Grid%20view
-                    "https://api.airtable.com/v0/" + app_id + "/results?view=Grid%20view&fields%5B%5D=Profile&fields%5B%5D=4*&fields%5B%5D=3*&fields%5B%5D=2*&fields%5B%5D=1*&fields%5B%5D=N%2FC&fields%5B%5D=array&fields%5B%5D=code", {
+                    // https://api.airtable.com/v0/appYnSjlUbAA4VSHc/results?api_key=keyC83ksN49wS10kX&view=Grid%20view&filterByFormula=IF(AND(%7Binst%7D+%3D+%22City%22%2C+%7Buoa%7D+%3D+%22CS%22)%2C+%22true%22%2C+%22%22)
+                    "https://api.airtable.com/v0/" + app_id + "/results?view=city-uoa-cs&filterByFormula=IF(AND(%7Binst%7D+%3D+%22City%22%2C+%7Buoa%7D+%3D+%22CS%22)%2C+%22true%22%2C+%22%22)", {
                         headers: {
                             Authorization: "Bearer " + app_key
                         }
@@ -40,8 +40,8 @@ var app = new Vue({
                     // combined, overall, outputs, impact, environment
                     //var levels_abrev = [c, o, op, i, e];
 
-                    var citycsc = document.getElementById("cityCsCombined_2014");
-                    this.cityCsCombined_2014 = new Chart(citycsc, {
+                    var citycsc = document.getElementById("cityCSCombined_2014");
+                    this.cityCSCombined_2014 = new Chart(citycsc, {
                         type: 'bar',
                         data: {
                             labels: levels,

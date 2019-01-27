@@ -134,7 +134,7 @@ var polarOptionsC = {
         ticks: {
             backdropColor: 'rgba(201, 203, 207, 0.1)',
             fontColor: 'rgba(80, 80, 80, 0.3)',
-            maxTicksLimit: 9,
+            maxTicksLimit: 4,
             max: 90
         }
     }
