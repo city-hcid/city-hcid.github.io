@@ -53,7 +53,7 @@ var options = {
         yAxes: [{
             ticks: {
                 beginAtZero: true,
-                suggestedMax: 50,
+                suggestedMax: 60,
             }
         }]
     }
@@ -106,7 +106,7 @@ var polarOptionsB = {
             backdropColor: 'rgba(201, 203, 207, 0.1)',
             fontColor: 'rgba(80, 80, 80, 0.3)',
             maxTicksLimit: 5,
-            max: 50
+            max: 60
         }
     }
 };
