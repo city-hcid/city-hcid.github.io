@@ -17,8 +17,8 @@ var app = new Vue({
             var app_key = "keyC83ksN49wS10kX";
             this.items = [];
             axios.get(
-                    // https://api.airtable.com/v0/appYnSjlUbAA4VSHc/results?api_key=keyC83ksN49wS10kX&view=Grid%20view
-                    "https://api.airtable.com/v0/" + app_id + "/results?view=uoa-cs&filterByFormula=(FIND(%22" + inst + "%22%2C%7Binst%7D))", {
+                    //https://api.airtable.com/v0/appYnSjlUbAA4VSHc/results?api_key=keyC83ksN49wS10kX&filterByFormula=IF(%7Buoa%7D+%3D+%22CS%22%2C+%22true%22%2C+%22%22)&view=uoa-cs
+                    "https://api.airtable.com/v0/" + app_id + "/results?view=uoa-cs&filterByFormula=IF(%7Buoa%7D+%3D+%22CS%22%2C+%22true%22%2C+%22%22)", {
                         headers: {
                             Authorization: "Bearer " + app_key
                         }
@@ -26,13 +26,15 @@ var app = new Vue({
                 )
                 .then(function(response) {
                     var i = "";
+                    var j = "";
                     var a = "";
                     var b = "";
                     var c = "";
+                    var h = document.getElementById("cs-data");
 
-                    this.message = "combined";
                     self.items = response.data.records;
                     obj = response.data.records;
+
                     for (i in obj) {
                         //Set data for each entry
                         eval(obj[i].fields['Profile'] + obj[i].fields['code'] + ' = ' + obj[i].fields['array'] + ";");
@@ -41,24 +43,59 @@ var app = new Vue({
                     }
 
                     for (j in obj) {
-                        a = obj[j].fields['uoa'] + obj[j].fields['Profile'];
                         b = obj[j].fields['inst'] + obj[j].fields['uoa'] + obj[j].fields['Profile'] + '_' + obj[j].fields['year'];
                         c = obj[j].fields['Profile'] + obj[j].fields['code'] + 'Dataset';
-                        console.log(a);
-                        console.log(b);
-                        console.log(c);
+
+                        var k = document.getElementById(obj[j].fields['inst']);
+                        if (k === null) {
+                            h.insertAdjacentHTML("beforeend",
+                                '<div class="columns is-centered mt-4" id="' + obj[j].fields['inst'] + '">\n' +
+
+                                '<div class="column is-1 mb-1" id="' + obj[j].fields['inst'] + '-title">\n' +
+                                '<div class="rotate">\n' +
+                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-6">' + obj[j].fields['inst'] + '</h1>\n' +
+                                '</div>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-2">\n' +
+                                '<canvas id="' + obj[j].fields['inst'] + obj[j].fields['uoa'] + 'Overall_2014" width="200 " height="200 "></canvas>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-2">\n' +
+                                '<canvas id="' + obj[j].fields['inst'] + obj[j].fields['uoa'] + 'Outputs_2014" width="200" height="200"></canvas>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-2">\n' +
+                                '<canvas id="' + obj[j].fields['inst'] + obj[j].fields['uoa'] + 'Impact_2014" width="200" height="200"></canvas>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-2">\n' +
+                                '<canvas id="' + obj[j].fields['inst'] + obj[j].fields['uoa'] + 'Environment_2014" width="200" height="200"></canvas>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-1 is-offset-1 is-centered my-auto" id="' + obj[j].fields['inst'] + '-staff"></div>\n' +
+
+                                '</div>\n');
+                        }
+
+                        var t = document.getElementById(obj[j].fields['inst'] + '-staff');
+                        if (t !== null) {
+                            document.getElementById(obj[j].fields['inst'] + '-staff').innerHTML = '<h1 class="is-size-3 has-text-grey-dark has-text-weight-semibold has-text-left">' + obj[j].fields['staff-a'] + '</h1>';
+                        }
 
                         a = document.getElementById(b);
-                        this.b = new Chart(a, {
-                            type: 'polarArea',
-                            data: {
-                                labels: levels,
-                                datasets: [
-                                    eval(c)
-                                ]
-                            },
-                            options: polarOptionsC
-                        });
+                        if (a !== null) {
+                            this.b = new Chart(a, {
+                                type: 'polarArea',
+                                data: {
+                                    labels: levels,
+                                    datasets: [
+                                        eval(c)
+                                    ]
+                                },
+                                options: polarOptionsC
+                            });
+                        }
                     }
                 })
                 .catch(function(error) {
@@ -67,5 +104,4 @@ var app = new Vue({
                 .finally(() => (this.loading = false));
         }
     }
-
 })

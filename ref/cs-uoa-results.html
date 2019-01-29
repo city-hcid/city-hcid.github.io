@@ -7,127 +7,76 @@
     <title>CS REF 2021 | CS Results</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-    <section class="hero is-light is-bold is-fullheight">
-        <div class="hero-body">
-            <div class="section">
-                <div class="container">
-
-                    <div class="columns is-mobile is-multiline is-centered">
-
-                        <div class="column is-two-thirds is-tablet">
-                            <h1 class="title is-size-1 is-bold">
-                                <strong>CS UoA Results</strong>
-                            </h1>
-                        </div>
-
-                        <div class="column is-two-thirds is-tablet">
-                            <h2 class="subtitle is-6">
-                                Results from Computer Science Unit of Assessment
-                            </h2>
-                        </div>
-
-                    </div>
-
-                    <br />
-                    <div>
-                        <div class="columns is-centered">
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">CS Overall</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CityCSOverall_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">CS Outputs</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CityCSOutputs_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">CS Impact</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CityCSImpact_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">CS Environment</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CityCSEnvironment_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="columns is-centered">
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">General Engineering Overall</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CityGenEngOverall_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">General Engineering Outputs</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CityGenEngOutputs_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">General Engineering Impact</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CityGenEngImpact_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">General Engineering Environment</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CityGenEngEnvironment_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="columns is-centered">
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">Sociology Overall</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CitySocOverall_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">Sociology Outputs</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CitySocOutputs_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">Sociology Impact</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CitySocImpact_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                            <div class="column is-3">
-                                <h1 class="has-text-centered has-text-grey is-size-7">Sociology Environment</h1>
-                                <br />
-                                <div v-show="chart != null">
-                                    <canvas id="CitySocEnvironment_2014" width="200" height="200"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+    <section>
+        <div class="container">
+            <div class="columns is-mobile is-multiline is-centered">
+                <div class="column is-two-thirds is-tablet">
+                    <h1 class="title is-size-1 has-text-weight-bold">
+                        CS Unit of Assessment Results
+                    </h1>
+                </div>
+                <div class="column is-two-thirds is-tablet">
+                    <h2 class="subtitle is-6">
+                        Results across the CS Unit of Assessment
+                    </h2>
                 </div>
             </div>
         </div>
+    </section>
+    <section class="section has-background-white fixedElement">
+        <div class="container">
+
+            <div class="columns is-centered" id="City">
+
+                <div class="column is-1">
+                    <div class="rotate">
+                        <h1 class="has-text-grey-dark has-text-weight-semibold is-size-6">City</h1>
+                    </div>
+                </div>
+
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">Overall</h1>
+                    <br />
+                    <div v-show="chart != null">
+                        <canvas id="CityCSOverall_2014" width="200" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">Outputs</h1>
+                    <br />
+                    <div v-show="chart != null">
+                        <canvas id="CityCSOutputs_2014" width="200" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">Impact</h1>
+                    <br />
+                    <div v-show="chart != null">
+                        <canvas id="CityCSImpact_2014" width="200" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">Environment</h1>
+                    <br />
+                    <div v-show="chart != null">
+                        <canvas id="CityCSEnvironment_2014" width="200" height="200"></canvas>
+                    </div>
+                </div>
+
+                <div class="column is-1 is-offset-1 is-centered">
+                    <h1 class="has-text-left has-text-grey is-size-7">Staff - A</h1>
+                    <br />
+                    <h1 class="is-size-3 has-text-grey-dark has-text-weight-semibold has-text-left pt-4" id="City-staff">32</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section has-background-white-bis">
+        <div class="container" id="cs-data"></div>
     </section>
     <footer>
     </footer>
