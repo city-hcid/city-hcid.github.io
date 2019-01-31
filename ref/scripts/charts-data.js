@@ -1,6 +1,7 @@
 // Labels along the x-axis
 var levels = ["4*", "3*", "2*", "1*", "U/C"];
-// Quality scores
+var profiles = ["Overall", "Outputs", "Impact", "Environment"]
+    // Quality scores
 var overallCityCS2014 = [15, 47, 36, 2, 0];
 var outputsCityCS2014 = [10.5, 47.6, 38.7, 3.2, 0];
 var impactCityCS2014 = [40, 50, 10, 0, 0];

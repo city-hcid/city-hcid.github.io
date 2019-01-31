@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS REF 2021 | CS staff size v profile scores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="columns is-mobile is-multiline is-centered">
+                <div class="column is-two-thirds is-tablet">
+                    <h1 class="title is-size-1 has-text-weight-bold">
+                        Staff numbers in CS<br />against profile scores
+                    </h1>
+                </div>
+                <div class="column is-two-thirds is-tablet">
+                    <h2 class="subtitle is-6">
+                        Is there a relationship between staff numbers and scores? This graph plots staff numbers against 4* profile scores (for all CS UoA) to judge whether there is.
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section has-background-white">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8 is-offset-2">
+                    <canvas id="graph" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <footer>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+    <script src="./scripts/charts-data.js"></script>
+    <script src="./scripts/charts-uoa-cs-staff-size.js"></script>
+</body>
+
+</html>
