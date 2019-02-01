@@ -21,7 +21,7 @@
                 </div>
                 <div class="column is-two-thirds is-tablet">
                     <h2 class="subtitle is-6">
-                        Is there a relationship between staff numbers and scores? This graph plots staff numbers against 4* profile scores (for all CS UoA) to judge whether there is.
+                        Is there a relationship between staff numbers and scores? This graph plots staff numbers against 4* profile scores (for all 2014 CS UoA) to judge whether there is.
                     </h2>
                 </div>
             </div>
@@ -30,8 +30,27 @@
     <section class="section has-background-white">
         <div class="container">
             <div class="columns">
-                <div class="column is-8 is-offset-2">
-                    <canvas id="graph" width="200" height="200"></canvas>
+                <div class="column is-7 is-offset-2">
+                    <canvas id="graph" width="200" height="170"></canvas>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="section has-background-white">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6 is-offset-2">
+                    <h1 class="is-size-4 has-text-weight-semibold mb-2">Pearson correlation coefficient (<em>r</em>)</h1>
+                    <table class="table is-narrow is-hoverable">
+                        <thead>
+                            <tr>
+                                <th class="has-text-grey"><abbr title="Overall Profile and Subprofiles">Profiles</abbr></th>
+                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient"><em>r</em></abbr></th>
+                            </tr>
+                        </thead>
+                        <tbody id="rhos" class="has-text-grey"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -39,11 +58,9 @@
     </section>
     <footer>
     </footer>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+    <script src="./scripts/pearsoncorrelation.js"></script>
     <script src="./scripts/charts-data.js"></script>
     <script src="./scripts/charts-uoa-cs-staff-size.js"></script>
 </body>

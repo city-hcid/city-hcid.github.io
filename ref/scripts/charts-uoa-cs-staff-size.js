@@ -13,22 +13,75 @@ axios.get(
         var outputs4Data = [];
         var impact4Data = [];
         var environment4Data = [];
+        var staffDataArray = [];
+        var overall4DataArray = [];
+        var outputs4DataArray = [];
+        var impact4DataArray = [];
+        var environment4DataArray = [];
+        let rhoOverall = 0;
+        let rhoOutputs = 0;
+        let rhoImpact = 0;
+        let rhoEnvironment = 0;
+
+        for (var i = 0; i < obj.length; i++) {
+            staffDataArray.push(obj[i].fields['staff-a']);
+            i = i + 3;
+        }
+
         for (var i = 3; i < obj.length; i++) {
             overall4Data.push({ x: obj[i].fields['staff-a'], y: obj[i].fields['4*'], id: i });
+            overall4DataArray.push(obj[i].fields['4*']);
             i = i + 3;
         }
         for (var i = 0; i < obj.length; i++) {
             outputs4Data.push({ x: obj[i].fields['staff-a'], y: obj[i].fields['4*'], id: i });
+            outputs4DataArray.push(obj[i].fields['4*']);
             i = i + 3;
         }
         for (var i = 1; i < obj.length; i++) {
             impact4Data.push({ x: obj[i].fields['staff-a'], y: obj[i].fields['4*'], id: i });
+            impact4DataArray.push(obj[i].fields['4*']);
             i = i + 3;
         }
         for (var i = 2; i < obj.length; i++) {
             environment4Data.push({ x: obj[i].fields['staff-a'], y: obj[i].fields['4*'], id: i });
+            environment4DataArray.push(obj[i].fields['4*']);
             i = i + 3;
         }
+
+        rhoOverall = Math.round(pearsonCorrelation(staffDataArray, overall4DataArray) * 100) / 100;
+        rhoOutputs = Math.round(pearsonCorrelation(staffDataArray, outputs4DataArray) * 100) / 100;
+        rhoImpact = Math.round(pearsonCorrelation(staffDataArray, impact4DataArray) * 100) / 100;
+        rhoEnvironment = Math.round(pearsonCorrelation(staffDataArray, environment4DataArray) * 100) / 100;
+        console.log(rhoOverall);
+        console.log(rhoOutputs);
+        console.log(rhoImpact);
+        console.log(rhoEnvironment);
+
+        var k = document.getElementById('rhos');
+        k.insertAdjacentHTML("beforeend",
+            '<tr>\n' +
+            '<td>Overall</td>\n' +
+            '<td>' + rhoOverall + '</td>\n' +
+            '</tr>\n' +
+
+            '<tr>\n' +
+            '<td>Outputs</td>\n' +
+            '<td>' + rhoOutputs + '</td>\n' +
+            '</tr>\n' +
+
+            '<tr>\n' +
+            '<td>Impact</td>\n' +
+            '<td>' + rhoImpact + '</td>\n' +
+            '</tr>\n' +
+
+            '<tr>\n' +
+            '<td>Environment</td>\n' +
+            '<td>' + rhoEnvironment + '</td>\n' +
+            '</tr>'
+        );
+
+
         var myChart = new Chart(ctx, {
             type: 'scatter',
             data: {
@@ -52,7 +105,7 @@ axios.get(
                 }]
             },
             options: {
-                responsive: true,
+                //responsive: true,
                 title: {
                     display: false
                 },
