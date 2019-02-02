@@ -20,33 +20,63 @@
                     </h1>
                 </div>
                 <div class="column is-two-thirds is-tablet">
-                    <h2 class="subtitle is-6">
-                        Is there a relationship between staff numbers and scores? This graph plots staff numbers against 4* profile scores (for all 2014 CS UoA) to judge whether there is.
+                    <h2 class="subtitle">
+                        Is there a relationship between staff numbers and scores?
                     </h2>
                 </div>
             </div>
         </div>
     </section>
-    <section class="section has-background-white">
+    <section class="section">
         <div class="container">
-            <div class="columns">
+            <div class="columns is-mobile is-multiline">
+                <div class="column is-4 is-offset-3">
+                    <p>
+                        This graph plots staff numbers against 4* profile scores (for all 2014 CS UoA).
+                    </p>
+                </div>
                 <div class="column is-7 is-offset-2">
-                    <canvas id="graph" width="200" height="170"></canvas>
+                    <canvas id="4*-graph" width="200" height="170"></canvas>
                 </div>
             </div>
         </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-mobile is-multiline">
+                <div class="column is-4 is-offset-3">
+                    <p>
+                        This graph plots staff numbers against 1* profile scores (for all 2014 CS UoA).
+                    </p>
+                </div>
+                <div class="column is-7 is-offset-2">
+                    <canvas id="3*-graph" width="200" height="170"></canvas>
+                </div>
+            </div>
         </div>
     </section>
-    <section class="section has-background-white">
+    <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-6 is-offset-2">
+                <div class="column is-6 is-offset-4">
                     <h1 class="is-size-4 has-text-weight-semibold mb-2">Pearson correlation coefficient (<em>r</em>)</h1>
                     <table class="table is-narrow is-hoverable">
                         <thead>
                             <tr>
-                                <th class="has-text-grey"><abbr title="Overall Profile and Subprofiles">Profiles</abbr></th>
-                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient"><em>r</em></abbr></th>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"><em>r</em></th>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"></th>
+                            </tr>
+                            <tr>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"><abbr title="Overall Profile and Subprofiles">4*</abbr></th>
+                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient">3*</abbr></th>
+                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient">2*</abbr></th>
+                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient">1*</abbr></th>
+                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient">N/C</abbr></th>
                             </tr>
                         </thead>
                         <tbody id="rhos" class="has-text-grey"></tbody>
