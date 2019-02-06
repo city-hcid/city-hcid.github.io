@@ -1,134 +1,30 @@
-var ctx = document.getElementById("4*-graph").getContext('2d');
-var threeStarGraph = document.getElementById("3*-graph").getContext('2d');
+//var ctx = document.getElementById("4*-graph").getContext('2d');
+//var threeStarGraph = document.getElementById("3*-graph").getContext('2d');
 
 var app_id = "appYnSjlUbAA4VSHc";
 var app_key = "keyC83ksN49wS10kX";
 
 axios.get(
-        "https://api.airtable.com/v0/" + app_id + "/results?view=uoa-cs&filterByFormula=IF(%7Buoa%7D+%3D+%22CS%22%2C+%22true%22%2C+%22%22)", {
+        //https://api.airtable.com/v0/appYnSjlUbAA4VSHc/outputs?api_key=keyC83ksN49wS10kX&view=cs-outputs-all
+        //https://api.airtable.com/v0/appYnSjlUbAA4VSHc/outputs?api_key=keyC83ksN49wS10kX&view=city-cs-outputs
+        "https://api.airtable.com/v0/" + app_id + "/outputs?api_key=keyC83ksN49wS10kX&view=city-cs-outputs", {
             headers: { Authorization: "Bearer " + app_key }
         })
     .then(function(response) {
         obj = response.data.records;
-        var staffDataArray = [];
-        var overallData = [
-            [],
-            [],
-            [],
-            [],
-            [],
-        ];
-        var outputsData = [
-            [],
-            [],
-            [],
-            [],
-            [],
-        ];
-        var impactData = [
-            [],
-            [],
-            [],
-            [],
-            [],
-        ];
-        var environmentData = [
-            [],
-            [],
-            [],
-            [],
-            [],
-        ];
-        var overallDataArray = [
-            [],
-            [],
-            [],
-            [],
-            [],
-        ];
-        var outputsDataArray = [
-            [],
-            [],
-            [],
-            [],
-            []
-        ];
-        var impactDataArray = [
-            [],
-            [],
-            [],
-            [],
-            []
-        ];
-        var environmentDataArray = [
-            [],
-            [],
-            [],
-            [],
-            []
-        ];
-        let rhoOverall = [];
-        let rhoOutputs = [];
-        let rhoImpact = [];
-        let rhoEnvironment = [];
+        var totalCite = 0;
+        var cites = [];
+        var citeCount = 0;
 
         for (var i = 0; i < obj.length; i++) {
-            if (obj[i].fields['Profile'] == 'Overall') {
-                staffDataArray.push(obj[i].fields['staff-a']);
-                overallData[0].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['4*'], id: i });
-                overallData[1].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['3*'], id: i });
-                overallData[2].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['2*'], id: i });
-                overallData[3].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['1*'], id: i });
-                overallData[4].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['N/C'], id: i });
-                overallDataArray[0].push(obj[i].fields['4*']);
-                overallDataArray[1].push(obj[i].fields['3*']);
-                overallDataArray[2].push(obj[i].fields['2*']);
-                overallDataArray[3].push(obj[i].fields['1*']);
-                overallDataArray[4].push(obj[i].fields['N/C']);
-            }
-            if (obj[i].fields['Profile'] == 'Outputs') {
-                outputsData[0].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['4*'], id: i });
-                outputsData[1].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['3*'], id: i });
-                outputsData[2].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['2*'], id: i });
-                outputsData[3].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['1*'], id: i });
-                outputsData[4].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['N/C'], id: i });
-                outputsDataArray[0].push(obj[i].fields['4*']);
-                outputsDataArray[1].push(obj[i].fields['3*']);
-                outputsDataArray[2].push(obj[i].fields['2*']);
-                outputsDataArray[3].push(obj[i].fields['1*']);
-                outputsDataArray[4].push(obj[i].fields['N/C']);
-            }
-            if (obj[i].fields['Profile'] == 'Impact') {
-                impactData[0].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['4*'], id: i });
-                impactData[1].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['3*'], id: i });
-                impactData[2].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['2*'], id: i });
-                impactData[3].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['1*'], id: i });
-                impactData[4].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['N/C'], id: i });
-                impactDataArray[0].push(obj[i].fields['4*']);
-                impactDataArray[1].push(obj[i].fields['3*']);
-                impactDataArray[2].push(obj[i].fields['2*']);
-                impactDataArray[3].push(obj[i].fields['1*']);
-                impactDataArray[4].push(obj[i].fields['N/C']);
-            }
-            if (obj[i].fields['Profile'] == 'Environment') {
-                environmentData[0].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['4*'], id: i });
-                environmentData[1].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['3*'], id: i });
-                environmentData[2].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['2*'], id: i });
-                environmentData[3].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['1*'], id: i });
-                environmentData[4].push({ x: obj[i].fields['staff-a'], y: obj[i].fields['N/C'], id: i });
-                environmentDataArray[0].push(obj[i].fields['4*']);
-                environmentDataArray[1].push(obj[i].fields['3*']);
-                environmentDataArray[2].push(obj[i].fields['2*']);
-                environmentDataArray[3].push(obj[i].fields['1*']);
-                environmentDataArray[4].push(obj[i].fields['N/C']);
-            }
-        }
+            if (obj[i].fields["year"] < 2009) {
 
-        for (var j = 0; j < 5; j++) {
-            rhoOverall[j] = Math.round(pearsonCorrelation(staffDataArray, overallDataArray[j]) * 100) / 100;
-            rhoOutputs[j] = Math.round(pearsonCorrelation(staffDataArray, outputsDataArray[j]) * 100) / 100;
-            rhoImpact[j] = Math.round(pearsonCorrelation(staffDataArray, impactDataArray[j]) * 100) / 100;
-            rhoEnvironment[j] = Math.round(pearsonCorrelation(staffDataArray, environmentDataArray[j]) * 100) / 100;
+            }
+            /* var uni = obj[i].fields['inst'];
+            eval('var ' + obj[i].fields["inst"] + Cites + '= [];');
+            if (obj[i].fields['inst'] == uni) {
+                obj[i].fields["inst"] + Cites.push(obj[i].fields['citation');
+            } */
         }
 
         console.log(overallDataArray[3]);
@@ -139,7 +35,7 @@ axios.get(
         console.log(rhoImpact);
         console.log(rhoEnvironment);
 
-        var k = document.getElementById('rhos');
+        /* var k = document.getElementById('rhos');
         k.insertAdjacentHTML("beforeend",
             '<tr>\n' +
             '<td>Overall</td>\n' +
@@ -367,7 +263,7 @@ axios.get(
                     }
                 }
             }
-        });
+        }); */
 
 
     })
