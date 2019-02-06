@@ -1,5 +1,5 @@
-var ctx = document.getElementById("4*-graph").getContext('2d');
-var threeStarGraph = document.getElementById("3*-graph").getContext('2d');
+var ctx = document.getElementById("4*-graph");
+var threeStarGraph = document.getElementById("3*-graph");
 
 var app_id = "appYnSjlUbAA4VSHc";
 var app_key = "keyC83ksN49wS10kX";
