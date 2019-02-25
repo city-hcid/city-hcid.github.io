@@ -13,8 +13,8 @@ var app = new Vue({
     methods: {
         loadItems: function() {
             var self = this;
-            var app_id = "appunQ0V4X7SQIIk7"; //"appYnSjlUbAA4VSHc";
-            var app_key = "keyC83ksN49wS10kX";
+            //var app_id = "appunQ0V4X7SQIIk7"; //"appYnSjlUbAA4VSHc";
+            //var app_key = "keyC83ksN49wS10kX";
             "keyC83ksN49wS10kX";
             this.items = [];
             axios.get(

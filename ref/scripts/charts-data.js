@@ -1,3 +1,6 @@
+var app_id = "appunQ0V4X7SQIIk7";
+var app_key = "keyC83ksN49wS10kX";
+
 // Labels along the x-axis
 var levels = ["4*", "3*", "2*", "1*", "U/C"];
 var profiles = ["Overall", "Outputs", "Impact", "Environment"]
