@@ -51,7 +51,7 @@
                     <div id="app">
                         <ul>
                             <li v-for="item in items">
-                                <h2 v-once style="margin-bottom:.2rem;">
+                                <h2 style="margin-bottom:.2rem;">
                                     {{ item['fields']['full-name'] }}
                                 </h2>
                                 <span v-if="item['fields']['group-dept']">
@@ -70,7 +70,7 @@
                                     <span v-if="item['fields']['photo-url']"><img class="responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" /></span>
                                 </div>
                                 <p>
-                                    <span v-once v-if="item['fields']['twitter']">
+                                    <span v-if="item['fields']['twitter']">
 									<strong>Twitter: </strong><a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
 								</span>
                                     <br>
@@ -185,6 +185,7 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records
+                        console.log(self.items.length)
                     }).catch(function(error) {
                         console.log(error)
                     })
