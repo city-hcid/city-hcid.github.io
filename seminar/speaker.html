@@ -52,6 +52,7 @@
                         <ul>
                             <li v-for="item in items">
                                 <div id="speakerInfo">
+                                    <div v-if="(item, index) > 0">hello</div>
                                     <h2 style="margin-bottom:.2rem;">
                                         {{ item['fields']['full-name'] }}
                                     </h2>
