@@ -50,9 +50,9 @@
                 <div class="col s12 m9 l10" id="bodybox">
                     <div id="app">
                         <ul>
-                            <li v-for="item in items">
+                            <li v-for="(item, index) in items">
                                 <div id="speakerInfo">
-                                    <div v-if="(item, index) > 0">hello</div>
+                                    <div>hello</div>
                                     <h2 style="margin-bottom:.2rem;">
                                         {{ item['fields']['full-name'] }}
                                     </h2>
