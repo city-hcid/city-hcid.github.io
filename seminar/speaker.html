@@ -85,12 +85,12 @@
                                     </span>
                                     </p>
                                 </div>
-                                <p>
+                                <h3>
                                     <br>
-                                    <strong>Talk Title: </strong>
+                                    <strong>{{index}}. Talk Title: </strong>
                                     <span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
                                     <span v-else>TBA</span>
-                                </p>
+                                </h3>
                                 <p>
                                     <strong>Time: </strong>
                                     <span v-if="item['fields']['date']">{{ item['fields']['date-str'] }}</span>
@@ -188,10 +188,6 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        var itemsLength = self.items.length;
-                        var elementExists = document.getElementById("speakerInfo");
-                        console.log(itemsLength);
-                        console.log(elementExists)
                     }).catch(function(error) {
                         console.log(error)
                     })
