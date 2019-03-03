@@ -51,8 +51,7 @@
                     <div id="app">
                         <ul>
                             <li v-for="(item, index) in items">
-                                <div id="speakerInfo">
-                                    <div v-if="index == 0">{{index}}</div>
+                                <div v-if="index == 0" id="speakerInfo">
                                     <h2 style="margin-bottom:.2rem;">
                                         {{ item['fields']['full-name'] }}
                                     </h2>
