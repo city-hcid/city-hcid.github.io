@@ -41,20 +41,20 @@ var app = new Vue({
                     // combined, overall, outputs, impact, environment
                     //var levels_abrev = [c, o, op, i, e];
 
-                    var citycsc = document.getElementById("cityCSCombined_2014");
-                    this.cityCSCombined_2014 = new Chart(citycsc, {
-                        type: 'bar',
-                        data: {
-                            labels: levels,
-                            datasets: [
-                                OverallCityCS2014Dataset,
-                                OutputsCityCS2014Dataset,
-                                ImpactCityCS2014Dataset,
-                                EnvironmentCityCS2014Dataset
-                            ]
-                        },
-                        options: options
-                    });
+                    /*                    var citycsc = document.getElementById("cityCSCombined_2014");
+                                       this.cityCSCombined_2014 = new Chart(citycsc, {
+                                           type: 'bar',
+                                           data: {
+                                               labels: levels,
+                                               datasets: [
+                                                   OverallCityCS2014Dataset,
+                                                   OutputsCityCS2014Dataset,
+                                                   ImpactCityCS2014Dataset,
+                                                   EnvironmentCityCS2014Dataset
+                                               ]
+                                           },
+                                           options: options
+                                       }); */
 
                     var citycso = document.getElementById("cityCsOverall_2014").getContext('2d');
                     this.cityCsOverall_2014 = new Chart(citycso, {
