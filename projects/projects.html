@@ -50,22 +50,22 @@
                 <div id="app">
                     <div class="col s12">
                         <div v-bind:id="item['fields']['project-name']" v-for="item in items" v-if="item['fields']['project-name']" class="my-5">
-                            <a v-if="item['fields']['image-url']" v-bind:href="item['fields']['project-url']"><img v-bind:src="item['fields']['image-url']" v-bind:alt="item['fields']['project-name'] + ' icon'" style="max-height:8rem" /></a>
+                            <a v-if="item['fields']['image-url']" v-bind:href="item['fields']['project-url']"><img v-bind:src="item['fields']['image-url']" v-bind:alt="item['fields']['project-name'] + ' icon'" style="max-height:10rem" /></a>
                             <div>
-                                <h1 v-if="item['fields']['image-url'] == null" class="mb-1">
+                                <h1 v-if="item['fields']['image-url'] == ''" class="mb-1">
                                     <span v-if="item['fields']['project-url']"><a v-bind:href="item['fields']['project-url']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
-                                    <span v-else><a v-bind:href="'/centre/project?name=' + item['fields']['project-name']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
+                                    <span v-else><a v-bind:href="'/seminar/speaker?project=' + item['fields']['project-name']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
                                 </h1>
                                 <span v-if="item['fields']['long-name']">
                                         {{ item['fields']['long-name'] }}
                                     </span>
                                 <p>
                                     <strong>About: </strong>
-                                    <span v-if="item['fields']['about']" class="lbr grey-text text-darken-2">{{ item['fields']['about'] }}</span>
+                                    <span v-if="item['fields']['about']" class="lbr">{{ item['fields']['about'] }}</span>
                                 </p>
                                 <p class="pb-5">
                                     <strong>Project members: </strong>
-                                    <span v-if="item['fields']['lead']" class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['lead-url']">{{ item['fields']['lead-str'] }}</a> (lead)</span><span v-if="item['fields']['members']" class="lbr grey-text text-darken-2">, {{ item['fields']['members-str'] }}</span>
+                                    <span v-if="item['fields']['lead']"><a v-bind:href="item['fields']['lead-url']">{{ item['fields']['lead-str'] }}</a> (lead)</span><span v-if="item['fields']['members']">, {{ item['fields']['members-str'] }}</span>
                                 </p>
                             </div>
                         </div>
