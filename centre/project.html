@@ -14,14 +14,22 @@
 
 <body>
     <header>
-        <!-- Dropdown Trigger -->
-        <a class='dropdown-trigger btn waves-effect waves-light light-blue darken-1' href='#' data-target='dropdown1'><i class="material-icons left">menu</i>Menu</a>
+        <div class="navbar-fixed">
+            <nav class="no-shadows">
+                <div class="nav-wrapper white">
+                    <ul id="nav-mobile" class="left hide-on-small-and-down">
+                        <li><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
+                        <li><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
+                        <li><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
+                        <li class="active"><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
         <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-            <li><a class="menu-header" href="../">HCID</a></li>
-            <li><a class="menu-subheader" href="../centre/members">Members</a></li>
-            <li><a class="menu-subheader" href="../centre/charter">Charter</a></li>
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a class="menu-header menu-selection" href="../">HCID</a></li>
             <li><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
             <li><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
