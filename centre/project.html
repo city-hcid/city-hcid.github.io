@@ -48,7 +48,7 @@
         <div class="container">
             <div class="row">
                 <div id="app">
-                    <div class="col s12">
+                    <div class="col s10">
                         <div v-bind:id="item['fields']['project-name']" v-for="item in items" v-if="item['fields']['project-name']" class="my-5">
                             <a v-if="item['fields']['image-url']" v-bind:href="item['fields']['project-url']"><img v-bind:src="item['fields']['image-url']" v-bind:alt="item['fields']['project-name'] + ' icon'" style="max-height:8rem" /></a>
                             <div>

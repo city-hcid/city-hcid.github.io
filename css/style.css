@@ -5,7 +5,20 @@
 */
 
 
-/* Used to put line breaks after paras d*/
+/* Customise navbar d*/
+
+nav,
+.navbar-fixed {
+    height: 40px;
+    line-height: 40px;
+}
+
+.no-shadows {
+    box-shadow: none!important;
+}
+
+
+/* Put line breaks after paras d*/
 
 span.lbr {
     white-space: pre-wrap;
