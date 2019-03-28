@@ -17,7 +17,7 @@
         <div class="navbar-fixed">
             <nav class="no-shadows">
                 <div class="nav-wrapper white">
-                    <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-small-and-down">
                         <li class="active"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
                         <li><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
@@ -29,7 +29,7 @@
         </div>
 
         <ul class="sidenav" id="mobile-nav">
-            <li class="active"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
+            <li class="active"><a class="dropdown-trigger-side grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
             <li><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
             <li><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
             <li><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
@@ -131,6 +131,11 @@
             $('.dropdown-trigger').dropdown({
                 hover: true
             });
+
+            $('.dropdown-trigger-side').dropdown({
+                hover: false
+            });
+            $('.sidenav').sidenav();
         });
     </script>
 </body>
