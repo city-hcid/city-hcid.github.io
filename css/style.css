@@ -17,6 +17,14 @@ nav,
     box-shadow: none!important;
 }
 
+.brand-logo {
+    margin-right: 10%;
+}
+
+.brand-logo img {
+    height: 120px;
+}
+
 
 /* Put line breaks after paras d*/
 
