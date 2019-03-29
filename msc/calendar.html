@@ -108,7 +108,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.dropdown-trigger').dropdown();
+            $('.dropdown-trigger').dropdown({
+                hover: true
+            });
+            $('.sidenav').sidenav();
         });
     </script>
 </body>

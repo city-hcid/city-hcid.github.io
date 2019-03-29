@@ -254,9 +254,12 @@
             });
         }
         $(document).ready(function() {
-            $('.dropdown-trigger').dropdown();
+            $('.dropdown-trigger').dropdown({
+                hover: true
+            });
             fixmetotop();
             $('.scrollspy').scrollSpy();
+            $('.sidenav').sidenav();
         });
     </script>
 </body>
