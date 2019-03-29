@@ -29,10 +29,21 @@
         </div>
 
         <ul class="sidenav" id="mobile-nav">
-            <li class="active"><a class="dropdown-trigger-side grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
-            <li><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
-            <li><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
-            <li><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
+            <li class="active"><a class="menu-header" href="../">HCID</a></li>
+            <li><a href="../centre/charter" class="menu-subheader">Charter</a></li>
+            <li><a href="../centre/members" class="menu-subheader">Members</a></li>
+            <li><a href="../centre/projects" class="menu-subheader">Projects</a></li>
+            <li><a href="../centre/calendar" class="menu-subheader">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
+            <li><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a class="menu-header" href="../seminar/">Seminar Series</a></li>
+            <li><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+            <li><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a class="menu-header" href="../msc/student-photos">MSc Students</a></li>
+            <li><a class="menu-subheader" href="../msc/calendar">Calendar</a></li>
         </ul>
 
         <!-- Dropdown Structure -->
@@ -130,10 +141,6 @@
         $(document).ready(function() {
             $('.dropdown-trigger').dropdown({
                 hover: true
-            });
-
-            $('.dropdown-trigger-side').dropdown({
-                hover: false
             });
             $('.sidenav').sidenav();
         });
