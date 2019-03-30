@@ -87,7 +87,7 @@
         </div>
         <div class="container" id="live">
             <div class="row">
-                <div id="app">
+                <div id="app-live">
                     <div class="col s12">
                         <div v-bind:id="item['fields']['project-name']" v-for="item in items" v-if="item['fields']['project-name']" class="my-5">
                             <a v-if="item['fields']['image-url']" v-bind:href="item['fields']['project-url']"><img v-bind:src="item['fields']['image-url']" v-bind:alt="item['fields']['project-name'] + ' icon'" style="max-height:8rem" /></a>
@@ -195,7 +195,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script type="text/javascript">
         var app = new Vue({
-            el: '#app',
+            el: '#app-live',
             data: {
                 items: []
             },
