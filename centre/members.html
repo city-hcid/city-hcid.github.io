@@ -103,26 +103,20 @@
             <div id="app-all">
                 <div class="row">
                     <div class="col s12 m9 l10">
-                        <table class="centered collection">
-                            <tr class="collection-item">
-                                <!-- <td style="display: inline-block;" v-for="item in items" v-if="item['fields']['status'] == 'staff' || item['fields']['status'] == 'research' || item['fields']['status'] == 'phd'"> -->
-                                <td style="display: inline-block;" v-for="item in items">
-                                    <div v-if="item['fields']['photo-url']">
-                                        <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" height="120px" />
-                                    </div>
-                                    <div v-else>
-                                        <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
-                                    </div>
-                                    <div v-if="item['fields']['bio-url']">
-                                        <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
-                                    </div>
-                                    <div v-else>
-                                        {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-
+                        <div class="col s4 m4 l3 center-align mb-3" v-for="item in items">
+                            <div v-if="item['fields']['photo-url']">
+                                <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + ' ' + item['fields']['last-name'] + ' photo'" height="120px" />
+                            </div>
+                            <div v-else>
+                                <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+                            </div>
+                            <div v-if="item['fields']['bio-url']">
+                                <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
+                            </div>
+                            <div v-else>
+                                {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -131,26 +125,20 @@
             <div id="app-phds">
                 <div class="row">
                     <div class="col s12 m9 l10">
-                        <table class="centered collection">
-                            <tr class="collection-item">
-                                <!-- <td style="display: inline-block;" v-for="item in items" v-if="item['fields']['status'] == 'staff' || item['fields']['status'] == 'research' || item['fields']['status'] == 'phd'"> -->
-                                <td style="display: inline-block;" v-for="item in items">
-                                    <div v-if="item['fields']['photo-url']">
-                                        <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" height="120px" />
-                                    </div>
-                                    <div v-else>
-                                        <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
-                                    </div>
-                                    <div v-if="item['fields']['bio-url']">
-                                        <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
-                                    </div>
-                                    <div v-else>
-                                        {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-
+                        <div class="col s4 m4 l3 center-align mb-3" v-for="item in items">
+                            <div v-if="item['fields']['photo-url']">
+                                <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + ' ' + item['fields']['last-name'] + ' photo'" height="120px" />
+                            </div>
+                            <div v-else>
+                                <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+                            </div>
+                            <div v-if="item['fields']['bio-url']">
+                                <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
+                            </div>
+                            <div v-else>
+                                {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -159,26 +147,20 @@
             <div id="app-researchers">
                 <div class="row">
                     <div class="col s12 m9 l10">
-                        <table class="centered collection">
-                            <tr class="collection-item">
-                                <!-- <td style="display: inline-block;" v-for="item in items" v-if="item['fields']['status'] == 'staff' || item['fields']['status'] == 'research' || item['fields']['status'] == 'phd'"> -->
-                                <td style="display: inline-block;" v-for="item in items">
-                                    <div v-if="item['fields']['photo-url']">
-                                        <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" height="120px" />
-                                    </div>
-                                    <div v-else>
-                                        <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
-                                    </div>
-                                    <div v-if="item['fields']['bio-url']">
-                                        <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
-                                    </div>
-                                    <div v-else>
-                                        {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-
+                        <div class="col s4 m4 l3 center-align mb-3" v-for="item in items">
+                            <div v-if="item['fields']['photo-url']">
+                                <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + ' ' + item['fields']['last-name'] + ' photo'" height="120px" />
+                            </div>
+                            <div v-else>
+                                <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+                            </div>
+                            <div v-if="item['fields']['bio-url']">
+                                <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
+                            </div>
+                            <div v-else>
+                                {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -187,26 +169,20 @@
             <div id="app-staff">
                 <div class="row">
                     <div class="col s12 m9 l10">
-                        <table class="centered collection">
-                            <tr class="collection-item">
-                                <!-- <td style="display: inline-block;" v-for="item in items" v-if="item['fields']['status'] == 'staff' || item['fields']['status'] == 'research' || item['fields']['status'] == 'phd'"> -->
-                                <td style="display: inline-block;" v-for="item in items">
-                                    <div v-if="item['fields']['photo-url']">
-                                        <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['last-name'] + '_photo'" height="120px" />
-                                    </div>
-                                    <div v-else>
-                                        <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
-                                    </div>
-                                    <div v-if="item['fields']['bio-url']">
-                                        <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
-                                    </div>
-                                    <div v-else>
-                                        {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-
+                        <div class="col s4 m4 l3 center-align mb-3" v-for="item in items">
+                            <div v-if="item['fields']['photo-url']">
+                                <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + ' ' + item['fields']['last-name'] + ' photo'" height="120px" />
+                            </div>
+                            <div v-else>
+                                <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+                            </div>
+                            <div v-if="item['fields']['bio-url']">
+                                <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
+                            </div>
+                            <div v-else>
+                                {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
