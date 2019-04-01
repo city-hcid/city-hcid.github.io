@@ -4,6 +4,28 @@
 * https://www.gnu.org/licenses/gpl.html
 */
 
+.reg {
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.ex-light {
+    font-weight: 200;
+    font-size: 1rem;
+}
+
+.bold {
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+.lead::first-letter {
+    font-weight: bold;
+    -webkit-initial-letter: 3 2;
+    initial-letter: 3 2;
+    /*margin-right: .5em;*/
+}
+
 
 /* Customise navbar d*/
 
@@ -218,6 +240,22 @@ h1.page-title {
         font-weight: 900;
         margin-bottom: 1rem
     }
+    .hero-align-bottom {
+        margin-top: 270px;
+    }
+    .oversize,
+    .oversize-overlay {
+        width: 100%;
+        font-weight: bold;
+        text-rendering: optimizeLegibility;
+    }
+    .oversize {
+        font-size: 14rem;
+    }
+    .oversize-overlay {
+        font-size: 13rem;
+        opacity: 0.6;
+    }
 }
 
 @media only screen and (min-width: 993px) {
@@ -225,6 +263,22 @@ h1.page-title {
         font-size: 100px;
         font-weight: 900;
         margin-bottom: 1rem
+    }
+    .hero-align-bottom {
+        margin-top: 270px;
+    }
+    .oversize,
+    .oversize-overlay {
+        width: 100%;
+        font-weight: bold;
+        text-rendering: optimizeLegibility;
+    }
+    .oversize {
+        font-size: 12rem;
+    }
+    .oversize-overlay {
+        font-size: 11rem;
+        opacity: 0.6;
     }
 }
 
@@ -234,6 +288,22 @@ h1.page-title {
         font-weight: 800;
         margin-bottom: .5rem
     }
+    .hero-align-bottom {
+        margin-top: 320px;
+    }
+    .oversize,
+    .oversize-overlay {
+        width: 100%;
+        font-weight: bold;
+        text-rendering: optimizeLegibility;
+    }
+    .oversize {
+        font-size: 8rem;
+    }
+    .oversize-overlay {
+        font-size: 8rem;
+        opacity: 0.6;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -241,17 +311,22 @@ h1.page-title {
         font-size: 65px;
         font-weight: 800;
     }
-}
-
-
-/* For Parallax overlay */
-
-.overlay {
-    width: 100%;
-    font-size: 3em;
-    letter-spacing: .11em;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
+    .hero-align-bottom {
+        margin-top: 380px;
+    }
+    .oversize,
+    .oversize-overlay {
+        width: 100%;
+        font-weight: bold;
+        text-rendering: optimizeLegibility;
+    }
+    .oversize {
+        font-size: 5rem;
+    }
+    .oversize-overlay {
+        font-size: 4rem;
+        opacity: 0.6;
+    }
 }
 
 .h100 {
