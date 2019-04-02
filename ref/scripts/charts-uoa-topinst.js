@@ -28,7 +28,7 @@ var app = new Vue({
                     self.items = response.data.records;
                     topItem = self.items;
                     console.log(self.items);
-                    console.log(obj[0].fields['inst'])
+                    console.log(topItem[0])
                 })
                 .catch(function(error) {
                     console.log(error)
