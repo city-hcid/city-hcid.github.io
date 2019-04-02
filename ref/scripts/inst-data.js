@@ -11,7 +11,7 @@ var app = new Vue({
             var self = this;
             this.items = [];
             axios.get(
-                    "https://api.airtable.com/v0/" + app_id + "/institutions", {
+                    "https://api.airtable.com/v0/" + app_id + "/institutions?sort%5B0%5D%5Bfield%5D=institution&sort%5B0%5D%5Bdirection%5D=desc", {
                         headers: {
                             Authorization: "Bearer " + app_key
                         }
