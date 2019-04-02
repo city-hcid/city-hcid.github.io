@@ -15,7 +15,7 @@ var app = new Vue({
             var self = this;
             //var app_id = "appunQ0V4X7SQIIk7"; //"appYnSjlUbAA4VSHc";
             //var app_key = "keyC83ksN49wS10kX";
-            "keyC83ksN49wS10kX";
+            //"keyC83ksN49wS10kX";
             this.items = [];
             axios.get(
                     //https://api.airtable.com/v0/appYnSjlUbAA4VSHc/results?api_key=keyC83ksN49wS10kX&filterByFormula=IF(%7Buoa%7D+%3D+%22CS%22%2C+%22true%22%2C+%22%22)&view=uoa-cs
