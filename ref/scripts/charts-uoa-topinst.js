@@ -15,7 +15,7 @@ var app = new Vue({
             var self = this;
             this.items = [];
             axios.get(
-                    "https://api.airtable.com/v0/" + app_id + "/results?filterByFormula=(FIND(%22" + instTop + "%22%2C%7BInst%7D))", {
+                    "https://api.airtable.com/v0/" + app_id + "/results?filterByFormula=(FIND(%22" + instTop + "%22%2C%7Binst%7D))", {
                         headers: {
                             Authorization: "Bearer " + app_key
                         }
