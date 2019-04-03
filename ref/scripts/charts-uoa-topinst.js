@@ -36,7 +36,7 @@ var app = new Vue({
                         eval(obj[i].fields['Profile'] + obj[i].fields['code'] + ' = ' + obj[i].fields['array'] + ";");
                         //Set chart dataset for each entry
                         eval('var ' + obj[i].fields['Profile'] + obj[i].fields['code'] + 'Dataset  = { data: ' + obj[i].fields['Profile'] + obj[i].fields['code'] + ',' + 'backgroundColor: backgroundColor' + obj[i].fields['Profile'] + ', borderColor: col_array, borderWidth: 1 }');
-                        console.log(obj[i].fields['Profile'])
+                        console.log(obj[j].fields['inst'] + " " + obj[i].fields['Profile'])
                     }
 
 
