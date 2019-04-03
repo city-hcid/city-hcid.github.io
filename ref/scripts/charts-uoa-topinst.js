@@ -26,9 +26,22 @@ var app = new Vue({
                 )
                 .then(function(response) {
                     self.items = response.data.records;
-                    topItem = self.items;
+                    obj = response.data.records;
+                    var h = document.getElementById("top-inst-data");
+
+                    //topItem = self.items;
+
+                    for (i in obj) {
+                        //Set data for each entry
+                        eval(obj[i].fields['Profile'] + obj[i].fields['code'] + ' = ' + obj[i].fields['array'] + ";");
+                        //Set chart dataset for each entry
+                        eval('var ' + obj[i].fields['Profile'] + obj[i].fields['code'] + 'Dataset  = { data: ' + obj[i].fields['Profile'] + obj[i].fields['code'] + ',' + 'backgroundColor: backgroundColor' + obj[i].fields['Profile'] + ', borderColor: col_array, borderWidth: 1 }');
+                        console.log(obj[i].fields['Profile'])
+                    }
+
+
+
                     console.log(self.items);
-                    console.log(topItem[0])
                 })
                 .catch(function(error) {
                     console.log(error)
