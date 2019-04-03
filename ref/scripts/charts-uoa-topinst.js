@@ -40,7 +40,6 @@ var app = new Vue({
                         var b = obj[i].fields['inst'] + obj[i].fields['uoa'] + obj[i].fields['Profile'] + '_' + obj[i].fields['year'];
                         var c = obj[i].fields['Profile'] + obj[i].fields['code'] + 'Dataset';
                         var k = document.getElementById(obj[i].fields['inst']);
-                        console.log(obj[i].fields['inst'])
 
                         if (k === null) {
                             h.insertAdjacentHTML("beforeend",
