@@ -71,6 +71,19 @@ var app = new Vue({
 
                                 '</div>\n');
                         }
+                        var a = document.getElementById(b);
+                        if (a !== null) {
+                            this.b = new Chart(a, {
+                                type: 'polarArea',
+                                data: {
+                                    labels: levels,
+                                    datasets: [
+                                        eval(c)
+                                    ]
+                                },
+                                options: polarOptionsC
+                            });
+                        }
                     }
                     //console.log(self.items);
                 })
