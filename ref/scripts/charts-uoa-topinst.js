@@ -72,10 +72,7 @@ var app = new Vue({
                                 '</div>\n');
                         }
                     }
-
-
-
-                    console.log(self.items);
+                    //console.log(self.items);
                 })
                 .catch(function(error) {
                     console.log(error)
