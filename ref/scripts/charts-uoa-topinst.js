@@ -41,8 +41,42 @@ var app = new Vue({
                         var c = obj[i].fields['Profile'] + obj[i].fields['code'] + 'Dataset';
                         var k = document.getElementById(obj[i].fields['inst']);
                         console.log(obj[i].fields['inst'])
+
+                        if (k === null) {
+                            h.insertAdjacentHTML("beforeend",
+                                '<div class="columns is-centered mt-4" id="' + obj[i].fields['inst'] + '">\n' +
+
+                                '<div class="column is-1 mb-1" id="' + obj[i].fields['inst'] + '-title">\n' +
+                                '<div class="rotate">\n' +
+                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-6">' + obj[i].fields['inst'] + '</h1>\n' +
+                                '</div>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-2">\n' +
+                                '<canvas id="' + obj[i].fields['inst'] + obj[i].fields['uoa'] + 'Overall_2014" width="200 " height="200 "></canvas>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-2">\n' +
+                                '<canvas id="' + obj[i].fields['inst'] + obj[i].fields['uoa'] + 'Outputs_2014" width="200" height="200"></canvas>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-2">\n' +
+                                '<canvas id="' + obj[i].fields['inst'] + obj[i].fields['uoa'] + 'Impact_2014" width="200" height="200"></canvas>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-2">\n' +
+                                '<canvas id="' + obj[i].fields['inst'] + obj[i].fields['uoa'] + 'Environment_2014" width="200" height="200"></canvas>\n' +
+                                '</div>\n' +
+
+                                '<div class="column is-1 is-offset-1 is-centered my-auto" id="' + obj[i].fields['inst'] + '-staff"></div>\n' +
+
+                                '</div>\n');
+                        }
                     }
-                    //console.log(self.items);
+
+
+
+                    console.log(self.items);
                 })
                 .catch(function(error) {
                     console.log(error)
