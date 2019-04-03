@@ -67,7 +67,7 @@ var app = new Vue({
                                 '<canvas id="' + obj[i].fields['inst'] + obj[i].fields['uoa'] + 'Environment_2014" width="200" height="200"></canvas>\n' +
                                 '</div>\n' +
 
-                                '<div class="column is-1 is-offset-1 is-centered my-auto" id="' + obj[i].fields['inst'] + '-staff"><h1 class="is-size-3 has-text-grey-dark has-text-weight-semibold has-text-left">' + obj[j].fields['staff-a'] + '</h1></div>\n' +
+                                '<div class="column is-1 is-offset-1 is-centered my-auto" id="' + obj[i].fields['inst'] + '-staff"><h1 class="is-size-3 has-text-grey-dark has-text-weight-semibold has-text-left">' + obj[i].fields['staff-a'] + '</h1></div>\n' +
 
                                 '</div>\n');
                         }
