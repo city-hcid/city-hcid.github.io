@@ -44,7 +44,7 @@ var app = new Vue({
                                 '<div class="columns is-centered mt-4" id="' + obj[i].fields['inst'] + '">\n' +
 
                                 '<div class="column is-1 mb-1" id="' + obj[i].fields['inst'] + '-title">\n' +
-                                '<div class="rotate">\n' +
+                                '<div>\n' +
                                 '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-6">' + obj[i].fields['inst'] + '</h1>\n' +
                                 '</div>\n' +
                                 '</div>\n' +
