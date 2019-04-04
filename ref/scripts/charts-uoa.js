@@ -1,4 +1,3 @@
-var inst = 'City';
 var app = new Vue({
     el: '#app',
     data: {
