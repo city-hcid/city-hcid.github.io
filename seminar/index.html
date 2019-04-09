@@ -92,7 +92,7 @@
     </header>
     <main>
         <div class="container">
-            <!--             <div id="app-next">
+            <div id="app-next">
                 <div class="row" v-for="item in items">
                     <div class="col s12 m6 offset-m1">
                         <p>The next HCID Seminar talk is:</p>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
             <div class="row">
                 <div class="col s12 m9 l10">
@@ -746,60 +746,60 @@
         var app_id = "appVrmQAGy96E1jEP";
         var app_key = "keyC83ksN49wS10kX";
         var app = new Vue({
-                el: '#app',
-                data: {
-                    items: []
-                },
-                mounted: function() {
-                    this.loadItems();
-                },
-                methods: {
-                    loadItems: function() {
+            el: '#app',
+            data: {
+                items: []
+            },
+            mounted: function() {
+                this.loadItems();
+            },
+            methods: {
+                loadItems: function() {
 
-                        // Init variables
-                        var self = this
-                        var month = "Dec";
-                        this.items = []
-                        axios.get(
-                            "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&fields%5B%5D=date-str&fields%5B%5D=month&sort%5B0%5D%5Bfield%5D=date&sort%5B0%5D%5Bdirection%5D=asc", {
-                                headers: {
-                                    Authorization: "Bearer " + app_key
-                                }
-                            }
-                        ).then(function(response) {
-                            self.items = response.data.records
-                        }).catch(function(error) {
-                            console.log(error)
-                        })
-                    }
-                }
-            })
-            /*         var app = new Vue({
-                        el: '#app-next',
-                        data: {
-                            items: []
-                        },
-                        mounted: function() {
-                            this.loadItems();
-                        },
-                        methods: {
-                            loadItems: function() {
-                                var self = this
-                                this.items = []
-                                axios.get(
-                                    "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?view=next-talk", {
-                                        headers: {
-                                            Authorization: "Bearer " + app_key
-                                        }
-                                    }
-                                ).then(function(response) {
-                                    self.items = response.data.records
-                                }).catch(function(error) {
-                                    console.log(error)
-                                })
+                    // Init variables
+                    var self = this
+                    var month = "Dec";
+                    this.items = []
+                    axios.get(
+                        "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&fields%5B%5D=date-str&fields%5B%5D=month&sort%5B0%5D%5Bfield%5D=date&sort%5B0%5D%5Bdirection%5D=asc", {
+                            headers: {
+                                Authorization: "Bearer " + app_key
                             }
                         }
-                    }) */
+                    ).then(function(response) {
+                        self.items = response.data.records
+                    }).catch(function(error) {
+                        console.log(error)
+                    })
+                }
+            }
+        })
+        var appNext = new Vue({
+            el: '#app-next',
+            data: {
+                items: []
+            },
+            mounted: function() {
+                this.loadItems();
+            },
+            methods: {
+                loadItems: function() {
+                    var self = this
+                    this.items = []
+                    axios.get(
+                        "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?view=next-talk", {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        }
+                    ).then(function(response) {
+                        self.items = response.data.records
+                    }).catch(function(error) {
+                        console.log(error)
+                    })
+                }
+            }
+        })
     </script>
     <script>
         function fixmetotop() {
