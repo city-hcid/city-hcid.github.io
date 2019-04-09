@@ -92,11 +92,6 @@
     </header>
     <main>
         <div class="container">
-            <div class="row">
-                <div class="col s12 m6 offset-m1">
-                    <p>The next HCID Seminar talk is:</p>
-                </div>
-            </div>
             <div id="app-next">
                 <div class="row" v-for="item in items">
                     <div class="col s12 m6 offset-m1">
@@ -109,11 +104,11 @@
                             <p class="flow-text" v-if="item['fields']['talk-title']" style="font-weight:800;">
                                 {{ item['fields']['talk-title'] }}
                             </p>
-                            <p class="right-align">
+                            <!--                             <p class="right-align">
                                 &mdash; From <span v-if="item['fields']['full-name']"><a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a></span>
                                 <br /><span v-if="item['fields']['date-str']">{{ item['fields']['date-str'] }}</span>
                                 <br /><span v-if="item['fields']['room']">Room {{ item['fields']['room'] }}</span>
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                 </div>
@@ -748,6 +743,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script type="text/javascript">
+        var app_id = "appVrmQAGy96E1jEP";
+        var app_key = "keyC83ksN49wS10kX";
         var app = new Vue({
             el: '#app',
             data: {
@@ -761,8 +758,6 @@
 
                     // Init variables
                     var self = this
-                    var app_id = "appVrmQAGy96E1jEP";
-                    var app_key = "keyC83ksN49wS10kX";
                     var month = "Dec";
                     this.items = []
                     axios.get(
@@ -790,8 +785,6 @@
             methods: {
                 loadItems: function() {
                     var self = this
-                    var app_id = "appVrmQAGy96E1jEP";
-                    var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?view=next-talk", {
