@@ -26,6 +26,10 @@
     /*margin-right: .5em;*/
 }
 
+.roundedElement {
+    border-radius: 3px;
+}
+
 
 /* Customise navbar d*/
 
