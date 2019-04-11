@@ -154,23 +154,22 @@
                                 <span v-if="item['fields']['photo-url']"><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
                                 <span v-else><i class="material-icons circle">people</i></span>
                                 <div>
-                                    <p>
+                                    <p class="mb-5">
                                         <a v-bind:href="'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a><br /> {{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
                                     </p>
-                                    <br />
-                                    <p>
+                                    <p class="mb-3">
                                         <span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
                                         <span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
                                     </p>
-                                    <p v-if="item['fields']['talk-title']">
+                                    <p class="mb-3" v-if="item['fields']['talk-title']">
                                         <strong>Title: </strong>
                                         <span>{{ item['fields']['talk-title'] }}</span>
                                     </p>
-                                    <p v-if="item['fields']['talk-abstract']">
+                                    <p class="mb-3" v-if="item['fields']['talk-abstract']">
                                         <strong>Abstract: </strong>
                                         <span class="lbr">{{ item['fields']['talk-abstract'] }}</span>
                                     </p>
-                                    <p v-if="item['fields']['bio']">
+                                    <p class="mb-3" v-if="item['fields']['bio']">
                                         <strong>Bio: </strong>
                                         <span>{{ item['fields']['bio'] }}</span>
                                     </p>
@@ -365,35 +364,35 @@
     </script>
     <script>
         /*         function fixmetotop() {
-                                                                    var fixmeTop = $('.table-of-contents').offset().top;
-                                                                    $(window).scroll(function() {
-                                                                        var currentScroll = $(window).scrollTop(),
-                                                                            currentScroll = currentScroll + 15,
-                                                                            actualBottom = $('#bodybox').offset().top + $('#bodybox').outerHeight(true),
-                                                                            heightSideNav = $('.table-of-contents').outerHeight(true);
-                                                                        if (currentScroll >= fixmeTop && currentScroll <= actualBottom - heightSideNav) {
-                                                                            $('.table-of-contents').css({
-                                                                                position: 'fixed',
-                                                                                top: '10rem',
-                                                                                bottom: ''
+                                                                            var fixmeTop = $('.table-of-contents').offset().top;
+                                                                            $(window).scroll(function() {
+                                                                                var currentScroll = $(window).scrollTop(),
+                                                                                    currentScroll = currentScroll + 15,
+                                                                                    actualBottom = $('#bodybox').offset().top + $('#bodybox').outerHeight(true),
+                                                                                    heightSideNav = $('.table-of-contents').outerHeight(true);
+                                                                                if (currentScroll >= fixmeTop && currentScroll <= actualBottom - heightSideNav) {
+                                                                                    $('.table-of-contents').css({
+                                                                                        position: 'fixed',
+                                                                                        top: '10rem',
+                                                                                        bottom: ''
+                                                                                    });
+                                                                                } else {
+                                                                                    if (currentScroll >= actualBottom - heightSideNav) {
+                                                                                        $('.table-of-contents').css({
+                                                                                            position: 'fixed',
+                                                                                            bottom: '0',
+                                                                                            top: ''
+                                                                                        });
+                                                                                    } else {
+                                                                                        $('.table-of-contents').css({
+                                                                                            position: 'static',
+                                                                                            bottom: '',
+                                                                                            top: ''
+                                                                                        });
+                                                                                    }
+                                                                                }
                                                                             });
-                                                                        } else {
-                                                                            if (currentScroll >= actualBottom - heightSideNav) {
-                                                                                $('.table-of-contents').css({
-                                                                                    position: 'fixed',
-                                                                                    bottom: '0',
-                                                                                    top: ''
-                                                                                });
-                                                                            } else {
-                                                                                $('.table-of-contents').css({
-                                                                                    position: 'static',
-                                                                                    bottom: '',
-                                                                                    top: ''
-                                                                                });
-                                                                            }
-                                                                        }
-                                                                    });
-                                                                } */
+                                                                        } */
         $(document).ready(function() {
             //fixmetotop();
             $('.dropdown-trigger').dropdown({
