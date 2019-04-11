@@ -90,7 +90,7 @@
                 <div id="app-live">
                     <div class="col s12">
                         <div v-bind:id="item['fields']['project-name']" v-for="item in items" v-if="item['fields']['project-name']" class="my-5">
-                            <a v-if="item['fields']['image-url']" v-bind:href="item['fields']['project-url']"><img v-bind:src="item['fields']['image-url']" v-bind:alt="item['fields']['project-name'] + ' icon'" style="max-height:8rem" /></a>
+                            <a v-if="item['fields']['image-url']" v-bind:href="item['fields']['project-url']"><img class="responsive-img" v-bind:src="item['fields']['image-url']" v-bind:alt="item['fields']['project-name'] + ' icon'" style="max-height:8rem" /></a>
                             <div>
                                 <h1 v-if="item['fields']['image-url'] == null" class="mb-1">
                                     <span v-if="item['fields']['project-url']"><a v-bind:href="item['fields']['project-url']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
