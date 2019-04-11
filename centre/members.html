@@ -108,7 +108,7 @@
                                 <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + ' ' + item['fields']['last-name'] + ' photo'" height="120px" />
                             </div>
                             <div v-else>
-                                <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+                                <i class="large material-icons roundedElement">assignment_ind</i>
                             </div>
                             <div v-if="item['fields']['bio-url']">
                                 <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
@@ -130,7 +130,7 @@
                                 <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + ' ' + item['fields']['last-name'] + ' photo'" height="120px" />
                             </div>
                             <div v-else>
-                                <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+                                <i class="large material-icons roundedElement">assignment_ind</i>
                             </div>
                             <div v-if="item['fields']['bio-url']">
                                 <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
@@ -152,7 +152,7 @@
                                 <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + ' ' + item['fields']['last-name'] + ' photo'" height="120px" />
                             </div>
                             <div v-else>
-                                <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+                                <i class="large material-icons roundedElement">assignment_ind</i>
                             </div>
                             <div v-if="item['fields']['bio-url']">
                                 <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
@@ -168,20 +168,34 @@
         <div class="container" id="staff">
             <div id="app-staff">
                 <div class="row">
-                    <div class="col s12">
-                        <div class="col s5 m4 l3 center-align mb-3" v-for="item in items">
+                    <div class="col s12 m10 mb-5" v-for="item in items">
+                        <div class="col m4 hide-on-small-only">
+                            <div class="right-align" v-if="item['fields']['photo-url']">
+                                <img class="head-shot right-align" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['name'] + ' photo'" height="120px" />
+                            </div>
+                            <div v-else>
+                                <i class="large material-icons roundedElement">assignment_ind</i>
+                            </div>
+                        </div>
+                        <div class="col s10 mb-2 hide-on-med-and-up">
                             <div v-if="item['fields']['photo-url']">
-                                <img class="head-shot" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['first-name'] + ' ' + item['fields']['last-name'] + ' photo'" height="120px" />
+                                <img class="head-shot right-align" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['name'] + ' photo'" height="120px" />
                             </div>
                             <div v-else>
-                                <i class="large material-icons" style="border-radius: 5%;">assignment_ind</i>
+                                <i class="large material-icons roundedElement">assignment_ind</i>
                             </div>
-                            <div v-if="item['fields']['bio-url']">
-                                <a v-bind:href="item['fields']['bio-url']">{{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}</a>
-                            </div>
-                            <div v-else>
-                                {{ item['fields']['first-name'] }}<br>{{ item['fields']['last-name'] }}
-                            </div>
+                        </div>
+                        <div class="col s12 m8 pl-4">
+                            <p class="mt-0" v-if="item['fields']['bio-url']">
+                                <strong><a class="reg" v-bind:href="item['fields']['bio-url']">{{ item['fields']['name'] }}</a><span class="reg" v-if="item['fields']['post']">, {{ item['fields']['post'] }}</span></strong>
+                                <br />
+                                <span class="reg" v-else>
+                                    <strong>{{ item['fields']['name'] }}</strong><span class="reg">, {{ item['fields']['post'] }}</span>
+                                </span>
+                                <span class="grey-text text-darken-3" v-if="item['fields']['short-bio']">
+                                    {{ item['fields']['short-bio'] }}
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -250,23 +264,18 @@
             },
             methods: {
                 loadItems: function() {
-
-                    // Init variables
                     var self = this
                     var app_id = "appVrmQAGy96E1jEP";
                     var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
-                        //https://api.airtable.com/v0/appaTssw36NjXo3tt/students?filterByFormula=OR((FIND(%22phd%22,{status})),(FIND(%22staff%22,{status})),(FIND(%22research%22,{status})))&sortField=last-name&sortDirection=asc&api_key=keyC83ksN49wS10kX
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=OR((FIND(%22phd%22%2C%7Bstatus%7D))%2C(FIND(%22staff%22%2C%7Bstatus%7D))%2C(FIND(%22research%22%2C%7Bstatus%7D)))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                            //"https://api.airtable.com/v0/"+app_id+"/students?sortField=last-name&sortDirection=asc", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
                         }
                     ).then(function(response) {
                         self.items = response.data.records
-                            //console.log(response.data.records)
                     }).catch(function(error) {
                         console.log(error)
                     })
@@ -283,23 +292,18 @@
             },
             methods: {
                 loadItems: function() {
-
-                    // Init variables
                     var self = this
                     var app_id = "appVrmQAGy96E1jEP";
                     var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
-                        //https://api.airtable.com/v0/appaTssw36NjXo3tt/students?filterByFormula=OR((FIND(%22phd%22,{status})),(FIND(%22staff%22,{status})),(FIND(%22research%22,{status})))&sortField=last-name&sortDirection=asc&api_key=keyC83ksN49wS10kX
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22phd%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                            //"https://api.airtable.com/v0/"+app_id+"/students?sortField=last-name&sortDirection=asc", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
                         }
                     ).then(function(response) {
                         self.items = response.data.records
-                            //console.log(response.data.records)
                     }).catch(function(error) {
                         console.log(error)
                     })
@@ -316,23 +320,18 @@
             },
             methods: {
                 loadItems: function() {
-
-                    // Init variables
                     var self = this
                     var app_id = "appVrmQAGy96E1jEP";
                     var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
-                        //https://api.airtable.com/v0/appaTssw36NjXo3tt/students?filterByFormula=OR((FIND(%22phd%22,{status})),(FIND(%22staff%22,{status})),(FIND(%22research%22,{status})))&sortField=last-name&sortDirection=asc&api_key=keyC83ksN49wS10kX
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22research%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                            //"https://api.airtable.com/v0/"+app_id+"/students?sortField=last-name&sortDirection=asc", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
                         }
                     ).then(function(response) {
                         self.items = response.data.records
-                            //console.log(response.data.records)
                     }).catch(function(error) {
                         console.log(error)
                     })
@@ -349,23 +348,18 @@
             },
             methods: {
                 loadItems: function() {
-
-                    // Init variables
                     var self = this
                     var app_id = "appVrmQAGy96E1jEP";
                     var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
-                        //https://api.airtable.com/v0/appaTssw36NjXo3tt/students?filterByFormula=OR((FIND(%22phd%22,{status})),(FIND(%22staff%22,{status})),(FIND(%22research%22,{status})))&sortField=last-name&sortDirection=asc&api_key=keyC83ksN49wS10kX
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22staff%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                            //"https://api.airtable.com/v0/"+app_id+"/students?sortField=last-name&sortDirection=asc", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
                         }
                     ).then(function(response) {
                         self.items = response.data.records
-                            //console.log(response.data.records)
                     }).catch(function(error) {
                         console.log(error)
                     })
