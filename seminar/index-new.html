@@ -296,15 +296,12 @@
                 items: []
             },
             mounted: function() {
-                this.loadItems();
+                this.loadItems()
             },
             methods: {
                 loadItems: function() {
-
-                    // Init variables
-                    var self = this
-                    var month = "Dec";
-                    this.items = []
+                    var self = this;
+                    this.items = [];
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?view=past&fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&fields%5B%5D=date-str&fields%5B%5D=month", {
                             headers: {
@@ -329,10 +326,7 @@
             },
             methods: {
                 loadItems: function() {
-
-                    // Init variables
-                    var self = this
-                    var month = "Dec";
+                    var self = this;
                     this.items = []
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?view=future&fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&fields%5B%5D=date-str&fields%5B%5D=month", {
@@ -354,12 +348,12 @@
                 items: []
             },
             mounted: function() {
-                this.loadItems();
+                this.loadItems()
             },
             methods: {
                 loadItems: function() {
-                    var self = this
-                    this.items = []
+                    var self = this;
+                    this.items = [];
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?view=next&fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&fields%5B%5D=date-str&fields%5B%5D=month", {
                             headers: {
@@ -377,35 +371,35 @@
     </script>
     <script>
         /*         function fixmetotop() {
-                    var fixmeTop = $('.table-of-contents').offset().top;
-                    $(window).scroll(function() {
-                        var currentScroll = $(window).scrollTop(),
-                            currentScroll = currentScroll + 15,
-                            actualBottom = $('#bodybox').offset().top + $('#bodybox').outerHeight(true),
-                            heightSideNav = $('.table-of-contents').outerHeight(true);
-                        if (currentScroll >= fixmeTop && currentScroll <= actualBottom - heightSideNav) {
-                            $('.table-of-contents').css({
-                                position: 'fixed',
-                                top: '10rem',
-                                bottom: ''
-                            });
-                        } else {
-                            if (currentScroll >= actualBottom - heightSideNav) {
-                                $('.table-of-contents').css({
-                                    position: 'fixed',
-                                    bottom: '0',
-                                    top: ''
-                                });
-                            } else {
-                                $('.table-of-contents').css({
-                                    position: 'static',
-                                    bottom: '',
-                                    top: ''
-                                });
-                            }
-                        }
-                    });
-                } */
+                                    var fixmeTop = $('.table-of-contents').offset().top;
+                                    $(window).scroll(function() {
+                                        var currentScroll = $(window).scrollTop(),
+                                            currentScroll = currentScroll + 15,
+                                            actualBottom = $('#bodybox').offset().top + $('#bodybox').outerHeight(true),
+                                            heightSideNav = $('.table-of-contents').outerHeight(true);
+                                        if (currentScroll >= fixmeTop && currentScroll <= actualBottom - heightSideNav) {
+                                            $('.table-of-contents').css({
+                                                position: 'fixed',
+                                                top: '10rem',
+                                                bottom: ''
+                                            });
+                                        } else {
+                                            if (currentScroll >= actualBottom - heightSideNav) {
+                                                $('.table-of-contents').css({
+                                                    position: 'fixed',
+                                                    bottom: '0',
+                                                    top: ''
+                                                });
+                                            } else {
+                                                $('.table-of-contents').css({
+                                                    position: 'static',
+                                                    bottom: '',
+                                                    top: ''
+                                                });
+                                            }
+                                        }
+                                    });
+                                } */
         $(document).ready(function() {
             //fixmetotop();
             $('.dropdown-trigger').dropdown({
