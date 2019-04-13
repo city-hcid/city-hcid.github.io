@@ -73,7 +73,7 @@ var app = new Vue({
                                 '<canvas id="' + obj[j].fields['inst'] + obj[j].fields['uoa'] + 'Environment_2014" width="200" height="200"></canvas>\n' +
                                 '</div>\n' +
 
-                                '<div class="column is-1 is-offset-1 is-centered my-auto" id="' + obj[j].fields['inst'] + '-staff"></div>\n' +
+                                '<div class="column is-1 is-offset-1 is-centered my-auto is-size-5" id="' + obj[j].fields['inst'] + '-staff"></div>\n' +
 
                                 '</div>\n');
                         }
