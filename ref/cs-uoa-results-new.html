@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS REF 2021 | CS Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="columns is-mobile is-multiline is-centered">
+                <div class="column is-two-thirds is-tablet">
+                    <h1 class="title is-size-1 has-text-weight-bold">
+                        Computer Science REF '14 Results
+                    </h1>
+                </div>
+                <div class="column is-two-thirds is-tablet">
+                    <h2 class="subtitle is-size-5">
+                        Results from select units of assessment in Computer Science
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container my-5">
+            <div class="columns is-mobile is-multiline is-centered">
+                <div class="column is-5">
+                    <p>
+                        To make comparisons against your own institution's Computer Science UoA results select from the drop down menu.
+                    </p>
+                </div>
+                <div class="column is-3">
+                    <div id="app-inst">
+                        <div class="field">
+                            <div class="control">
+                                <div class="select">
+                                    <select id="dynamic_select">
+                                        <option>
+                                            Your institution...
+                                        </option>
+                                        <option v-for="item in items" v-bind:value="item['fields']['inst']">
+                                            {{item['fields']['institution']}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section has-background-white fixedElement">
+        <div class="container">
+
+            <div class="columns is-centered" id="City">
+
+                <div class="column is-1">
+                    <div class="rotate">
+                        <h1 class="has-text-grey-dark has-text-weight-semibold is-size-6">City</h1>
+                    </div>
+                </div>
+
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">Overall</h1>
+                    <br />
+                    <div v-show="chart != null">
+                        <canvas id="CityCSOverall_2014" width="200" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">Outputs</h1>
+                    <br />
+                    <div v-show="chart != null">
+                        <canvas id="CityCSOutputs_2014" width="200" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">Impact</h1>
+                    <br />
+                    <div v-show="chart != null">
+                        <canvas id="CityCSImpact_2014" width="200" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">Environment</h1>
+                    <br />
+                    <div v-show="chart != null">
+                        <canvas id="CityCSEnvironment_2014" width="200" height="200"></canvas>
+                    </div>
+                </div>
+
+                <div class="column is-1 is-offset-1 is-centered">
+                    <h1 class="has-text-left has-text-grey is-size-7">Staff - A</h1>
+                    <br />
+                    <h1 class="is-size-3 has-text-grey-dark has-text-weight-semibold has-text-left pt-4" id="City-staff">32</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section has-background-white fixedElement">
+        <div class="container" id="titles">
+            <div class="columns is-centered">
+                <div class="column is-1"></div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">
+                        Overall
+                    </h1>
+                </div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">
+                        Outputs
+                    </h1>
+                </div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">
+                        Impact
+                    </h1>
+                </div>
+                <div class="column is-2">
+                    <h1 class="has-text-centered has-text-grey is-size-7">
+                        Environment
+                    </h1>
+                </div>
+                <div class="column is-1 is-offset-1 is-left">
+                    <h1 class="has-text-left has-text-grey is-size-7">
+                        Staff No.
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="top-inst-data"></div>
+    </section>
+    <section class="section has-background-white-bis">
+        <div class="container" id="cs-data"></div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="columns is-mobile is-multiline is-centered">
+                <div class="column is-two-thirds is-tablet">
+                    <p class="has-text-grey-light is-size-7 my-5">
+                        These data have been taken from the published <a href="https://results.ref.ac.uk/(S(vzwvbsmelaeommottcef2odl))/" target="_blank" rel="noopener noreferrer">REF 2014 results</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </footer>
+    <script>
+        var uoa = "cs";
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+    <script src="https://hcid.city/ref/scripts/charts-data.js"></script>
+    <script src="https://hcid.city/ref/scripts/charts-uoa-topinst.js"></script>
+    <script src="https://hcid.city/ref/scripts/charts-uoa.js"></script>
+    <script src="https://hcid.city/ref/scripts/inst-data.js"></script>
+    <script>
+        $(function() {
+            // bind change event to select
+            $('#dynamic_select').on('change', function() {
+                var url = 'https://hcid.city/ref/cs-uoa-results-new.html?inst=' + $(this).val(); // get selected value
+                if (url) { // require a URL
+                    window.location = url; // redirect
+                }
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>
