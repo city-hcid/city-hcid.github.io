@@ -11,10 +11,6 @@ var appTop = new Vue({
         loadItems: function() {
             var url_string = window.location.href;
             var url = new URL(url_string);
-            var instTop = url.searchParams.get("inst");
-            if (instTop == null) {
-                instTop = "City";
-            }
             var self = this;
             this.items = [];
             axios.get(
