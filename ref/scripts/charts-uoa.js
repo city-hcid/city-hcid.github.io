@@ -23,7 +23,7 @@ var app = new Vue({
                 .then(function(response) {
                     self.items = response.data.records;
                     obj = response.data.records;
-                    var h = document.getElementById("cs-data");
+                    var h = document.getElementById("inst-data");
 
                     for (i in obj) {
                         //Set data for each entry

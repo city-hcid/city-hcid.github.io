@@ -54,7 +54,7 @@ var app = new Vue({
 
                                 '<div class="column is-1 mb-1" id="' + obj[j].fields['inst'] + '-title">\n' +
                                 '<div class="rotate">\n' +
-                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-6"><a href="' + obj[j].fields['ref-cs-url'] + '" target="_blank">' + obj[j].fields['inst'] + '</a></h1>\n' +
+                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-7"><a href="' + obj[j].fields['ref-cs-url'] + '" target="_blank">' + obj[j].fields['inst'] + '</a></h1>\n' +
                                 '</div>\n' +
                                 '</div>\n' +
 
