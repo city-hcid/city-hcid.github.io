@@ -45,7 +45,7 @@ var app = new Vue({
 
                                 '<div class="column is-1 mb-1" id="' + obj[i].fields['inst'] + '-title">\n' +
                                 '<div>\n' +
-                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-7"><a href="' + obj[i].fields['ref-cs-url'] + '" target="_blank">' + obj[i].fields['inst'] + '</a></h1>\n' +
+                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-7"><a href="' + obj[i].fields['ref-cs-url'] + '" target="_blank">' + obj[i].fields['inst-full'] + '</a></h1>\n' +
                                 '</div>\n' +
                                 '</div>\n' +
 
