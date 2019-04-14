@@ -1,5 +1,5 @@
 var topItem = [];
-var app = new Vue({
+var appTop = new Vue({
     el: '#app-topInst',
     data: {
         items: []
