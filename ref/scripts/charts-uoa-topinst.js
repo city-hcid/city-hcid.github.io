@@ -9,8 +9,6 @@ var appTop = new Vue({
     },
     methods: {
         loadItems: function() {
-            var url_string = window.location.href;
-            var url = new URL(url_string);
             var self = this;
             this.items = [];
             axios.get(
