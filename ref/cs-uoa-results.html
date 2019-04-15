@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CS REF 2021 | CS Results</title>
+    <title>UoA REF 2021 | Results</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="./css/styles.css">
@@ -12,17 +12,17 @@
 
 <body>
     <section>
-        <div class="container">
+        <div class="container mt-5">
             <div class="columns is-mobile is-multiline is-centered">
-                <div class="column is-two-thirds is-tablet">
-                    <h1 class="title is-size-1 has-text-weight-bold">
-                        Computer Science REF '14 Results
-                    </h1>
-                </div>
-                <div class="column is-two-thirds is-tablet">
-                    <h2 class="subtitle is-size-5">
-                        Results from select units of assessment in Computer Science
-                    </h2>
+                <div id="app-topInst">
+                    <div v-for="(item,index) in items" class="column is-two-thirds is-tablet" v-if="index == 0">
+                        <h1 class="title is-size-1 has-text-weight-bold">
+                            {{item['fields']['uoa']}} REF 2014
+                        </h1>
+                        <h2 class="subtitle is-size-5">
+                            Results from select units of assessment in {{item['fields']['uoa-name']}}
+                        </h2>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="columns is-mobile is-multiline is-centered">
                 <div class="column is-5">
                     <p>
-                        To make comparisons against your own institution's Computer Science UoA results select from the drop down menu.
+                        To make comparisons against your own institution's results select from the drop down menu.
                     </p>
                 </div>
                 <div class="column is-3">
@@ -59,7 +59,7 @@
     <section class="section has-background-white fixedElement">
         <div class="container" id="titles">
             <div class="columns is-centered">
-                <div class="column is-1"></div>
+                <div class="column is-2"></div>
                 <div class="column is-2">
                     <h1 class="has-text-centered has-text-grey is-size-7">
                         Overall
@@ -80,8 +80,8 @@
                         Environment
                     </h1>
                 </div>
-                <div class="column is-1 is-offset-1 is-left">
-                    <h1 class="has-text-left has-text-grey is-size-7">
+                <div class="column is-1 is-left">
+                    <h1 class="has-text-right has-text-grey is-size-7">
                         Staff No.
                     </h1>
                 </div>
@@ -129,7 +129,7 @@
         $(function() {
             // bind change event to select
             $('#dynamic_select').on('change', function() {
-                var url = './cs-uoa-results-new.html?uoa=' + uoa + '&inst=' + $(this).val(); // get selected value
+                var url = './uoa-results.html?uoa=' + uoa + '&inst=' + $(this).val(); // get selected value
                 if (url) { // require a URL
                     window.location = url; // redirect
                 }
