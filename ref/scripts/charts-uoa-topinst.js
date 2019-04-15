@@ -28,7 +28,7 @@ var appTop = new Vue({
                         eval(obj[i].fields['Profile'] + obj[i].fields['code'] + ' = ' + obj[i].fields['array'] + ";");
                         //Set chart dataset for each entry
                         eval('var ' + obj[i].fields['Profile'] + obj[i].fields['code'] + 'Dataset  = { data: ' + obj[i].fields['Profile'] + obj[i].fields['code'] + ',' + 'backgroundColor: backgroundColor' + obj[i].fields['Profile'] + ', borderColor: col_array, borderWidth: 1 }');
-                        console.log(obj[i].fields['inst'] + " " + obj[i].fields['Profile'])
+                        //console.log(obj[i].fields['inst'] + " " + obj[i].fields['Profile'])
                         var b = obj[i].fields['inst'] + obj[i].fields['uoa'] + obj[i].fields['Profile'] + '_' + obj[i].fields['year'];
                         var c = obj[i].fields['Profile'] + obj[i].fields['code'] + 'Dataset';
                         var k = document.getElementById(obj[i].fields['inst']);
@@ -37,9 +37,9 @@ var appTop = new Vue({
                             h.insertAdjacentHTML("beforeend",
                                 '<div class="columns is-centered mt-4" id="' + obj[i].fields['inst'] + '">\n' +
 
-                                '<div class="column is-1 mb-1" id="' + obj[i].fields['inst'] + '-title">\n' +
+                                '<div class="column is-2 mb-1" id="' + obj[i].fields['inst'] + '-title">\n' +
                                 '<div>\n' +
-                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-7"><a href="' + obj[i].fields['ref-cs-url'] + '" target="_blank">' + obj[i].fields['inst-full'] + '</a></h1>\n' +
+                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-6"><a href="' + obj[i].fields['ref-cs-url'] + '" target="_blank">' + obj[i].fields['inst-full'] + '</a></h1>\n' +
                                 '</div>\n' +
                                 '</div>\n' +
 
@@ -59,7 +59,7 @@ var appTop = new Vue({
                                 '<canvas id="' + obj[i].fields['inst'] + obj[i].fields['uoa'] + 'Environment_2014" width="200" height="200"></canvas>\n' +
                                 '</div>\n' +
 
-                                '<div class="column is-1 is-offset-1 is-centered my-auto is-size-5" id="' + obj[i].fields['inst'] + '-staff"><h1 class="is-size-3 has-text-grey-dark has-text-weight-semibold has-text-left">' + obj[i].fields['staff-a'] + '</h1></div>\n' +
+                                '<div class="column is-1 is-centered my-auto is-size-5" id="' + obj[i].fields['inst'] + '-staff"><h1 class="is-size-6 has-text-grey-dark has-text-weight-bold has-text-right">' + obj[i].fields['staff-a'] + '</h1></div>\n' +
 
                                 '</div>\n');
                         }
