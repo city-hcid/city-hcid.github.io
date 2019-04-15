@@ -129,7 +129,7 @@
         $(function() {
             // bind change event to select
             $('#dynamic_select').on('change', function() {
-                var url = './cs-uoa-results-new.html?uoa=' + uoa + '&inst=' + $(this).val(); // get selected value
+                var url = './uoa-results.html?uoa=' + uoa + '&inst=' + $(this).val(); // get selected value
                 if (url) { // require a URL
                     window.location = url; // redirect
                 }
