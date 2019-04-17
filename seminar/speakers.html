@@ -80,7 +80,7 @@
                 <div class="col s12 m9 l10" id="bodybox">
                     <div id="app">
                         <ul class="collection">
-                            <li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="item in items" v-if="item['fields']['last']" style="margin-bottom:.2rem;">
+                            <li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="(item, index) in items" v-if="item['fields']['last']" style="margin-bottom:.2rem;">
                                 <span v-if="item['fields']['photo-url']"><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
                                 <span v-else><i class="material-icons circle">people</i></span>
                                 <div>
@@ -184,17 +184,18 @@
                 loadItems: function() {
 
                     // Init variables
-                    var self = this
+                    var self = this;
                     var app_id = "appVrmQAGy96E1jEP";
                     var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?sortField=last&sortDirection=asc", {
+                        "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?view=speakers&sortField=last&sortDirection=asc", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
                         }
                     ).then(function(response) {
+                        this.items = response.data.records;
                         self.items = response.data.records
                     }).catch(function(error) {
                         console.log(error)
