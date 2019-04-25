@@ -344,7 +344,7 @@
                     var self = this;
                     this.items = [];
                     axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?view=next&fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&fields%5B%5D=date-str&fields%5B%5D=month", {
+                        "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?view=next&maxRecords=1&fields%5B%5D=full-name&fields%5B%5D=group-dept&fields%5B%5D=org&fields%5B%5D=room&fields%5B%5D=talk-title&fields%5B%5D=bio-url&fields%5B%5D=photo-url&fields%5B%5D=talk-abstract&fields%5B%5D=bio&fields%5B%5D=last&fields%5B%5D=date-str&fields%5B%5D=month", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
