@@ -39,7 +39,7 @@ var appTop = new Vue({
 
                                 '<div class="column is-2 mb-1" id="' + obj[i].fields['inst'] + '-title">\n' +
                                 '<div>\n' +
-                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-6"><a href="' + obj[i].fields['ref-cs-url'] + '" target="_blank">' + obj[i].fields['inst-full'] + '</a></h1>\n' +
+                                '<h1 class="has-text-grey-dark has-text-weight-semibold is-size-6"><a href="' + obj[i].fields['ref-' + uoa + '-url'] + '" target="_blank">' + obj[i].fields['inst-full'] + '</a></h1>\n' +
                                 '</div>\n' +
                                 '</div>\n' +
 
