@@ -254,6 +254,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script type="text/javascript">
+        var app_id = "appVrmQAGy96E1jEP";
+        var app_key = "keyC83ksN49wS10kX";
         var app = new Vue({
             el: '#app-all',
             data: {
@@ -265,8 +267,6 @@
             methods: {
                 loadItems: function() {
                     var self = this
-                    var app_id = "appVrmQAGy96E1jEP";
-                    var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=OR((FIND(%22phd%22%2C%7Bstatus%7D))%2C(FIND(%22staff%22%2C%7Bstatus%7D))%2C(FIND(%22research%22%2C%7Bstatus%7D)))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
@@ -293,8 +293,6 @@
             methods: {
                 loadItems: function() {
                     var self = this
-                    var app_id = "appVrmQAGy96E1jEP";
-                    var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22phd%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
@@ -321,8 +319,6 @@
             methods: {
                 loadItems: function() {
                     var self = this
-                    var app_id = "appVrmQAGy96E1jEP";
-                    var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22research%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
@@ -349,8 +345,6 @@
             methods: {
                 loadItems: function() {
                     var self = this
-                    var app_id = "appVrmQAGy96E1jEP";
-                    var app_key = "keyC83ksN49wS10kX";
                     this.items = []
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22staff%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
