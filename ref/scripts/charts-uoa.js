@@ -14,7 +14,7 @@ var app = new Vue({
             var self = this;
             this.items = [];
             axios.get(
-                    "https://api.airtable.com/v0/" + app_id + "/results?fields%5B%5D=profileCode&fields%5B%5D=inst-full&fields%5B%5D=4*&fields%5B%5D=3*&fields%5B%5D=2*&fields%5B%5D=1*&fields%5B%5D=N%2FC&fields%5B%5D=staff-a&fields%5B%5D=array&fields%5B%5D=code&fields%5B%5D=inst&fields%5B%5D=uoa&fields%5B%5D=year&fields%5B%5D=Profile&fields%5B%5D=ref-cs-url&view=uoa-" + uoa + "-shortlist", {
+                    "https://api.airtable.com/v0/" + app_id + "/results?fields%5B%5D=profileCode&fields%5B%5D=inst-full&fields%5B%5D=4*&fields%5B%5D=3*&fields%5B%5D=2*&fields%5B%5D=1*&fields%5B%5D=N%2FC&fields%5B%5D=staff-a&fields%5B%5D=array&fields%5B%5D=code&fields%5B%5D=inst&fields%5B%5D=uoa&fields%5B%5D=year&fields%5B%5D=Profile&fields%5B%5D=ref-" + uoa + "-url&view=uoa-" + uoa + "-shortlist", {
                         headers: {
                             Authorization: "Bearer " + app_key
                         }
