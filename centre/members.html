@@ -80,9 +80,10 @@
                 <div class="col s12">
                     <ul class="tabs">
                         <li class="tab col s2"><a class="active" href="#all">All members</a></li>
-                        <li class="tab col s3"><a href="#phds">PhD Students</a></li>
-                        <li class="tab col s3"><a href="#researchers">Researchers</a></li>
+                        <li class="tab col s2"><a href="#phds">PhD Students</a></li>
+                        <li class="tab col s2"><a href="#researchers">Researchers</a></li>
                         <li class="tab col s3"><a href="#staff">Permanent Staff</a></li>
+                        <li class="tab col s3"><a href="#alum">Visitors &amp; Alumni</a></li>
                     </ul>
                 </div>
             </div>
@@ -194,6 +195,48 @@
                                 </span>
                                 <span class="grey-text text-darken-3" v-if="item['fields']['short-bio']">
                                     {{ item['fields']['short-bio'] }}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container hide-on-small-only" id="alum">
+            <div class="row">
+                <div class="col s12 m10 mb-1">
+                    <div class="col s12 m5 offset-m1 mb-1">
+                        <h2>Visitors</h2>
+                    </div>
+                    <div class="col s12 m5 mb-1">
+                        <h2>Alumni</h2>
+                    </div>
+                </div>
+            </div>
+            <div id="app-alum">
+                <div class="row">
+                    <div class="col s12 m10 mb-1">
+                        <div class="col s12 m5 offset-m1">
+                            <p class="mt-0" v-for="item in items" v-if="item['fields']['status'] == 'visitor'">
+                                <span v-if="item['fields']['bio-url']">
+                                <a v-bind:href="item['fields']['bio-url']">
+                                    <strong>{{ item['fields']['name'] }}</strong>
+                                </a>
+                            </span>
+                                <span v-else>
+                                <strong>{{ item['fields']['name'] }}</strong>
+                            </span>
+                            </p>
+                        </div>
+                        <div class="col s12 m5">
+                            <p class="mt-0" v-for="item in items" v-if="item['fields']['status'] == 'alum'">
+                                <span v-if="item['fields']['bio-url']">
+                                <a v-bind:href="item['fields']['bio-url']">
+                                    <strong>{{ item['fields']['name'] }}</strong>
+                                </a>
+                                </span>
+                                <span v-else>
+                                    <strong>{{ item['fields']['name'] }}</strong>
                                 </span>
                             </p>
                         </div>
@@ -348,6 +391,32 @@
                     this.items = []
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22staff%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        }
+                    ).then(function(response) {
+                        self.items = response.data.records
+                    }).catch(function(error) {
+                        console.log(error)
+                    })
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app-alum',
+            data: {
+                items: []
+            },
+            mounted: function() {
+                this.loadItems();
+            },
+            methods: {
+                loadItems: function() {
+                    var self = this
+                    this.items = []
+                    axios.get(
+                        "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=OR((FIND(%22alum%22%2C%7Bstatus%7D))%2C(FIND(%22visitor%22%2C%7Bstatus%7D)))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
