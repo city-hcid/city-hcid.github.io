@@ -205,10 +205,10 @@
         <div class="container hide-on-small-only" id="alum">
             <div class="row">
                 <div class="col s12 m10 mb-1">
-                    <div class="col s12 m5 offset-m1 mb-1">
+                    <div class="col s12 m4 offset-m1 mb-1">
                         <h2>Visitors</h2>
                     </div>
-                    <div class="col s12 m5 mb-1">
+                    <div class="col s12 m7 mb-1">
                         <h2>Alumni</h2>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
             <div id="app-alum">
                 <div class="row">
                     <div class="col s12 m10 mb-1">
-                        <div class="col s12 m5 offset-m1">
+                        <div class="col s12 m4 offset-m1">
                             <p class="mt-0" v-for="item in items" v-if="item['fields']['status'] == 'visitor'">
                                 <span v-if="item['fields']['bio-url']">
                                 <a v-bind:href="item['fields']['bio-url']">
@@ -228,7 +228,7 @@
                             </span>
                             </p>
                         </div>
-                        <div class="col s12 m5">
+                        <div class="col s12 m7" style="column-count: 3;column-width: 28%;column-gap: 5%">
                             <p class="mt-0" v-for="item in items" v-if="item['fields']['status'] == 'alum'">
                                 <span v-if="item['fields']['bio-url']">
                                 <a v-bind:href="item['fields']['bio-url']">
