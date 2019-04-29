@@ -19,6 +19,10 @@
     font-size: 1.3rem;
 }
 
+.smaller {
+    font-size: 0.8rem;
+}
+
 .lead::first-letter {
     font-weight: bold;
     -webkit-initial-letter: 3 2;
