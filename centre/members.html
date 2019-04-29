@@ -217,7 +217,7 @@
                 <div class="row">
                     <div class="col s12 m11 mb-1">
                         <div class="col s12 m4 offset-m1">
-                            <h3 class="mt-0">Honorary Senior Visiting Fellow</h3>
+                            <h3 class="reg mt-0 mb-1">Honorary Senior Visiting Fellow</h3>
                             <p class="mt-0" v-for="(item, index) in items" v-if="item['fields']['post'] == 'Honorary Senior Visiting Fellow'">
                                 <span v-if="item['fields']['bio-url']">
                                 <a v-bind:href="item['fields']['bio-url']">
@@ -228,7 +228,7 @@
                                     {{ item['fields']['name'] }}
                                 </span>
                             </p>
-                            <h3 class="mt-4">Honorary Visiting Fellows (CASS)</h3>
+                            <h3 class="reg mt-5 mb-1">Honorary Visiting Fellows (CASS)</h3>
                             <p class="mt-0" v-for="(item, index) in items" v-if="item['fields']['post'] == 'Honorary Visiting Fellows (CASS)'">
                                 <span v-if="item['fields']['bio-url']">
                                 <a v-bind:href="item['fields']['bio-url']">
@@ -239,7 +239,7 @@
                                     {{ item['fields']['name'] }}
                                 </span>
                             </p>
-                            <h3 class="mt-4">Honorary Visiting Fellows</h3>
+                            <h3 class="reg mt-5 mb-1">Honorary Visiting Fellows</h3>
                             <p class="mt-0" v-for="(item, index) in items" v-if="item['fields']['post'] == 'Honorary Visiting Fellows'">
                                 <span v-if="item['fields']['bio-url']">
                                 <a v-bind:href="item['fields']['bio-url']">
