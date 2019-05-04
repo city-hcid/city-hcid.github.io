@@ -34,6 +34,23 @@
     border-radius: 4%;
 }
 
+.circle {
+    width: 150px;
+    height: 150px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 300px;
+    text-align: center;
+    background: black;
+    display: inline-block;
+    line-height: 150px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    transform: rotate(20deg);
+}
+
 
 /* Customise navbar d*/
 

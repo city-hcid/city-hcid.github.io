@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS REF 2021 | CS staff size v profile scores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="columns is-mobile is-multiline is-centered">
+                <div class="column is-two-thirds is-tablet">
+                    <h1 class="title is-size-1 has-text-weight-bold">
+                        Staff numbers in CS<br />against profile scores
+                    </h1>
+                </div>
+                <div class="column is-two-thirds is-tablet">
+                    <h2 class="subtitle">
+                        Is there a relationship between staff numbers and scores?
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-mobile is-multiline">
+                <div class="column is-4 is-offset-3">
+                    <p>
+                        This graph plots staff numbers against 4* profile scores (for all 2014 CS UoA).
+                    </p>
+                </div>
+                <div class="column is-7 is-offset-2">
+                    <canvas id="4*-graph" width="200" height="170"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-mobile is-multiline">
+                <div class="column is-4 is-offset-3">
+                    <p>
+                        This graph plots staff numbers against 1* profile scores (for all 2014 CS UoA).
+                    </p>
+                </div>
+                <div class="column is-7 is-offset-2">
+                    <canvas id="3*-graph" width="200" height="170"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6 is-offset-4">
+                    <h1 class="is-size-4 has-text-weight-semibold mb-2">Pearson correlation coefficient (<em>r</em>)</h1>
+                    <table class="table is-narrow is-hoverable">
+                        <thead>
+                            <tr>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"><em>r</em></th>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"></th>
+                            </tr>
+                            <tr>
+                                <th class="has-text-grey"></th>
+                                <th class="has-text-grey"><abbr title="Overall Profile and Subprofiles">4*</abbr></th>
+                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient">3*</abbr></th>
+                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient">2*</abbr></th>
+                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient">1*</abbr></th>
+                                <th class="has-text-grey"><abbr title="Pearson correlation coefficient">N/C</abbr></th>
+                            </tr>
+                        </thead>
+                        <tbody id="rhos" class="has-text-grey"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <footer>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="./scripts/pearsoncorrelation.js"></script>
+    <script src="./scripts/charts-data.js"></script>
+    <script src="./scripts/charts-uoa-cs-staff-size.js"></script>
+</body>
+
+</html>
