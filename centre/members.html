@@ -178,7 +178,7 @@
                                 <i class="large material-icons roundedElement">assignment_ind</i>
                             </div>
                         </div>
-                        <div class="col s10 mb-2 hide-on-med-and-up">
+                        <div class="col s10 mb-2 pl-5 hide-on-med-and-up">
                             <div v-if="item['fields']['photo-url']">
                                 <img class="head-shot right-align" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['name'] + ' photo'" height="120px" />
                             </div>
@@ -186,7 +186,7 @@
                                 <i class="large material-icons roundedElement">assignment_ind</i>
                             </div>
                         </div>
-                        <div class="col s12 m8 pl-4">
+                        <div class="col s12 m8 pl-5">
                             <p class="mt-0" v-if="item['fields']['bio-url']">
                                 <strong><a class="reg" v-bind:href="item['fields']['bio-url']">{{ item['fields']['name'] }}</a><span class="reg" v-if="item['fields']['post']">, {{ item['fields']['post'] }}</span></strong>
                                 <br />
