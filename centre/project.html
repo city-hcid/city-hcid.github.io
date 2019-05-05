@@ -89,21 +89,21 @@
                                 <span v-if="item['fields']['long-name']">
                                         {{ item['fields']['long-name'] }}
                                     </span>
-                                <p>
+                                <p v-if="item['fields']['about']">
                                     <strong>About: </strong>
-                                    <span v-if="item['fields']['about']" class="lbr grey-text text-darken-2">{{ item['fields']['about'] }}</span>
+                                    <span class="lbr grey-text text-darken-2">{{ item['fields']['about'] }}</span>
                                 </p>
-                                <p>
+                                <p v-if="item['fields']['lead']">
                                     <strong>Principle Investigator: </strong>
-                                    <span v-if="item['fields']['lead']" class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['lead-url']">{{ item['fields']['lead-str'] }}</a></span>
+                                    <span class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['lead-url']">{{ item['fields']['lead-str'] }}</a></span>
                                 </p>
-                                <p>
+                                <p v-if="item['fields']['co-i']">
                                     <strong>Co-investigator: </strong>
-                                    <span v-if="item['fields']['lead']" class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['co-i-url']">{{ item['fields']['co-i'] }}</a></span>
+                                    <span class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['co-i-url']">{{ item['fields']['co-i'] }}</a></span>
                                 </p>
-                                <p class="pb-5">
+                                <p v-if="item['fields']['members']" class="pb-5">
                                     <strong>Researchers: </strong>
-                                    <span v-if="item['fields']['members']" class="lbr grey-text text-darken-2">{{ item['fields']['members-str'] }}</span>
+                                    <span class="lbr grey-text text-darken-2">{{ item['fields']['members-str'] }}</span>
                                 </p>
                             </div>
                         </div>

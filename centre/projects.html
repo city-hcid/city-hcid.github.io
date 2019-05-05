@@ -127,13 +127,13 @@
                                 <span v-if="item['fields']['long-name']">
                                         {{ item['fields']['long-name'] }}
                                     </span>
-                                <p>
+                                <p v-if="item['fields']['about']">
                                     <strong>About: </strong>
-                                    <span v-if="item['fields']['about']" class="lbr grey-text text-darken-2">{{ item['fields']['about'] }}</span>
+                                    <span class="lbr grey-text text-darken-2">{{ item['fields']['about'] }}</span>
                                 </p>
-                                <p class="pb-5">
+                                <p v-if="item['fields']['lead']" class="pb-5">
                                     <strong>Project members: </strong>
-                                    <span v-if="item['fields']['lead']" class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['lead-url']">{{ item['fields']['lead-str'] }}</a> (lead)</span><span v-if="item['fields']['members']" class="lbr grey-text text-darken-2">, {{ item['fields']['members-str'] }}</span>
+                                    <span class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['lead-url']">{{ item['fields']['lead-str'] }}</a> (lead)</span><span v-if="item['fields']['members']" class="lbr grey-text text-darken-2">, {{ item['fields']['members-str'] }}</span>
                                 </p>
                             </div>
                         </div>
