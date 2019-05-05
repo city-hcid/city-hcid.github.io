@@ -45,8 +45,9 @@
     text-align: center;
     background: black;
     display: inline-block;
-    line-height: 150px;
-    font-size: 1.8rem;
+    margin-top: -30%;
+    line-height: 32px;
+    font-size: 1.9rem;
     font-weight: 700;
     transform: rotate(20deg);
 }
