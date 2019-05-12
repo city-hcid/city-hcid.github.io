@@ -77,42 +77,40 @@
     <main>
         <div class="container">
             <div class="row">
-                <div class="col s12 m9 l10" id="bodybox">
+                <div class="col s12 m9 l10">
                     <div id="app">
                         <ul class="collection">
-                            <li class="collection-item avatar" v-bind:id="item['fields']['last']" v-for="(item, index) in items" v-if="item['fields']['last']" style="margin-bottom:.2rem;">
-                                <span v-if="item['fields']['photo-url']"><img v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" /></span>
-                                <span v-else><i class="material-icons circle">people</i></span>
-                                <div>
-                                    <div class="strong" style="margin-bottom:.2rem;">
-                                        <a v-bind:href="'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a>
-                                    </div>
-                                    <span v-if="item['fields']['group-dept']">
-                                        <span v-if="item['fields']['org']">
-											{{ item['fields']['group-dept'] }}, 
-										</span>
-                                    <span v-else>
-											{{ item['fields']['group-dept'] }} 
-										</span>
-                                    </span>
+                            <li class="collection-item avatar mb-3" v-bind:id="item['fields']['last']" v-for="(item, index) in items" v-if="item['fields']['last']">
+                                <img v-if="item['fields']['photo-url']" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" class="circle" />
+                                <i v-else class="material-icons circle">people</i>
+                                <span class="strong mb-1">
+                                    <a v-bind:href="'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a>
+                                </span>
+                                <span v-if="item['fields']['group-dept']">
                                     <span v-if="item['fields']['org']">
-										{{ item['fields']['org'] }}
-									</span>
-                                    <p>
-                                        <strong>Talk title: </strong>
-                                        <span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
-                                        <span v-else>TBA</span>
-                                    </p>
-                                    <p>
-                                        <strong>Time: </strong>
-                                        <span v-if="item['fields']['date']">{{ item['fields']['date-str'] }}</span>
-                                        <span v-else>TBA</span>
-                                        <br />
-                                        <strong>Room: </strong>
-                                        <span v-if="item['fields']['room']">{{ item['fields']['room'] }}</span>
-                                        <span v-else>TBA</span>
-                                    </p>
-                                </div>
+                                        {{ item['fields']['group-dept'] }}, 
+                                    </span>
+                                <span v-else>
+                                        {{ item['fields']['group-dept'] }} 
+                                    </span>
+                                </span>
+                                <span v-if="item['fields']['org']">
+                                    {{ item['fields']['org'] }}
+                                </span>
+                                <p>
+                                    <strong>Talk title: </strong>
+                                    <span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+                                    <span v-else>TBA</span>
+                                </p>
+                                <p>
+                                    <strong>Time: </strong>
+                                    <span v-if="item['fields']['date']">{{ item['fields']['date-str'] }}</span>
+                                    <span v-else>TBA</span>
+                                    <br />
+                                    <strong>Room: </strong>
+                                    <span v-if="item['fields']['room']">{{ item['fields']['room'] }}</span>
+                                    <span v-else>TBA</span>
+                                </p>
                             </li>
                         </ul>
                     </div>
