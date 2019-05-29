@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col s12 m9 l10">
                     <h1 class="page-title">
-                        HCID.<span class="fade-out">city</span>
+                        HCID.<span class="fade-out-left">city</span>
                     </h1>
 
                     <span class="reg">
@@ -159,12 +159,12 @@
             $('.sidenav').sidenav();
         });
         $(window).scroll(function() {
-            $(".fade-out").css({
+            $(".fade-out-left").css({
                 "opacity": 1 - $(window).scrollTop() / 90,
                 "margin-left": 1 - $(window).scrollTop() / 2
             });
         });
-        $(".fade-out").mouseenter(function() {
+        $(".fade-out-left").mouseenter(function() {
             if ($(this).css('opacity') == 1) {
                 $(this).animate({
                     marginLeft: '-250px',
