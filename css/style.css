@@ -4,6 +4,12 @@
 * https://www.gnu.org/licenses/gpl.html
 */
 
+.top {
+    opacity: 1;
+    color: #000;
+    margin-left: 0
+}
+
 .reg {
     font-weight: 400;
     font-size: 1.2rem;
@@ -50,6 +56,11 @@
     font-size: 1.9rem;
     font-weight: 700;
     transform: rotate(20deg);
+}
+
+.sticker:hover {
+    background: rgb(213, 23, 28);
+    transform: rotate(0deg);
 }
 
 .link {
