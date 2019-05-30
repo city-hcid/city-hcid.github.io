@@ -32,11 +32,11 @@
 
         <!-- Side nav structure -->
         <ul class="sidenav" id="mobile-nav">
-            <li class="active"><a class="menu-header" href="../">HCID</a></li>
-            <li><a href="../centre/charter" class="menu-subheader">Charter</a></li>
-            <li><a href="../centre/members" class="menu-subheader">Members</a></li>
-            <li><a href="../centre/projects" class="menu-subheader">Projects</a></li>
-            <li><a href="../centre/calendar" class="menu-subheader">Calendar</a></li>
+            <li class="active"><a class="menu-header" href="./">HCID</a></li>
+            <li><a href="./centre/charter" class="menu-subheader">Charter</a></li>
+            <li><a href="./centre/members" class="menu-subheader">Members</a></li>
+            <li><a href="./centre/projects" class="menu-subheader">Projects</a></li>
+            <li><a href="./centre/calendar" class="menu-subheader">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
             <li><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
             <li><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
@@ -70,8 +70,9 @@
             <div class="row">
                 <div class="col s12 m9 l10">
                     <h1 class="page-title">
-                        HCID.
+                        HCID.<span class="fade-out-left">city</span>
                     </h1>
+
                     <span class="reg">
                             The <a class="black-text" href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a>
                         </span>
@@ -102,14 +103,14 @@
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="grey-text text-darken-4" style="font-weight:700;">
+                    <h5 class="grey-text text-darken-4 bold">
                         HCID
                     </h5>
                     <span>
                             <a class="grey-text text-darken-4" href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a>
                         </span>
                 </div>
-                <div id="address" class="col l4 offset-l2 s12" style="margin-top:2.5rem;">
+                <div id="address" class="col l4 offset-l2 s12 mt-5">
                     <h6 class="grey-text text-darken-1">
                         Address
                     </h6>
@@ -149,12 +150,32 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         $(document).ready(function() {
             $('.dropdown-trigger').dropdown({
                 hover: true
             });
             $('.sidenav').sidenav();
+        });
+        $(window).scroll(function() {
+            $(".fade-out-left").css({
+                "opacity": 1 - $(window).scrollTop() / 90,
+                "margin-left": 1 - $(window).scrollTop() / .3
+            });
+        });
+        $(".fade-out-left").mouseenter(function() {
+            if ($(this).css('opacity') == 1) {
+                $(this).animate({
+                    marginLeft: '-250px',
+                    opacity: '0'
+                }, "slow")
+            } else {
+                $(this).animate({
+                    opacity: '1',
+                    marginLeft: '0px'
+                }, "slow")
+            }
         });
     </script>
 </body>

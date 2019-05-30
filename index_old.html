@@ -4,12 +4,13 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HCID, seminar, talks, speakers" />
+    <meta name="keywords" content="hci,chi,ux,design,ux design,hcid,hci city,hcid city,hci london" />
+    <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HCID | Project</title>
+    <title>Centre for HCI Design, City, University of London</title>
 </head>
 
 <body>
@@ -17,12 +18,13 @@
         <div class="navbar-fixed">
             <nav class="no-shadows">
                 <div class="nav-wrapper white">
+                    <a href="https://www.city.ac.uk" class="brand-logo right"><img class="hide-on-small-and-down" src="https://www.city.ac.uk/__data/assets/git_bridge/0018/344007/main/i/logo/city-uol-logo-responsive-125.svg" alt="City University logo"></a>
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
-                    <ul id="nav-mobile" class="left hide-on-small-and-down">
-                        <li><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
+                    <ul id="nav-mobile" class="left hide-on-small-only">
+                        <li class="active"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
                         <li><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
                         <li><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
-                        <li class="active"><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
+                        <li><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
                     </ul>
                 </div>
             </nav>
@@ -30,10 +32,10 @@
 
         <!-- Side nav structure -->
         <ul class="sidenav" id="mobile-nav">
-            <li><a class="menu-header" href="../">HCID</a></li>
+            <li class="active"><a class="menu-header" href="../">HCID</a></li>
             <li><a href="../centre/charter" class="menu-subheader">Charter</a></li>
             <li><a href="../centre/members" class="menu-subheader">Members</a></li>
-            <li class="active"><a href="../centre/projects" class="menu-subheader">Projects</a></li>
+            <li><a href="../centre/projects" class="menu-subheader">Projects</a></li>
             <li><a href="../centre/calendar" class="menu-subheader">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
             <li><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
@@ -49,7 +51,7 @@
 
         <!-- HCID dropdown menu -->
         <ul id="dropdown1" class="dropdown-content">
-            <li><a class="menu-header" href="../">HCID</a></li>
+            <li><a class="active menu-header menu-selection" href="../">HCID</a></li>
             <li><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
             <li><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
@@ -68,46 +70,30 @@
             <div class="row">
                 <div class="col s12 m9 l10">
                     <h1 class="page-title">
-                        <a class="black-text" href="../../">HCID</a>:<br><span class="red-text">Project</span>
+                        HCID.
                     </h1>
+                    <span class="reg">
+                            The <a class="black-text" href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a>
+                        </span>
                 </div>
             </div>
         </div>
     </header>
-    <main>
-        <div class="container">
+    <main style="min-height: 40vh">
+        <div class="container" style="padding-bottom:5rem;">
             <div class="row">
-                <div id="app">
-                    <div class="col s10">
-                        <div v-bind:id="item['fields']['project-name']" v-for="item in items" v-if="item['fields']['project-name']" class="my-5">
-                            <a v-if="item['fields']['image-url']" v-bind:href="item['fields']['project-url']"><img class="responsive-img" v-bind:src="item['fields']['image-url']" v-bind:alt="item['fields']['project-name'] + ' icon'" style="max-height:8rem" /></a>
-                            <div>
-                                <h1 v-if="item['fields']['image-url'] == null" class="mb-1">
-                                    <span v-if="item['fields']['project-url']"><a v-bind:href="item['fields']['project-url']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
-                                    <span v-else><a v-bind:href="'/centre/project?name=' + item['fields']['project-name']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
-                                </h1>
-                                <span v-if="item['fields']['long-name']">
-                                    {{ item['fields']['long-name'] }}
-                                </span>
-                                <p v-if="item['fields']['about']">
-                                    <strong>About: </strong>
-                                    <span class="lbr grey-text text-darken-2">{{ item['fields']['about'] }}</span>
-                                </p>
-                                <p v-if="item['fields']['lead']">
-                                    <strong>Principle Investigator: </strong>
-                                    <span class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['lead-url']">{{ item['fields']['lead-str'] }}</a></span>
-                                </p>
-                                <p v-if="item['fields']['co-i']">
-                                    <strong>Co-investigator: </strong>
-                                    <span class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['co-i-url']">{{ item['fields']['co-i'] }}</a></span>
-                                </p>
-                                <p v-if="item['fields']['members']" class="pb-5">
-                                    <strong>Researchers: </strong>
-                                    <span class="lbr grey-text text-darken-2">{{ item['fields']['members-str'] }}</span>
-                                </p>
-                            </div>
+                <div class="col s6 push-m6 valign-wrapper">
+                    <a style="display:block" href="http://hcidopenday.co.uk" target="_blank">
+                        <div class="z-depth-1 sticker mb-4">
+                            <div class="mt-4">2019<br />OPEN<br />DAY</div>
                         </div>
-                    </div>
+                    </a>
+                </div>
+                <div class="col s12 m6 pull-m6">
+                    <p class="lead reg">The Centre for HCI Design is one of the longest serving Human-Computer Interaction groups in London and the UK, formed over 25 years ago. We take great pride in our outstanding research, teaching, and consultancy & business services.
+                        Our prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems.</p>
+                    <p class="reg">With a mixture of research and practical work, we foster our tight-knit culture through an overarching <a class="link" href="./centre/charter.html">philosophy</a>. This recognises what we do as a collective and ongoing endeavour, spurred
+                        on by the possibilities for enlarging human capacity and creating the conditions for better ways of living together.</p>
                 </div>
             </div>
         </div>
@@ -116,14 +102,14 @@
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                        <h5 class="grey-text text-darken-4 bold">
+                    <h5 class="grey-text text-darken-4" style="font-weight:700;">
                         HCID
                     </h5>
                     <span>
-					<a class="grey-text text-darken-4" href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a>
-				</span>
+                            <a class="grey-text text-darken-4" href="https://www.city.ac.uk/mathematics-computer-science-engineering/research/centre-for-human-computer-interaction-design" title="Centre for Human-Computer Interaction Design | City, University of London">Centre for Human-Computer Interaction Design</a>
+                        </span>
                 </div>
-                <div id="address" class="col l4 offset-l2 s12 mt-5">
+                <div id="address" class="col l4 offset-l2 s12" style="margin-top:2.5rem;">
                     <h6 class="grey-text text-darken-1">
                         Address
                     </h6>
@@ -161,41 +147,8 @@
     </footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script type="text/javascript">
-        var app = new Vue({
-            el: '#app',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    var url_string = window.location.href;
-                    var url = new URL(url_string);
-                    var name = url.searchParams.get("name");
-                    var self = this
-                    var app_id = "appVrmQAGy96E1jEP";
-                    var app_key = "keyC83ksN49wS10kX";
-                    this.items = []
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/projects?filterByFormula=(FIND(%22" + name + "%22%2C%7Bproject-name%7D))", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records;
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-    </script>
     <script>
         $(document).ready(function() {
             $('.dropdown-trigger').dropdown({
