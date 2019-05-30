@@ -8,7 +8,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="./css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        #map {
+            height: 100%;
+        }
+    </style>
     <title>HCID | Visting</title>
 </head>
 
@@ -90,15 +96,17 @@
                             The College Building address is at the bottom of this page.
                         </p>
                         <p>You can find us via Google Maps, <a href="https://goo.gl/maps/QbdWpuT8ycp" target="_blank">here</a>.</p>
-                        <div class="fade-in mt-5" style="border-radius: 6px; width: 600px; overflow: hidden;">
-                            <iframe class="roundedElement" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d620.558412709746!2d-0.10475027075970314!3d51.527274198727405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b5ae9ccfaf9%3A0xdbf8597e0ae84ebb!2s280+St+John+St%2C+Clerkenwell%2C+London+EC1V+4PB!5e0!3m2!1sen!2suk!4v1559150858261!5m2!1sen!2suk"
-                                width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
+                        <div id="map"></div>
+
+                        <!--                         <div data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-easing="ease-in-out" class="mt-5" style="border-radius: 50%; width: 600px; overflow: hidden;">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2482.2284279500745!2d-0.10412!3d51.52737!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b5ae9ccfaf9%3A0xdbf8597e0ae84ebb!2s280+St+John+St%2C+Clerkenwell%2C+London+EC1V+4PB!5e0!3m2!1sen!2suk!4v1559251374752!5m2!1sen!2suk&zoom=12&style=feature:all|element:labels|visibility:off"
+                                width="600" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container fade-in">
+        <div data-aos="fade-left" data-aos-anchor-placement="bottom-bottom" data-aos-easing="ease-in-out" class="container">
             <div class="row">
                 <div id="app">
                     <div class="col s9">
@@ -172,6 +180,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script type="text/javascript">
         var app_id = "appVrmQAGy96E1jEP";
         var app_key = "keyC83ksN49wS10kX";
@@ -216,13 +228,22 @@
                 "opacity": 1 - $(window).scrollTop() / 200,
                 "margin-left": 1 - $(window).scrollTop() * 2
             });
-            //if ($('.fade-in').visible(true)) {
-            $(".fade-in").animate({
-                    opacity: '1',
-                }, "slow")
-                //}
         });
     </script>
+    <script>
+        var map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: -34.397,
+                    lng: 150.644
+                },
+                zoom: 8
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMIU9O1aK_61I3KzIQw16QgXp9b-d6f3M&callback=initMap" async defer></script>
 </body>
 
 </html>
