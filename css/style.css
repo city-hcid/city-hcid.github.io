@@ -34,6 +34,11 @@
     border-radius: 4%;
 }
 
+.copyleft {
+    display: inline-block;
+    transform: rotate(180deg);
+}
+
 .sticker {
     width: 150px;
     height: 150px;
