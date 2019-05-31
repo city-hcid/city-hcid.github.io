@@ -68,7 +68,7 @@
 }
 
 .link:hover {
-    color: #fff;
+    color: #fff !important;
 }
 
 .link::before {
