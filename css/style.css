@@ -90,11 +90,42 @@
     transform-origin: center left;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+li:focus,
+.keyboard-focused {
+    outline: none;
+}
+
+.keyboard-focused input[type=range]:focus:not(.active)::-webkit-slider-thumb {
+    -webkit-box-shadow: white;
+    box-shadow: white;
+}
+
+.keyboard-focused input[type=range]:focus:not(.active)::-moz-range-thumb {
+    box-shadow: white;
+}
+
+.keyboard-focused input[type=range]:focus:not(.active)::-ms-thumb {
+    box-shadow: white;
+}
+
+*:focus:not(.focus-visible) {
+    outline: none;
+}
+
+.focus-visible {
+    outline: lightgreen solid 2px;
+}
+
 
 /* Customise navbar d*/
 
 nav,
-.navbar-fixed {
+.navbar-fixed,
+nav i.material-icons {
     height: 40px;
     line-height: 40px;
 }
