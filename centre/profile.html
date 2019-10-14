@@ -90,21 +90,23 @@
                                 <div v-if="item['fields']['post']">
                                     <p>{{ item['fields']['post'] }}</p>
                                 </div>
+                                <div>
+                                    <p>
+                                        <span v-if="item['fields']['twitter']">
+                                            <strong>Twitter: </strong><a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
+                                        </span>
+                                        <br>
+                                        <span v-if="item['fields']['scholar']">
+                                            <strong>Academic record: </strong><a v-bind:href="item['fields']['scholar']">Google Scholar</a>
+                                        </span>
+                                        <span v-else-if="item['fields']['orcid']">
+                                            <strong>Academic record: </strong><a v-bind:href="'https://orcid.org/' + item['fields']['orcid']">orcid</a>
+                                        </span>
+                                    </p>
+                                </div>
                                 <div v-if="item['fields']['short-bio']">
                                     <p class="lbr">{{ item['fields']['short-bio'] }}</p>
                                 </div>
-                                <p>
-                                    <span v-if="item['fields']['twitter']">
-                                            <strong>Twitter: </strong><a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
-                                        </span>
-                                    <br>
-                                    <span v-if="item['fields']['scholar']">
-                                            <strong>Academic record: </strong><a v-bind:href="item['fields']['scholar']">Google Scholar</a>
-                                        </span>
-                                    <span v-else-if="item['fields']['orcid']">
-                                            <strong>Academic record: </strong><a v-bind:href="'https://orcid.org/' + item['fields']['orcid']">orcid</a>
-                                        </span>
-                                </p>
                             </div>
                         </div>
                     </div>
