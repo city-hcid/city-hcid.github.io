@@ -9,7 +9,7 @@
     <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HCID | Seminar Series Speakers</title>
+    <title>HCID | Members</title>
 </head>
 
 <body>
@@ -78,32 +78,34 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m9 l10" id="bodybox">
-                    <div id="app" v-for="(item, index) in items">
-                        <div v-if="index == 0" id="name">
-                            <h1 class="mb-4">
-                                {{ item['fields']['name'] }}
-                            </h1>
-                            <div class="mb-3">
-                                <span v-if="item['fields']['photo-url']"><img class="roundedElement responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['name']" /></span>
-                            </div>
-                            <div v-if="item['fields']['post']">
-                                <p>{{ item['fields']['post'] }}</p>
-                            </div>
-                            <div v-if="item['fields']['short-bio']">
-                                <p>{{ item['fields']['short-bio'] }}</p>
-                            </div>
-                            <p>
-                                <span v-if="item['fields']['twitter']">
+                    <div id="app">
+                        <div v-for="(item, index) in items">
+                            <div v-if="index == 0" id="name">
+                                <h1 class="mb-4">
+                                    {{ item['fields']['name'] }}
+                                </h1>
+                                <div class="mb-3">
+                                    <span v-if="item['fields']['photo-url']"><img class="roundedElement responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['name']" /></span>
+                                </div>
+                                <div v-if="item['fields']['post']">
+                                    <p>{{ item['fields']['post'] }}</p>
+                                </div>
+                                <div v-if="item['fields']['short-bio']">
+                                    <p>{{ item['fields']['short-bio'] }}</p>
+                                </div>
+                                <p>
+                                    <span v-if="item['fields']['twitter']">
                                             <strong>Twitter: </strong><a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
                                         </span>
-                                <br>
-                                <span v-if="item['fields']['scholar']">
+                                    <br>
+                                    <span v-if="item['fields']['scholar']">
                                             <strong>Academic record: </strong><a v-bind:href="item['fields']['scholar']">Google Scholar</a>
                                         </span>
-                                <span v-else-if="item['fields']['orcid']">
+                                    <span v-else-if="item['fields']['orcid']">
                                             <strong>Academic record: </strong><a v-bind:href="'https://orcid.org/' + item['fields']['orcid']">orcid</a>
                                         </span>
-                            </p>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
