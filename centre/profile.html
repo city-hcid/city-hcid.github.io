@@ -78,38 +78,33 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m9 l10" id="bodybox">
-                    <div id="app">
-                        <ul>
-                            <li v-for="(item, index) in items">
-                                <div v-if="index == 0" id="name">
-                                    <h2 style="margin-bottom:.2rem;">
-                                        {{ item['fields']['name'] }}
-                                    </h2>
-                                    <span v-if="item['fields']['post']">
-                                        {{ item['fields']['post'] }}
-                                    </span>
-                                    <span v-if="item['fields']['short-bio']">
-                                        {{ item['fields']['short-bio'] }}
-                                    </span>
-                                    <div>
-                                        <br>
-                                        <span v-if="item['fields']['photo-url']"><img class="roundedElement responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['name']" /></span>
-                                    </div>
-                                    <p>
-                                        <span v-if="item['fields']['twitter']">
+                    <div id="app" v-for="(item, index) in items">
+                        <div v-if="index == 0" id="name">
+                            <h1 class="mb-4">
+                                {{ item['fields']['name'] }}
+                            </h1>
+                            <div class="mb-3">
+                                <span v-if="item['fields']['photo-url']"><img class="roundedElement responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['name']" /></span>
+                            </div>
+                            <div v-if="item['fields']['post']">
+                                <p>{{ item['fields']['post'] }}</p>
+                            </div>
+                            <div v-if="item['fields']['short-bio']">
+                                <p>{{ item['fields']['short-bio'] }}</p>
+                            </div>
+                            <p>
+                                <span v-if="item['fields']['twitter']">
                                             <strong>Twitter: </strong><a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
                                         </span>
-                                        <br>
-                                        <span v-if="item['fields']['scholar']">
+                                <br>
+                                <span v-if="item['fields']['scholar']">
                                             <strong>Academic record: </strong><a v-bind:href="item['fields']['scholar']">Google Scholar</a>
                                         </span>
-                                        <span v-else-if="item['fields']['orcid']">
-                                            <strong>Academic record: </strong><a v-bind:href="item['fields']['orcid']">orcid</a>
+                                <span v-else-if="item['fields']['orcid']">
+                                            <strong>Academic record: </strong><a v-bind:href="'https://orcid.org/' + item['fields']['orcid']">orcid</a>
                                         </span>
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
