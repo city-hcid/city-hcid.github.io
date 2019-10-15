@@ -101,11 +101,10 @@
                                         <span v-if="item['fields']['scholar']">
                                             <strong>Academic record: </strong><a v-bind:href="item['fields']['scholar']">Google Scholar</a>
                                         </span>
-                                        <span v-else-if="item['fields']['orcid']">
-                                            <strong>Academic record:
-                                        </span>
-                                        <div itemscope itemtype="https://schema.org/Person">
-                                            <a itemprop="sameAs" v-bind:content="'https://orcid.org/' + item['fields']['orcid']" v-bind:href="'https://orcid.org/' + item['fields']['orcid']" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">https://orcid.org/{{ item['fields']['orcid'] }}</a>
+                                        <div v-if="item['fields']['orcid']">
+                                            <div itemscope itemtype="https://schema.org/Person">
+                                                <a itemprop="sameAs" v-bind:content="'https://orcid.org/' + item['fields']['orcid']" v-bind:href="'https://orcid.org/' + item['fields']['orcid']" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">https://orcid.org/{{ item['fields']['orcid'] }}</a>
+                                            </div>
                                         </div>
                                     </p>
                                 </div>
