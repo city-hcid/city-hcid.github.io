@@ -39,13 +39,37 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Insights</th>
-                                            <td>
-                                                <div v-if="item['fields']['Insights']">
-                                                    <p class="lbr">{{ item['fields']['Insights'] }}</p>
+                                            <th width="30%" scope="row">Content Type</th>
+                                            <td width="70%">
+                                                <div v-if="item['fields']['Type']">
+                                                    <p class="lbr">{{ item['fields']['Type'] }}</p>
                                                 </div>
                                             </td>
                                         </tr>
+                                        <th>
+                                            <th width="30%" scope="row">Target Issue</th>
+                                            <td width="70%">
+                                                <div v-if="item['fields']['Target Issue']">
+                                                    <p class="lbr">{{ item['fields']['Target Issue'] }}</p>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                                <th width="30%" scope="row">Status</th>
+                                                <td width="70%">
+                                                    <div v-if="item['fields']['Primary Contact']">
+                                                        <p class="lbr">{{ item['fields']['Status'] }}</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Insights</th>
+                                                <td>
+                                                    <div v-if="item['fields']['Insights']">
+                                                        <p class="lbr">{{ item['fields']['Insights'] }}</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                     </tbody>
                                 </table>
                             </div>
