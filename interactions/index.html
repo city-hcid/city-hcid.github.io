@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title>interactions magazine | Submission</title>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12">
+                    <div id="app">
+                        <div v-for="(item, index) in items">
+                            <div v-if="index == 0" id="submission">
+                                <div class="my-3">
+                                    <span v-if="item['fields']['photo-url']"><img class="roundedElement responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['name']" /></span>
+                                </div>
+                                <div v-if="item['fields']['Title of Text']">
+                                    <h1 class="font-weight-bold">
+                                        {{ item['fields']['Title of Text'] }}
+                                    </h1>
+                                </div>
+                                <div v-if="item['fields']['Primary Contact']">
+                                    <h2 class="mb-1 font-weight-bold">
+                                        {{ item['fields']['Primary Contact'] }}
+                                    </h2>
+                                </div>
+
+                                <div v-if="item['fields']['Insights']">
+                                    <p class="lbr">{{ item['fields']['Insights'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: []
+            },
+            mounted: function() {
+                this.loadItems();
+            },
+            methods: {
+                loadItems: function() {
+                    var url_string = window.location.href;
+                    var url = new URL(url_string);
+                    var sub_id = url.searchParams.get("id");
+                    var self = this
+                    var app_id = "appgcGlPwTaZaBImL";
+                    var app_key = "key8l5YZtQ9FyUoxF";
+                    this.items = []
+                    axios.get(
+                        "https://api.airtable.com/v0/" + app_id + "/Content?filterByFormula=FIND(%22recrjBoseJhYI2Vgd%22%2CID)&maxRecords=1", {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        }
+                    ).then(function(response) {
+                        self.items = response.data.records;
+                    }).catch(function(error) {
+                        console.log(error)
+                    })
+                }
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-trigger').dropdown({
+                hover: true
+            });
+            $('.sidenav').sidenav();
+        });
+    </script>
+</body>
+
+</html>
