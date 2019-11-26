@@ -13,8 +13,11 @@
 <body>
     <main>
         <div class="container">
+            <div class="row">
+                <h1 class="font-weight-bold my-5">interactions Magazine: submission</h1>
+            </div>
             <div class="row justify-content-md-center">
-                <div class="col-9">
+                <div class="col-9 col-sm-12">
                     <div id="app">
                         <div v-for="(item, index) in items">
                             <div v-if="index == 0" id="submission">
@@ -24,14 +27,14 @@
                                             <th scope="row">Title</th>
                                             <td>
                                                 <div class="my-1" v-if="item['fields']['Title of text']">
-                                                    <h1 class="font-weight-bold">
+                                                    <h2 class="font-weight-bold">
                                                         {{ item['fields']['Title of text'] }}
-                                                    </h1>
+                                                    </h2>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th width="25%" scope="row">Primary contact</th>
+                                            <th width="25%" scope="row">Primary Author</th>
                                             <td width="75%">
                                                 <div v-if="item['fields']['Primary Contact']">
                                                     <p class="lbr">{{ item['fields']['Primary Contact'] }}</p>
@@ -57,8 +60,8 @@
                                         <tr>
                                             <th width="25%" scope="row">Status</th>
                                             <td width="75%">
-                                                <div v-if="item['fields']['Primary Contact']">
-                                                    <p class="lbr">{{ item['fields']['Status'] }}</p>
+                                                <div v-if="item['fields']['Status']">
+                                                    <p class="lbr"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['Responsibility'] }}</span></p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -82,6 +85,17 @@
 
 
     <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="my-5">
+                        <a href="https://interactions.acm.org">
+                            <img src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
