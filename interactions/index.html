@@ -128,9 +128,12 @@
 
             <div class="row justify-content-center" id="author-title">
                 <div class="col-12 col-md-9">
-                    <h2 class="font-weight-bold mt-5">Contact author details</h2>
+                    <h2 class="font-weight-bold mt-5">
+                        Contact author details
+                    </h2>
                 </div>
             </div>
+
             <div class="row justify-content-center my-3" id="author-details">
                 <div class="col-12 col-md-9">
                     <div id="app-auth">
@@ -142,17 +145,49 @@
                                             <th class="align-middle" scope="row">Contact Author</th>
                                             <td class="align-middle">
                                                 <div v-if="item['fields']['Name']">
-                                                    <p class="font-weight-bold my-2">
+                                                    <p class="lbr font-weight-bold my-2">
                                                         {{ item['fields']['Name'] }}
                                                     </p>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="align-middle" width="25%" scope="row">Organisation</th>
+                                            <th class="align-middle" width="25%" scope="row">Afilliation</th>
                                             <td class="align-middle" width="75%">
-                                                <div v-if="item['fields']['Organisation']">
-                                                    <p class="lbr my-2">{{ item['fields']['Organisation'] }}</p>
+                                                <div>
+                                                    <p class="lbr my-2">
+                                                        <span v-if="item['fields']['Group']">{{ item['fields']['Group'] }}, </span><span v-if="item['fields']['Department']">{{ item['fields']['Department'] }}, </span><span v-if="item['fields']['Organisation']">{{ item['fields']['Organisation'] }}</span>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr v-if="item['fields']['Twitter']">
+                                            <th class="align-middle" width="25%" scope="row">Twitter</th>
+                                            <td width="75%">
+                                                <div>
+                                                    <p class="my-2">
+                                                        {{ item['fields']['Twitter'] }}
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="align-middle" width="25%" scope="row">Bio</th>
+                                            <td class="align-middle" width="75%">
+                                                <div>
+                                                    <p class="lbr my-2" v-if="item['fields']['Short Bio']">
+                                                        {{ item['fields']['Short Bio'] }}
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="align-middle" width="25%" scope="row">Postal Address</th>
+                                            <td class="align-middle" width="75%">
+                                                <div v-if="item['fields']['Postal Address']">
+                                                    <p class="text-left my-2">
+                                                        {{ item['fields']['Postal Address'] }}
+                                                    </p>
                                                 </div>
                                             </td>
                                         </tr>
