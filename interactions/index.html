@@ -15,10 +15,15 @@
         <div class="container">
             <div class="row justify-content-center" id="page-title">
                 <div class="col-12 col-md-9">
-                    <h1 class="font-weight-bold my-5">interactions Magazine: submission</h1>
+                    <h1 class="font-weight-bold my-5">interactions Magazine</h1>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" id="submission-title">
+                <div class="col-12 col-md-9">
+                    <h2 class="font-weight-bold mb-3">Submission details</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center" id="submission-details">
                 <div class="col-12 col-md-9">
                     <div id="app-sub">
                         <div v-for="(item, index) in items">
@@ -30,9 +35,9 @@
                                             </th>
                                             <td class="align-middle">
                                                 <div v-if="item['fields']['Title of text']">
-                                                    <h2 class="font-weight-bold my-2">
+                                                    <p class="font-weight-bold my-2">
                                                         {{ item['fields']['Title of text'] }}
-                                                    </h2>
+                                                    </p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -120,6 +125,45 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row justify-content-center" id="submission-title">
+                <div class="col-12 col-md-9">
+                    <h2 class="font-weight-bold mt-5">Primary author details</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center my-3" id="author-details">
+                <div class="col-12 col-md-9">
+                    <div id="app-auth">
+                        <div v-for="(item, index) in items">
+                            <div v-if="index == 0" id="author">
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th class="align-middle" scope="row">Primary Author</th>
+                                            <td class="align-middle">
+                                                <div v-if="item['fields']['Name']">
+                                                    <p class="font-weight-bold my-2">
+                                                        {{ item['fields']['Name'] }}
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="align-middle" width="25%" scope="row">Organisation</th>
+                                            <td class="align-middle" width="75%">
+                                                <div v-if="item['fields']['Organisation']">
+                                                    <p class="lbr my-2">{{ item['fields']['Organisation'] }}</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
     <footer>
@@ -141,8 +185,10 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
     <script type="text/javascript">
-        var author_rec = [];
-        var app_aub = new Vue({
+        var app_id = "appgcGlPwTaZaBImL";
+        var app_key = "key8l5YZtQ9FyUoxF";
+        var author_rec;
+        var app_sub = new Vue({
             el: '#app-sub',
             data: {
                 items: []
@@ -156,8 +202,6 @@
                     var url = new URL(url_string);
                     var sub_id = url.searchParams.get("id");
                     var self = this;
-                    var app_id = "appgcGlPwTaZaBImL";
-                    var app_key = "key8l5YZtQ9FyUoxF";
                     this.items = []
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/Content?filterByFormula=FIND(%22" + sub_id + "%22%2CID)&maxRecords=1", {
@@ -166,13 +210,14 @@
                             }
                         }
                     ).then(function(response) {
-                        obj = response.data.records;
                         self.items = response.data.records;
-                        //author_rec = obj[0].fields["Contact Author"];
-                        for (var i = 0; i < obj.length; i++) {
+                        obj = response.data.records;
+                        author_rec = obj[0].fields['Contact Author'];
+                        console.log('Author record: ' + author_rec);
+                        /* for (var i = 0; i < obj.length; i++) {
                             author_rec[i] = obj[i].fields["Contact Author"]
                             console.log("Author record: " + author_rec[i])
-                        }
+                        } */
                     }).catch(function(error) {
                         console.log(error);
                     })
@@ -189,30 +234,30 @@
             },
             methods: {
                 loadItems: function() {
-                    var url_string = window.location.href;
-                    var url = new URL(url_string);
-                    var sub_id = url.searchParams.get("id");
                     var self = this;
-                    var app_id = "appgcGlPwTaZaBImL";
-                    var app_key = "key8l5YZtQ9FyUoxF";
                     this.items = []
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/Content?filterByFormula=FIND(%22" + author_rec[0] + "%22%2CID)&maxRecords=1", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        obj = response.data.records;
-                        self.items = response.data.records;
-                        //author_rec = obj[0].fields["Contact Author"];
-                        for (var i = 0; i < obj.length; i++) {
-                            author_rec[i] = obj[i].fields["Contact Author"]
-                            console.log("Author record: " + author_rec[i])
-                        }
-                    }).catch(function(error) {
-                        console.log(error);
-                    })
+                    if (typeof author_rec == 'undefined') {
+                        setTimeout(() => {
+                            console.log("pause!");
+                            axios.get(
+                                "https://api.airtable.com/v0/appgcGlPwTaZaBImL/Editors%20%26%20Authors?filterByFormula=FIND(%22recRH3STtNF28R2jT%22%2CID)&maxRecords=1", {
+                                    //"https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + author_rec + "%22%2CID)&maxRecords=1", {
+                                    headers: {
+                                        Authorization: "Bearer " + app_key
+                                    }
+                                }
+                            ).then(function(response) {
+                                self.items = response.data.records;
+                                obj = response.data.records;
+                                console.log('Author record v.0: ' + author_rec);
+                                author_name = obj[0].fields['Name'];
+                                console.log("Author name: " + author_name);
+                            }).catch(function(error) {
+                                console.log(error);
+                            })
+                        }, 1000);
+
+                    }
                 }
             }
         })
