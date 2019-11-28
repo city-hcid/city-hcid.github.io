@@ -52,11 +52,11 @@
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">All Authors</th>
                                             <td class="align-middle" width="75%">
-                                                <div v-if="item['fields']['Author List']">
-                                                    <p class="lbr my-2">{{ item['fields']['Author List'] }}</p>
+                                                <div v-if="item['fields']['Author Order']">
+                                                    <p class="lbr my-2">{{ item['fields']['Author Order'] }}</p>
                                                 </div>
                                                 <div v-else>
-                                                    <p class="lbr my-2"><em>If there are co-authors for this submission please submit their details using this <a href="http://j.mp/ix-mag-author-form">form</a>, and email us with the order you'd like them to be listed for your contribution.</em></p>
+                                                    <p class="lbr text-muted my-2"><em>If there are co-authors for this submission please submit their details using this <a href="http://j.mp/ix-mag-author-form" target="_blank">form</a>, and <a v-bind:href="'mailto:eic@interactions.acm.org?Subject=[interactions] ' + item['fields']['Type'] + ' - ' + item['fields']['Target Issue'] + ' - ' + item['fields']['Primary Contact']" target="_top"> email us</a> with the order you'd like them to be listed for your contribution.</em></p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -79,8 +79,11 @@
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Target Issue</th>
                                             <td width="75%">
-                                                <div v-if="item['fields']['Target Issue']">
-                                                    <p class="lbr my-2">{{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }}</p>
+                                                <div v-if="item['fields']['Target Issue'] == 'Pipeline'">
+                                                    <p class="text-muted my-2"><em>To be decided</em></p>
+                                                </div>
+                                                <div v-else>
+                                                    <p class="my-2">{{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }}</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -113,8 +116,8 @@
                                             <th class="align-middle" width="25%" scope="row">Status</th>
                                             <td class="align-middle" width="75%">
                                                 <div>
-                                                    <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}.</span> The contribution has been passed
-                                                        to the ACM in prepartion for publication.</p>
+                                                    <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}.</span><br>Sent to ACM for publication.
+                                                    </p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -145,9 +148,15 @@
                                             <th class="align-middle" scope="row">Contact Author</th>
                                             <td class="align-middle">
                                                 <div v-if="item['fields']['Name']">
-                                                    <p class="lbr font-weight-bold my-2">
-                                                        {{ item['fields']['Name'] }}
-                                                    </p>
+                                                    <p class="lbr font-weight-bold my-2">{{ item['fields']['Name'] }}</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr v-if="item['fields']['Photo']">
+                                            <th class="align-middle" scope="row">Photo</th>
+                                            <td class="align-middle">
+                                                <div>
+                                                    <p class="my-2" id="auth-photo"></p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -165,9 +174,7 @@
                                             <th class="align-middle" width="25%" scope="row">Twitter</th>
                                             <td width="75%">
                                                 <div>
-                                                    <p class="my-2">
-                                                        {{ item['fields']['Twitter'] }}
-                                                    </p>
+                                                    <p class="my-2">{{ item['fields']['Twitter'] }}</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -175,9 +182,7 @@
                                             <th class="align-middle" width="25%" scope="row">Bio</th>
                                             <td class="align-middle" width="75%">
                                                 <div>
-                                                    <p class="lbr my-2" v-if="item['fields']['Short Bio']">
-                                                        {{ item['fields']['Short Bio'] }}
-                                                    </p>
+                                                    <p class="lbr my-2" v-if="item['fields']['Short Bio']">{{ item['fields']['Short Bio'] }}</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -249,10 +254,6 @@
                         obj = response.data.records;
                         author_rec = obj[0].fields['Contact Author'];
                         console.log('Author record: ' + author_rec);
-                        /* for (var i = 0; i < obj.length; i++) {
-                            author_rec[i] = obj[i].fields["Contact Author"]
-                            console.log("Author record: " + author_rec[i])
-                        } */
                     }).catch(function(error) {
                         console.log(error);
                     })
@@ -275,8 +276,8 @@
                         setTimeout(() => {
                             console.log("pause!");
                             axios.get(
-                                "https://api.airtable.com/v0/appgcGlPwTaZaBImL/Editors%20%26%20Authors?filterByFormula=FIND(%22recRH3STtNF28R2jT%22%2CID)&maxRecords=1", {
-                                    //"https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + author_rec + "%22%2CID)&maxRecords=1", {
+                                //"https://api.airtable.com/v0/appgcGlPwTaZaBImL/Editors%20%26%20Authors?filterByFormula=FIND(%22recRH3STtNF28R2jT%22%2CID)&maxRecords=1", {
+                                "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + author_rec + "%22%2CID)&maxRecords=1", {
                                     headers: {
                                         Authorization: "Bearer " + app_key
                                     }
@@ -286,7 +287,13 @@
                                 obj = response.data.records;
                                 console.log('Author record v.0: ' + author_rec);
                                 author_name = obj[0].fields['Name'];
+                                photo_url = obj[0].fields.Photo[0].thumbnails.large.url;
+                                photo_img = "<img src='" + photo_url + "' alt='profile photo' width='100' height='100' style='border-radius: 5px;'>";
                                 console.log("Author name: " + author_name);
+                                console.log(photo_url);
+                                $(document).ready(function() {
+                                    document.getElementById("auth-photo").innerHTML = photo_img;
+                                });
                             }).catch(function(error) {
                                 console.log(error);
                             })
