@@ -219,7 +219,7 @@
                                                 </div>
                                             </td>
                                             <td style="border-left:0;">
-                                                <div class="text-right"><button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#exampleModal" data-whatever="Twitter" data-source="Author">update...</button></div>
+                                                <div class="text-right"><button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#modalUpdate" data-whatever="Twitter" data-source="Author">update...</button></div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -248,38 +248,29 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+                            <h5 class="modal-title" id="modalLabel">Update</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                         <div class="modal-body">
-                            <form action="#0" id="update-form" class="update-form">
-                                <div class="form-group">
-                                    <label for="message-text" class="col-form-label">Content:</label>
-                                    <textarea class="form-control" id="message-text" rows="1" placeholder="@..."></textarea>
 
-                                    <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-                                    <div class="input-group my-2 mr-sm-2">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">@</div>
-                                        </div>
-                                        <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="twitter handle...">
+                            <form id="twitterForm" action="" method="get">
+                                <div class="input-group my-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">@</div>
                                     </div>
-
-
-
-
+                                    <input type="text" name="nameTwitter" value="" class="form-control" id="nameTwitter" placeholder="twitter handle...">
+                                </div>
+                                <div class="mt-5 text-right">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" Name="buttonTwitter" value="Click" onClick="submitForm(this.form)" class="btn btn-primary" data-dismiss="modal">Update</button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>
@@ -310,7 +301,7 @@
         var app_key = "key8l5YZtQ9FyUoxF";
         var author_rec;
         var coauthor_recs = [];
-        var airtable_write_endpoint = "https://api.airtable.com/v0/appgcGlPwTaZaBImL/Content?api_key=key8l5YZtQ9FyUoxF";
+        var airtable_write_endpoint;
         var app_sub = new Vue({
             el: '#app-sub',
             data: {
@@ -337,7 +328,6 @@
                         obj = response.data.records;
                         author_rec = obj[0].fields['Contact Author'];
                         coauthor_recs = self.items[0].fields['Coauthors'];
-                        console.log('Author record: ' + author_rec);
                     }).catch(function(error) {
                         console.log(error);
                     })
@@ -377,7 +367,12 @@
             }
         });
 
-        $('#exampleModal').on('show.bs.modal', function(event) {
+        function myFunction() {
+            var x = document.getElementById("frm").method;
+            console.log(x);
+        }
+
+        $('#modalUpdate').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var recipient = button.data('whatever')
             var source = button.data('source')
@@ -389,24 +384,21 @@
             modal.find('.modal-body label').text(recipient)
         });
 
-        var form = document.querySelector("#update-form");
-        var textarea = document.querySelector("#message-text");
-        var update = $('textarea#message-text').val();
+        function submitForm(form) {
+            airtable_write_endpoint = "https://api.airtable.com/v0/appgcGlPwTaZaBImL/Editors%20%26%20Authors/" + author_rec + "/?api_key=key8l5YZtQ9FyUoxF";
+            var TwitterVar = "@" + form.nameTwitter.value;
+            console.log("You typed: " + TwitterVar);
+            console.log("url: " + airtable_write_endpoint);
 
-        // When the form is submitted...
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-            console.log("update");
-
-            // POST the data
-
-            /* axios.post(airtable_write_endpoint, {
+            axios.patch(airtable_write_endpoint, {
                 "fields": {
-                    "Twitter": update
+                    "Twitter": TwitterVar
                 }
-            }); */
-
-        });
+            });
+            setTimeout(function() {
+                location.reload();
+            }, 2000);
+        }
     </script>
 </body>
 

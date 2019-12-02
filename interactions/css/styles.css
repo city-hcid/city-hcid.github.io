@@ -1,3 +1,7 @@
 .lbr {
     white-space: pre-wrap;
 }
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, .0001) !important;
+}
