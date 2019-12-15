@@ -333,6 +333,7 @@
                 loadItems: function() {
                     let url = new URL(window.location.href);
                     let submission_id = url.searchParams.get("id");
+                    let author_id = url.searchParams.get("aut");
                     let submission_url = "https://api.airtable.com/v0/" + app_id + "/Content?filterByFormula=FIND(%22" + submission_id + "%22%2CID)&maxRecords=1";
                     let self = this;
                     axios.get(
@@ -343,7 +344,12 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        author_rec = self.items[0].fields['Contact Author'];
+                        if (author_id == null) {
+                            author_rec = self.items[0].fields['Contact Author'];
+                        } else {
+                            author_rec = uthor_id;
+                        }
+                        //author_rec = self.items[0].fields['Contact Author'];
                         coauthor_recs = self.items[0].fields['Coauthors'];
                         subeditor_rec = self.items[0].fields['Sub Editor'];
                         if (coauthor_recs) {
