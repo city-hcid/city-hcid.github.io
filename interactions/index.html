@@ -344,10 +344,10 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        if (author_id == null) {
+                        if (author_id === null) {
                             author_rec = self.items[0].fields['Contact Author'];
                         } else {
-                            author_rec = uthor_id;
+                            author_rec = author_id;
                         }
                         //author_rec = self.items[0].fields['Contact Author'];
                         coauthor_recs = self.items[0].fields['Coauthors'];
