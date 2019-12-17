@@ -34,33 +34,37 @@
                                     <tbody>
                                         <tr>
                                             <th class="align-middle" scope="row">Title</th>
-                                            <td class="align-middle">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Title of text']">
-                                                    <p class="font-weight-bold my-2">
-                                                        {{ item['fields']['Title of text'] }}
-                                                    </p>
+                                                    <p class="font-weight-bold my-2">{{ item['fields']['Title of text'] }}</p>
                                                 </div>
+                                            </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Primary Author</th>
-                                            <td class="align-middle" width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Primary Contact']">
                                                     <p class="lbr my-2">{{ item['fields']['Primary Contact'] }}</p>
                                                 </div>
                                             </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Coauthors</th>
-                                            <td class="align-middle" width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Coauthors']" id="coauthors">
                                                     <!-- Insert coauthors -->
                                                 </div>
                                             </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Author Order</th>
-                                            <td class="align-middle" width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Author Order']">
                                                     <p class="lbr my-2">{{ item['fields']['Author Order'] }}</p>
                                                 </div>
@@ -68,36 +72,44 @@
                                                     <p class="lbr text-muted my-2"><em>If there are co-authors for this submission please submit their details using this <a href="http://j.mp/ix-mag-author-form" target="_blank">form</a>, and <a v-bind:href="'mailto:eic@interactions.acm.org?Subject=[interactions] ' + item['fields']['Type'] + ' - ' + item['fields']['Target Issue'] + ' - ' + item['fields']['Primary Contact']" target="_top"> email us</a> with the order you'd like them to be listed for your contribution.</em></p>
                                                 </div>
                                             </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Submission</th>
-                                            <td class="align-middle" width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Original submission']">
                                                     <p class="lbr my-2">
                                                         <a v-bind:href="item['fields']['Original submission']['0']['url']"><img v-bind:src="item['fields']['Original submission']['0']['thumbnails']['small']['url']" alt="Thumbnail. Click to download file"></a>
                                                     </p>
                                                 </div>
                                             </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                            </td>
                                         </tr>
                                         <tr v-if="item['fields']['Sub Editor']">
                                             <th class="align-middle" width="25%" scope="row">Sub Editor</th>
-                                            <td width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div id="subeditor">
                                                     <!-- Insert sub editors -->
                                                 </div>
+                                            </td class="align-middle">
+                                            <td class="align-middle" width="10%" style="border-left:0;">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Content Type</th>
-                                            <td class="align-middle" width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Type']">
                                                     <p class="lbr my-2">{{ item['fields']['Type'] }}</p>
                                                 </div>
                                             </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Target Issue</th>
-                                            <td width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Target Issue'] == 'Pipeline'">
                                                     <p class="text-muted my-2"><em>To be decided</em></p>
                                                 </div>
@@ -105,10 +117,12 @@
                                                     <p class="my-2">{{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }}</p>
                                                 </div>
                                             </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class="align-middle" scope="row">Insights</th>
-                                            <td>
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Insights']">
                                                     <p class="lbr my-2">{{ item['fields']['Insights'] }}</p>
                                                 </div>
@@ -116,28 +130,33 @@
                                         </tr>
                                         <tr class="table-danger" v-if="item['fields']['Status'] == 'Pending'">
                                             <th class="align-middle" width="25%" scope="row">Status</th>
-                                            <td class="align-middle" width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div>
                                                     <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}.</span> The contribution has yet to enter
                                                         our review process.</p>
                                                 </div>
                                             </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                            </td>
                                         </tr>
                                         <tr class="table-warning" v-if="item['fields']['Status'] == 'In process'">
                                             <th class="align-middle" width="25%" scope="row">Status</th>
-                                            <td class="align-middle" width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div>
                                                     <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}</span></p>
                                                 </div>
                                             </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                            </td>
                                         </tr>
                                         <tr class="table-success" v-if="item['fields']['Status'] == 'Ready'">
                                             <th class="align-middle" width="25%" scope="row">Status</th>
-                                            <td class="align-middle" width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div>
-                                                    <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}.</span><br>Sent to ACM for publication.
-                                                    </p>
+                                                    <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}.</span><br>Sent to ACM for publication.</p>
                                                 </div>
+                                            </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -206,16 +225,38 @@
                                         </tr>
 
                                         <tr>
-                                            <th class="align-middle" width="25%" scope="row">Afilliation</th>
+                                            <th class="align-middle" width="25%" scope="row">Group</th>
                                             <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div>
-                                                    <p class="lbr my-2">
-                                                        <span v-if="item['fields']['Group']">{{ item['fields']['Group'] }},<br></span><span v-if="item['fields']['Department']">{{ item['fields']['Department'] }},<br></span><span v-if="item['fields']['Organisation']">{{ item['fields']['Organisation'] }}</span>
-                                                    </p>
+                                                    <p class="lbr my-2" v-if="item['fields']['Group']">{{ item['fields']['Group'] }}</p>
                                                 </div>
                                             </td>
                                             <td class="align-middle" width="10%" style="border-left:0;">
                                                 <div class="text-right"><button v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or Lab name...">update...</button></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="align-middle" width="25%" scope="row">Department</th>
+                                            <td class="align-middle" width="65%" style="border-right:0;">
+                                                <div>
+                                                    <p class="lbr my-2" v-if="item['fields']['Department']">{{ item['fields']['Department'] }}</p>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                                <div class="text-right"><button v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name...">update...</button></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="align-middle" width="25%" scope="row">Organisation</th>
+                                            <td class="align-middle" width="65%" style="border-right:0;">
+                                                <div>
+                                                    <p class="lbr my-2" v-if="item['fields']['Organisation']">{{ item['fields']['Organisation'] }}</p>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                                <div class="text-right"><button v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name...">update...</button></div>
                                             </td>
                                         </tr>
 
@@ -245,10 +286,13 @@
 
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Postal Address</th>
-                                            <td class="align-middle" width="75%">
+                                            <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Postal Address']">
                                                     <p class="lbr my-2">{{ item['fields']['Postal Address'] }}</p>
                                                 </div>
+                                            </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
+                                                <div class="text-right"><button v-on:click="fieldName = 'Postal Address'" type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author" data-placeholder="Postal Address...">update...</button></div>
                                             </td>
                                         </tr>
 
@@ -269,19 +313,20 @@
                                     <div class="modal-body">
 
                                         <form id="updateForm" action="" method="get">
-                                            <div class="input-group" id="updateFormGroup">
-                                                <!-- insert prepend -->
 
-                                                <div v-if="fieldName == 'Twitter'" class='input-group-prepend' id='twitterAt'>
+                                            <div v-if="fieldName == 'Twitter'" class="input-group" id="updateFormGroup">
+                                                <!-- insert prepend -->
+                                                <div class='input-group-prepend' id='twitterAt'>
                                                     <div class='input-group-text'>@</div>
                                                 </div>
+                                                <input type="text" name="updateInput" value="" class="form-control" id="updateInput" placeholder="">
+                                            </div>
+                                            <div v-else-if="fieldName == 'Short Bio' || fieldName == 'Postal Address'" class="form-group" id="updateFormGroup">
+                                                <textarea type="text" name="updateInput" value="" class="form-control" id="updateInput" rows="6" placeholder=""></textarea>
+                                            </div>
 
-                                                <span v-if="fieldName == 'Short Bio'">
-                                                        <textarea type="text" name="updateInput" value="" class="form-control" id="updateInput" placeholder=""></textarea>
-                                                    </span>
-                                                <span v-else>
-                                                        <input type="text" name="updateInput" value="" class="form-control" id="updateInput" placeholder="">
-                                                    </span>
+                                            <div v-else class="form-group" id="updateFormGroup">
+                                                <input type="text" name="updateInput" value="" class="form-control" id="updateInput" placeholder="">
                                             </div>
                                             <div class="form-group mt-5 text-right">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
