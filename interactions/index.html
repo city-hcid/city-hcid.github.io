@@ -513,7 +513,10 @@
             }
             var updateFieldData = '{"fields": { "' + airtableField + '": "' + updateFieldValue + '"} }';
             console.log(updateFieldData);
-            var updateFieldData = JSON.parse(updateFieldData);
+            updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
+            console.log(updateFieldData);
+            updateFieldData = JSON.parse(updateFieldData);
+            console.log(updateFieldData);
 
             axios.patch(airtable_write_endpoint, updateFieldData);
             setTimeout(function() {
