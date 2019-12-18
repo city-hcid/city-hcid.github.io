@@ -121,19 +121,22 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="align-middle" scope="row">Insights</th>
+                                            <th class="align-middle" width="25%" scope="row">Insights</th>
                                             <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Insights']">
                                                     <p class="lbr my-2">{{ item['fields']['Insights'] }}</p>
                                                 </div>
+                                            </td>
+                                            <td class="align-middle" width="10%" style="border-left:0;">
                                             </td>
                                         </tr>
                                         <tr class="table-danger" v-if="item['fields']['Status'] == 'Pending'">
                                             <th class="align-middle" width="25%" scope="row">Status</th>
                                             <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div>
-                                                    <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}.</span> The contribution has yet to enter
-                                                        our review process.</p>
+                                                    <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}.</span>
+                                                        <br>Contribution yet to enter review process.
+                                                    </p>
                                                 </div>
                                             </td>
                                             <td class="align-middle" width="10%" style="border-left:0;">
@@ -365,6 +368,11 @@
     <script type="text/javascript">
         var app_id = "appgcGlPwTaZaBImL";
         var app_key = "key8l5YZtQ9FyUoxF";
+        var author_rec;
+        var coauthor_recs = [];
+        var subeditor_rec;
+        var coauthorURLParams;
+        var subeditorURLParams;
 
         var app_sub = new Vue({
             el: '#app-sub',
@@ -391,22 +399,25 @@
                         self.items = response.data.records;
                         if (author_id === null) {
                             author_rec = self.items[0].fields['Contact Author'];
+                            console.log('Author ID from airtable field: ' + author_rec);
                         } else {
-                            console.log(author_id);
                             author_rec = author_id;
+                            console.log('Author ID from URL: ' + author_rec);
                         }
-                        //author_rec = self.items[0].fields['Contact Author'];
-                        coauthor_recs = self.items[0].fields['Coauthors'];
-                        subeditor_rec = self.items[0].fields['Sub Editor'];
-                        if (coauthor_recs) {
-                            coauthorURLParams = encodeURI('filterByFormula=OR(RECORD_ID()="' + coauthor_recs.join('",RECORD_ID()="') + '")&');
+                        author_rec = self.items[0].fields['Contact Author'];
+                        if (self.items[0].fields['Coauthors']) {
+                            coauthor_recs = self.items[0].fields['Coauthors'];
+                            coauthorURLParams = encodeURI('filterByFormula=OR(RECORD_ID()="' + coauthor_recs.join('",RECORD_ID()="') + '")&maxRecords=' + coauthor_recs.length);
+                            console.log('The coauthor URL params are: ' + coauthorURLParams)
                         } else {
-                            coauthorURLParams = "";
+                            coauthorURLParams = "maxRecords=0";
                         }
-                        if (subeditor_rec) {
-                            subeditorURLParams = encodeURI('filterByFormula=FIND(%22' + subeditor_rec + '%22%2CID)&maxRecords=1"');
+                        if (self.items[0].fields['Sub Editor']) {
+                            subeditor_rec = self.items[0].fields['Sub Editor'];
+                            subeditorURLParams = encodeURI('filterByFormula=FIND("' + subeditor_rec + '",ID)&maxRecords=1');
+                            console.log('The subeditor URL params are: ' + subeditorURLParams)
                         } else {
-                            subeditorURLParams = "";
+                            subeditorURLParams = "maxRecords=0";
                         }
                     }).catch(function(error) {
                         console.log(error);
@@ -444,8 +455,8 @@
                         let h = document.getElementById("coauthors");
                         let k = document.getElementById("subeditor");
                         let author_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + author_rec + "%22%2CID)&maxRecords=1";
-                        let coauthor_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?api_key=key8l5YZtQ9FyUoxF&" + coauthorURLParams + "maxRecords=" + coauthor_recs.length;
-                        let subauthor_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + subeditor_rec + "%22%2CID)&maxRecords=1";
+                        let coauthor_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?" + coauthorURLParams;
+                        let subauthor_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?" + subeditorURLParams;
 
                         axios.all([
                                 axios.get(author_url, {
@@ -467,11 +478,17 @@
                             .then(response => {
                                 self.items = response[0].data.records;
                                 let obj = response[1].data.records;
+                                console.log(obj);
                                 let objSub = response[2].data.records;
-                                for (i in obj) {
-                                    h.insertAdjacentHTML("beforeend", '<p class="lbr my-2">' + obj[i].fields.Name + '</p>')
+                                console.log(objSub);
+                                if (obj[0]) {
+                                    for (i in obj) {
+                                        h.insertAdjacentHTML("beforeend", '<p class="lbr my-2">' + obj[i].fields.Name + '</p>')
+                                    }
+                                };
+                                if (objSub[0]) {
+                                    k.insertAdjacentHTML("beforeend", '<p class="lbr my-2">' + objSub[0].fields.Name + '</p>')
                                 }
-                                k.insertAdjacentHTML("beforeend", '<p class="lbr my-2">' + objSub[0].fields.Name + '</p>')
                             }).catch(function(error) {
                                 console.log(error);
                             })
