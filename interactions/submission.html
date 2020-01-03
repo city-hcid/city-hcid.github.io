@@ -91,6 +91,9 @@
                                                     <p v-if="item['fields']['Original submission']['0']['thumbnails']" class="lbr my-2">
                                                         <a v-bind:href="item['fields']['Original submission']['0']['url']"><img v-bind:src="item['fields']['Original submission']['0']['thumbnails']['small']['url']" alt="Thumbnail. Click to download file"></a>
                                                     </p>
+                                                    <p v-else class="lbr my-2">
+                                                        <a v-bind:href="item['fields']['Original submission']['0']['url']">{{ item['fields']['Original submission']['0']['filename'] }}</a>
+                                                    </p>
                                                 </div>
                                             </td>
                                             <td class="align-middle" width="10%" style="border-left:0;">
