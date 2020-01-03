@@ -13,20 +13,25 @@
     <main>
         <div class="container">
 
-            <div class="row justify-content-center" id="page-title">
-                <div class="col-12 col-md-9">
+            <div class="row justify-content-center align-items-center" id="page-title">
+                <div class="col-12 col-md-3 my-md-5 mt-5 order-md-5">
+                    <a href="https://interactions.acm.org">
+                        <img class="float-right" src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
+                    </a>
+                </div>
+                <div class="col-12 col-md-7">
                     <h1 class="font-weight-bold my-5">interactions Magazine</h1>
                 </div>
             </div>
 
             <div class="row justify-content-center" id="submission-title">
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-10">
                     <h2 class="font-weight-bold mb-3">Submission details</h2>
                 </div>
             </div>
 
             <div class="row justify-content-center" id="submission-details">
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-10">
                     <div id="app-sub">
                         <div v-for="(item, index) in items">
                             <div v-if="index == 0" id="submission">
@@ -189,13 +194,13 @@
             </div>
 
             <div class="row justify-content-center" id="author-title">
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-10">
                     <h2 class="font-weight-bold mt-5">Contact author details</h2>
                 </div>
             </div>
 
             <div class="row justify-content-center my-3" id="author-details">
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-10">
                     <div id="app-auth">
                         <div v-for="(item, index) in items">
                             <div v-if="index == 0" id="author">
@@ -380,7 +385,7 @@
 
             <div class="row justify-content-center my-3" id="FAQs">
                 <div class="col-12 col-md-9">
-                    <h2 class="font-weight-bold my-5">Frequently Asked Questions</h2>
+                    <h2 class="font-weight-bold mt-5">Frequently Asked Questions</h2>
 
                     <p class="mb-4">Read the following for information about submissions to <em>interactions</em>, and the process we follow to edit and then publish content.</p>
 
@@ -437,7 +442,7 @@
     <footer>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-10">
                     <div class="my-5">
                         <a href="https://interactions.acm.org">
                             <img src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
