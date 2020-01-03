@@ -88,7 +88,7 @@
                                             <th class="align-middle" width="25%" scope="row">Submission</th>
                                             <td class="align-middle" width="65%" style="border-right:0;">
                                                 <div v-if="item['fields']['Original submission']">
-                                                    <p class="lbr my-2">
+                                                    <p v-if="item['fields']['Original submission']['0']['thumbnails']['small']['url']" class="lbr my-2">
                                                         <a v-bind:href="item['fields']['Original submission']['0']['url']"><img v-bind:src="item['fields']['Original submission']['0']['thumbnails']['small']['url']" alt="Thumbnail. Click to download file"></a>
                                                     </p>
                                                 </div>
@@ -413,14 +413,19 @@
                     <br/>
 
                     <h3>Process</h3>
-                    <p class="mb-4"><em>Is the work reviewed?</em><br/><em>interactions</em> is a magazine and thus content does not undergo a formal or blind review process. However, the sub-editors and/or editors in chief do carefully view incoming content to assess it's suitability. Content may be accepted as is or authors may be asked to make  amendments to ensure it speaks to the magazine's general readership and is in line with the goals of the publication. Submissions may be deemed outside the scope of the magazine in which case the editors in chief will inform the authors.</p>
+                    <p class="mb-4"><em>Is the work reviewed?</em><br/><em>interactions</em> is a magazine and thus content does not undergo a formal or blind review process. However, the sub-editors and/or editors in chief do carefully view incoming content to assess
+                        it's suitability. Content may be accepted as is or authors may be asked to make amendments to ensure it speaks to the magazine's general readership and is in line with the goals of the publication. Submissions may be deemed outside
+                        the scope of the magazine in which case the editors in chief will inform the authors.</p>
 
-                    <p class="mb-4"><em>When will my contribution be published?</em><br/>Content is published on a rolling basis and also where possible organised around particular issues or topics. Once a submission is finalised, our aim is to have the work in the magazine within one of the next three issues.</p>
+                    <p class="mb-4"><em>When will my contribution be published?</em><br/>Content is published on a rolling basis and also where possible organised around particular issues or topics. Once a submission is finalised, our aim is to have the work in the magazine
+                        within one of the next three issues.</p>
 
                     <h3>Contact</h3>
-                    <p class="mb-4"><em>Who should I contact about any administrative or procedural matters?</em><br/>If you're seeking further clarity about the process we follow in accepting and publishing work, or where your submission is in the process please address communications to the <em>Assistant to the Editors in Chief</em>, using <a href="mailto:eic@interactions.acm.org?Subject=[interactions] Query to Assistant" target="_top">eic@interactions.acm.org</a>.</p>
+                    <p class="mb-4"><em>Who should I contact about any administrative or procedural matters?</em><br/>If you're seeking further clarity about the process we follow in accepting and publishing work, or where your submission is in the process please address
+                        communications to the <em>Assistant to the Editors in Chief</em>, using <a href="mailto:eic@interactions.acm.org?Subject=[interactions] Query to Assistant" target="_top">eic@interactions.acm.org</a>.</p>
 
-                    <p class="mb-5"><em>Who should I contact about any substantive questions about content?</em><br/>If you have substantive questions about work you have submitted or about work you plan to submit, such as questions about the kind of content to submit or the style of writing, please address communications to the <em>Editors in Chief</em>, using <a href="mailto:eic@interactions.acm.org?Subject=[interactions] Query to EIC" target="_top">eic@interactions.acm.org</a>.</p>
+                    <p class="mb-5"><em>Who should I contact about any substantive questions about content?</em><br/>If you have substantive questions about work you have submitted or about work you plan to submit, such as questions about the kind of content to submit
+                        or the style of writing, please address communications to the <em>Editors in Chief</em>, using <a href="mailto:eic@interactions.acm.org?Subject=[interactions] Query to EIC" target="_top">eic@interactions.acm.org</a>.</p>
                 </div>
             </div>
 
