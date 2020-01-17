@@ -96,9 +96,9 @@
                                     <span v-if="item['fields']['org']">
                                         {{ item['fields']['org'] }}
                                     </span>
-                                    <div>
+                                    <div class="col s10 m6 l2">
                                         <br>
-                                        <span v-if="item['fields']['photo-url']"><img class="roundedElement responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" width="150" /></span>
+                                        <span v-if="item['fields']['photo-url']"><img class="roundedElement responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" /></span>
                                     </div>
                                     <p>
                                         <span v-if="item['fields']['twitter']">
