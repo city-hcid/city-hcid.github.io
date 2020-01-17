@@ -162,37 +162,37 @@
             });
             $('.sidenav').sidenav();
         });
-        $(window).scroll(function() {
-            i = 1;
-            $(".fade-out-left").css({
-                "opacity": 1 - $(window).scrollTop() / 90,
-                "margin-left": 1 - $(window).scrollTop() / .3
-            });
-            if ($(".fade-in").css('opacity') < 1) {
-                $(".fade-in").css({
-                    "opacity": $(window).scrollTop() / 180
+        /*         $(window).scroll(function() {
+                    i = 1;
+                    $(".fade-out-left").css({
+                        "opacity": 1 - $(window).scrollTop() / 90,
+                        "margin-left": 1 - $(window).scrollTop() / .3
+                    });
+                    if ($(".fade-in").css('opacity') < 1) {
+                        $(".fade-in").css({
+                            "opacity": $(window).scrollTop() / 180
+                        });
+                    }
+                    if ($(".brand-logo").css('opacity') < 1) {
+                        $(".brand-logo").css({
+                            "opacity": $(window).scrollTop() / 300
+                        });
+                    }
                 });
-            }
-            if ($(".brand-logo").css('opacity') < 1) {
-                $(".brand-logo").css({
-                    "opacity": $(window).scrollTop() / 300
+                $(".fade-in").mouseenter(function() {
+                    if ($(this).css('opacity') == 0) {
+                        $(this).animate({
+                            opacity: '1'
+                        }, "slow")
+                    }
                 });
-            }
-        });
-        $(".fade-in").mouseenter(function() {
-            if ($(this).css('opacity') == 0) {
-                $(this).animate({
-                    opacity: '1'
-                }, "slow")
-            }
-        });
-        $(".fade-in").mouseleave(function() {
-            if ($(this).css('opacity') > 0 && $(window).scrollTop() == 0 && i == 0) {
-                $(this).animate({
-                    opacity: '0'
-                }, "slow")
-            }
-        });
+                $(".fade-in").mouseleave(function() {
+                    if ($(this).css('opacity') > 0 && $(window).scrollTop() == 0 && i == 0) {
+                        $(this).animate({
+                            opacity: '0'
+                        }, "slow")
+                    }
+                }); */
     </script>
 </body>
 
