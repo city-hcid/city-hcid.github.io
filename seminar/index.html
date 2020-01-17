@@ -158,7 +158,22 @@
                                 <span v-else><i class="material-icons circle">people</i></span>
                                 <div>
                                     <p class="mb-3">
-                                        <a v-bind:href="'/seminar/speaker?last=' + item['fields']['last']"><strong>{{ item['fields']['full-name'] }}</strong></a><br /> {{ item['fields']['group-dept'] }}, {{ item['fields']['org'] }}<br />
+                                        <a v-bind:href="'/seminar/speaker?last=' + item['fields']['last']"><strong>{{ item['fields']['full-name'] }}</strong></a><br />
+
+                                        <span v-if="item['fields']['group-dept']">
+                                            <span v-if="item['fields']['org']">
+                                            {{ item['fields']['group-dept'] }}, 
+                                            </span>
+                                        <span v-else>
+                                                {{ item['fields']['group-dept'] }} 
+                                            </span>
+                                        </span>
+
+                                        <span v-if="item['fields']['org']">
+                                        {{ item['fields']['org'] }}
+                                        </span>
+
+                                        <br />
                                     </p>
                                     <p class="mb-3">
                                         <span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
