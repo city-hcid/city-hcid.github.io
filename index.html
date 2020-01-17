@@ -152,7 +152,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
     <script>
         //AOS.init();
         var i = 0;
@@ -160,7 +160,15 @@
             $('.dropdown-trigger').dropdown({
                 hover: true
             });
+            $('.tabs').tabs();
             $('.sidenav').sidenav();
+
+
+
+            /* $('.dropdown-trigger').dropdown({
+                hover: true
+            });
+            $('.sidenav').sidenav(); */
         });
         /*         $(window).scroll(function() {
                     i = 1;
