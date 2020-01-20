@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HCID, seminar, talks, speakers" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HCID | Seminar Series Speakers</title>
+</head>
+
+<body>
+    <header>
+        <div class="navbar-fixed">
+            <nav class="no-shadows">
+                <div class="nav-wrapper white">
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
+                    <ul id="nav-mobile" class="left hide-on-small-and-down">
+                        <li class="active"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
+                        <li><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
+                        <li><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
+                        <li><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Side nav structure -->
+        <ul class="sidenav" id="mobile-nav">
+            <li><a class="menu-header" href="../">HCID</a></li>
+            <li><a href="../centre/charter" class="menu-subheader">Charter</a></li>
+            <li><a href="../centre/members" class="menu-subheader">Members</a></li>
+            <li><a href="../centre/projects" class="menu-subheader">Projects</a></li>
+            <li><a href="../centre/calendar" class="menu-subheader">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
+            <li><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a class="menu-header" href="../seminar/">Seminar Series</a></li>
+            <li><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+            <li><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a class="menu-header" href="../msc/student-photos">MSc Students</a></li>
+            <li><a class="menu-subheader" href="../msc/calendar">Calendar</a></li>
+        </ul>
+
+        <!-- HCID dropdown menu -->
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a class="menu-header" href="../">HCID</a></li>
+            <li><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
+            <li><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a class="menu-header" href="../seminar/">Seminar Series</a></li>
+            <li><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+            <li><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a class="menu-header" href="../msc/student-photos">MSc Students</a></li>
+            <li><a class="menu-subheader" href="../msc/calendar">Calendar</a></li>
+        </ul>
+
+        <!-- Page title -->
+        <div class="container" style="padding-bottom:5rem;">
+            <div class="row">
+                <div class="col s12 m9 l10">
+                    <h1 class="page-title">
+                        <a class="black-text" href="../../">HCID</a>:<br><a class="black-text" href="../seminar/">Seminar Series</a>:<br><span class="red-text">Speaker</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m9 l10" id="bodybox">
+                    <div id="app">
+                        <div v-for="(item, index) in items">
+                            <div v-if="index == 0" id="speakerInfo">
+                                <h2 style="margin-bottom:.2rem;">
+                                    {{ item['fields']['full-name'] }}
+                                </h2>
+                                <span v-if="item['fields']['group-dept']">
+                                        <span v-if="item['fields']['org']">
+                                            {{ item['fields']['group-dept'] }}, 
+                                        </span>
+                                <span v-else>
+                                            {{ item['fields']['group-dept'] }} 
+                                        </span>
+                                </span>
+                                <span v-if="item['fields']['org']">
+                                        {{ item['fields']['org'] }}
+                                    </span>
+                                <div>
+                                    <br>
+                                    <span v-if="item['fields']['photo-url']"><img class="roundedElement responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['full-name']" width="200" /></span>
+                                </div>
+                                <p>
+                                    <span v-if="item['fields']['twitter']">
+                                        <strong>Twitter: </strong><a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
+                                    </span>
+                                    <br>
+                                    <span v-if="item['fields']['scholar-orcid']">
+                                        <strong>Academic record: </strong><a v-bind:href="item['fields']['scholar-orcid']">Google Scholar/ORCID</a>
+                                    </span>
+                                </p>
+                                <p>
+                                    <span class="lbr" v-if="item['fields']['bio']">
+                                        <strong>Bio:</strong> {{ item['fields']['bio'] }}
+                                    </span>
+                                </p>
+                            </div>
+                            <h3>
+                                <br>
+                                <strong>Talk Title: 
+                                    <span v-if="item['fields']['talk-title']">{{ item['fields']['talk-title'] }}</span>
+                                    <span v-else>TBA</span></strong>
+                            </h3>
+                            <p>
+                                <strong>Time: </strong>
+                                <span v-if="item['fields']['date']">{{ item['fields']['date-str'] }}</span>
+                                <span v-else>TBA</span>
+                                <br />
+                                <strong>Room: </strong>
+                                <span v-if="item['fields']['room']">{{ item['fields']['room'] }}</span>
+                                <span v-else>TBA</span>
+                            </p>
+                            <div v-if="item['fields']['talk-image']">
+                                <img class="roundedElement responsive-img" v-bind:src="item['fields']['talk-image']" v-bind:alt="Photo for talk supplied by speaker" />
+                            </div>
+                            <p><strong>Abstract: </strong>
+                                <span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
+                                <span v-else>TBA</span></p>
+                        </div>
+                    </div>
+                    <!--app-->
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer grey lighten-5">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12" data-aos="fade-up" data-aos-delay="150" data-aos-anchor-placement="bottom-bottom" data-aos-easing="ease-in-out-quad">
+                    <h5 class="bold grey-text text-darken-4">
+                        HCID
+                    </h5>
+                    <div>
+                        <a class="link grey-text text-darken-4" href="https://hcid.city">Centre for Human-Computer Interaction Design</a>
+                    </div>
+                </div>
+                <div id="address" aria-label="Address" class="col l4 offset-l2 s12 mt-4">
+                    <ul>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">City, University of London</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">College Building</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">276-284 St John Street</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">Clerkenwell</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">London, EC1V 4PB</a>
+                        </li>
+                        <li aria-label="Link to Visting page" class="mt-3">
+                            <a class="grey-text text-lighten-1 link" href="https://hcid.city/visiting.html"><i class="material-icons md-14 pt-1">location_on</i>&nbsp;Visiting us...</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col 4">
+                    <div class="footer-copyright grey lighten-5 grey-text text-lighten-2">
+                        <a class="grey-text text-lighten-2" href="https://www.gnu.org/licenses/copyleft.en.html" title="What is Copyleft? - GNU Project - Free Software Foundation">Copyleft</a>&nbsp;<span class="copyleft">&copy;</span>&nbsp;
+                        <script type="text/javascript">
+                            document.write(new Date().getFullYear());
+                        </script>&nbsp;GNU&nbsp;<a class="grey-text text-lighten-2" href="https://www.gnu.org/licenses/gpl.html" title="The GNU General Public License v3.0 - GNU Project - Free Software Foundation">General Public License</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: []
+            },
+            mounted: function() {
+                this.loadItems();
+            },
+            methods: {
+                loadItems: function() {
+                    var url_string = window.location.href;
+                    var url = new URL(url_string);
+                    var last = url.searchParams.get("last");
+                    var self = this
+                    var app_id = "appVrmQAGy96E1jEP";
+                    var app_key = "keyC83ksN49wS10kX";
+                    this.items = []
+                    axios.get(
+                        "https://api.airtable.com/v0/" + app_id + "/seminar-speakers?filterByFormula=(FIND(%22" + last + "%22%2C%7BLast%7D))", {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        }
+                    ).then(function(response) {
+                        self.items = response.data.records;
+                    }).catch(function(error) {
+                        console.log(error)
+                    })
+                }
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-trigger').dropdown({
+                hover: true
+            });
+            $('.sidenav').sidenav();
+        });
+    </script>
+</body>
+
+</html>
