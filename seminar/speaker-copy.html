@@ -130,7 +130,7 @@
                                 <span v-else>TBA</span>
                             </p>
                             <div v-if="item['fields']['talk-image']">
-                                <img class="roundedElement responsive-img" v-bind:src="item['fields']['talk-image']" v-bind:alt="Photo for talk supplied by speaker" />
+                                <img class="roundedElement responsive-img" v-bind:src="item['fields']['talk-image']" alt="Photo for talk supplied by speaker" />
                             </div>
                             <p><strong>Abstract: </strong>
                                 <span class="lbr" v-if="item['fields']['talk-abstract']">{{ item['fields']['talk-abstract'] }}</span>
