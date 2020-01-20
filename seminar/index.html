@@ -102,6 +102,9 @@
                             <p class="flow-text" v-if="item['fields']['talk-title']" style="font-weight:800;">
                                 {{ item['fields']['talk-title'] }}
                             </p>
+                            <div v-if="item['fields']['talk-image']">
+                                <img class="roundedElement responsive-img" v-bind:src="item['fields']['talk-image'][0]['thumbnails']['large']['url']" alt="Photo for talk supplied by speaker" />
+                            </div>
                             <p class="right-align">
                                 &mdash; From <span v-if="item['fields']['full-name']"><a v-bind:href= "'/seminar/speaker?last=' + item['fields']['last']">{{ item['fields']['full-name'] }}</a></span>
                                 <br /><span v-if="item['fields']['date-str']">{{ item['fields']['date-str'] }}</span>
