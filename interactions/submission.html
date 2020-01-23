@@ -90,7 +90,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="align-middle" width="25%" scope="row">Submission</th>
+                                            <th class="align-middle" width="25%" scope="row">Draft(s)</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Original submission']">
                                                     <p v-if="item['fields']['Original submission']['0']['thumbnails']" class="lbr my-2">
@@ -98,6 +98,21 @@
                                                     </p>
                                                     <p v-else class="lbr my-2">
                                                         <a v-bind:href="item['fields']['Original submission']['0']['url']">{{ item['fields']['Original submission']['0']['filename'] }}</a>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle border-left-0" width="10%">
+                                            </td>
+                                        </tr>
+                                        <tr v-if="item['fields']['Final text']">
+                                            <th class="align-middle" width="25%" scope="row">Final text</th>
+                                            <td class="align-middle border-right-0" width="65%">
+                                                <div v-if="item['fields']['Original submission']">
+                                                    <p v-if="item['fields']['Final text']['0']['thumbnails']" class="lbr my-2">
+                                                        <a v-bind:href="item['fields']['Final text']['0']['url']"><img v-bind:src="item['fields']['Final text']['0']['thumbnails']['small']['url']" alt="Thumbnail. Click to download file"></a>
+                                                    </p>
+                                                    <p v-else class="lbr my-2">
+                                                        <a v-bind:href="item['fields']['Final text']['0']['url']">{{ item['fields']['Final text']['0']['filename'] }}</a>
                                                     </p>
                                                 </div>
                                             </td>
