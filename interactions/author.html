@@ -357,22 +357,8 @@
 
         var app_auth = new Vue({
             el: '#app-auth',
-            /* props: {
-                author_rec: {
-                    type: String,
-                    default: "",
-                    required: true
-                }
-            }, */
             data: {
-                items: [],
-                fieldName: '',
-                airtableTable: ''
-            },
-            watch: {
-                author_rec() {
-                    this.loadItems();
-                }
+                items: []
             },
             mounted: function() {
                 this.loadItems();
@@ -380,6 +366,7 @@
             methods: {
                 loadItems: async function() {
                     let self = this;
+                    let url = new URL(window.location.href);
                     let author_id = url.searchParams.get("aut");
 
                     setTimeout(() => {
