@@ -240,10 +240,12 @@
     <script type="text/javascript">
         var app_id = "appgcGlPwTaZaBImL";
         var app_key = "key8l5YZtQ9FyUoxF";
+        var author_rec;
         var app_auth = new Vue({
             el: '#app-auth',
             data: {
-                items: []
+                items: [],
+                fieldName: ''
             },
             mounted: function() {
                 this.loadItems();
@@ -251,10 +253,11 @@
             methods: {
                 loadItems: function() {
                     let url = new URL(window.location.href);
-                    let author_rec = url.searchParams.get("aut");
+                    author_rec = url.searchParams.get("aut");
+                    let author_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + author_rec + "%22%2CID)&maxRecords=1";
+                    console.log(author_url);
                     let self = this;
                     this.items = [];
-                    let author_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + author_rec + "%22%2CID)&maxRecords=1";
                     axios.get(
                         author_url, {
                             headers: {
@@ -263,6 +266,7 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
+                        console.log(self.items);
                     }).catch(function(error) {
                         console.log(error)
                     })
