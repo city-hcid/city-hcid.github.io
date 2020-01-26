@@ -54,7 +54,7 @@
                                             <th class="align-middle" width="25%" scope="row">Contact Author</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Primary Contact']">
-                                                    <p class="lbr my-2"><a v-bind:href="author?aut=' + item['fields']['Contact Author'] + '" target="_blank">{{ item['fields']['Primary Contact'] }}</a></p>
+                                                    <p class="lbr my-2"><a v-bind:href="'author?aut=' + item['fields']['Contact Author']" target="_blank">{{ item['fields']['Primary Contact'] }}</a></p>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
