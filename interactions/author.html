@@ -24,9 +24,18 @@
                 </div>
             </div>
 
-            <div class="row justify-content-center" id="author-title">
+            <div class="row justify-content-center" id="author-record-title">
                 <div class="col-12 col-md-10">
-                    <h2 class="font-weight-bold mb-3">Author details</h2>
+                    <h2 class="font-weight-bold mb-3">Author Record</h2>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10">
+                    <p class="mb-3">The interactions Magazine editorial team will keep a record of the information below for their submission process. We'll use the information to contact authors about their submission, and to supply the right author details to the ACM
+                        for publication.</p>
+                    <p>This record can be used for any new submission (so you don't need to fill out an <a href ="http://j.mp/ix-author-form" target="_blank">author form</a> everytime). However, if you'd like us to delete your information from our records please <a href="mailto:eic@interactions.acm.org?Subject=[query]%20Author%20Record"
+                                target="_top">email us</a> to let us know.</p>
                 </div>
             </div>
 
@@ -39,7 +48,7 @@
                                     <tbody>
 
                                         <tr>
-                                            <th class="align-middle" width="25%" scope="row">Contact Author</th>
+                                            <th class="align-middle" width="25%" scope="row">Author Name</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Name']">
                                                     <p class="lbr font-weight-bold my-2">{{ item['fields']['Name'] }}</p>
@@ -217,6 +226,18 @@
                 </div>
             </div>
 
+
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10">
+                    <p>To make a new submission use one of the forms listed below.</p>
+                    <div id="app-forms">
+                    <ul class="mb-3">
+                        <li v-for="item in items"><a v-bind:href="item['fields']['form-url-short']" target="_blank">{{ item['fields']['form-name'] }}</a></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </main>
     <footer>
@@ -241,6 +262,36 @@
         var app_id = "appgcGlPwTaZaBImL";
         var app_key = "key8l5YZtQ9FyUoxF";
         var author_rec;
+
+        var app_forms = new Vue({
+            el: '#app-forms',
+            data: {
+                items: []
+            },
+            mounted: function() {
+                this.loadItems();
+            },
+            methods: {
+                loadItems: function() {
+                    let forms_url = "https://api.airtable.com/v0/" + app_id + "/forms?view=author-page";
+                    let self = this;
+                    this.items = [];
+                    axios.get(
+                        forms_url, {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        }
+                    ).then(function(response) {
+                        self.items = response.data.records;
+                    }).catch(function(error) {
+                        console.log(error)
+                    })
+
+                }
+            }
+        });
+
         var app_auth = new Vue({
             el: '#app-auth',
             data: {
@@ -255,7 +306,6 @@
                     let url = new URL(window.location.href);
                     author_rec = url.searchParams.get("aut");
                     let author_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + author_rec + "%22%2CID)&maxRecords=1";
-                    console.log(author_url);
                     let self = this;
                     this.items = [];
                     axios.get(
@@ -266,7 +316,6 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        console.log(self.items);
                     }).catch(function(error) {
                         console.log(error)
                     })
