@@ -295,65 +295,7 @@
     <script type="text/javascript">
         var app_id = "appgcGlPwTaZaBImL";
         var app_key = "key8l5YZtQ9FyUoxF";
-        //var submission_id;
-        var author_rec;
-        //var coauthor_recs = [];
-        //var subeditor_rec;
-        //var coauthorURLParams;
-        //var subeditorURLParams;
-        //var source;
-
-        /* var app_sub = new Vue({
-            el: '#app-sub',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    let url = new URL(window.location.href);
-                    submission_id = url.searchParams.get("id");
-                    let author_id = url.searchParams.get("aut");
-                    let submission_url = "https://api.airtable.com/v0/" + app_id + "/Content?filterByFormula=FIND(%22" + submission_id + "%22%2CID)&maxRecords=1";
-                    let self = this;
-                    axios.get(
-                        submission_url, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records;
-                        if (author_id === null) {
-                            author_rec = self.items[0].fields['Contact Author'];
-                            //console.log('Author ID from airtable field: ' + author_rec);
-                        } else {
-                            author_rec = author_id;
-                            //console.log('Author ID from URL: ' + author_rec);
-                        }
-                        author_rec = self.items[0].fields['Contact Author'];
-                        if (self.items[0].fields['Coauthors']) {
-                            coauthor_recs = self.items[0].fields['Coauthors'];
-                            coauthorURLParams = encodeURI('filterByFormula=OR(RECORD_ID()="' + coauthor_recs.join('",RECORD_ID()="') + '")&maxRecords=' + coauthor_recs.length);
-                            //console.log('The coauthor URL params are: ' + coauthorURLParams)
-                        } else {
-                            coauthorURLParams = "maxRecords=0";
-                        }
-                        if (self.items[0].fields['Sub Editor']) {
-                            subeditor_rec = self.items[0].fields['Sub Editor'];
-                            subeditorURLParams = encodeURI('filterByFormula=FIND("' + subeditor_rec + '",ID)&maxRecords=1');
-                            //console.log('The subeditor URL params are: ' + subeditorURLParams)
-                        } else {
-                            subeditorURLParams = "maxRecords=0";
-                        }
-                    }).catch(function(error) {
-                        console.log(error);
-                    })
-                }
-            }
-        }); */
+        //var author_rec;
 
         var app_auth = new Vue({
             el: '#app-auth',
@@ -367,7 +309,7 @@
                 loadItems: async function() {
                     let self = this;
                     let url = new URL(window.location.href);
-                    let author_id = url.searchParams.get("aut");
+                    let author_rec = url.searchParams.get("aut");
 
                     setTimeout(() => {
                         //let h = document.getElementById("coauthors");
