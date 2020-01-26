@@ -595,7 +595,7 @@
                                 let objSub = response[2].data.records;
                                 if (obj[0]) {
                                     for (i in obj) {
-                                        h.insertAdjacentHTML("beforeend", '<p class="lbr my-2">' + obj[i].fields.Name + '</p>')
+                                        h.insertAdjacentHTML("beforeend", '<p class="lbr my-2"><a href="authors?aut=' + objSub[0].fields.ID + '" target="_blank">' + obj[i].fields.Name + '</a></p>')
                                     }
                                 };
                                 if (objSub[0]) {
