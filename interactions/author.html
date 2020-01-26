@@ -253,21 +253,19 @@
                     let url = new URL(window.location.href);
                     let author_rec = url.searchParams.get("aut");
                     let self = this;
-                    this.items = []
-
-                    setTimeout(() => {
-                        let author_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + author_rec + "%22%2CID)&maxRecords=1";
-
-                        axios.get(
-                            author_url, {
-                                headers: {
-                                    Authorization: "Bearer " + app_key
-                                }
+                    this.items = [];
+                    let author_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?filterByFormula=FIND(%22" + author_rec + "%22%2CID)&maxRecords=1";
+                    axios.get(
+                        author_url, {
+                            headers: {
+                                Authorization: "Bearer " + app_key
                             }
-                        ).then(response => {}).catch(function(error) {
-                            console.log(error);
-                        })
-                    }, 1200);
+                        }
+                    ).then(function(response) {
+                        self.items = response.data.records;
+                    }).catch(function(error) {
+                        console.log(error)
+                    })
 
                 }
             }
