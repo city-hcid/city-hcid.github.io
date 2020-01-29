@@ -143,6 +143,30 @@
                                             <td class="align-middle border-left-0 " width="10% ">
                                             </td>
                                         </tr>
+
+
+                                        <tr v-if="item['fields']['Graphics'] ">
+                                            <div class="modal fade photo-modal-sm " tabindex="-1 " role="dialog " aria-labelledby="mySmallModalLabel " aria-hidden="true ">
+                                                <div class="modal-dialog modal-dialog-centered modal-sm " role="document ">
+                                                    <div class="modal-content my-2 ">
+
+                                                        <div class="modal-header ">
+                                                            <h5 class="modal-title " id="ModalGraphicsTitle ">Graphics</h5>
+                                                            <button type="button " class="close " data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true ">&times;</span>
+                                                                </button>
+                                                        </div>
+                                                        <p class="text-center mt-3 ">
+                                                            <a v-bind:href="item[ 'fields'][ 'Graphics'][ '0'][ 'url'] ">
+                                                                <img v-bind:src="item[ 'fields'][ 'Graphics'][0][ 'thumbnails'][ 'large'][ 'url'] " class="rounded " alt="Thumbnail. Click to download file " width='250' height='250'>
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>
+
+
                                         <tr v-if="item[ 'fields'][ 'Sub Editor'] ">
                                             <th class="align-middle " width="25% " scope="row ">Sub Editor</th>
                                             <td class="align-middle border-right-0 " width="65% ">
