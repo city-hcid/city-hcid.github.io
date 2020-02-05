@@ -232,38 +232,20 @@
                                             </td>
                                         </tr>
 
-                                        <tr class="table-danger" v-if="item['fields']['Status'] == 'Pending'">
-                                            <th class="align-middle" width="25%" scope="row">Status</th>
+
+
+                                        <tr>
+                                            <th class="align-middle" width="25%" scope="row">Responsbility</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div>
-                                                    <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}.</span>
-                                                        <br>Contribution not yet in review process.
+                                                    <p class="lbr my-2"><span v-if="item['fields']['Responsibility']"> Under responsibility of {{ item['fields']['responsibility-string'] }}</span>
                                                     </p>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                             </td>
                                         </tr>
-                                        <tr class="table-warning" v-if="item['fields']['Status'] == 'In process'">
-                                            <th class="align-middle" width="25%" scope="row">Status</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div>
-                                                    <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}</span></p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                            </td>
-                                        </tr>
-                                        <tr class="table-success" v-if="item['fields']['Status'] == 'Ready'">
-                                            <th class="align-middle" width="25%" scope="row">Status</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div>
-                                                    <p class="lbr my-2"><span>{{ item['fields']['Status'] }}</span><span v-if="item['fields']['Responsibility']"> - under responsibility of {{ item['fields']['responsibility-string'] }}.</span><br>Sent to ACM for publication.</p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                            </td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
