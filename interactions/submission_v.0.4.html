@@ -131,8 +131,8 @@
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
                                                     <button v-if="item['fields']['Author Order']" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Author Order" data-source="Submission" data-placeholder="Author Order..."><span>update...<span></button>
-                                                    <button v-else-if="item['fields']['Coauthors'] && item['fields']['Author Order'] == null" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Author Order" data-source="Submission"
-                                                        data-placeholder="Author Order..."><span>add...</span></button>
+                                                    <button v-else-if="item['fields']['Coauthors'] && item['fields']['Author Order'] == null" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Author Order"
+                                                        data-source="Submission" data-placeholder="Author Order..."><span>add...</span></button>
                                                     <button v-else v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#submissionModal" data-field="Author Order" data-source="Submission" data-placeholder="Author Order..."><span>add...</span></button>
                                                 </div>
                                             </td>
@@ -266,7 +266,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green update" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions..."><span>update...</span></button>
+                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green update" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission"
+                                                        data-placeholder="Image captions..."><span>update...</span></button>
                                                     <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions..."><span>add...</span></button>
                                                 </div>
                                             </td>
@@ -371,8 +372,8 @@
             <div class="row justify-content-center my-3" id="author-details">
                 <div class="col-12 col-md-10">
                     <div id="app-auth">
-                        <div v-for="(item, index) in items">
-                            <div v-if="index == 0" id="author">
+                        <div v-for="item in items">
+                            <div v-if="item['fields']['Name']" id="author">
                                 <table class="table table-bordered table-hover">
                                     <tbody>
 
@@ -428,7 +429,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or Lab name..."><span v-if="item['fields']['Group']">update...</span><span v-else>add...</span></button>
+                                                    <button v-if="item['fields']['Group']" v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -442,7 +444,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name..."><span v-if="item['fields']['Department']">update...</span><span v-else>add...</span></button>
+                                                    <button v-if="item['fields']['Department']" v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -456,7 +459,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name..."><span v-if="item['fields']['Organisation']">update...</span><span v-else>add...</span></button>
+                                                    <button v-if="item['fields']['Organisation']" v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -470,21 +474,24 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#updateModal" data-field="Twitter" data-source="Author" data-placeholder="Twitter handle..."><span v-if="item['fields']['Twitter']">update...</span><span v-else>add...</span></button>
+                                                    <button v-if="item['fields']['Twitter']" v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Twitter" data-source="Author" data-placeholder="Twitter handle..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Twitter" data-source="Author" data-placeholder="Twitter handle..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
 
-                                        <tr>
+                                        <tr v-if="item['fields']['Type']=='Features' || item['fields']['Type']=='Forums' || item['fields']['Type']=='Columns' || item['fields']['Type']=='Blog' || item['fields']['Type']=='Blog@UX'">
                                             <th class="align-middle" width="25%" scope="row">Bio</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div>
                                                     <p class="lbr my-2" v-if="item['fields']['Short Bio']">{{ item['fields']['Short Bio'] }}</p>
+                                                    <p class="lbr my-2" v-else>50 words maximum.</p>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#updateModal" data-field="Short Bio" data-source="Author" data-placeholder="Short Bio..."><span v-if="item['fields']['Short Bio']">update...</span><span v-else>add...</span></button>
+                                                    <button v-if="item['fields']['Short Bio']" v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Short Bio" data-source="Author" data-placeholder="Short Bio..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#updateModal" data-field="Short Bio" data-source="Author" data-placeholder="Short Bio..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -498,7 +505,9 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author" data-placeholder="Postal Address..."><span v-if="item['fields']['Postal Address']">update...</span><span v-else>add...</span></button>
+                                                    <button v-if="item['fields']['Postal Address']" v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author"
+                                                        data-placeholder="Postal Address..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author" data-placeholder="Postal Address..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -615,12 +624,10 @@
     <footer>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 col-md-10">
-                    <div class="my-5">
-                        <a href="https://interactions.acm.org">
-                            <img src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
-                        </a>
-                    </div>
+                <div class="col-12 col-md-10 my-5">
+                    <a href="https://interactions.acm.org">
+                        <img src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
+                    </a>
                 </div>
             </div>
         </div>
@@ -638,7 +645,7 @@
     <script type="text/javascript">
         var app_id = "appgcGlPwTaZaBImL";
         var app_key = "key8l5YZtQ9FyUoxF";
-        var submission_id;
+        var submission_rec;
         var author_rec;
         var coauthor_recs = [];
         var subeditor_rec;
@@ -659,9 +666,9 @@
             methods: {
                 loadItems: function() {
                     let url = new URL(window.location.href);
-                    submission_id = url.searchParams.get("id");
-                    let author_id = url.searchParams.get("aut");
-                    let submission_url = "https://api.airtable.com/v0/" + app_id + "/Content?filterByFormula=FIND(%22" + submission_id + "%22%2CID)&maxRecords=1";
+                    submission_rec = url.searchParams.get("id");
+                    author_rec = url.searchParams.get("aut");
+                    let submission_url = "https://api.airtable.com/v0/" + app_id + "/Content?filterByFormula=FIND(%22" + submission_rec + "%22%2CID)&maxRecords=1";
                     let self = this;
                     axios.get(
                         submission_url, {
@@ -671,12 +678,9 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        if (author_id === null) {
+                        if (author_rec === null) {
                             author_rec = self.items[0].fields['Contact Author'];
-                        } else {
-                            author_rec = author_id;
                         }
-                        author_rec = self.items[0].fields['Contact Author'];
                         if (self.items[0].fields['Coauthors']) {
                             coauthor_recs = self.items[0].fields['Coauthors'];
                             coauthorURLParams = encodeURI('filterByFormula=OR(RECORD_ID()="' + coauthor_recs.join('",RECORD_ID()="') + '")&maxRecords=' + coauthor_recs.length);
@@ -701,28 +705,16 @@
 
         var app_auth = new Vue({
             el: '#app-auth',
-            props: {
-                author_rec: {
-                    type: String,
-                    default: "",
-                    required: true
-                }
-            },
             data: {
                 items: [],
                 fieldName: '',
                 airtableTable: ''
             },
-            watch: {
-                author_rec() {
-                    this.loadItems();
-                }
-            },
             mounted: function() {
                 this.loadItems();
             },
             methods: {
-                loadItems: async function() {
+                loadItems: function() {
                     let self = this;
 
                     setTimeout(() => {
@@ -770,7 +762,7 @@
             }
         });
 
-        $('#updateModal').on('show.bs.modal', function(event) {
+        /* $('#submissionModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             airtableField = button.data('field'); //.replace(/ /g, "_");
             source = button.data('source');
@@ -781,40 +773,45 @@
             var modal = $(this);
             var inputPrepend = "<div class='input-group-prepend' id='twitterAt'><div class='input-group-text'>@</div></div>";
 
-            if (airtableField == 'Twitter' && document.getElementById('twitterAt') === null) {
-                //document.getElementById('updateFormGroup').insertAdjacentHTML('afterbegin', inputPrepend);
-            }
             modal.find('.modal-title').text(source + ' update');
             modal.find('.form-control').attr('placeholder', placeholder)
-                //modal.find('.modal-body label').text(field)
+        }); */
+
+        $('#updateModal').add('#submissionModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            airtableField = button.data('field'); //.replace(/ /g, "_");
+            source = button.data('source');
+            var placeholder = button.data('placeholder');
+            var modal = $(this);
+            //var inputPrepend = "<div class='input-group-prepend' id='twitterAt'><div class='input-group-text'>@</div></div>";
+
+            /* if (airtableField == 'Twitter' && document.getElementById('twitterAt') === null) {
+                //document.getElementById('updateFormGroup').insertAdjacentHTML('afterbegin', inputPrepend);
+            } */
+            modal.find('.modal-title').text(source + ' update');
+            modal.find('.form-control').attr('placeholder', placeholder)
         });
 
         function submitForm(form) {
             var updateFieldData;
             var updateFieldValue;
             var airtable_write_endpoint;
-            console.log(source);
-
-            //let airtable_write_endpoint = "https://api.airtable.com/v0/appgcGlPwTaZaBImL/Editors%20%26%20Authors/" + author_rec + "/?api_key=key8l5YZtQ9FyUoxF";
 
             if (source == 'Author') {
-                airtable_write_endpoint = "https://api.airtable.com/v0/appgcGlPwTaZaBImL/Editors%20%26%20Authors/" + author_rec + "/?api_key=key8l5YZtQ9FyUoxF";
+                airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors/" + author_rec + "/?api_key=" + app_key;
             } else if (source == 'Submission') {
-                airtable_write_endpoint = "https://api.airtable.com/v0/appgcGlPwTaZaBImL/Content/" + submission_id + "/?api_key=key8l5YZtQ9FyUoxF";
+                airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
             }
 
             if (airtableField == 'Twitter') {
                 updateFieldValue = "@" + form.updateInput.value;
-
             } else {
                 updateFieldValue = form.updateInput.value;
             }
-            var updateFieldData = '{"fields": { "' + airtableField + '": "' + updateFieldValue + '"} }';
-            //console.log(updateFieldData);
+
+            updateFieldData = '{"fields": { "' + airtableField + '": "' + updateFieldValue + '"} }';
             updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
-            //console.log(updateFieldData);
             updateFieldData = JSON.parse(updateFieldData);
-            //console.log(updateFieldData);
 
             axios.patch(airtable_write_endpoint, updateFieldData);
             setTimeout(function() {
