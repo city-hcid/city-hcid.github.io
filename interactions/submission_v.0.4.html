@@ -87,7 +87,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Title of text']" v-on:click="fieldName = 'Title of text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Title of text" data-source="Submission" data-placeholder="Title..."><span>update...</span></button>
+                                                    <button v-if="item['fields']['Title of text']" v-on:click="fieldName = 'Title of text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Title of text" data-source="Submission" data-placeholder="Title..."
+                                                        aria-label="Green tag"><span>update...</span></button>
                                                     <button v-else v-on:click="fieldName = 'Title of text'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Title of text" data-source="Submission" data-placeholder="Title..."><span>add...</span></button>
                                                 </div>
                                             </td>
@@ -130,7 +131,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Author Order']" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Author Order" data-source="Submission" data-placeholder="Author Order..."><span>update...<span></button>
+                                                    <button v-if="item['fields']['Author Order']" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Author Order" data-source="Submission" data-placeholder="Author Order..."
+                                                        aria-label="Green tag"><span>update...<span></button>
                                                     <button v-else-if="item['fields']['Coauthors'] && item['fields']['Author Order'] == null" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Author Order"
                                                         data-source="Submission" data-placeholder="Author Order..."><span>add...</span></button>
                                                     <button v-else v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#submissionModal" data-field="Author Order" data-source="Submission" data-placeholder="Author Order..."><span>add...</span></button>
@@ -152,7 +154,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -174,7 +176,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -227,7 +229,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Insights']" v-on:click="fieldName = 'Insights'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Insights']" v-on:click="fieldName = 'Insights'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" aria-label="Green tag"><span>update...</span></button>
                                                     <button v-else type="button" v-on:click="fieldName = 'Insights'" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal"><span>add...</span></button>
                                                 </div>
                                             </td>
@@ -249,7 +251,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -266,7 +268,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green update" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission"
+                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission"
                                                         data-placeholder="Image captions..."><span>update...</span></button>
                                                     <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions..."><span>add...</span></button>
                                                 </div>
@@ -285,7 +287,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Image alt-text']" v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."><span>update...</span></button>
+                                                    <button v-if="item['fields']['Image alt-text']" v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..." aria-label="Green tag"><span>update...</span></button>
                                                     <button v-else v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."><span>add...</span></button>
                                                 </div>
                                             </td>
@@ -429,7 +431,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Group']" v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..."><span>update...</span></button>
+                                                    <button v-if="item['fields']['Group']" v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..." aria-label="Green tag"><span>update...</span></button>
                                                     <button v-else v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..."><span>add...</span></button>
                                                 </div>
                                             </td>
