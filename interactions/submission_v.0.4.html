@@ -287,7 +287,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Image alt-text']" v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..." aria-label="Green tag"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Image alt-text']" v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."
+                                                        aria-label="Green tag"><span>update...</span></button>
                                                     <button v-else v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."><span>add...</span></button>
                                                 </div>
                                             </td>
@@ -798,11 +799,14 @@
             var updateFieldData;
             var updateFieldValue;
             var airtable_write_endpoint;
+            var cloudinaryURL;
 
             if (source == 'Author') {
                 airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors/" + author_rec + "/?api_key=" + app_key;
             } else if (source == 'Submission') {
                 airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
+            } else if (source == 'SubmissionGraphic') {
+                cloudinaryURL = "https://api.cloudinary.com/v1_1/ix-acm/image/upload";
             }
 
             if (airtableField == 'Twitter') {

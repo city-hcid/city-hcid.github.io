@@ -818,6 +818,7 @@
 
             axios.patch(airtable_write_endpoint, updateFieldData);
             setTimeout(function() {
+                $(window).scrollTop(0);
                 location.reload();
             }, 2000);
         }
