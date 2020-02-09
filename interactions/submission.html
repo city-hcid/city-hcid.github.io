@@ -37,7 +37,7 @@
                         <div v-for="item in items">
                             <div id="submission">
 
-                                <div v-if="item['fields']['Status']=='Ready'" class="row justify-content-center align-items-center my-5">
+                                <div v-if="item['fields']['Status'].includes('Ready')" class="row justify-content-center align-items-center my-5">
                                     <div class="col-12 col-md-8 alert alert-success" role="alert">
                                         <h4 class="alert-heading">Ready for ACM</h4>
                                         <p>The editorial team have passed your submission on to the ACM so they can prepare it for publication. The ACM may contact you for further details.</p>
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
 
-                                <div v-if="item['fields']['Status']=='In process'" class="row justify-content-center align-items-center my-5">
+                                <div v-if="item['fields']['Status'].includes('In process')" class="row justify-content-center align-items-center my-5">
                                     <div class="col-12 col-md-8 alert alert-warning" role="alert">
                                         <h4 class="alert-heading">In process</h4>
                                         <p>The editorial team are looking through your submission and will be in touch about its appropriateness for the magazine and/or what changes they'd recommend.</p>
@@ -55,14 +55,14 @@
                                     </div>
                                 </div>
 
-                                <div v-if="item['fields']['Status']=='Pending'" class="row justify-content-center align-items-center my-5">
+                                <div v-if="item['fields']['Status'].includes('Pending')" class="row justify-content-center align-items-center my-5">
                                     <div class="col-12 col-md-8 alert alert-danger" role="alert">
                                         <h4 class="alert-heading">Pending</h4>
                                         <p>Your submission will be assigned to one of the Editorial Team's members. We'll be in touch soon to update you on the status of your submission.</p>
                                     </div>
                                 </div>
 
-                                <div v-if="item['fields']['Status']=='In process' || item['fields']['Status']=='Ready'" class="row justify-content-center align-items-center my-5 ml-3" id="key">
+                                <div v-if="item['fields']['Status'].includes('In process') || item['fields']['Status'].includes('Ready')" class="row justify-content-center align-items-center my-5 ml-3" id="key">
                                     <h3 class="hide-element">Color Key</h3>
                                     <div class="col-12 col-md-8">
                                         <p><span class="badge badge-danger" aria-label="Red tag">Red</span> We need this information to finalise your submission.</p>
@@ -159,7 +159,7 @@
                                             </td>
                                         </tr>
 
-                                        <tr v-if="item['fields']['Status']=='In process' || item['fields']['Status'] == 'Ready'">
+                                        <tr v-if="item['fields']['Status'].includes('In process') || item['fields']['Status'].includes('Ready')">
                                             <th class="align-middle" width="25%" scope="row">Final Text</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Original submission'] && item['fields']['Final text']">

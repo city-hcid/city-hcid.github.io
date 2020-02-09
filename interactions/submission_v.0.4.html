@@ -37,7 +37,7 @@
                         <div v-for="item in items">
                             <div id="submission">
 
-                                <div v-if="item['fields']['Status']=='Ready'" class="row justify-content-center align-items-center my-5">
+                                <div v-if="item['fields']['Status'].includes('Ready')" class="row justify-content-center align-items-center my-5">
                                     <div class="col-12 col-md-8 alert alert-success" role="alert">
                                         <h4 class="alert-heading">Ready for ACM</h4>
                                         <p>The editorial team have passed your submission on to the ACM so they can prepare it for publication. The ACM may contact you for further details.</p>
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
 
-                                <div v-if="item['fields']['Status']=='In process'" class="row justify-content-center align-items-center my-5">
+                                <div v-if="item['fields']['Status'].includes('In process')" class="row justify-content-center align-items-center my-5">
                                     <div class="col-12 col-md-8 alert alert-warning" role="alert">
                                         <h4 class="alert-heading">In process</h4>
                                         <p>The editorial team are looking through your submission and will be in touch about its appropriateness for the magazine and/or what changes they'd recommend.</p>
@@ -55,14 +55,14 @@
                                     </div>
                                 </div>
 
-                                <div v-if="item['fields']['Status']=='Pending'" class="row justify-content-center align-items-center my-5">
+                                <div v-if="item['fields']['Status'].includes('Pending')" class="row justify-content-center align-items-center my-5">
                                     <div class="col-12 col-md-8 alert alert-danger" role="alert">
                                         <h4 class="alert-heading">Pending</h4>
                                         <p>Your submission will be assigned to one of the Editorial Team's members. We'll be in touch soon to update you on the status of your submission.</p>
                                     </div>
                                 </div>
 
-                                <div v-if="item['fields']['Status']=='In process' || item['fields']['Status']=='Ready'" class="row justify-content-center align-items-center my-5 ml-3" id="key">
+                                <div v-if="item['fields']['Status'].includes('In process') || item['fields']['Status'].includes('Ready')" class="row justify-content-center align-items-center my-5 ml-3" id="key">
                                     <h3 class="hide-element">Color Key</h3>
                                     <div class="col-12 col-md-8">
                                         <p><span class="badge badge-danger" aria-label="Red tag">Red</span> We need this information to finalise your submission.</p>
@@ -159,7 +159,7 @@
                                             </td>
                                         </tr>
 
-                                        <tr v-if="item['fields']['Status']=='In process' || item['fields']['Status'] == 'Ready'">
+                                        <tr v-if="item['fields']['Status'].includes('In process') || item['fields']['Status'].includes('Ready')">
                                             <th class="align-middle" width="25%" scope="row">Final Text</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Original submission'] && item['fields']['Final text']">
@@ -251,7 +251,9 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" data-field="Graphics" data-source="submissionGraphic">
+                                                        <span>update...</span>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -268,9 +270,12 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission"
-                                                        data-placeholder="Image captions..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions..."><span>add...</span></button>
+                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions...">
+                                                        <span>update...</span>
+                                                    </button>
+                                                    <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions...">
+                                                        <span>add...</span>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -315,10 +320,12 @@
                         <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
+
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Add files</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
+
                                     <div class="modal-body">
                                         <div class="input-group px-3">
                                             <div class="input-group-prepend">
@@ -330,6 +337,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ok</button>
                                     </div>
@@ -531,6 +539,7 @@
                             </div>
                         </div>
 
+                        <!-- Author Modal -->
                         <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -783,21 +792,6 @@
             }
         });
 
-        /* $('#submissionModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            airtableField = button.data('field'); //.replace(/ /g, "_");
-            source = button.data('source');
-            var placeholder = button.data('placeholder');
-            // Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this);
-            var inputPrepend = "<div class='input-group-prepend' id='twitterAt'><div class='input-group-text'>@</div></div>";
-
-            modal.find('.modal-title').text(source + ' update');
-            modal.find('.form-control').attr('placeholder', placeholder)
-        }); */
-
         $('#updateModal').add('#submissionModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             airtableField = button.data('field'); //.replace(/ /g, "_");
@@ -814,6 +808,15 @@
         });
 
         function submitForm(form) {
+            //form.updateInput.append("file", 'image');
+            //console.log(form.updateInput.file);
+            var formData = new FormData();
+            formData.append("api_key",'');
+            formData.append("file", image);
+            formData.append("public_id", "sample_image");
+            formData.append("timestamp", timeStamp);
+            formData.append('upload_preset', unsignedUploadPreset);
+            console.log(form.updateInput.value);
             var updateFieldData;
             var updateFieldValue;
             var airtable_write_endpoint;
@@ -823,7 +826,7 @@
                 airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors/" + author_rec + "/?api_key=" + app_key;
             } else if (source == 'Submission') {
                 airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
-            } else if (source == 'SubmissionGraphic') {
+            } else if (source == 'submissionGraphic') {
                 cloudinaryURL = "https://api.cloudinary.com/v1_1/ix-acm/image/upload";
             }
 
