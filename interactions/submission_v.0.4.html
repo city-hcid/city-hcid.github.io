@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
 
-                                <div v-if="item['fields']['Status']=='In process' || item['fields']['Status']=='Ready'" class="row justify-content-center align-items-center my-5" id="key">
+                                <div v-if="item['fields']['Status']=='In process' || item['fields']['Status']=='Ready'" class="row justify-content-center align-items-center my-5 ml-3" id="key">
                                     <h3 class="hide-element">Color Key</h3>
                                     <div class="col-12 col-md-8">
                                         <p><span class="badge badge-danger" aria-label="Red tag">Red</span> We need this information to finalise your submission.</p>
@@ -316,11 +316,19 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add or update files</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add files</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
-                                        To update your submission text, or add graphics/images please <a href="mailto:eic@interactions.acm.org" target="_top">email</a> the file(s) to the editorial team.
+                                        <div class="input-group px-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ok</button>
@@ -622,6 +630,16 @@
                 </div>
             </div>
 
+            <div id="reload-page">
+                <div class="d-flex justify-content-center">
+                    <div class="mt-5 text-center text-light">
+                        <p><strong>Loading...</strong></p>
+                    </div>
+                    <div class="spinner-grow text-light mt-5" style="width: 3rem; height: 3rem;" role="status">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
     <footer>
@@ -820,7 +838,10 @@
             updateFieldData = JSON.parse(updateFieldData);
 
             axios.patch(airtable_write_endpoint, updateFieldData);
+            document.getElementById("reload-page").style.display = "block";
             setTimeout(function() {
+                $(window).scrollTop(0);
+
                 location.reload();
             }, 2000);
         }
