@@ -726,10 +726,13 @@
                         if (self.items[0].fields['Graphics']) {
                             self.graphics = self.items[0].fields['Graphics'];
                         }
+                        let fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Type'] + "-" + self.items[0].fields['Title of text'];
+                        fileName = fileName.replace(/ /g, "_");
+                        console.log(fileName);
                         var widget = cloudinary.createUploadWidget({
                                 cloudName: "ix-acm",
                                 uploadPreset: "asbafw8w",
-                                public_id: source + "-draft",
+                                public_id: fileName,
                                 sources: ["local"],
                                 showAdvancedOptions: false,
                                 cropping: false,
