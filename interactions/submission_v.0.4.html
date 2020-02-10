@@ -682,6 +682,7 @@
         var coauthorURLParams;
         var subeditorURLParams;
         var source;
+        cloudinary.setCloudName("ix-acm");
 
         var app_sub = new Vue({
             el: '#app-sub',
@@ -730,7 +731,7 @@
                         fileName = fileName.replace(/ /g, "_");
                         console.log(fileName);
                         var widget = cloudinary.createUploadWidget({
-                                cloudName: "ix-acm",
+                                //cloudName: "ix-acm",
                                 uploadPreset: "asbafw8w",
                                 public_id: fileName,
                                 sources: ["local"],
@@ -898,9 +899,6 @@
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
         });
-    </script>
-    <script type="text/javascript">
-        //cloudinary.setCloudName("ix-acm");
     </script>
 </body>
 
