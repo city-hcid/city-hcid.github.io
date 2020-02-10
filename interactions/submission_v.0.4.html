@@ -176,7 +176,9 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
+                                                    <!-- <button id="upload_widget" class="btn btn-sm btn-success">Upload...</button> -->
+                                                    <button id="upload_widget">Upload files</button>
+                                                    <!-- <button v-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button> -->
                                                 </div>
                                             </td>
                                         </tr>
@@ -270,7 +272,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions...">
+                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission"
+                                                        data-placeholder="Image captions...">
                                                         <span>update...</span>
                                                     </button>
                                                     <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions...">
@@ -327,7 +330,8 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <div class="input-group px-3">
+
+                                        <!-- <div class="input-group px-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                                             </div>
@@ -335,7 +339,7 @@
                                                 <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                     <div class="modal-footer">
@@ -667,11 +671,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+    <script type="text/javascript" src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
     <script type="text/javascript">
         var app_id = "appgcGlPwTaZaBImL";
         var app_key = "key8l5YZtQ9FyUoxF";
@@ -810,12 +810,6 @@
         function submitForm(form) {
             //form.updateInput.append("file", 'image');
             //console.log(form.updateInput.file);
-            var formData = new FormData();
-            formData.append("api_key",'');
-            formData.append("file", image);
-            formData.append("public_id", "sample_image");
-            formData.append("timestamp", timeStamp);
-            formData.append('upload_preset', unsignedUploadPreset);
             console.log(form.updateInput.value);
             var updateFieldData;
             var updateFieldValue;
@@ -847,6 +841,28 @@
 
                 location.reload();
             }, 2000);
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script type="text/javascript">
+        var myWidget = cloudinary.createUploadWidget({
+            cloudName: 'ix-acm',
+            uploadPreset: 'hitpxikm'
+        }, (error, result) => {
+            if (!error && result && result.event === "success") {
+                console.log('Done! Here is the image info: ', result.info);
+            }
+        })
+
+        window.onload = function() {
+            var mb = document.getElementById("upload_widget");
+            mb.addEventListener("click", function() {
+                myWidget.open();
+            }, false);
         }
     </script>
 </body>
