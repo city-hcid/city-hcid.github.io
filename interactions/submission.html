@@ -230,7 +230,7 @@
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
                                                     <button v-if="item['fields']['Insights']" v-on:click="fieldName = 'Insights'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" aria-label="Green tag"><span>update...</span></button>
-                                                    <button v-else type="button" v-on:click="fieldName = 'Insights'" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal"><span>add...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Insights'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" aria-label="Red tag"><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
