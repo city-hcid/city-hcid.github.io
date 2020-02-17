@@ -765,8 +765,8 @@
                                 }
                             },
                             (error, result) => {
-                                if (!error) {
-                                    console.log("Upload Widget event - ", result);
+                                if (!error && result.event == "success") {
+                                    //console.log("Upload Widget event - ", result);
                                     console.log(result.event)
                                     console.log(result.info.url)
                                 }
