@@ -727,7 +727,7 @@
                         if (self.items[0].fields['Graphics']) {
                             self.graphics = self.items[0].fields['Graphics'];
                         }
-                        let fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Type'] + "-" + self.items[0].fields['Title of text'];
+                        let fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Type'];
                         fileName = fileName.replace(/ /g, "_");
                         console.log(fileName);
                         var widget = cloudinary.createUploadWidget({
@@ -764,9 +764,10 @@
                                     }
                                 }
                             },
-                            (err, info) => {
-                                if (!err) {
-                                    console.log("Upload Widget event - ", info);
+                            (error, result) => {
+                                if (!error) {
+                                    console.log("Upload Widget event - ", result);
+                                    console.log(result.info.url)
                                 }
                             });
 
