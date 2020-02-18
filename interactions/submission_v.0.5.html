@@ -155,7 +155,7 @@
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
 
-                                                    <button v-on:click="upload" class="btn btn-sm btn-success">Update...</button>
+                                                    <button v-on:click="upload; fieldName = 'Original submission'" class="btn btn-sm btn-success">Update...</button>
                                                     <!-- <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button> -->
                                                 </div>
                                             </td>
@@ -801,7 +801,7 @@
                 },
                 upload: function(event) {
                     // `this` inside methods points to the Vue instance
-                    console.log("click");
+                    console.log(self.fieldName);
                 }
             }
         });
