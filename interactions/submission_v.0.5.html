@@ -181,7 +181,7 @@
                                                     <button v-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" id="upload_widget" type="button" class="btn btn-sm btn-success"  data-source="submissionAttachment" aria-label="Green tag">Update...</button>
                                                     <!-- <button id="upload_widget" class="cloudinary-button">Update...</button> -->
                                                     <!-- <button v-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button> -->
-                                                    <button v-else type="button" v-on:click="fieldName = 'Insights'" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal"><span>add...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" type="button" class="btn btn-sm btn-danger" data-source="submissionAttachment"><span>add...</span></button>
 
                                                 </div>
                                             </td>
