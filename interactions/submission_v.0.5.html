@@ -178,7 +178,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
+                                                    <button v-on:click="upload; fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
                                                     <!-- <button v-if="item['fields']['Final text'" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success"  aria-label="Green tag">Update...</button> -->
                                                     <!-- <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-danger">add...</button> -->
                                                     <!-- <button id="upload_widget" class="cloudinary-button">Update...</button> -->
@@ -798,6 +798,14 @@
                     }).catch(function(error) {
                         console.log(error);
                     })
+                },
+                upload: function(event) {
+                    // `this` inside methods points to the Vue instance
+                    console.log('Field Name: ' + self.fieldName + '!')
+                        // `event` is the native DOM event
+                    if (event) {
+                        console.log(self.fieldName);
+                    }
                 }
             }
         });
