@@ -734,13 +734,13 @@
                         if (self.items[0].fields['Graphics']) {
                             self.graphics = self.items[0].fields['Graphics'];
                         }
-                        let fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Type'];
+                        let fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Type'] + "-" + self.items[0].fields['Final text'].length;
                         fileName = fileName.replace(/ /g, "_");
                         console.log(fileName);
                         var widget = cloudinary.createUploadWidget({
                                 uploadPreset: "asbafw8w",
                                 public_id: fileName,
-                                overwrite: true,
+                                //overwrite: true,
                                 sources: ["local"],
                                 showAdvancedOptions: false,
                                 cropping: false,
