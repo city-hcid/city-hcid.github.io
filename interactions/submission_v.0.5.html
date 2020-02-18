@@ -780,7 +780,7 @@
                                     console.log(airtable_write_endpoint);
                                     let updateFieldValue = cloudinaryURL;
                                     console.log(updateFieldValue);
-                                    let updateFieldData = '{"fields": { "' + fieldName + '": "' + updateFieldValue + '"} }';
+                                    let updateFieldData = '{"fields": { "' + self.fieldName + '": "' + updateFieldValue + '"} }';
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
                                     console.log(updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
