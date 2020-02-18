@@ -155,7 +155,7 @@
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
 
-                                                    <button v-on:click="fieldName = 'Original submission'" id="upload_widget" class="btn btn-sm btn-success">Update...</button>
+                                                    <button v-on:click="fieldName = 'Original submission'" class="btn btn-sm btn-success">Update...</button>
                                                     <!-- <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button> -->
                                                 </div>
                                             </td>
@@ -178,7 +178,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Final text'" class="btn btn-sm btn-success upload_widget" aria-label="Green tag">Update...</button>
+                                                    <button v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
                                                     <!-- <button v-if="item['fields']['Final text'" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success"  aria-label="Green tag">Update...</button> -->
                                                     <!-- <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-danger">add...</button> -->
                                                     <!-- <button id="upload_widget" class="cloudinary-button">Update...</button> -->
@@ -789,7 +789,7 @@
 
                         setTimeout(() => {
 
-                            var el = document.getElementsByClassName('upload_widget');
+                            var el = document.getElementById('upload_widget');
                             el.addEventListener("click", function() {
                                 widget.open();
                             }, false);
