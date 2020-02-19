@@ -242,7 +242,7 @@
                                                 <div v-if="item['fields']['Graphics']">
                                                     <div v-for="graphic in graphics">
                                                         <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="mr-2 my-2 rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                        <span v-else><a v-bind:href="graphic['url']">{{ graphic['filename'] }}</a></span>
+                                                        <span v-else><p class="my-3"><a v-bind:href="graphic['url']">{{ graphic['filename'] }}</a></p></span>
                                                     </div>
                                                 </div>
                                                 <div v-else>
