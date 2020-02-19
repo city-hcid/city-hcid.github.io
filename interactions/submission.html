@@ -241,7 +241,7 @@
                                             <th class="align-middle" width="25%" scope="row">Graphics</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Graphics']">
-                                                    <span v-for="graphic in graphics" class="mt-4 mr-2">
+                                                    <span v-for="graphic in graphics" class="mt-2 mr-2">
                                                         <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                     <span v-else><p class="mt-2 ml-1"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><i class="material-icons md-48 text-muted">photo_size_select_actual</i></a></p></span>
                                                     </span>
