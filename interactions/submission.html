@@ -238,16 +238,21 @@
                                         <!-- GRAPHICS -->
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Graphics</th>
+                                            <!-- <td class="align-middle border-right-0" width="65%">
+                                                <div v-if="item['fields']['Graphics']">
+                                                    <span v-for="graphic in graphics">
+                                                        <span v-if="graphic['thumbnails']['small']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="mr-2 my-2 rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                    <span v-else><a v-bind:href="graphic['url']">{{ graphic['filename'] }}</a></span>
+                                                    </span>
+                                                </div>
+                                                <div v-else>
+                                                    <p class="lbr text-muted my-2"><em>If you have images or graphics please <a v-bind:href="'mailto:eic@interactions.acm.org?Subject=[interactions] ' + item['fields']['Type'] + ' - ' + item['fields']['Primary Contact']" target="_top">email</a> them to us (at 300 dpi minimum) so we can add them to your submission.</em></p>
+                                                </div>
+                                            </td> -->
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Graphics']">
                                                     <span v-for="graphic in graphics">
-                                                        <span v-if="graphic['thumbnails']['small']">
-                                                            <a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="mr-2 my-2 rounded" alt="Image thumbnail. Click to download file" height='50'>
-                                                            </a>
-                                                        </span>
-                                                    <span v-else>
-                                                            <a v-bind:href="graphic['url']">{{ graphic['filename'] }}</a>
-                                                        </span>
+                                                        <a v-bind:href="graphic['url']">{{ graphic['filename'] }}</a>
                                                     </span>
                                                 </div>
                                                 <div v-else>
