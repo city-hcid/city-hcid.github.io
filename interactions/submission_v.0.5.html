@@ -178,7 +178,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Final text'" id="upload_widget" v-on:click="upload('Final text')" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
+                                                    <button v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
                                                     <!-- <button v-if="item['fields']['Final text'" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success"  aria-label="Green tag">Update...</button> -->
                                                     <!-- <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-danger">add...</button> -->
                                                     <!-- <button id="upload_widget" class="cloudinary-button">Update...</button> -->
@@ -690,6 +690,20 @@
         var source;
         cloudinary.setCloudName("ix-acm");
         var cloudinaryURL;
+
+        // TEST
+
+        Vue.component('new-final', {
+            props: ['fieldName'],
+            data: function() {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button v-on:click="count++">add...</button>'
+        })
+
+        // TEST
 
         var app_sub = new Vue({
             el: '#app-sub',
