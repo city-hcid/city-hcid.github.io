@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
     <title>interactions magazine | Submission</title>
 </head>
@@ -240,9 +241,9 @@
                                             <th class="align-middle" width="25%" scope="row">Graphics</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Graphics']">
-                                                    <span v-for="graphic in graphics">
-                                                        <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="mr-2 my-2 rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                    <span v-else><p class="my-3"><a v-bind:href="graphic['url']">{{ graphic['filename'] }}</a></p></span>
+                                                    <span v-for="graphic in graphics" class="mt-4 mr-2">
+                                                        <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                    <span v-else><p class="mt-2 ml-1"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><i class="material-icons md-48 text-muted">photo_size_select_actual</i></a></p></span>
                                                     </span>
                                                 </div>
                                                 <div v-else>
