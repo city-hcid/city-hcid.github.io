@@ -163,7 +163,7 @@
                                             <th class="align-middle" width="25%" scope="row">Final Text</th>
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Original submission'] && item['fields']['Final text']">
-                                                    <p v-if="item['fields']['Final text']['0']['thumbnails']" class="lbr my-2">
+                                                    <p v-if="item['fields']['Final text']['0']['thumbnails']['small']" class="lbr my-2">
                                                         <a v-bind:href="item['fields']['Final text']['0']['url']"><img v-bind:src="item['fields']['Final text']['0']['thumbnails']['small']['url']" alt="Thumbnail. Click to download file"></a>
                                                     </p>
                                                     <p v-else class="lbr my-2">
