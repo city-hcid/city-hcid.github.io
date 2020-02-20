@@ -146,7 +146,7 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div class="d-flex flex-row" v-if="item['fields']['Original submission']">
                                                     <div class="p-2 align-items-center" v-for="file in item['fields']['Original submission']">
-                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
                                                     </div>
                                                 </div>
@@ -163,7 +163,7 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div class="d-flex flex-row" v-if="item['fields']['Final text']">
                                                     <div class="p-2 align-items-center" v-for="file in item['fields']['Final text']">
-                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
                                                     </div>
                                                 </div>
@@ -683,7 +683,6 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        console.log(self.items);
                         if (author_rec === null) {
                             author_rec = self.items[0].fields['Contact Author'];
                         }
