@@ -816,7 +816,7 @@
             }
 
             updateFieldData = '{"fields": { "' + airtableField + '": "' + updateFieldValue + '"} }';
-            updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t").replace("\"", "\\\"").replace("'", "\\'");
+            updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t").replace("\"", "\\\"");
             updateFieldData = JSON.parse(updateFieldData);
 
             axios.patch(airtable_write_endpoint, updateFieldData);
