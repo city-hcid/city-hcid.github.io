@@ -813,10 +813,11 @@
                 updateFieldValue = "@" + form.updateInput.value;
             } else {
                 updateFieldValue = form.updateInput.value;
+                updateFieldValue = updateFieldValue.toString().replace(/["']/g, '\\"');
             }
 
             updateFieldData = '{"fields": { "' + airtableField + '": "' + updateFieldValue + '"} }';
-            updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t").replace("\"", "\\\"");
+            updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
             updateFieldData = JSON.parse(updateFieldData);
 
             axios.patch(airtable_write_endpoint, updateFieldData);
