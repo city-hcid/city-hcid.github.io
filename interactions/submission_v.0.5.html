@@ -164,13 +164,11 @@
                                         <tr v-if="item['fields']['Status'].includes('In process') || item['fields']['Status'].includes('Ready')">
                                             <th class="align-middle" width="25%" scope="row">Final Text</th>
                                             <td class="align-middle border-right-0" width="65%">
-                                                <div v-if="item['fields']['Original submission'] && item['fields']['Final text']">
-                                                    <p v-if="item['fields']['Final text']['0']['thumbnails']" class="lbr my-2">
-                                                        <a v-bind:href="item['fields']['Final text']['0']['url']"><img v-bind:src="item['fields']['Final text']['0']['thumbnails']['small']['url']" alt="Thumbnail. Click to download file"></a>
-                                                    </p>
-                                                    <p v-else class="lbr my-2">
-                                                        <a v-bind:href="item['fields']['Final text']['0']['url']">{{ item['fields']['Final text']['0']['filename'] }}</a>
-                                                    </p>
+                                                <div class="d-flex flex-row" v-if="item['fields']['Final text']">
+                                                    <div class="p-2 align-items-center" v-for="file in item['fields']['Final text']">
+                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
+                                                    </div>
                                                 </div>
                                                 <div v-else>
                                                     <p class="lbr text-muted my-2"><em>If you have a final version of your content, please <a v-bind:href="'mailto:eic@interactions.acm.org?Subject=[interactions] ' + item['fields']['Type'] + ' - ' + item['fields']['Primary Contact']" target="_top">email</a> it to us.</em></p>
@@ -178,13 +176,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
-                                                    <!-- <button v-if="item['fields']['Final text'" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success"  aria-label="Green tag">Update...</button> -->
-                                                    <!-- <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-danger">add...</button> -->
-                                                    <!-- <button id="upload_widget" class="cloudinary-button">Update...</button> -->
-                                                    <!-- <button v-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button> -->
-
-
+                                                    <button v-on:click="upload('Final text')" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
+                                                    <button v-else v-on:click="upload('Final text')" id="upload_widget" class="btn btn-sm btn-danger">add...</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -205,6 +198,7 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Type']">
                                                     <p class="lbr my-2">{{ item['fields']['Type'] }}</p>
+                                                    <new-final v-bind:title="item['fields']['Content Type']"></new-final>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
@@ -688,17 +682,18 @@
         var source;
         cloudinary.setCloudName("ix-acm");
         var cloudinaryURL;
+        var airtable_write_endpoint
 
         // TEST
 
         Vue.component('new-final', {
-            props: ['fieldName'],
+            props: ['title'],
             data: function() {
                 return {
                     count: 0
                 }
             },
-            template: '<button v-on:click="count++">add...</button>'
+            template: '<button v-on:click="fieldName=\'Final Text\'">Update</button>'
         })
 
         // TEST
@@ -746,7 +741,8 @@
                         if (self.items[0].fields['Graphics']) {
                             self.graphics = self.items[0].fields['Graphics'];
                         }
-                        let fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Type']; //+ "-" + self.items[0].fields['Final text'].length;
+                        let fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Type'];
+
                         fileName = fileName.replace(/ /g, "_");
                         console.log(fileName);
                         var widget = cloudinary.createUploadWidget({
@@ -785,17 +781,20 @@
                             },
                             (error, result) => {
                                 if (!error && result.event == "success") {
-                                    //console.log(result.event);
                                     cloudinaryURL = result.info.url;
-                                    //console.log(cloudinaryURL);
-                                    let airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
+                                    let l = this.items[0].fields['Final text'].length;
+                                    console.log(l);
+                                    airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
                                     console.log(airtable_write_endpoint);
                                     let updateFieldValue = cloudinaryURL;
                                     console.log(updateFieldValue);
-                                    let updateFieldData = '{"fields": { "' + self.fieldName + '": "' + updateFieldValue + '"} }';
+                                    let updateFieldData = '{"fields": { "' + field + '": "' + updateFieldValue + '"} }';
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
                                     console.log(updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
+
+
+
                                 }
                             });
 
@@ -812,8 +811,9 @@
                     })
                 },
                 upload: function(field) {
-                    // `this` inside methods points to the Vue instance
                     console.log(field);
+                    //axios.patch(airtable_write_endpoint, updateFieldData);
+
                 }
             }
         });
