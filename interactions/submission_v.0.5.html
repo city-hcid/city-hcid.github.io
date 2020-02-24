@@ -198,7 +198,7 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Type']">
                                                     <p class="lbr my-2">{{ item['fields']['Type'] }}</p>
-                                                    <new-final v-bind:title="item['fields']['Content Type']"></new-final>
+                                                    <!-- <new-final v-bind:title="item['fields']['Content Type']"></new-final> -->
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
@@ -741,10 +741,6 @@
                         if (self.items[0].fields['Graphics']) {
                             self.graphics = self.items[0].fields['Graphics'];
                         }
-                        let fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Type'];
-
-                        fileName = fileName.replace(/ /g, "_");
-                        console.log(fileName);
                         var widget = cloudinary.createUploadWidget({
                                 uploadPreset: "asbafw8w",
                                 //public_id: fileName,
@@ -782,8 +778,6 @@
                             (error, result) => {
                                 if (!error && result.event == "success") {
                                     cloudinaryURL = result.info.url;
-                                    let l = this.items[0].fields['Final text'].length;
-                                    console.log(l);
                                     airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
                                     console.log(airtable_write_endpoint);
                                     let updateFieldValue = cloudinaryURL;
@@ -792,6 +786,7 @@
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
                                     console.log(updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
+                                    //axios.patch(airtable_write_endpoint, updateFieldData);
 
 
 
@@ -811,9 +806,15 @@
                     })
                 },
                 upload: function(field) {
-                    console.log(field);
-                    //axios.patch(airtable_write_endpoint, updateFieldData);
-
+                    //Check if there are exisiting attachments and calculate version number
+                    if (this.items[0].fields['' + field + '']) {
+                        var v = 1 + eval(this.items[0].fields['' + field + ''].length);
+                    } else {
+                        var v = 1;
+                    }
+                    fileName = this.items[0].fields['Primary Contact'] + "-" + this.items[0].fields['Title of text'] + "-v" + v;
+                    fileName = fileName.replace(/ /g, "_");
+                    console.log('The filename is: ' + fileName);
                 }
             }
         });
