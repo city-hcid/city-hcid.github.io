@@ -682,7 +682,7 @@
         var source;
         cloudinary.setCloudName("ix-acm");
         var cloudinaryURL;
-        var airtable_write_endpoint
+        var airtable_write_endpoint;
 
         // TEST
 
@@ -782,7 +782,7 @@
                                     console.log(airtable_write_endpoint);
                                     let updateFieldValue = cloudinaryURL;
                                     console.log(updateFieldValue);
-                                    let updateFieldData = '{"fields": { "' + field + '": "' + updateFieldValue + '"} }';
+                                    let updateFieldData = '{"fields": { "' + self.fieldName + '": "' + updateFieldValue + '"} }';
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
                                     console.log(updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
