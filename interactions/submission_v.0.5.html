@@ -778,8 +778,8 @@
                             },
                             (error, result) => {
                                 if (!error && result.event == "success") {
-                                    if (self.items[0].fields['' + fieldName + '']) {
-                                        var l = eval(self.items[0].fields['' + fieldName + ''].length);
+                                    if (self.items[0].fields['' + self.fieldName + '']) {
+                                        var l = eval(self.items[0].fields['' + self.fieldName + ''].length);
                                     } else {
                                         var l = 0;
                                     }
