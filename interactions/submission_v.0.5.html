@@ -792,7 +792,7 @@
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
                                     console.log(updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
-                                    //axios.patch(airtable_write_endpoint, updateFieldData);
+                                    axios.patch(airtable_write_endpoint, updateFieldData);
                                 }
                             });
 
