@@ -807,6 +807,7 @@
                 },
                 upload: function(field) {
                     //Check if there are exisiting attachments and calculate version number
+                    this.fieldName = field;
                     if (this.items[0].fields['' + field + '']) {
                         var v = 1 + eval(this.items[0].fields['' + field + ''].length);
                     } else {
