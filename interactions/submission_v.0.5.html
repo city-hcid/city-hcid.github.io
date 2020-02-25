@@ -777,12 +777,17 @@
                             },
                             (error, result) => {
                                 if (!error && result.event == "success") {
+                                    if (self.items[0].fields['' + fieldName + '']) {
+                                        var l = eval(self.items[0].fields['' + fieldName + ''].length);
+                                    } else {
+                                        var l = 0;
+                                    }
                                     cloudinaryURL = result.info.url;
                                     airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
                                     console.log(airtable_write_endpoint);
                                     let updateFieldValue = cloudinaryURL;
                                     console.log(updateFieldValue);
-                                    let updateFieldData = '{"fields": { "' + self.fieldName + '": "' + updateFieldValue + '"} }';
+                                    let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '"}, { "filename": "' + fileName + '"} ] }';
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
                                     console.log(updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
