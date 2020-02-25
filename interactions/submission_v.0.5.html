@@ -794,7 +794,7 @@
                                     console.log(updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
                                     console.log(updateFieldData);
-                                    axios.post(airtable_write_endpoint, updateFieldData);
+                                    axios.patch(airtable_write_endpoint, updateFieldData);
                                 }
                             });
 
