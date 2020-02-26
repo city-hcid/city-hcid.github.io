@@ -790,20 +790,25 @@
                                     console.log(airtable_write_endpoint);
                                     let updateFieldValue = cloudinaryURL;
                                     console.log(updateFieldValue);
-                                    //let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '"}, { "filename": "' + fileName + '"} ] } }';
-                                    let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
+                                    //let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
+                                    if (self.items[0].fields['' + self.fieldName + '']) {
+                                        let existingAttachments = self.items[0].fields['' + self.fieldName + ''];
+                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + updateFieldValue + '"} ] } }';
+                                    } else {
+                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '"} ] } }';
+                                    }
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
                                     console.log(updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
                                     console.log(updateFieldData);
-                                    axios.patch(airtable_write_endpoint, updateFieldData);
+                                    //axios.patch(airtable_write_endpoint, updateFieldData);
 
                                     document.getElementById("reload-page").style.display = "block";
                                     setTimeout(function() {
                                         $(window).scrollTop(0);
 
                                         location.reload();
-                                    }, 2500);
+                                    }, 3000);
                                 }
                             });
 
