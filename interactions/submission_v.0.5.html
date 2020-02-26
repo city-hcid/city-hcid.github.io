@@ -784,6 +784,8 @@
                                         var l = 0;
                                     }
                                     cloudinaryURL = result.info.url;
+                                    let extn = cloudinaryURL.slice((cloudinaryURL.lastIndexOf(".") - 1 >>> 0) + 2);
+                                    console.log(extn);
                                     airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
                                     console.log(airtable_write_endpoint);
                                     let updateFieldValue = cloudinaryURL;
@@ -795,6 +797,13 @@
                                     updateFieldData = JSON.parse(updateFieldData);
                                     console.log(updateFieldData);
                                     axios.patch(airtable_write_endpoint, updateFieldData);
+
+                                    document.getElementById("reload-page").style.display = "block";
+                                    setTimeout(function() {
+                                        $(window).scrollTop(0);
+
+                                        location.reload();
+                                    }, 2000);
                                 }
                             });
 
