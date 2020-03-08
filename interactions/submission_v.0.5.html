@@ -789,22 +789,22 @@
                                     airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
                                     console.log('Endpoint: ' + airtable_write_endpoint);
                                     let updateFieldValue = cloudinaryURL;
-                                    console.log('URL: ' + updateFieldValue);
+                                    console.log('Cloudinary URL: ' + updateFieldValue);
                                     //let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
                                     if (self.items[0].fields['' + self.fieldName + '']) {
                                         let existingAttachments = self.items[0].fields['' + self.fieldName + ''][0];
                                         //existingAttachments = existingAttachments[0];
                                         existingAttachments = JSON.stringify(existingAttachments);
 
-                                        console.log(existingAttachments);
+                                        console.log('Attachment string: ' + existingAttachments);
                                         var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + updateFieldValue + '"} ] } }';
                                     } else {
                                         var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '"} ] } }';
                                     }
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
-                                    console.log(updateFieldData);
+                                    console.log('Field object: ' + updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
-                                    console.log(updateFieldData);
+                                    console.log('Attachment json: ' + updateFieldData);
                                     //axios.patch(airtable_write_endpoint, updateFieldData);
 
                                     document.getElementById("reload-page").style.display = "block";
@@ -832,7 +832,7 @@
                     //Check if there are exisiting attachments and calculate version number
                     this.fieldName = field;
                     let t = eval(this.items[0].fields['' + field + '']);
-                    console.log(t);
+                    console.log('Attachment object: ' + this.items[0].fields);
                     if (this.items[0].fields['' + field + '']) {
                         var v = 1 + eval(this.items[0].fields['' + field + ''].length);
                     } else {
