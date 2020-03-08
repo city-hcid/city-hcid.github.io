@@ -833,7 +833,8 @@
                     //Check if there are exisiting attachments and calculate version number
                     this.fieldName = field;
                     console.log(field);
-                    let t = eval(this.items[0].fields['' + field + ''].length);
+                    let t = eval(this.items[0].fields['' + this.fieldName + ''].length);
+                    //let t = eval(self.items[0].fields['' + self.fieldName + ''].length);
                     //let t = this.items[0].fields['' + field + ''];
                     console.log('Attachment object: ' + t);
                     if (t > 0) {
