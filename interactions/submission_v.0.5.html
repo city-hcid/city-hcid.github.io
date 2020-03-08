@@ -831,10 +831,11 @@
                 upload: function(field) {
                     //Check if there are exisiting attachments and calculate version number
                     this.fieldName = field;
-                    let t = eval(this.items[0].fields['' + field + '']);
+                    console.log(field);
+                    let t = eval(this.items[0].fields['' + field + ''].length);
                     //let t = this.items[0].fields['' + field + ''];
                     console.log('Attachment object: ' + t);
-                    if (t) {
+                    if (t > 0) {
                         var v = 1 + t.length;
                     } else {
                         var v = 1;
