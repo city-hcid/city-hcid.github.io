@@ -792,8 +792,8 @@
                                     console.log('URL: ' + updateFieldValue);
                                     //let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
                                     if (self.items[0].fields['' + self.fieldName + '']) {
-                                        let existingAttachments = self.items[0].fields['' + self.fieldName + ''];
-                                        existingAttachments = existingAttachments[0];
+                                        let existingAttachments = self.items[0].fields['' + self.fieldName + ''][0];
+                                        //existingAttachments = existingAttachments[0];
                                         existingAttachments = JSON.stringify(existingAttachments);
 
                                         console.log(existingAttachments);
