@@ -806,7 +806,7 @@
                                     console.log('Field object: ' + updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
                                     console.log('Attachment json: ' + updateFieldData);
-                                    //axios.patch(airtable_write_endpoint, updateFieldData);
+                                    axios.patch(airtable_write_endpoint, updateFieldData);
 
                                     document.getElementById("reload-page").style.display = "block";
                                     setTimeout(function() {
