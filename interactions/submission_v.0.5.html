@@ -806,7 +806,7 @@
                                         console.log('Attachment string: ' + existingAttachments);
                                         var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + updateFieldValue + '"} ] } }';
                                     } else {
-                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '"} ] } }';
+                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + ', "filename": "' + fileName + '"} ] } }';
                                     }
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
                                     console.log('Field object: ' + updateFieldData);
