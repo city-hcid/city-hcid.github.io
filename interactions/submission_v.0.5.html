@@ -780,10 +780,15 @@
                                 if (!error && result.event == "success") {
                                     if (self.items[0].fields['' + self.fieldName + '']) {
                                         var l = eval(self.items[0].fields['' + self.fieldName + ''].length);
+
                                     } else {
                                         var l = 0;
                                     }
+                                    var v = l + 1;
                                     console.log('Number of attachments: ' + l);
+                                    fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Title of text'] + "-v" + v;
+                                    fileName = fileName.replace(/ /g, "_");
+                                    console.log('The filename is: ' + fileName);
                                     cloudinaryURL = result.info.url;
                                     let extn = cloudinaryURL.slice((cloudinaryURL.lastIndexOf(".") - 1 >>> 0) + 2);
                                     console.log('Extension: ' + extn);
@@ -833,18 +838,18 @@
                     //Check if there are exisiting attachments and calculate version number
                     this.fieldName = field;
                     console.log(field);
-                    let t = eval(this.items[0].fields['' + this.fieldName + ''].length);
+                    //let t = this.items[0].fields['' + this.fieldName + ''];
                     //let t = eval(self.items[0].fields['' + self.fieldName + ''].length);
                     //let t = this.items[0].fields['' + field + ''];
-                    console.log('Attachment object: ' + t);
-                    if (t > 0) {
+                    //console.log('Attachment object: ' + t);
+                    /* if (t > 0) {
                         var v = 1 + t.length;
                     } else {
                         var v = 1;
                     }
                     fileName = this.items[0].fields['Primary Contact'] + "-" + this.items[0].fields['Title of text'] + "-v" + v;
                     fileName = fileName.replace(/ /g, "_");
-                    console.log('The filename is: ' + fileName);
+                    console.log('The filename is: ' + fileName); */
                 }
             }
         });
