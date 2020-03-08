@@ -785,15 +785,16 @@
                                     }
                                     cloudinaryURL = result.info.url;
                                     let extn = cloudinaryURL.slice((cloudinaryURL.lastIndexOf(".") - 1 >>> 0) + 2);
-                                    console.log(extn);
+                                    console.log('Extension: ' + extn);
                                     airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
-                                    console.log(airtable_write_endpoint);
+                                    console.log('Endpoint: ' + airtable_write_endpoint);
                                     let updateFieldValue = cloudinaryURL;
-                                    console.log(updateFieldValue);
+                                    console.log('URL: ' + updateFieldValue);
                                     //let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
                                     if (self.items[0].fields['' + self.fieldName + '']) {
                                         let existingAttachments = self.items[0].fields['' + self.fieldName + ''];
                                         existingAttachments = JSON.stringify(existingAttachments);
+                                        existingAttachments = existingAttachments[0];
                                         console.log(existingAttachments);
                                         var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + updateFieldValue + '"} ] } }';
                                     } else {
