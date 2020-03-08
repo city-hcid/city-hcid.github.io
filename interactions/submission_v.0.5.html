@@ -793,6 +793,7 @@
                                     //let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
                                     if (self.items[0].fields['' + self.fieldName + '']) {
                                         let existingAttachments = self.items[0].fields['' + self.fieldName + ''];
+                                        console.log(existingAttachments);
                                         var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + updateFieldValue + '"} ] } }';
                                     } else {
                                         var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '"} ] } }';
@@ -827,6 +828,8 @@
                 upload: function(field) {
                     //Check if there are exisiting attachments and calculate version number
                     this.fieldName = field;
+                    let t = eval(self.items[0].fields['' + field + '']);
+                    console.log(t);
                     if (this.items[0].fields['' + field + '']) {
                         var v = 1 + eval(this.items[0].fields['' + field + ''].length);
                     } else {
