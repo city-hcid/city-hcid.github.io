@@ -743,6 +743,9 @@
                         if (self.items[0].fields['Graphics']) {
                             self.graphics = self.items[0].fields['Graphics'];
                         }
+                        let p = JSON.stringify(self.items[0].fields['Final text']);
+                        p = p.substring(1, p.length - 1);
+                        console.log(p);
                         var widget = cloudinary.createUploadWidget({
                                 uploadPreset: "asbafw8w",
                                 //public_id: fileName,
@@ -802,9 +805,10 @@
                                         let existingAttachments = self.items[0].fields['' + self.fieldName + ''][0];
                                         //existingAttachments = existingAttachments[0];
                                         existingAttachments = JSON.stringify(existingAttachments);
+                                        existingAttachments = existingAttachments.substring(1, existingAttachments.length - 1);
 
                                         console.log('Attachment string: ' + existingAttachments);
-                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + updateFieldValue + '"} ] } }';
+                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + updateFieldValue + ', "filename": "' + fileName + '"} ] } }';
                                     } else {
                                         var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + ', "filename": "' + fileName + '"} ] } }';
                                     }
