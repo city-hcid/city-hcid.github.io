@@ -793,8 +793,9 @@
                                     //let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
                                     if (self.items[0].fields['' + self.fieldName + '']) {
                                         let existingAttachments = self.items[0].fields['' + self.fieldName + ''];
-                                        existingAttachments = JSON.stringify(existingAttachments);
                                         existingAttachments = existingAttachments[0];
+                                        existingAttachments = JSON.stringify(existingAttachments);
+
                                         console.log(existingAttachments);
                                         var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + updateFieldValue + '"} ] } }';
                                     } else {
