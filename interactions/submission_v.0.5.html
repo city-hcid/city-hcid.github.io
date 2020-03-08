@@ -176,7 +176,7 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
+                                                    <button v-on:click="upload('Final text')" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
                                                     <button v-else v-on:click="upload('Final text')" id="upload_widget" class="btn btn-sm btn-danger">add...</button>
                                                 </div>
                                             </td>
@@ -831,11 +831,11 @@
                 upload: function(field) {
                     //Check if there are exisiting attachments and calculate version number
                     this.fieldName = field;
-                    //let t = eval(this.items[0].fields['' + field + '']);
-                    let t = this.items[0].fields['' + field + ''];
+                    let t = eval(this.items[0].fields['' + field + '']);
+                    //let t = this.items[0].fields['' + field + ''];
                     console.log('Attachment object: ' + t);
-                    if (this.items[0].fields['' + field + '']) {
-                        var v = 1 + eval(this.items[0].fields['' + field + ''].length);
+                    if (t) {
+                        var v = 1 + t.length;
                     } else {
                         var v = 1;
                     }
