@@ -153,7 +153,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
+                                                    <button v-else v-on:click="fieldName = 'Original submission'" id="upload_widget" class="btn btn-sm btn-warning" aria-label="Red tag">add...</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -168,13 +169,14 @@
                                                     </div>
                                                 </div>
                                                 <div v-else>
-                                                    <p class="lbr text-muted my-2"><em>If you have a final version of your content, please <a v-bind:href="'mailto:eic@interactions.acm.org?Subject=[interactions] ' + item['fields']['Type'] + ' - ' + item['fields']['Primary Contact']" target="_top">email</a> it to us.</em></p>
+                                                    <p class="lbr text-muted my-2"><em>When you have a final version of your content, please upload it using the "add" button.</em></p>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
-                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-danger">add...</button>
+                                                    <button v-if="item['fields']['Status'].includes('In process') && item['fields']['Original submission']" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-danger" aria-label="Red tag">add...</button>
+                                                    <button v-else-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
+                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-secondary" aria-label="disabled" disabled>add...</button>
                                                 </div>
                                             </td>
                                         </tr>
