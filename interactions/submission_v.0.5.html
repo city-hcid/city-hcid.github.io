@@ -743,9 +743,9 @@
                         if (self.items[0].fields['Graphics']) {
                             self.graphics = self.items[0].fields['Graphics'];
                         }
-                        let p = JSON.stringify(self.items[0].fields['Final text']);
+                        /* let p = JSON.stringify(self.items[0].fields['Final text']);
                         p = p.substring(1, p.length - 1);
-                        console.log(p);
+                        console.log(p); */
                         var widget = cloudinary.createUploadWidget({
                                 uploadPreset: "asbafw8w",
                                 //public_id: fileName,
