@@ -144,20 +144,16 @@
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Draft(s)</th>
                                             <td class="align-middle border-right-0" width="65%">
-                                                <div v-if="item['fields']['Original submission']">
-                                                    <p v-if="item['fields']['Original submission']['0']['thumbnails']" class="lbr my-2">
-                                                        <a v-bind:href="item['fields']['Original submission']['0']['url']"><img v-bind:src="item['fields']['Original submission']['0']['thumbnails']['small']['url']" alt="Thumbnail. Click to download file"></a>
-                                                    </p>
-                                                    <p v-else class="lbr my-2">
-                                                        <a v-bind:href="item['fields']['Original submission']['0']['url']">{{ item['fields']['Original submission']['0']['filename'] }}</a>
-                                                    </p>
+                                                <div class="d-flex flex-row" v-if="item['fields']['Original submission']">
+                                                    <div class="p-2 align-items-center" v-for="file in item['fields']['Original submission']">
+                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-
-                                                    <button v-on:click="upload('Original submission')" class="btn btn-sm btn-success">Update...</button>
-                                                    <!-- <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button> -->
+                                                    <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -178,7 +174,7 @@
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
                                                     <button v-on:click="fieldName = 'Author Order'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">Update...</button>
-                                                    <button v-else v-on:click="upload('Final text')" id="upload_widget" class="btn btn-sm btn-danger">add...</button>
+                                                    <button v-else v-on:click="fieldName = 'Author Order'" id="upload_widget" class="btn btn-sm btn-danger">add...</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -199,7 +195,6 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div v-if="item['fields']['Type']">
                                                     <p class="lbr my-2">{{ item['fields']['Type'] }}</p>
-                                                    <!-- <new-final v-bind:title="item['fields']['Content Type']"></new-final> -->
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
@@ -232,8 +227,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Insights']" v-on:click="fieldName = 'Insights'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" aria-label="Green tag"><span>update...</span></button>
-                                                    <button v-else type="button" v-on:click="fieldName = 'Insights'" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal"><span>add...</span></button>
+                                                    <button v-if="item['fields']['Insights']" v-on:click="fieldName = 'Insights'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Insights" data-source="Submission" data-placeholder="Insights..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Insights'" aria-label="Red tag" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Insights" data-source="Submission" data-placeholder="Insights..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -242,10 +237,10 @@
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Graphics</th>
                                             <td class="align-middle border-right-0" width="65%">
-                                                <div v-if="item['fields']['Graphics']">
-                                                    <div v-for="graphic in graphics">
-                                                        <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="mr-2 my-2 rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                        <span v-else><p class="my-3"><a v-bind:href="graphic['url']">{{ graphic['filename'] }}</a></p></span>
+                                                <div class="d-flex flex-row" v-if="item['fields']['Graphics']">
+                                                    <div class="p-2 align-items-center" v-for="graphic in graphics">
+                                                        <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><i class="material-icons md-48 text-muted">photo_size_select_actual</i></a></span>
                                                     </div>
                                                 </div>
                                                 <div v-else>
@@ -272,12 +267,8 @@
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
                                                     <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission"
-                                                        data-placeholder="Image captions...">
-                                                        <span>update...</span>
-                                                    </button>
-                                                    <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions...">
-                                                        <span>add...</span>
-                                                    </button>
+                                                        data-placeholder="Image captions..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -322,25 +313,13 @@
                         <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add files</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add or update files</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
-
                                     <div class="modal-body">
-
-                                        <!-- <div class="input-group px-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                            </div>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                            </div>
-                                        </div> -->
+                                        To update your submission text, or add graphics/images please <a href="mailto:eic@interactions.acm.org" target="_top">email</a> the file(s) to the editorial team.
                                     </div>
-
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ok</button>
                                     </div>
@@ -542,7 +521,6 @@
                             </div>
                         </div>
 
-                        <!-- Author Modal -->
                         <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -563,7 +541,7 @@
                                                 <input type="text" name="updateInput" value="" class="form-control" id="updateTwitter" placeholder="">
                                             </div>
 
-                                            <div v-else-if="fieldName == 'Short Bio' || fieldName == 'Postal Address' || fieldName == 'Insights' || fieldName == 'Author Order' || fieldName == 'Image Captions' || fieldName == 'Image alt-text'" class="form-group" id="updateFormGroup">
+                                            <div v-else-if="fieldName == 'Short Bio' || fieldName == 'Postal Address' || fieldName == 'Author Order' || fieldName == 'Image Captions' || fieldName == 'Image alt-text'" class="form-group" id="updateFormGroup">
                                                 <textarea type="text" name="updateInput" value="" class="form-control" id="updateText" rows="6" placeholder=""></textarea>
                                             </div>
 
@@ -670,7 +648,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script type="text/javascript" src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
     <script type="text/javascript">
         var app_id = "appgcGlPwTaZaBImL";
         var app_key = "key8l5YZtQ9FyUoxF";
@@ -685,20 +662,6 @@
         var cloudinaryURL;
         var airtable_write_endpoint;
         var fileName;
-
-        // TEST
-
-        Vue.component('new-final', {
-            props: ['title'],
-            data: function() {
-                return {
-                    count: 0
-                }
-            },
-            template: '<button v-on:click="fieldName=\'Final Text\'">Update</button>'
-        })
-
-        // TEST
 
         var app_sub = new Vue({
             el: '#app-sub',
@@ -743,13 +706,8 @@
                         if (self.items[0].fields['Graphics']) {
                             self.graphics = self.items[0].fields['Graphics'];
                         }
-                        /* let p = JSON.stringify(self.items[0].fields['Final text']);
-                        p = p.substring(1, p.length - 1);
-                        console.log(p); */
                         var widget = cloudinary.createUploadWidget({
                                 uploadPreset: "asbafw8w",
-                                //public_id: fileName,
-                                //overwrite: true,
                                 sources: ["local"],
                                 showAdvancedOptions: false,
                                 cropping: false,
@@ -782,42 +740,40 @@
                             },
                             (error, result) => {
                                 if (!error && result.event == "success") {
+                                    cloudinaryURL = result.info.url;
+                                    // Get extension from uploaded file for filename
+                                    let extn = cloudinaryURL.slice((cloudinaryURL.lastIndexOf(".") - 1 >>> 0) + 2);
+                                    // Get the number of attachments
                                     if (self.items[0].fields['' + self.fieldName + '']) {
                                         var l = eval(self.items[0].fields['' + self.fieldName + ''].length);
-
                                     } else {
                                         var l = 0;
                                     }
-                                    var v = l + 1;
-                                    console.log('Number of attachments: ' + l);
-                                    fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Title of text'] + "-v" + v;
+                                    // Get the version number for filename
+                                    let v = l + 1;
+                                    // Generate filename
+                                    fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Title of text'] + "-v" + v + "." + extn;
                                     fileName = fileName.replace(/ /g, "_");
-                                    console.log('The filename is: ' + fileName);
-                                    cloudinaryURL = result.info.url;
-                                    let extn = cloudinaryURL.slice((cloudinaryURL.lastIndexOf(".") - 1 >>> 0) + 2);
-                                    console.log('Extension: ' + extn);
+                                    // Generate airtable endpoint
                                     airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
-                                    console.log('Endpoint: ' + airtable_write_endpoint);
-                                    let updateFieldValue = cloudinaryURL;
-                                    console.log('Cloudinary URL: ' + updateFieldValue);
-                                    //let updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
+                                    // Generate data for attachment field in airtable
                                     if (self.items[0].fields['' + self.fieldName + '']) {
+                                        // Get existing attachment info if there are any attachmnents
                                         let existingAttachments = self.items[0].fields['' + self.fieldName + ''];
-                                        //existingAttachments = existingAttachments[0];
                                         existingAttachments = JSON.stringify(existingAttachments);
+                                        // Remove outer square brackets
                                         existingAttachments = existingAttachments.substring(1, existingAttachments.length - 1);
-
-                                        console.log('Attachment string: ' + existingAttachments);
-                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
+                                        // Generate updated data
+                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + cloudinaryURL + '", "filename": "' + fileName + '"} ] } }';
                                     } else {
-                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + updateFieldValue + '", "filename": "' + fileName + '.' + extn + '"} ] } }';
+                                        // Or generate new data
+                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + cloudinaryURL + '", "filename": "' + fileName + '"} ] } }';
                                     }
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
-                                    console.log('Field object: ' + updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
-                                    console.log('Attachment json: ' + updateFieldData);
+                                    // Upload to airtable
                                     axios.patch(airtable_write_endpoint, updateFieldData);
-
+                                    // Reload frontend page
                                     document.getElementById("reload-page").style.display = "block";
                                     setTimeout(function() {
                                         $(window).scrollTop(0);
@@ -826,9 +782,7 @@
                                     }, 3000);
                                 }
                             });
-
                         setTimeout(() => {
-
                             var el = document.getElementById('upload_widget');
                             el.addEventListener("click", function() {
                                 widget.open();
@@ -838,23 +792,6 @@
                     }).catch(function(error) {
                         console.log(error);
                     })
-                },
-                upload: function(field) {
-                    //Check if there are exisiting attachments and calculate version number
-                    this.fieldName = field;
-                    console.log(field);
-                    //let t = this.items[0].fields['' + this.fieldName + ''];
-                    //let t = eval(self.items[0].fields['' + self.fieldName + ''].length);
-                    //let t = this.items[0].fields['' + field + ''];
-                    //console.log('Attachment object: ' + t);
-                    /* if (t > 0) {
-                        var v = 1 + t.length;
-                    } else {
-                        var v = 1;
-                    }
-                    fileName = this.items[0].fields['Primary Contact'] + "-" + this.items[0].fields['Title of text'] + "-v" + v;
-                    fileName = fileName.replace(/ /g, "_");
-                    console.log('The filename is: ' + fileName); */
                 }
             }
         });
@@ -924,19 +861,11 @@
             source = button.data('source');
             var placeholder = button.data('placeholder');
             var modal = $(this);
-            //var inputPrepend = "<div class='input-group-prepend' id='twitterAt'><div class='input-group-text'>@</div></div>";
-
-            /* if (airtableField == 'Twitter' && document.getElementById('twitterAt') === null) {
-                //document.getElementById('updateFormGroup').insertAdjacentHTML('afterbegin', inputPrepend);
-            } */
             modal.find('.modal-title').text(source + ' update');
             modal.find('.form-control').attr('placeholder', placeholder)
         });
 
         function submitForm(form) {
-            //form.updateInput.append("file", 'image');
-            //console.log(form.updateInput.file);
-            console.log(form.updateInput.value);
             var updateFieldData;
             var updateFieldValue;
             var airtable_write_endpoint;
@@ -951,6 +880,7 @@
                 updateFieldValue = "@" + form.updateInput.value;
             } else {
                 updateFieldValue = form.updateInput.value;
+                updateFieldValue = updateFieldValue.toString().replace(/["']/g, '\\"');
             }
 
             updateFieldData = '{"fields": { "' + airtableField + '": "' + updateFieldValue + '"} }';
@@ -958,10 +888,9 @@
             updateFieldData = JSON.parse(updateFieldData);
 
             axios.patch(airtable_write_endpoint, updateFieldData);
-            document.getElementById("reload-page").style.display = "block";
             setTimeout(function() {
                 $(window).scrollTop(0);
-
+                document.getElementById("reload-page").style.display = "block";
                 location.reload();
             }, 2000);
         }
