@@ -742,8 +742,10 @@
                             (error, result) => {
                                 if (!error && result.event == "success") {
                                     cloudinaryURL = result.info.url;
+                                    console.log(cloudinaryURL);
                                     // Get extension from uploaded file for filename
                                     let extn = cloudinaryURL.slice((cloudinaryURL.lastIndexOf(".") - 1 >>> 0) + 2);
+                                    console.log(extn);
                                     // Get the number of attachments
                                     if (self.items[0].fields['' + self.fieldName + '']) {
                                         var l = eval(self.items[0].fields['' + self.fieldName + ''].length);
@@ -752,9 +754,11 @@
                                     }
                                     // Get the version number for filename
                                     let v = l + 1;
+                                    console.log(l);
                                     // Generate filename
                                     fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Title of text'] + "-v" + v + "." + extn;
                                     fileName = fileName.replace(/ /g, "_");
+                                    console.log(fileName);
                                     // Generate airtable endpoint
                                     airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
                                     // Generate data for attachment field in airtable
@@ -771,6 +775,7 @@
                                         var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + cloudinaryURL + '", "filename": "' + fileName + '"} ] } }';
                                     }
                                     updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
+                                    console.log(updateFieldData);
                                     updateFieldData = JSON.parse(updateFieldData);
                                     // Upload to airtable
                                     axios.patch(airtable_write_endpoint, updateFieldData);
