@@ -153,8 +153,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">add...</button>
-                                                    <button v-else v-on:click="fieldName = 'Original submission'" id="upload_widget" class="btn btn-sm btn-warning" aria-label="Red tag">add...</button>
+                                                    <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" id="upload_widget" class="btn btn-sm btn-success upload-widget" aria-label="Green tag">add...</button>
+                                                    <button v-else v-on:click="fieldName = 'Original submission'" id="upload_widget" class="btn btn-sm btn-warning upload-widget" aria-label="Red tag">add...</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -174,9 +174,9 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Original submission'] && item['fields']['Final text'] == null" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-danger" aria-label="Red tag">add...</button>
-                                                    <button v-else-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success" aria-label="Green tag">add...</button>
-                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-secondary" aria-label="disabled" disabled>add...</button>
+                                                    <button v-if="item['fields']['Original submission'] && item['fields']['Final text'] == null" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-danger upload-widget" aria-label="Red tag">add...</button>
+                                                    <button v-else-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success upload-widget" aria-label="Green tag">add...</button>
+                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-secondary upload-widget" aria-label="disabled" disabled>add...</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -251,8 +251,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" id="upload_widget" class="btn btn-sm btn-success" aria-label="green tag">add...</button>
-                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-warning" aria-label="orange tag">add...</button>
+                                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" id="upload_widget" class="btn btn-sm btn-success upload-widget" aria-label="green tag">add...</button>
+                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-warning upload-widget" aria-label="orange tag">add...</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -792,6 +792,10 @@
                                 }
                             });
                         setTimeout(() => {
+                            $('.upload-widget').on('click', function() {
+                                widget.open();
+                            });
+                            // onclick function with this.fileName and then run widget.open()
                             var el = document.getElementById('upload_widget');
                             el.addEventListener("click", function() {
                                 widget.open();
