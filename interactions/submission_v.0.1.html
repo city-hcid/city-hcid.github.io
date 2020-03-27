@@ -146,14 +146,15 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div class="d-flex flex-row" v-if="item['fields']['Original submission']">
                                                     <div class="p-2 align-items-center" v-for="file in item['fields']['Original submission']">
-                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" id="upload_widget" class="btn btn-sm btn-success upload-widget" aria-label="Green tag">add...</button>
+                                                    <button v-else v-on:click="fieldName = 'Original submission'" id="upload_widget" class="btn btn-sm btn-warning upload-widget" aria-label="Red tag">add...</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -163,17 +164,19 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div class="d-flex flex-row" v-if="item['fields']['Final text']">
                                                     <div class="p-2 align-items-center" v-for="file in item['fields']['Final text']">
-                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
                                                     </div>
                                                 </div>
                                                 <div v-else>
-                                                    <p class="lbr text-muted my-2"><em>If you have a final version of your content, please <a v-bind:href="'mailto:eic@interactions.acm.org?Subject=[interactions] ' + item['fields']['Type'] + ' - ' + item['fields']['Primary Contact']" target="_top">email</a> it to us.</em></p>
+                                                    <p class="lbr text-muted my-2"><em>When you have a final version of your content, please upload it using the "add" button.</em></p>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Original submission'] && item['fields']['Final text'] == null" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-danger upload-widget" aria-label="Red tag">add...</button>
+                                                    <button v-else-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-success upload-widget" aria-label="Green tag">add...</button>
+                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-secondary upload-widget" aria-label="disabled" disabled>add...</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -243,12 +246,13 @@
                                                     </div>
                                                 </div>
                                                 <div v-else>
-                                                    <p class="lbr text-muted my-2"><em>If you have images or graphics please <a v-bind:href="'mailto:eic@interactions.acm.org?Subject=[interactions] ' + item['fields']['Type'] + ' - ' + item['fields']['Primary Contact']" target="_top">email</a> them to us (at 300 dpi minimum) so we can add them to your submission.</em></p>
+                                                    <p class="lbr text-muted my-2"><em>If you have images or graphics please upload them using the "add" button.</em></p>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
+                                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" id="upload_widget" class="btn btn-sm btn-success upload-widget" aria-label="green tag">add...</button>
+                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-warning upload-widget" aria-label="orange tag">add...</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -657,6 +661,10 @@
         var coauthorURLParams;
         var subeditorURLParams;
         var source;
+        cloudinary.setCloudName("ix-acm");
+        var cloudinaryURL;
+        var airtable_write_endpoint;
+        var fileName;
 
         var app_sub = new Vue({
             el: '#app-sub',
@@ -683,7 +691,6 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        console.log(self.items);
                         if (author_rec === null) {
                             author_rec = self.items[0].fields['Contact Author'];
                         }
@@ -702,6 +709,98 @@
                         if (self.items[0].fields['Graphics']) {
                             self.graphics = self.items[0].fields['Graphics'];
                         }
+                        var widget = cloudinary.createUploadWidget({
+                                uploadPreset: "asbafw8w",
+                                sources: ["local"],
+                                showAdvancedOptions: false,
+                                cropping: false,
+                                multiple: false,
+                                defaultSource: "local",
+                                styles: {
+                                    palette: {
+                                        window: "#ffffff",
+                                        sourceBg: "#f4f4f5",
+                                        windowBorder: "#90a0b3",
+                                        tabIcon: "#000000",
+                                        inactiveTabIcon: "#555a5f",
+                                        menuIcons: "#555a5f",
+                                        link: "#0433ff",
+                                        action: "#339933",
+                                        inProgress: "#0433ff",
+                                        complete: "#339933",
+                                        error: "#cc0000",
+                                        textDark: "#000000",
+                                        textLight: "#fcfffd"
+                                    },
+                                    fonts: {
+                                        default: null,
+                                        "sans-serif": {
+                                            url: null,
+                                            active: true
+                                        }
+                                    }
+                                }
+                            },
+                            (error, result) => {
+                                if (!error && result.event == "success") {
+                                    cloudinaryURL = result.info.url;
+                                    console.log(cloudinaryURL);
+                                    // Get extension from uploaded file for filename
+                                    let extn = cloudinaryURL.slice((cloudinaryURL.lastIndexOf(".") - 1 >>> 0) + 2);
+                                    console.log(extn);
+                                    // Get the number of attachments
+                                    if (self.items[0].fields['' + self.fieldName + '']) {
+                                        var l = eval(self.items[0].fields['' + self.fieldName + ''].length);
+                                    } else {
+                                        var l = 0;
+                                    }
+                                    // Get the version number for filename
+                                    let v = l + 1;
+                                    console.log(l);
+                                    // Generate filename
+                                    fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Title of text'] + "-v" + v + "." + extn;
+                                    fileName = fileName.replace(/ /g, "_");
+                                    console.log(fileName);
+                                    // Generate airtable endpoint
+                                    airtable_write_endpoint = "https://api.airtable.com/v0/" + app_id + "/Content/" + submission_rec + "/?api_key=" + app_key;
+                                    // Generate data for attachment field in airtable
+                                    if (self.items[0].fields['' + self.fieldName + '']) {
+                                        // Get existing attachment info if there are any attachmnents
+                                        let existingAttachments = self.items[0].fields['' + self.fieldName + ''];
+                                        existingAttachments = JSON.stringify(existingAttachments);
+                                        // Remove outer square brackets
+                                        existingAttachments = existingAttachments.substring(1, existingAttachments.length - 1);
+                                        // Generate updated data
+                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ ' + existingAttachments + ', { "url": "' + cloudinaryURL + '", "filename": "' + fileName + '"} ] } }';
+                                    } else {
+                                        // Or generate new data
+                                        var updateFieldData = '{ "fields": { "' + self.fieldName + '": [ { "url": "' + cloudinaryURL + '", "filename": "' + fileName + '"} ] } }';
+                                    }
+                                    updateFieldData = updateFieldData.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t");
+                                    console.log(updateFieldData);
+                                    updateFieldData = JSON.parse(updateFieldData);
+                                    // Upload to airtable
+                                    axios.patch(airtable_write_endpoint, updateFieldData);
+                                    // Reload frontend page
+                                    document.getElementById("reload-page").style.display = "block";
+                                    setTimeout(function() {
+                                        $(window).scrollTop(0);
+
+                                        location.reload();
+                                    }, 3000);
+                                }
+                            });
+                        setTimeout(() => {
+                            $('.upload-widget').on('click', function() {
+                                widget.open();
+                            });
+                            // onclick function with this.fileName and then run widget.open()
+                            /* var el = document.getElementById('upload_widget');
+                            el.addEventListener("click", function() {
+                                widget.open();
+                            }, false); */
+                            console.log("Ready");
+                        }, 1000);
                     }).catch(function(error) {
                         console.log(error);
                     })
@@ -768,32 +867,12 @@
             }
         });
 
-        /* $('#submissionModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            airtableField = button.data('field'); //.replace(/ /g, "_");
-            source = button.data('source');
-            var placeholder = button.data('placeholder');
-            // Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this);
-            var inputPrepend = "<div class='input-group-prepend' id='twitterAt'><div class='input-group-text'>@</div></div>";
-
-            modal.find('.modal-title').text(source + ' update');
-            modal.find('.form-control').attr('placeholder', placeholder)
-        }); */
-
         $('#updateModal').add('#submissionModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             airtableField = button.data('field'); //.replace(/ /g, "_");
             source = button.data('source');
             var placeholder = button.data('placeholder');
             var modal = $(this);
-            //var inputPrepend = "<div class='input-group-prepend' id='twitterAt'><div class='input-group-text'>@</div></div>";
-
-            /* if (airtableField == 'Twitter' && document.getElementById('twitterAt') === null) {
-                //document.getElementById('updateFormGroup').insertAdjacentHTML('afterbegin', inputPrepend);
-            } */
             modal.find('.modal-title').text(source + ' update');
             modal.find('.form-control').attr('placeholder', placeholder)
         });
@@ -813,6 +892,7 @@
                 updateFieldValue = "@" + form.updateInput.value;
             } else {
                 updateFieldValue = form.updateInput.value;
+                updateFieldValue = updateFieldValue.toString().replace(/["']/g, '\\"');
             }
 
             updateFieldData = '{"fields": { "' + airtableField + '": "' + updateFieldValue + '"} }';
