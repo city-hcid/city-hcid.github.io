@@ -144,7 +144,7 @@
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Draft(s)</th>
                                             <td class="align-middle border-right-0" width="65%">
-                                                <div class="d-flex flex-row" v-if="item['fields']['Original submission']">
+                                                <div class="d-flex flex-row">
                                                     <div class="p-2 align-items-center" v-for="file in item['fields']['Original submission']">
                                                         <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
