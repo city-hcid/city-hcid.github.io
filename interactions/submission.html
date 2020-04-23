@@ -150,10 +150,14 @@
                                                         <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
                                                     </div>
                                                 </div>
+                                                <div v-else>
+                                                    <p class="lbr text-muted my-2"><em>If you have a draft version of your content, please upload it here.</em></p>
+                                                </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
                                                     <button v-if="item['fields']['Original submission']" v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Original submission'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -168,12 +172,13 @@
                                                     </div>
                                                 </div>
                                                 <div v-else>
-                                                    <p class="lbr text-muted my-2"><em>If you have a final version of your content, please <a v-bind:href="'mailto:eic@interactions.acm.org?Subject=[interactions] ' + item['fields']['Type'] + ' - ' + item['fields']['Primary Contact']" target="_top">email</a> it to us.</em></p>
+                                                    <p class="lbr text-muted my-2"><em>If you have a final version of your content, please upload it here.</em></p>
                                                 </div>
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
                                                     <button v-if="item['fields']['Final text']" v-on:click="fieldName = 'Final text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Final text'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#attachmentModal" aria-label="Green tag"><span>update...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
