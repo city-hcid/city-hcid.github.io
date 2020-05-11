@@ -38,20 +38,21 @@
                     <p class="font-weight-bold big" id="forum-subtitle">Forums Editors</p>
 
                     <div id="app-forum">
-
                         <table class="table table-striped table-sm table-hover">
                             <tbody>
                                 <tr class="bg-dark text-white">
                                     <td class="align-bottom font-weight-bold" width="25%">Editor/Forum</td>
                                     <td class="font-weight-bold text-right" width="10%">Issue:<br>Deadline:<br>Debate:</td>
-                                    <td v-for="issue in issues" width="10%">
-                                        <table-head v-bind:issue="issue['fields']['months']" v-bind:deadline="issue['fields']['reg-deadline']" v-bind:debate="issue['fields']['Debate']"></table-head>
-                                    </td>
+                                    <td v-for="issue in issues" width="10%"><span>{{ issue['fields']['months'] }}<br>{{ issue['fields']['reg-deadline'] }}<br>{{ issue['fields']['Debate'] }}</span></td>
                                 </tr>
                                 <tr v-for="item in items">
                                     <td class="align-middle border-right-0" colspan="2">
-                                        <author-details v-if="item['fields']['regular-content-name']" v-bind:name="item['fields']['Name']" v-bind:content="item['fields']['regular-content-name']"></author-details>
-                                        <author-details v-else v-bind:name="item['fields']['Name']" content="TBA"></author-details>
+                                        <p class="my-1">
+                                            <span class="font-weight-normal">{{ item['fields']['Name'] }}</span>
+                                            <br>
+                                            <span v-if="item['fields']['regular-content-name']" class="font-weight-light small">{{ item['fields']['regular-content-name'] }}</span>
+                                            <span v-else class="font-weight-light small">TBA</span>
+                                        </p>
                                     </td>
                                     <td v-for="issue in issues" class="align-middle text-center border-left">
                                         <a v-if="issue['fields']['Forum editors'].includes(item['fields']['ID'])" data-toggle="popover" v-on:mouseover="popOver" data-placement="top" data-trigger="hover" v-bind:title="issue['fields']['months'] + ' Issue'" v-bind:data-content="item['fields']['regular-content-name'] + ' due ' + issue['fields']['reg-deadline']">
@@ -74,17 +75,22 @@
                                 <tr class="bg-dark text-white">
                                     <td class="align-bottom font-weight-bold" width="25%">Columnists/Column</td>
                                     <td class="font-weight-bold text-right" width="10%">Issue:<br>Deadline:<br>Debate:</td>
-                                    <td v-for="issue in issues" width="10%">
-                                        <table-head v-bind:issue="issue['fields']['months']" v-bind:deadline="issue['fields']['reg-deadline']" v-bind:debate="issue['fields']['Debate']"></table-head>
-                                    </td>
+                                    <td v-for="issue in issues" width="10%">{{ issue['fields']['months'] }}<br>{{ issue['fields']['reg-deadline'] }}<br>{{ issue['fields']['Debate'] }}</td>
                                 </tr>
-                                <tr v-for="item in items">
+                                <tr v-for="columnist in columnists">
                                     <td class="align-middle border-right-0" colspan="2">
-                                        <author-details v-if="item['fields']['regular-content-name']" v-bind:name="item['fields']['Name']" v-bind:content="item['fields']['regular-content-name']"></author-details>
-                                        <author-details v-else v-bind:name="item['fields']['Name']" content="TBA"></author-details>
+                                        <p class="my-2">
+                                            <span class="font-weight-light my-1">{{ columnist['fields']['Name'] }}</span>
+
+                                            <br>
+                                            <span v-if="columnist['fields']['regular-content-name']" class="font-weight-light small">{{ columnist['fields']['regular-content-name'] }}</span>
+                                            <span v-else class="font-weight-light small">TBA</span>
+
+
+                                        </p>
                                     </td>
                                     <td v-for="issue in issues" class="align-middle text-center border-left">
-                                        <a v-if="issue['fields']['Columnists'].includes(item['fields']['ID'])" data-toggle="popover" v-on:mouseover="popOver" data-placement="top" data-trigger="hover" v-bind:title="issue['fields']['months'] + ' Issue'" v-bind:data-content="item['fields']['regular-content-name'] + ' due ' + issue['fields']['reg-deadline']">
+                                        <a v-if="issue['fields']['Columnists'].includes(columnist['fields']['ID'])" data-toggle="popover" v-on:mouseover="popOver" data-placement="top" data-trigger="hover" v-bind:title="issue['fields']['months'] + ' Issue'" v-bind:data-content="columnist['fields']['regular-content-name'] + ' due ' + issue['fields']['reg-deadline']">
                                             <span class="oi oi-check" aria-hidden="true"></span>
                                         </a>
                                     </td>
@@ -160,7 +166,7 @@
         var appColumnists = new Vue({
             el: '#appColumnists',
             data: {
-                items: [],
+                columnists: [],
                 issues: []
             },
             mounted: function() {
@@ -183,7 +189,7 @@
                             }
                         })
                     ]).then(function(response) {
-                        self.items = response[0].data.records;
+                        self.columnists = response[0].data.records;
                         self.issues = response[1].data.records;
                     }).catch(function(error) {
                         console.log(error);
