@@ -206,7 +206,7 @@
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Target Issue</th>
                                             <td class="align-middle border-right-0" width="65%">
-                                                <div v-if="item['fields']['Status'].includes('In process') && item['fields']['Target Issue']">
+                                                <div v-if="item['fields']['Target Issue']">
                                                     <p class="my-2">{{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }}</p>
                                                 </div>
                                                 <div v-else>
