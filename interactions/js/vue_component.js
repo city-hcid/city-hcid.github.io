@@ -1,6 +1,6 @@
 Vue.component('table-head', {
-    props: ['issue', 'deadline', 'debate'],
-    template: '<span>{{ issue }}<br>{{ deadline }}<br>{{ debate }}</span>'
+    props: ['issue', 'year', 'deadline', 'debate'],
+    template: `<span><a v-bind:href="'https://api.airtable.com/v0/appgcGlPwTaZaBImL/Content?view=' + issue + '%20' + year + '%20' + debate">{{ issue }}</a><br>{{ deadline }}<br>{{ debate }}</span>`
 })
 
 Vue.component('author-details', {
