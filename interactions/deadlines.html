@@ -50,8 +50,8 @@
                                 </tr>
                                 <tr v-for="item in items">
                                     <td class="align-middle border-right-0" colspan="2">
-                                        <author-details v-if="item['fields']['regular-content-name']" v-bind:name="item['fields']['Name']" v-bind:content="item['fields']['regular-content-name']"></author-details>
-                                        <author-details v-else v-bind:name="item['fields']['Name']" content="TBA"></author-details>
+                                        <author-details v-if="item['fields']['regular-content-name']" v-bind:name="item['fields']['Name']" v-bind:content="item['fields']['regular-content-name']" type="Forum"></author-details>
+                                        <author-details v-else v-bind:name="item['fields']['Name']" content="TBA" type="Forum"></author-details>
                                     </td>
                                     <td v-for="issue in issues" class="align-middle text-center border-left">
                                         <div v-if="issue['fields']['Forum editors'].includes(item['fields']['ID'])" v-b-popover.hover.top="item['fields']['regular-content-name'] + ' due ' + issue['fields']['reg-deadline']" v-bind:title="issue['fields']['months'] + ' Issue'" v-b-hover="handleHover">
@@ -81,8 +81,8 @@
                                 </tr>
                                 <tr v-for="item in items">
                                     <td class="align-middle border-right-0" colspan="2">
-                                        <author-details v-if="item['fields']['regular-content-name']" v-bind:name="item['fields']['Name']" v-bind:content="item['fields']['regular-content-name']"></author-details>
-                                        <author-details v-else v-bind:name="item['fields']['Name']" content="TBA"></author-details>
+                                        <author-details v-if="item['fields']['regular-content-name']" v-bind:name="item['fields']['Name']" v-bind:content="item['fields']['regular-content-name']" type="Column"></author-details>
+                                        <author-details v-else v-bind:name="item['fields']['Name']" content="TBA" type="Column"></author-details>
                                     </td>
                                     <td v-for="issue in issues" class="align-middle text-center border-left">
                                         <div v-if="issue['fields']['Columnists'].includes(item['fields']['ID'])" :id="issue['fields']['Issue no.'] + '-' + item['fields']['Last Name']" v-b-popover.hover.top="item['fields']['regular-content-name'] + ' due ' + issue['fields']['reg-deadline']"
