@@ -76,7 +76,7 @@
                                     <td class="align-bottom font-weight-bold" width="25%">Columnists/Column</td>
                                     <td class="font-weight-bold text-right" width="10%">Issue:<br>Deadline:<br>Debate:</td>
                                     <td v-for="issue in issues" width="10%">
-                                        <table-head v-bind:issue="issue['fields']['months']" v-bind:deadline="issue['fields']['reg-deadline']" v-bind:debate="issue['fields']['Debate']"></table-head>
+                                        <table-head v-bind:issue="issue['fields']['months']" v-bind:year="issue['fields']['year']" v-bind:deadline="issue['fields']['reg-deadline']" v-bind:debate="issue['fields']['Debate']"></table-head>
                                     </td>
                                 </tr>
                                 <tr v-for="item in items">

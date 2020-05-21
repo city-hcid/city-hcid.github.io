@@ -1,6 +1,6 @@
 Vue.component('table-head', {
     props: ['issue', 'year', 'deadline', 'debate'],
-    template: `<span><a v-bind:href="'https://api.airtable.com/v0/appgcGlPwTaZaBImL/Content?view=' + issue + '%20' + year + '%20' + debate">{{ issue }}</a><br>{{ deadline }}<br>{{ debate }}</span>`
+    template: `<span v-if="debate=='TBA'">{{ issue }}<br>{{ deadline }}<br>{{ debate }}</span><span v-else-if="debate"><a v-bind:href="'https://api.airtable.com/v0/appgcGlPwTaZaBImL/Content?api_key=key8l5YZtQ9FyUoxF&view=' + issue + '%20' + year + '%20' + debate">{{ issue }}</a><br>{{ deadline }}<br>{{ debate }}</span>`
 })
 
 Vue.component('author-details', {
