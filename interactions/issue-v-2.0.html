@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
     <link rel="stylesheet" href="./css/styles.css">
     <title>interactions magazine | Issue details</title>
 </head>
@@ -13,65 +15,61 @@
     <main>
         <div class="container">
             <div class="row justify-content-center align-items-center" id="page-title">
-                <div class="col-12 col-md-3 my-md-5 mt-5 order-md-5">
+                <div class="col-12 col-md-3 my-5 order-md-5">
                     <a href="https://interactions.acm.org">
                         <img class="float-right" src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
                     </a>
                 </div>
                 <div class="col-12 col-md-7">
-                    <h1 class="font-weight-bold my-5">interactions Magazine</h1>
-                </div>
-            </div>
-
-            <div class="row justify-content-center my-5" id="issue-title">
-                <div class="col-12 col-md-10">
-                    <h2 class="font-weight-bold" id="subtitle">Issue:</h2>
-                    <h3 class="" id="issue"></h3>
+                    <h1 class="font-weight-bold mt-5">interactions Magazine</h1>
                 </div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10">
                     <div id="app">
-
-                        <span v-for="item in items"></span>
-
-                        <div v-for="value in contentType">
-                            <table class="table table-sm" v-bind:id="value">
-                                <tbody>
-                                    <tr class="table-secondary">
-                                        <td class="h4" colspan="2" v-if="value === 'Feature'">Features</td class="lead">
-                                        <td class="h4" colspan="2" v-else-if="value === 'Forum'">Forums</td class="lead">
-                                        <td class="h4" colspan="2" v-else>{{ value }}</td>
-                                    </tr>
-                                    <tr v-for="item in items" v-if="item['fields']['Type'] == value">
-                                        <td class="align-middle border-right-0" width="90%">
-                                            <a v-bind:href="item['fields']['Submission url']" class="text-dark">
-                                                <div>
-                                                    <p v-if="item['fields']['Title of text']" class="font-weight-bold my-2">{{ item['fields']['Title of text'] }}</p>
-                                                    <p v-else class="font-weight-bold my-2">Title TBA</p>
-                                                    <p v-if="item['fields']['Primary Contact']" class="font-weight-light my-1">{{ item['fields']['Primary Contact'] }}</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                        <td class="align-middle text-right border-left-0" width="10%">
-                                            <!-- <button v-if="item['fields']['Status'] == 'Pending'" type="button" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="left" title="Pending" aria-disabled="true"> </button> -->
-                                            <span v-if="item['fields']['Status'] == 'Pending'" class="badge badge-danger">Pending</span>
-
-                                            <!-- <button v-if="item['fields']['Status'] == 'In process'" type="button" class="btn btn-warning btn-circle btn-sm text-white" data-toggle="tooltip" data-placement="left" title="In process" aria-disabled="true"> </button> -->
-                                            <span v-if="item['fields']['Status'] == 'In process'" class="badge badge-warning">In process</span>
-
-                                            <!-- <button v-if="item['fields']['Status'] == 'Ready'" type="button" class="btn btn-success btn-circle btn-sm" data-toggle="tooltip" data-placement="left" title="Ready" aria-disabled="true"> </button> -->
-                                            <span v-if="item['fields']['Status'] == 'Ready'" class="badge badge-success">Ready</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div v-for="(item, index) in items">
+                            <div v-if="index == 0" class="mb-5" id="issue-title">
+                                <h2 id="subtitle">Issue: {{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }}</h2>
+                                <a>This is a list of provisional content for the {{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }} issue of the <a href="https://interactions.acm.org/" target="_blank">ACM interactions magazine</a>.
+                                Details are subject to change.</p>
+                            </div>
                         </div>
 
+                        <table class="table table-hover table-striped table-sm">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="font-weight-bold small text-left border-right" width="15%">Type</th>
+                                    <th scope="col" class="font-weight-bold small text-center border-right" width="30%">Primary Author</th>
+                                    <th scope="col" class="font-weight-bold small text-center" width="40%">Title</th>
+                                    <th scope="col" class="font-weight-bold small text-right" width="40%">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in items" class="small">
+                                    <td class="text-left border-right" width="15%">{{ item['fields']['Type'] }}</td>
+                                    <td class="text-center border-right" width="30%">
+                                        <span v-if="item['fields']['Primary Contact'] == 'Provisional/Planned Content'">TBA</span>
+                                        <span v-else-if="item['fields']['Primary Contact']">{{ item['fields']['Primary Contact'] }}</span>
+                                        <span v-else>TBA</span>
+                                    </td>
+                                    <td class="text-center" width="45%">
+                                        <span v-if="item['fields']['Title of text']">{{ item['fields']['Title of text'] }}</span>
+                                        <span v-else>TBA</span>
+                                    </td>
+                                    <td class="text-right" width="10%">
+                                        <span v-if="item['fields']['Status'] == 'Pending'" class="badge badge-danger">Pending</span>
+                                        <span v-if="item['fields']['Status'] == 'In process'" class="badge badge-warning">In process</span>
+                                        <span v-if="item['fields']['Status'] == 'Ready'" class="badge badge-success">Ready</span>
+                                        <span v-if="item['fields']['Status'] == 'Planning'" class="badge badge-secondary">Planned</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </main>
     <footer>
@@ -87,26 +85,25 @@
             </div>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+    <script type="text/javascript" src="js/vue_component.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
         });
         var app_id = "appgcGlPwTaZaBImL";
         var app_key = "key8l5YZtQ9FyUoxF";
-        var issue_months;
-        var issue_year;
-        var contentType = [];
+        var issue_view;
 
-        var app_sub = new Vue({
+        var app = new Vue({
             el: '#app',
             data: {
-                items: [],
-                Type: []
+                items: []
             },
             mounted: function() {
                 this.loadItems();
@@ -114,24 +111,14 @@
             methods: {
                 loadItems: function() {
                     let url = new URL(window.location.href);
-                    // Get year
-                    if (url.searchParams.get("year") == null) {
-                        issue_year = new Date().getFullYear();
+                    // Get issue view
+                    if (url.searchParams.get("view") == null) {
+                        issue_view = encodeURIComponent("May/Jun 2020");
                     } else {
-                        issue_year = url.searchParams.get("year");
+                        issue_view = url.searchParams.get("view");
                     }
-                    // Get month
-                    if (url.searchParams.get("month") == null) {
-                        const date = Date.now();
-                        const options = {
-                            month: "short"
-                        };
-                        issue_months = new Intl.DateTimeFormat("en-US", options).format(date);
-                    } else {
-                        issue_months = url.searchParams.get("month");
-                        issue_months = issue_months.charAt(0).toUpperCase() + issue_months.slice(1);
-                    }
-                    let submission_url = "https://api.airtable.com/v0/" + app_id + "/Content?filterByFormula=AND(FIND(%22" + encodeURIComponent(issue_months) + "%22%2C%7BTarget+Issue%7D)%2CFIND(%22" + issue_year + "%22%2C%7BTarget+Year%7D))";
+                    console.log(issue_view);
+                    let submission_url = "https://api.airtable.com/v0/" + app_id + "/Content?view=" + issue_view;
                     let self = this;
                     axios.get(
                         submission_url, {
@@ -141,20 +128,7 @@
                         }
                     ).then(function(response) {
                         self.items = response.data.records;
-                        obj = response.data.records;
-                        console.log(obj.length);
-                        for (i = 0; i < obj.length; i++) {
-                            if (contentType.includes(obj[i].fields['Type'])) {
-                                console.log("got it");
-                            } else {
-                                contentType.push(obj[i].fields['Type']);
-                                console.log("added");
-                                contentType.sort();
-                            }
-                        }
-                        console.log(contentType);
-                        let h = document.getElementById("issue");
-                        h.insertAdjacentHTML("beforeend", ' ' + self.items[0].fields['Target Issue'] + ' ' + issue_year)
+                        console.log(self.items);
                     }).catch(function(error) {
                         console.log(error);
                     })
