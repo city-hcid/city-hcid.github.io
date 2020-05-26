@@ -41,29 +41,17 @@
 
                         <table class="table table-striped table-sm table-hover">
                             <thead class="bg-dark text-white">
-                                <tr class="py-0">
-                                    <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Issue:</th>
-                                    <th v-for="issue in issues" class="align-top font-weight-normal text-left border-0 py-0" width="10%">
-                                        <table-head v-bind:head="issue['fields']['months']" v-bind:view_id="issue['fields']['view-id']" v-bind:dialogue="issue['fields']['Debate']"></table-head>
-                                    </th>
-                                </tr>
                                 <tr>
-                                    <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Deadline:</th>
-                                    <th v-for="issue in issues" class="align-top font-weight-normal text-left border-0 py-0" width="10%">
-                                        <table-head v-bind:head="issue['fields']['reg-deadline']" v-bind:view_id="issue['fields']['view-id']" v-bind:dialogue="issue['fields']['Debate']"></table-head>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Debate:</th>
-                                    <th v-for="issue in issues" class="align-top font-weight-normal text-left border-0 py-0" width="10%">
-                                        <table-head v-bind:head="issue['fields']['Debate']" v-bind:view_id="issue['fields']['view-id']" v-bind:dialogue="issue['fields']['Debate']"></table-head>
+                                    <th colspan="2" class="align-top font-weight-bold text-right border-0" width="35%">Issue:<br>Deadline:<br>Debate:</th>
+                                    <th v-for="issue in issues" class="align-top font-weight-normal border-0" width="10%">
+                                        <table-head v-bind:issue="issue['fields']['months']" v-bind:year="issue['fields']['year']" v-bind:deadline="issue['fields']['reg-deadline']" v-bind:debate="issue['fields']['Debate']"></table-head>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th colspan="42" class="align-bottom font-weight-bold border-0" width="100%">Editor/Forum</th>
                                 </tr>
                             </thead>
-                            <tbody class="border-bottom">
+                            <tbody>
                                 <tr v-for="item in items">
                                     <td class="align-middle border-right-0" colspan="2">
                                         <author-details v-if="item['fields']['regular-content-name']" v-bind:name="item['fields']['Name']" v-bind:content="item['fields']['regular-content-name']" type="Forum"></author-details>
@@ -89,29 +77,17 @@
                     <div id="appColumnists">
                         <table class="table table-striped table-sm table-hover">
                             <thead class="bg-dark text-white">
-                                <tr class="py-0">
-                                    <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Issue:</th>
-                                    <th v-for="issue in issues" class="align-top font-weight-normal text-left border-0 py-0" width="10%">
-                                        <table-head v-bind:head="issue['fields']['months']" v-bind:view_id="issue['fields']['view-id']" v-bind:dialogue="issue['fields']['Debate']"></table-head>
-                                    </th>
-                                </tr>
                                 <tr>
-                                    <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Deadline:</th>
-                                    <th v-for="issue in issues" class="align-top font-weight-normal text-left border-0 py-0" width="10%">
-                                        <table-head v-bind:head="issue['fields']['reg-deadline']" v-bind:view_id="issue['fields']['view-id']" v-bind:dialogue="issue['fields']['Debate']"></table-head>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Debate:</th>
-                                    <th v-for="issue in issues" class="align-top font-weight-normal text-left border-0 py-0" width="10%">
-                                        <table-head v-bind:head="issue['fields']['Debate']" v-bind:view_id="issue['fields']['view-id']" v-bind:dialogue="issue['fields']['Debate']"></table-head>
+                                    <th colspan="2" class="align-top font-weight-bold text-right border-0" width="35%">Issue:<br>Deadline:<br>Debate:</th>
+                                    <th v-for="issue in issues" class="align-top font-weight-normal border-0" width="10%">
+                                        <table-head v-bind:issue="issue['fields']['months']" v-bind:year="issue['fields']['year']" v-bind:deadline="issue['fields']['reg-deadline']" v-bind:debate="issue['fields']['Debate']"></table-head>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th colspan="42" class="align-bottom font-weight-bold border-0" width="100%">Editor/Forum</th>
                                 </tr>
                             </thead>
-                            <tbody class="border-bottom">
+                            <tbody>
                                 <tr v-for="item in items">
                                     <td class="align-middle border-right-0" colspan="2">
                                         <author-details v-if="item['fields']['regular-content-name']" v-bind:name="item['fields']['Name']" v-bind:content="item['fields']['regular-content-name']" type="Column"></author-details>
