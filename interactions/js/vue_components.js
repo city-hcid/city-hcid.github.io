@@ -25,7 +25,7 @@ Vue.component('template-header', {
     template: `<div>
     <div class="row row-cols-md-2 justify-content-center align-items-center">
         <div class="col-12 col-md-3 my-5 order-md-5">
-            <a href="https://interactions.acm.org"><img class="float-right" src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></a>
+            <a href="https://interactions.acm.org"><b-img right src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img></a>
         </div>
         <div class="col-12 col-md-7">
             <h1 class="font-weight-bold pt-md-5 mt-md-5 mt-3">interactions Magazine</h1>
@@ -44,17 +44,17 @@ Vue.component('template-header', {
 Vue.component('template-footer', {
     template: `
     <footer>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-9">
-                    <div class="my-5">
+        <b-container fluid="sm">
+            <b-row class="justify-content-center">
+                <b-col cols="12" md="9">
+                    <div class="py-5 mb-3">
                         <a href="https://interactions.acm.org">
-                            <img src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
+                            <b-img left src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img>
                         </a>
                     </div>
-                </div>
-            </div>
-        </div>
+                </b-col>
+            </b-row>
+        </b-container>
     </footer>
     `
 })

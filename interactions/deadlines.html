@@ -12,7 +12,7 @@
 
 <body>
     <main>
-        <div class="container">
+        <b-container fluid="sm">
 
             <template-header id="header">
             </template-header>
@@ -119,18 +119,98 @@
                 </div>
             </div>
 
-        </div>
+        </b-container>
     </main>
     <template-footer id="footer">
     </template-footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+    <script src="http://unpkg.com/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
     <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
     <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
     <script type="text/javascript" src="js/vue_components.js"></script>
-    <script type="text/javascript" src="js/javascript.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript">
+        var appForum = new Vue({
+            el: '#app-forum',
+            data: {
+                items: [],
+                issues: [],
+                isHovered: false
+            },
+            mounted: function() {
+                this.loadItems();
+            },
+            methods: {
+                loadItems: function() {
+                    let editors_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=forum_editors";
+                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming";
+                    let self = this;
+                    axios.all([
+                        axios.get(editors_url, {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        }),
+                        axios.get(issues_url, {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        })
+                    ]).then(function(response) {
+                        self.items = response[0].data.records;
+                        self.issues = response[1].data.records;
+                    }).catch(function(error) {
+                        console.log(error);
+                    })
+                },
+                handleHover(hovered) {
+                    this.isHovered = hovered
+                }
+            }
+        });
+
+        var appColumnists = new Vue({
+            el: '#appColumnists',
+            data: {
+                items: [],
+                issues: [],
+                isHovered: false
+            },
+            mounted: function() {
+                this.loadItems();
+            },
+            methods: {
+                loadItems: function() {
+                    let columnists_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=columnists";
+                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming";
+                    let self = this;
+                    axios.all([
+                        axios.get(columnists_url, {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        }),
+                        axios.get(issues_url, {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        })
+                    ]).then(function(response) {
+                        self.items = response[0].data.records;
+                        self.issues = response[1].data.records;
+                    }).catch(function(error) {
+                        console.log(error);
+                    })
+                },
+                handleHover(hovered) {
+                    this.isHovered = hovered
+                }
+            }
+        })
+    </script>
+
 </body>
 
 </html>
