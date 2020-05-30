@@ -22,22 +22,26 @@ Vue.component('author-deadlines', {
 })
 
 Vue.component('template-header', {
-    template: `<div>
-    <div class="row row-cols-md-2 justify-content-center align-items-center">
-        <div class="col-12 col-md-3 my-5 order-md-5">
-            <a href="https://interactions.acm.org"><b-img right src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img></a>
-        </div>
-        <div class="col-12 col-md-7">
-            <h1 class="font-weight-bold pt-md-5 mt-md-5 mt-3">interactions Magazine</h1>
-        </div>
-    </div>
-    <div class="row row-cols-md-2 justify-content-center align-items-center">
-        <div class="col-12 col-md-10">
-            <h2 class="font-weight-bold mt-md-5 mt-3" id="subtitle">Deadlines</h2>
-            <p>Upcoming deadlines for regular contributions from <a href="#forum-subtitle">forum editors</a> and <a href="#columnists-subtitle">columnists</a>.</p>
-        </div>
-    </div>
-    </div>
+    props: ['subtitle', 'subtext'],
+    template: `
+    <header>
+        <b-row align-h="center" cols-md="2" class="pt-sm-5">
+            <b-col cols="12" md="3" order-md="5" align-self="center" class="my-5">
+                <b-link href="https://interactions.acm.org" target="_blank">
+                    <b-img right src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img>
+                </b-link>
+            </b-col>
+            <b-col cols="12" md="6" align-self="center" class="my-2">
+                <h1 class="font-weight-bold" id="Title">interactions Magazine</h1>
+            </b-col>
+        </b-row>
+        <b-row align-h="center">
+            <b-col cols="12" md="9">
+                <h2 class="font-weight-bold mt-md-5 mt-3" id="subtitle">{{ subtitle }}</h2>
+                <p v-html="subtext"></p>
+            </b-col>
+        </b-row>
+    </header>
     `
 })
 
@@ -45,13 +49,11 @@ Vue.component('template-footer', {
     template: `
     <footer>
         <b-container fluid="sm">
-            <b-row class="justify-content-center">
-                <b-col cols="12" md="9">
-                    <div class="py-5 mb-3">
-                        <a href="https://interactions.acm.org">
-                            <b-img left src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img>
-                        </a>
-                    </div>
+            <b-row align-h="center">
+                <b-col cols="12" md="9" class="py-5 mb-3">
+                    <b-link href="https://interactions.acm.org" target="_blank">
+                        <b-img left src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img>
+                    </b-link>
                 </b-col>
             </b-row>
         </b-container>
