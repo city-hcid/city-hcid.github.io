@@ -20,3 +20,41 @@ Vue.component('author-deadlines', {
     <span class="oi oi-check" aria-hidden="true"></span>
 </a>`
 })
+
+Vue.component('template-header', {
+    template: `<div>
+    <div class="row row-cols-md-2 justify-content-center align-items-center">
+        <div class="col-12 col-md-3 my-5 order-md-5">
+            <a href="https://interactions.acm.org"><img class="float-right" src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></a>
+        </div>
+        <div class="col-12 col-md-7">
+            <h1 class="font-weight-bold pt-md-5 mt-md-5 mt-3">interactions Magazine</h1>
+        </div>
+    </div>
+    <div class="row row-cols-md-2 justify-content-center align-items-center">
+        <div class="col-12 col-md-10">
+            <h2 class="font-weight-bold mt-md-5 mt-3" id="subtitle">Deadlines</h2>
+            <p>Upcoming deadlines for regular contributions from <a href="#forum-subtitle">forum editors</a> and <a href="#columnists-subtitle">columnists</a>.</p>
+        </div>
+    </div>
+    </div>
+    `
+})
+
+Vue.component('template-footer', {
+    template: `
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9">
+                    <div class="my-5">
+                        <a href="https://interactions.acm.org">
+                            <img src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    `
+})

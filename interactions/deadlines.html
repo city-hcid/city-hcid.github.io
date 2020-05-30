@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
     <link rel="stylesheet" href="./css/styles.css">
     <title>interactions magazine | Deadlines</title>
@@ -14,31 +14,15 @@
     <main>
         <div class="container">
 
-            <div class="row justify-content-center align-items-center" id="page-title">
-                <div class="col-12 col-md-3 my-md-5 mt-5 order-md-5">
-                    <a href="https://interactions.acm.org">
-                        <img class="float-right" src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
-                    </a>
-                </div>
-                <div class="col-12 col-md-7">
-                    <h1 class="font-weight-bold my-5">interactions Magazine</h1>
-                </div>
-            </div>
+            <template-header id="header">
+            </template-header>
 
-            <div class="row justify-content-center my-5" id="issue-title">
+            <div class="row justify-content-center my-5">
                 <div class="col-12 col-md-10">
-                    <h2 class="font-weight-bold" id="subtitle">Deadlines</h2>
-                    <p>Upcoming deadlines for regular contributions from <a href="#forum-subtitle">forum editors</a> and <a href="#columnists-subtitle">columnists</a>.</p>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10">
-
-                    <p class="font-weight-bold big" id="forum-subtitle">Forums Editors</p>
-
+                    <div>
+                        <p class="font-weight-bold big" id="forum-subtitle">Forums Editors</p>
+                    </div>
                     <div id="app-forum">
-
                         <table class="table table-striped table-sm table-hover">
                             <thead class="bg-dark text-white">
                                 <tr class="py-0">
@@ -80,12 +64,15 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
 
             <div class="row justify-content-center mt-5">
                 <div class="col-12 col-md-10">
-                    <p class="font-weight-bold" id="columnists-subtitle">Columnists</p>
+                    <div>
+                        <p class="font-weight-bold" id="columnists-subtitle">Columnists</p>
+                    </div>
                     <div id="appColumnists">
                         <table class="table table-striped table-sm table-hover">
                             <thead class="bg-dark text-white">
@@ -134,107 +121,17 @@
 
         </div>
     </main>
-    <footer>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-9">
-                    <div class="my-5">
-                        <a href="https://interactions.acm.org">
-                            <img src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <template-footer id="footer">
+    </template-footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
     <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
-    <script type="text/javascript" src="js/vue_component.js"></script>
+    <script type="text/javascript" src="js/vue_components.js"></script>
+    <script type="text/javascript" src="js/javascript.js"></script>
     <script type="text/javascript">
-        var app_id = "appgcGlPwTaZaBImL";
-        var app_key = "key8l5YZtQ9FyUoxF";
-
-        var appForum = new Vue({
-            el: '#app-forum',
-            data: {
-                items: [],
-                issues: [],
-                isHovered: false
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    let editors_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=forum_editors";
-                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming";
-                    let self = this;
-                    axios.all([
-                        axios.get(editors_url, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }),
-                        axios.get(issues_url, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        })
-                    ]).then(function(response) {
-                        self.items = response[0].data.records;
-                        self.issues = response[1].data.records;
-                    }).catch(function(error) {
-                        console.log(error);
-                    })
-                },
-                handleHover(hovered) {
-                    this.isHovered = hovered
-                }
-            }
-        });
-
-        var appColumnists = new Vue({
-            el: '#appColumnists',
-            data: {
-                items: [],
-                issues: [],
-                isHovered: false
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    let columnists_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=columnists";
-                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming";
-                    let self = this;
-                    axios.all([
-                        axios.get(columnists_url, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }),
-                        axios.get(issues_url, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        })
-                    ]).then(function(response) {
-                        self.items = response[0].data.records;
-                        self.issues = response[1].data.records;
-                    }).catch(function(error) {
-                        console.log(error);
-                    })
-                },
-                handleHover(hovered) {
-                    this.isHovered = hovered
-                }
-            }
-        });
     </script>
 </body>
 
