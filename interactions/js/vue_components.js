@@ -1,3 +1,10 @@
+Vue.component('table-issue', {
+    props: ['items'],
+    template: `<div>
+    <b-table striped hover :items="items"></b-table>
+    </div>`
+})
+
 Vue.component('table-head', {
     props: ['head', 'view_id', 'dialogue'],
     template: `<span v-if="view_id"><a v-bind:href="'issue.html?view=' + view_id + '&dialogue=' + dialogue">{{ head }}</a></span>
@@ -26,17 +33,17 @@ Vue.component('template-header', {
     template: `
     <header>
         <b-row align-h="center" cols-md="2" class="pt-sm-5">
-            <b-col cols="12" md="3" order-md="5" align-self="center" class="my-5">
+            <b-col cols="12" md="3" order-md="5" align-self="center" class="my-5 pb-md-4">
                 <b-link href="https://interactions.acm.org" target="_blank">
                     <b-img right src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img>
                 </b-link>
             </b-col>
-            <b-col cols="12" md="6" align-self="center" class="my-2">
+            <b-col cols="12" md="7" align-self="center" class="my-2">
                 <h1 class="font-weight-bold" id="Title">interactions Magazine</h1>
             </b-col>
         </b-row>
         <b-row align-h="center">
-            <b-col cols="12" md="9">
+            <b-col cols="12" md="10">
                 <h2 class="font-weight-bold mt-md-5 mt-3" id="subtitle">{{ subtitle }}</h2>
                 <p v-html="subtext"></p>
             </b-col>
@@ -50,7 +57,7 @@ Vue.component('template-footer', {
     <footer>
         <b-container fluid="sm">
             <b-row align-h="center">
-                <b-col cols="12" md="9" class="py-5 mb-3">
+                <b-col cols="12" md="10" class="py-5 mb-3">
                     <b-link href="https://interactions.acm.org" target="_blank">
                         <b-img left src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img>
                     </b-link>

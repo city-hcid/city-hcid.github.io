@@ -3,27 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
     <link rel="stylesheet" href="./css/styles.css">
-    <title>interactions magazine | Issue details</title>
+    <title>interactions magazine | Issue</title>
 </head>
 
 <body>
     <main>
         <div class="container">
-            <div class="row justify-content-center align-items-center" id="page-title">
-                <div class="col-12 col-md-3 my-5 order-md-5">
-                    <a href="https://interactions.acm.org">
-                        <img class="float-right" src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
-                    </a>
-                </div>
-                <div class="col-12 col-md-7">
-                    <h1 class="font-weight-bold mt-5">interactions Magazine</h1>
-                </div>
-            </div>
+
+            <template-header id="header" subtitle="" subtext=""></template-header>
+            </template-header>
 
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10">
@@ -32,12 +24,31 @@
                             <div v-if="index == 0" class="mb-5" id="issue-title">
                                 <h2 id="subtitle">Issue: {{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }}</h2>
                                 <h3 v-if="dialogue">Dialogue: {{ dialogue }}</h3>
-                                <p class="my-4 font-weight-light">This is a list of provisional content for the {{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }} issue of the <a href="https://interactions.acm.org/" target="_blank">ACM interactions magazine</a>.
-                                    Details are subject to change.</p>
+                                <p class="my-4 font-weight-light">List of provisional content for the {{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }} issue of the <a href="https://interactions.acm.org/" target="_blank">ACM interactions magazine</a>. Details are
+                                    subject to change.</p>
                             </div>
                         </div>
 
-                        <table class="table table-hover table-striped table-sm">
+                        <template>
+                            <b-table striped hover responsive small bordered head-variant="dark" :fields="fields" :items="items">
+                                <template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
+                        <template v-slot:cell(Type)="data">{{ data.item.fields.Type }}</template>
+                        <template v-slot:cell(primaryContact)="data">
+                                    <span v-if="data.item['fields']['Primary Contact'] == 'Provisional/Planned Content'">TBA</span>
+                                    <span v-else-if="data.item['fields']['Primary Contact']">{{ data.item['fields']['Primary Contact'] }}</span>
+                                    <span v-else>TBA</span>
+                                </template>
+                        <template v-slot:cell(titleOfText)="data">{{ data.item['fields']['Title of text'] }}</template> -->
+                        <template v-slot:cell(Status)="data">
+                                    <b-badge variant="danger" v-if="data.item.fields.Status == 'Pending'">{{ data.item.fields.Status[0] }}</b-badge>
+                                    <b-badge variant="warning" v-if="data.item.fields.Status == 'In process'">{{ data.item.fields.Status[0] }}</b-badge>
+                                    <b-badge variant="success" v-if="data.item.fields.Status == 'Ready'">{{ data.item.fields.Status[0] }}</b-badge>
+                                    <b-badge variant="secondary" v-if="data.item.fields.Status == 'Planning'">{{ data.item.fields.Status[0] }}</b-badge>
+                                </template>
+                        </b-table>
+                        </template>
+
+                        <!-- <table class="table table-hover table-striped table-sm">
                             <thead class="thead-dark">
                                 <tr class="font-weight-bold">
                                     <th scope="col" class="text-left border-right" width="15%">Type</th>
@@ -68,33 +79,22 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> -->
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </main>
-    <footer>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-9">
-                    <div class="my-5">
-                        <a href="https://interactions.acm.org">
-                            <img src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <template-footer id="footer">
+    </template-footer>
+    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+    <script src="http://unpkg.com/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
     <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
-    <script type="text/javascript" src="js/vue_component.js"></script>
+    <script type="text/javascript" src="js/vue_components.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
@@ -107,7 +107,25 @@
             el: '#app',
             data: {
                 items: [],
-                dialogue: ''
+                dialogue: '',
+                fields: [{
+                    key: 'index',
+                    label: '',
+                }, {
+                    key: 'Type',
+                    label: 'Type'
+                }, {
+                    key: 'primaryContact',
+                    label: 'Primary Author'
+                }, {
+                    key: 'titleOfText',
+                    label: 'Title'
+                }, 'Status'],
+                striped: true,
+                bordered: true,
+                small: true,
+                hover: true,
+                headVariant: 'dark'
             },
             mounted: function() {
                 this.loadItems();
@@ -126,7 +144,7 @@
                     } else {
                         this.dialogue = url.searchParams.get("dialogue");
                     }
-                    let submission_url = "https://api.airtable.com/v0/" + app_id + "/Content?view=" + issue_view;
+                    let submission_url = "https://api.airtable.com/v0/" + app_id + "/Content?view=" + issue_view + "&fields%5B%5D=Primary%20Contact&fields%5B%5D=Status&fields%5B%5D=Title%20of%20text&fields%5B%5D=Type&fields%5B%5D=Target%20Issue&fields%5B%5D=Target%20Year";
                     let self = this;
                     axios.get(
                         submission_url, {
@@ -135,7 +153,7 @@
                             }
                         }
                     ).then(function(response) {
-                        console.log(self.issue);
+                        //console.log(self.issue);
                         self.items = response.data.records;
                         console.log(self.items);
                     }).catch(function(error) {

@@ -12,18 +12,18 @@
 
 <body>
     <main>
-        <container>
+        <div class="container">
 
             <template-header id="header" subtitle="Deadlines" subtext="Upcoming deadlines for regular contributions from forum <a href='#forum-subtitle'>editors</a> and <a href='#columnists-subtitle'>columnists."></template-header>
             </template-header>
 
             <div class="row justify-content-center my-5">
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-10">
                     <div>
                         <p class="font-weight-bold big" id="forum-subtitle">Forums Editors</p>
                     </div>
                     <div id="app-forum">
-                        <table class="table table-striped table-sm table-hover">
+                        <table class="table table-striped table-sm table-hover table-bordered table-responsive-md">
                             <thead class="bg-dark text-white">
                                 <tr class="py-0">
                                     <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Issue:</th>
@@ -69,12 +69,12 @@
             </div>
 
             <div class="row justify-content-center mt-5">
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-10">
                     <div>
                         <p class="font-weight-bold" id="columnists-subtitle">Columnists</p>
                     </div>
                     <div id="appColumnists">
-                        <table class="table table-striped table-sm table-hover">
+                        <table class="table table-striped table-sm table-hover table-bordered table-responsive-md">
                             <thead class="bg-dark text-white">
                                 <tr class="py-0">
                                     <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Issue:</th>
@@ -106,8 +106,7 @@
                                     </td>
                                     <td v-for="issue in issues" class="align-middle text-center border-left">
                                         <div v-if="!issue['fields']['Columnists']"></div>
-                                        <div v-else-if="issue['fields']['Columnists'].includes(item['fields']['ID'])" :id="issue['fields']['Issue no.'] + '-' + item['fields']['Last Name']" v-b-popover.hover.top="item['fields']['regular-content-name'] + ' due ' + issue['fields']['reg-deadline']"
-                                            v-bind:title="issue['fields']['months'] + ' Issue'" v-b-hover="handleHover">
+                                        <div v-else-if="issue['fields']['Columnists'].includes(item['fields']['ID'])" v-b-popover.hover.top="item['fields']['regular-content-name'] + ' due ' + issue['fields']['reg-deadline']" v-bind:title="issue['fields']['months'] + ' Issue'" v-b-hover="handleHover">
                                             <b-icon v-if="isHovered" icon="check" font-scale="1.5"></b-icon>
                                             <b-icon v-else icon="check" font-scale="1.4"></b-icon>
                                         </div>
@@ -119,7 +118,7 @@
                 </div>
             </div>
 
-        </container>
+        </div>
     </main>
     <template-footer id="footer">
     </template-footer>
@@ -144,8 +143,8 @@
             },
             methods: {
                 loadItems: function() {
-                    let editors_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=forum_editors";
-                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming";
+                    let editors_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=forum_editors&fields%5B%5D=Name&fields%5B%5D=First%20Name&fields%5B%5D=Regular%20content%20name&fields%5B%5D=ID";
+                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming&fields%5B%5D=months&fields%5B%5D=year&fields%5B%5D=Debate&fields%5B%5D=view-id&fields%5B%5D=Forum%20editors&fields%5B%5D=reg-deadline";
                     let self = this;
                     axios.all([
                         axios.get(editors_url, {
@@ -183,8 +182,8 @@
             },
             methods: {
                 loadItems: function() {
-                    let columnists_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=columnists";
-                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming";
+                    let columnists_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=columnists&fields%5B%5D=Name&fields%5B%5D=First%20Name&fields%5B%5D=Regular%20content%20name&fields%5B%5D=ID";
+                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming&fields%5B%5D=months&fields%5B%5D=year&fields%5B%5D=Debate&fields%5B%5D=view-id&fields%5B%5D=Columnists&fields%5B%5D=reg-deadline";
                     let self = this;
                     axios.all([
                         axios.get(columnists_url, {
