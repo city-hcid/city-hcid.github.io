@@ -29,26 +29,6 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-col cols="12" md="11">
-                            <div class="font-weight-light">
-                                <h2 class="font-weight-regular">Review your outputs:</h2>
-                                <p>Please review your outputs. If necessary, update them with any additional details.</p>
-                                <v-alert border="top" colored-border type="info" elevation="2">
-                                    <p>If you think a potential output is missing or you have a new output that should be considered for REF, please add it to the list using this <template v-for="(item, index) in items" v-if="index == 0"><span><a :href="'https://airtable.com/shrtDcW4C8fxpO6Is?prefill_authorName=' + item.authorName" target="_blank">form</a></span></template>.</p>
-                                </v-alert>
-                                <p><em>For information on how REF outputs are judged and scored see <a href="https://www.ref.ac.uk/2014/panels/assessmentcriteriaandleveldefinitions/" target="_blank">Assessment criteria and level definitions</a></em>.</p>
-                                <h2 class="font-weight-regular">Consider how many outputs you should include:</h2>
-                                <p>Each of us should be aiming to have between 1-5 outputs in our shorlist (i.e. checked in the list below).</p>
-                                <p><em>For details on how the required number of outputs per UoA is calculated see the <a href="https://www.ref.ac.uk/media/1034/ref-2017_04-decisions-updated-11042018.pdf" target="_blank">Decisions on Staff and Outputs</a> (PDF)
-                                    guidence from REF 2021</em>.</p>
-                                <p><em>See these FAQs on <a href="https://www.ref.ac.uk/faqs/#Staff" target="_blank">staff</a> and <a href="https://www.ref.ac.uk/faqs/#Circs" target="_blank">staff circumstances and codes of practice</a></em>.</p>
-                                <h2 class="font-weight-regular">Write and/or update your 100 word factual summaries:</h2>
-                                <p>For the checked outputs, add your 100-word factual summaries if you haven't written them alreadys. If they are written, please review them and amend as necessary.</p>
-                                <p><em>For information on how to write the factual summaries and examples see <a href="https://hcid.city/ref/100-words" target="_blank">here</a></em>.</p>
-                            </div>
-                        </v-col>
-                    </v-row>
-                    <v-row justify="center">
                         <v-col cols="12">
                             <v-card>
                                 <v-data-table disable-pagination hide-default-footer sort-by="ref" sort-desc :headers="headers" :items="items" mobile-breakpoint="800" class="elevation-0">
@@ -126,6 +106,64 @@
                                     </v-card>
                                 </v-dialog>
                             </v-card>
+                        </v-col>
+                    </v-row>
+
+                    <v-row justify="center">
+                        <v-col cols="12" md="11">
+                            <div class="font-weight-light">
+                                <h2 class="font-weight-regular">What next?</h2>
+                                <h3 class="font-weight-regular">Review your outputs:</h3>
+                                <p>Please review your outputs.</p>
+
+                                <v-row justify="center">
+                                    <v-col cols="12" sm="11" md="10" lg="6">
+                                        <v-alert border="top" colored-border type="warning" elevation="1">
+                                            If you think a potential output is missing or you have a new output that should be considered for REF, please add it to the list using this <template v-for="(item, index) in items" v-if="index == 0"><span><a :href="'https://airtable.com/shrtDcW4C8fxpO6Is?prefill_authorName=' + item.authorName" target="_blank">form</a></span></template>.
+                                        </v-alert>
+                                    </v-col>
+                                    <v-col cols="12" sm="11" md="10" lg="6">
+                                        <v-alert border="top" colored-border type="info" elevation="1">
+                                            For information on how REF outputs are judged and scored see <a href="https://www.ref.ac.uk/2014/panels/assessmentcriteriaandleveldefinitions/" target="_blank">Assessment criteria and level definitions</a>.
+                                        </v-alert>
+                                    </v-col>
+                                </v-row>
+
+                                <h3 class="font-weight-regular">Shortlist your outputs:</h3>
+                                <p>Each of us should be aiming to have between 1-5 outputs in our shorlist (i.e. checked in the list below).</p>
+
+                                <v-row justify="center">
+                                    <v-col cols="12" sm="11" md="10" lg="6">
+                                        <v-alert border="top" colored-border type="warning" elevation="1">
+                                            Choose 1 to 5 of your outputs that you believe would rank best agaist the REF <a href="https://www.ref.ac.uk/2014/panels/assessmentcriteriaandleveldefinitions/" target="_blank">Assessment criteria</a>. Make
+                                            sure these are checked (
+                                            <v-icon small color="primary">mdi-check</v-icon>).
+                                        </v-alert>
+                                    </v-col>
+                                    <v-col cols="12" sm="11" md="10" lg="6">
+                                        <v-alert border="top" colored-border type="info" elevation="1">
+                                            For information on how the required number of outputs per UoA is calculated see the REF 2021 guidance: <a href="https://www.ref.ac.uk/media/1034/ref-2017_04-decisions-updated-11042018.pdf" target="_blank">Decisions on Staff and Outputs</a>                                            (PDF).
+                                            <br>Also See these REF FAQs on <a href="https://www.ref.ac.uk/faqs/#Staff" target="_blank">staff</a> and <a href="https://www.ref.ac.uk/faqs/#Circs" target="_blank">staff circumstances and codes of practice</a>.
+                                        </v-alert>
+                                    </v-col>
+                                </v-row>
+
+                                <h3 class="font-weight-regular">Write and/or update your 100-word factual summaries:</h3>
+                                <p>We are required to submit 100-word factual summaries for each output. These are intended to summarise the originality, significance and rigour of the presented research.</p>
+
+                                <v-row justify="center">
+                                    <v-col cols="12" sm="11" md="10" lg="6">
+                                        <v-alert border="top" colored-border type="warning" elevation="1">
+                                            For your checked outputs, add your 100-word factual summaries if you haven't written them already. If they are written, please review them and amend as necessary.
+                                        </v-alert>
+                                    </v-col>
+                                    <v-col cols="12" sm="11" md="10" lg="6">
+                                        <v-alert border="top" colored-border type="info" elevation="1">
+                                            For information on how to write the factual summaries and examples see <a href="https://hcid.city/ref/100-words" target="_blank">here</a>.
+                                        </v-alert>
+                                    </v-col>
+                                </v-row>
+                            </div>
                         </v-col>
                     </v-row>
                 </v-container>
