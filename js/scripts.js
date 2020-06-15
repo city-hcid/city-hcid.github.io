@@ -1,5 +1,5 @@
-var app_id = "appgcGlPwTaZaBImL";
-var app_key = "key8l5YZtQ9FyUoxF";
+var app_id = "appVrmQAGy96E1jEP";
+var app_key = "keyC83ksN49wS10kX";
 new Vue({
     el: '#footer'
 });

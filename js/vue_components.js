@@ -1,53 +1,64 @@
-Vue.component('table-issue', {
-    props: ['items'],
-    template: `<div>
-    <b-table striped hover :items="items"></b-table>
-    </div>`
-})
-
-Vue.component('table-head', {
-    props: ['head', 'view_id', 'dialogue'],
-    template: `<span v-if="view_id"><a v-bind:href="'issue.html?view=' + view_id + '&dialogue=' + dialogue">{{ head }}</a></span>
-    <span v-else class="align-top font-weight-normal border-0" width="10%">{{ head }}</span>`
-})
-
-Vue.component('author-details', {
-    props: ['name', 'type', 'content'],
-    template: `<div class="my-2">
-    <div>
-        <span class="font-weight-normal my-1">{{ name }}</span>
-        <br>
-    <span class="font-weight-light small">{{ content }}</span>:&nbsp;<span class="font-weight-light small"><a v-if="type=='Column'" v-bind:href="'https://airtable.com/shrTR908BwRWJ2Zap?prefill_Status=Pending&prefill_Type=Column&prefill_Title%20of%20text=' + encodeURIComponent(content) + '&prefill_Contact%20Author=' + encodeURIComponent(name)">submission form</a><a v-else-if="type=='Forum'" v-bind:href="'https://airtable.com/shry0gQP1LpJrIth3?prefill_Status=Pending&prefill_Type=Forum&prefill_Title%20of%20text=' + encodeURIComponent(content) + '%3A%20&prefill_Sub%20Editor=' + encodeURIComponent(name)">submission form</a><a v-else href="https://airtable.com/shr0sfqAldfNfkIs7?prefill_Status=Pending">general form</a></span>
-    </div>`
-})
-
-Vue.component('author-deadlines', {
-    props: ['months', 'content', 'deadline'],
-    template: `<a data-toggle="popover" v-on:mouseover="popOver" data-placement="top" data-trigger="hover" title="{{ months }} + ' Issue'" data-content="{{content}} + ' due ' + {{deadline}}">
-    <span class="oi oi-check" aria-hidden="true"></span>
-</a>`
-})
-
 Vue.component('template-header', {
-    props: ['subtitle', 'subtext'],
+    props: ['subhead', 'subtitle', 'isActiveHCID', 'isActiveCharter', 'isActiveMembers', 'isActiveProjects', 'isActiveCalendar', 'isActiveRG', 'isActiveRGCal', 'isActiveSS', 'isActiveSSSpeakers', 'isActiveSSCal'],
     template: `
     <header>
-        <b-row align-h="center" cols-md="2" class="pt-sm-5">
-            <b-col cols="12" md="3" order-md="5" align-self="center" class="my-5 pb-md-4">
-                <b-link href="https://interactions.acm.org" target="_blank">
-                    <b-img right src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img>
-                </b-link>
-            </b-col>
-            <b-col cols="12" md="7" align-self="center" class="my-2">
-                <h1 class="font-weight-bold" id="Title">interactions Magazine</h1>
-            </b-col>
-        </b-row>
-        <b-row align-h="center">
-            <b-col cols="12" md="10">
-                <h2 class="font-weight-bold mt-md-5 mt-3" id="subtitle">{{ subtitle }}</h2>
-                <p v-html="subtext"></p>
-            </b-col>
-        </b-row>
+        <div class="navbar-fixed">
+            <nav class="no-shadows">
+                <div class="nav-wrapper white">
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
+                    <ul id="nav-mobile" class="left hide-on-small-and-down">
+                        <li class="active"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
+                        <li><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
+                        <li><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
+                        <li><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
+                    </ul>
+                    <a href="https://www.city.ac.uk" class="brand-logo right" style="opacity: 0;" aria-label="Image link to City University website"><img class="hide-on-small-and-down" src="https://www.city.ac.uk/__data/assets/git_bridge/0018/344007/main/i/logo/city-uol-logo-responsive-125.svg" alt="City University logo"></a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Side nav structure -->
+        <ul class="sidenav" id="mobile-nav">
+            <li v-bind:class="isActiveHCID ? 'active' : ''"><a class="menu-header" href="./">HCID</a></li>
+            <li v-bind:class="isActiveCharter ? 'active' : ''"><a href="./centre/charter" class="menu-subheader">Charter</a></li>
+            <li v-bind:class="isActiveMembers ? 'active' : ''"><a href="./centre/members" class="menu-subheader">Members</a></li>
+            <li v-bind:class="isActiveProjects ? 'active' : ''"><a href="./centre/projects" class="menu-subheader">Projects</a></li>
+            <li v-bind:class="isActiveCalendar ? 'active' : ''"><a href="./centre/calendar" class="menu-subheader">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li v-bind:class="isActiveRG ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
+            <li v-bind:class="isActiveRGCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li v-bind:class="isActiveSS ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
+            <li v-bind:class="isActiveSSSpeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+            <li v-bind:class="isActiveSSCal ? 'active' : ''"><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+        </ul>
+
+        <!-- HCID dropdown menu -->
+        <ul id="dropdown1" class="dropdown-content">
+            <li v-bind:class="isActiveHCID ? 'active' : ''"><a class="active menu-header menu-selection" href="../">HCID</a></li>
+            <li v-bind:class="isActiveCalendar ? 'active' : ''"><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li v-bind:class="isActiveRG ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
+            <li v-bind:class="isActiveRGCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li v-bind:class="isActiveSS ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
+            <li v-bind:class="isActiveSSSpeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+            <li v-bind:class="isActiveSSCal ? 'active' : ''"><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+        </ul>
+
+        <!-- Page title -->
+        <div class="container py-5 my-5">
+            <div class="row">
+                <div class="col s12 m9 l10">
+                    <h1 class="page-title">
+                        <a href="https://hcid.city">HCID</a>.{{ subhead }}
+                    </h1>
+                    <div>
+                        {{ subtitle }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     `
 })
