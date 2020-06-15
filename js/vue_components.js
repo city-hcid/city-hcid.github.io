@@ -51,11 +51,11 @@ Vue.component('template-header', {
             <div class="row">
                 <div class="col s12 m9 l10">
                     <h1 class="page-title">
-                        <a href="https://hcid.city">HCID</a>.{{ subhead }}
+                        <a href="https://hcid.city">HCID</a>.<span class="fade-out-left">{{ subhead }}</span>
                     </h1>
-                    <div>
+                    <h2 class="flow-text">
                         {{ subtitle }}
-                    </div>
+                    </h2>
                 </div>
             </div>
         </div>
@@ -65,16 +65,51 @@ Vue.component('template-header', {
 
 Vue.component('template-footer', {
     template: `
-    <footer>
-        <b-container fluid="sm">
-            <b-row align-h="center">
-                <b-col cols="12" md="10" class="py-5 mb-3">
-                    <b-link href="https://interactions.acm.org" target="_blank">
-                        <b-img left src="https://interactions.acm.org/images/logo.gif" alt="interactions magazine logo" width="160px"></b-img>
-                    </b-link>
-                </b-col>
-            </b-row>
-        </b-container>
+    <footer class="page-footer grey lighten-5">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12" data-aos="fade-up" data-aos-delay="150" data-aos-anchor-placement="bottom-bottom" data-aos-easing="ease-in-out-quad" data-aos-once="true">
+                    <h5 class="bold grey-text text-darken-4">
+                        HCID
+                    </h5>
+                    <div>
+                        <a class="link grey-text text-darken-4" href="https://hcid.city">Centre for Human-Computer Interaction Design</a>
+                    </div>
+                </div>
+                <div id="address" aria-label="Address" class="col l4 offset-l2 s12 mt-4">
+                    <ul>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">City, University of London</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">College Building</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">276-284 St John Street</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">Clerkenwell</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">London, EC1V 4PB</a>
+                        </li>
+                        <li aria-label="Link to Visting page" class="mt-3">
+                            <a class="grey-text text-lighten-1 link" href="https://hcid.city/visiting.html"><i class="material-icons md-14 pt-1">location_on</i>&nbsp;Visiting us...</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col 4">
+                    <div class="footer-copyright grey lighten-5 grey-text text-lighten-2">
+                        <a class="grey-text text-lighten-2" href="https://www.gnu.org/licenses/copyleft.en.html" title="What is Copyleft? - GNU Project - Free Software Foundation">Copyleft</a>&nbsp;<span class="copyleft">&copy;</span>&nbsp;
+                        <script type="text/javascript">
+                            document.write(new Date().getFullYear());
+                        </script>&nbsp;GNU&nbsp;<a class="grey-text text-lighten-2" href="https://www.gnu.org/licenses/gpl.html" title="The GNU General Public License v3.0 - GNU Project - Free Software Foundation">General Public License</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
     `
 })
