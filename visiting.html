@@ -22,72 +22,11 @@
 </head>
 
 <body>
-    <header>
-        <div class="navbar-fixed">
-            <nav class="no-shadows">
-                <div class="nav-wrapper white">
-                    <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
-                    <ul id="nav-mobile" class="left hide-on-small-and-down">
-                        <li><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
-                        <li><a href="./centre/charter" class="grey-text text-darken-2">Charter</a></li>
-                        <li><a href="./centre/members" class="grey-text text-darken-2">Members</a></li>
-                        <li class="active"><a href="./centre/projects" class="grey-text text-darken-2">Projects</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-
-        <!-- Side nav structure -->
-        <ul class="sidenav" id="mobile-nav">
-            <li><a class="menu-header" href="../">HCID</a></li>
-            <li><a href="../centre/charter" class="menu-subheader">Charter</a></li>
-            <li><a href="../centre/members" class="menu-subheader">Members</a></li>
-            <li class="active"><a href="../centre/projects" class="menu-subheader">Projects</a></li>
-            <li><a href="../centre/calendar" class="menu-subheader">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
-            <li><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../seminar/">Seminar Series</a></li>
-            <li><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
-            <li><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../msc/student-photos">MSc Students</a></li>
-            <li><a class="menu-subheader" href="../msc/calendar">Calendar</a></li>
-        </ul>
-
-        <!-- HCID dropdown menu -->
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a class="menu-header" href="../">HCID</a></li>
-            <li><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
-            <li><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../seminar/">Seminar Series</a></li>
-            <li><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
-            <li><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../msc/student-photos">MSc Students</a></li>
-            <li><a class="menu-subheader" href="../msc/calendar">Calendar</a></li>
-        </ul>
-
-        <!-- Page title -->
-        <div class="container">
-            <div class="row">
-                <div class="col s12 m9 l10">
-                    <h1 class="page-title move-down">
-                        <a class="black-text" href="./">HCID</a>:<br><span class="red-text fade-out-left">Visting</span>
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </header>
+    <template-header id="header" subhead="visiting" subtitle="Getting here" isActiveHCID="true"></template-header>
     <main>
         <div class="container">
             <div class="row">
                 <div class="col s11 m7">
-                    <h2>Getting here</h2>
                     <div class="my-2">
                         <p>
                             We are in the <strong>College Building</strong> of City, University of London. Our rooms are on the second floor, rooms 202-209 and 210-213.
@@ -132,56 +71,13 @@
             </div>
         </div>
     </main>
-    <footer class="page-footer grey lighten-5">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12" data-aos="fade-up" data-aos-delay="150" data-aos-anchor-placement="bottom-bottom" data-aos-easing="ease-in-out-quad">
-                    <h5 class="bold grey-text text-darken-4">
-                        HCID
-                    </h5>
-                    <div>
-                        <a class="link grey-text text-darken-4" href="https://hcid.city">Centre for Human-Computer Interaction Design</a>
-                    </div>
-                </div>
-                <div id="address" aria-label="Address" class="col l4 offset-l2 s12 mt-4">
-                    <ul>
-                        <li>
-                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">City, University of London</a>
-                        </li>
-                        <li>
-                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">College Building</a>
-                        </li>
-                        <li>
-                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">276-284 St John Street</a>
-                        </li>
-                        <li>
-                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">Clerkenwell</a>
-                        </li>
-                        <li>
-                            <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">London, EC1V 4PB</a>
-                        </li>
-                        <li aria-label="Link to Visting page" class="mt-3">
-                            <a class="grey-text text-lighten-1 link" href="https://hcid.city/visiting.html"><i class="material-icons md-14 pt-1">location_on</i>&nbsp;Visiting us...</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col 4">
-                    <div class="footer-copyright grey lighten-5 grey-text text-lighten-2">
-                        <a class="grey-text text-lighten-2" href="https://www.gnu.org/licenses/copyleft.en.html" title="What is Copyleft? - GNU Project - Free Software Foundation">Copyleft</a>&nbsp;<span class="copyleft">&copy;</span>&nbsp;
-                        <script type="text/javascript">
-                            document.write(new Date().getFullYear());
-                        </script>&nbsp;GNU&nbsp;<a class="grey-text text-lighten-2" href="https://www.gnu.org/licenses/gpl.html" title="The GNU General Public License v3.0 - GNU Project - Free Software Foundation">General Public License</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <template-footer id="footer"></template-footer>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script type="text/javascript" src="js/vue_components.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
@@ -270,5 +166,3 @@
 </body>
 
 </html>
-
-<!--  -->

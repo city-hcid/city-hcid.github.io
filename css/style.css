@@ -310,6 +310,13 @@ h1.page-title {
     margin-bottom: 1rem
 }
 
+h1.page-title a {
+    color: black
+}
+
+h1.page-title a:hover {
+    color: #039be5
+}
 @media only screen and (min-width: 1201px) {
     h1.page-title {
         font-size: 100px;
