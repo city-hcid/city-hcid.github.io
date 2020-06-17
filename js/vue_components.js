@@ -51,7 +51,7 @@ Vue.component('template-header', {
             <div class="row">
                 <div class="col s6 l4">
                     <h1 class="page-title">
-                        <a href="https://hcid.city">HCID</a>.<span class="fade-out-left">{{ subhead }}</span>
+                        <a href="https://hcid.city">HCID</a>.<span class="fade-out-left" v-html="subhead"></span>
                     </h1>
                 </div>
                 <div class="col s12 m9 l10">
