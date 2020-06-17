@@ -47,7 +47,7 @@
                     <h3>Individual and Social Issues</h3>
                     <p class="ex-light">We study a wide variety of settings from the journalism, workplace to urban city farms. We aim to develop understandings of these settings and the unique issues and concerns that arise in them. In these studies, our emphasis is on
                         the role technology plays or might play, and where there is scope for rethinking the relations between the social and technical.</p>
-                    <p class="ex-light"></p>
+                    <p class="ex-light">Projects: <template-listing v-for="(item,index) in items" theme="issues" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']" v-bind:length=""></template-listing></p>
                 </div>
             </div>
             <div class="row" id="methods">
