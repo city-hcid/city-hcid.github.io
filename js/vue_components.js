@@ -49,10 +49,12 @@ Vue.component('template-header', {
         <!-- Page title -->
         <div class="container py-5 my-5">
             <div class="row">
-                <div class="col s12 m9 l10">
+                <div class="col s12 m6">
                     <h1 class="page-title">
                         <a href="https://hcid.city">HCID</a>.<span class="fade-out-left">{{ subhead }}</span>
                     </h1>
+                </div>
+                <div class="col s12 m9 l10">
                     <h2 class="flow-text">
                         {{ subtitle }}
                     </h2>
