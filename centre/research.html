@@ -56,7 +56,11 @@
                     <p class="small">Projects:<br>
                     <template-listing v-for="(item,index) in items" theme="issues" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
                     <p class="small">Select Publications:<br>
-                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('issues')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a></span></p>
+                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('issues')" class="small">
+                        <a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a>
+                        <!-- <a class="tooltipped" data-position="bottom" data-tooltip="I am a tooltip">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a> -->
+
+                    </span></p>
                 </div>
             </div>
             <div class="row my-5" id="methods">
@@ -104,6 +108,7 @@
     <script>
         AOS.init();
         $(document).ready(function() {
+            $('.tooltipped').tooltip();
             $('.dropdown-trigger').dropdown({
                 hover: true
             });
