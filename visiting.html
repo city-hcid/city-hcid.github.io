@@ -23,7 +23,7 @@
 
 <body>
 
-    <template-header id="header" subhead="<br>visiting" subtitle="Getting here" isActiveHCID="true"></template-header>
+    <template-header id="header" subhead="<br>visiting" subtitle="Getting here" menuhcid="true"></template-header>
 
     <main>
         <div class="container">
@@ -83,12 +83,7 @@
     <script type="text/javascript" src="js/vue_components.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
     <script type="text/javascript">
-        var app_id = "appVrmQAGy96E1jEP";
-        var app_key = "keyC83ksN49wS10kX";
         var appLive = new Vue({
             el: '#app',
             data: {
@@ -115,26 +110,8 @@
                 }
             }
         })
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.dropdown-trigger').dropdown({
-                hover: true
-            });
-            $('.tabs').tabs();
-            $('.sidenav').sidenav();
-            $(".fade-in").css("opacity", 0)
-        });
-        $(window).scroll(function() {
-            $(".fade-out-left").css({
-                "opacity": 1 - $(window).scrollTop() / 200,
-                "margin-left": 1 - $(window).scrollTop() * 2
-            });
-        });
-    </script>
-    <script>
+        
         var map;
-
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {
@@ -144,8 +121,7 @@
                 zoom: 8
             });
         }
-    </script>
-    <script>
+        
         // Initialize and add the map
         function initMap() {
             // The location of Uluru

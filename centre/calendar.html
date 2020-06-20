@@ -4,10 +4,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HCID Centre" />
-    <meta name="updated" content="2018-09-12 10:21:34 +0000" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCID | Calendar</title>
@@ -38,24 +37,15 @@
             </div>
         </div>
     </main>
-    
-    <template-footer id="footer"></template-footer>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <template-footer id="footer"></template-footer>
+    
+    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script type="text/javascript" src="js/vue_components.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.dropdown-trigger').dropdown({
-                hover: true
-            });
-            $('.sidenav').sidenav();
-        });
-    </script>
+    <script type="text/javascript" src="../js/vue_components.js"></script>
+    <script type="text/javascript" src="../js/scripts.js"></script>
 </body>
 
 </html>
