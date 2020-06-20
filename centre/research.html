@@ -42,7 +42,7 @@
         </div>
 
         <div class="container mb-5" id="app">
-            <div class="row" id="issues">
+            <div class="row my-5" id="issues">
                 <div class="col s12">
                     <h3 class="mb-0">Individual and Social Issues</h3>
                 </div>
@@ -56,7 +56,7 @@
                     <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('issues')" class="ex-light small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
                 </div>
             </div>
-            <div class="row" id="methods">
+            <div class="row my-5" id="methods">
                 <div class="col s12 m7 offset-m5">
                     <h3 class="mb-0">Design Methods</h3>
                 </div>
@@ -70,7 +70,7 @@
                     <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('methods')" class="ex-light small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
                 </div>
             </div>
-            <div class="row" id="systems">
+            <div class="row my-5" id="systems">
                 <div class="col s12 m6">
                     <h3>Interactive systems</h3>
                     <p class="ex-light">Our research involes exploring both exisiting and new technologies for novel applications. We're motivated, in particular, to explore protype systems that support people in ways that meet their specific needs or that align with individual

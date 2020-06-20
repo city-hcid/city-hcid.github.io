@@ -55,7 +55,7 @@ Vue.component('template-header', {
                     </h1>
                 </div>
                 <div class="col s12 m9 l10">
-                    <h2 class="flow-text">
+                    <h2 class="flow-text" v-html="subtitle">
                         {{ subtitle }}
                     </h2>
                 </div>
