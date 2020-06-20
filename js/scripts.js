@@ -3,7 +3,6 @@ $(function() { // Shorthand for $( document ).ready()
     $('.dropdown-trigger').dropdown({
         hover: true
     });
-    $('.collapsible').collapsible();
     $('.tabs').tabs();
     $('.sidenav').sidenav()
 });

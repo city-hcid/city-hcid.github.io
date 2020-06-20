@@ -202,6 +202,9 @@
     <script type="text/javascript" src="../js/vue_components.js"></script>
     <script type="text/javascript" src="../js/scripts.js"></script>
     <script type="text/javascript">
+        $(document).ready(function(){
+            $('.collapsible').collapsible();
+        });
         var app = new Vue({
             el: '#app-next',
             data: {
