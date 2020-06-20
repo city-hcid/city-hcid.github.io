@@ -1,5 +1,5 @@
 Vue.component('template-header', {
-    props: ['subhead', 'subtitle', 'isActiveHCID', 'isActiveCharter', 'isActiveMembers', 'isActiveProjects', 'isActiveResearch', 'isActiveCalendar', 'isActiveRG', 'isActiveRGCal', 'isActiveSS', 'isActiveSSSpeakers', 'isActiveSSCal'],
+    props: ['subhead', 'subtitle', 'menuhcid', 'menucharter', 'menumembers', 'menuprojects', 'menuresearch', 'menucalendar', 'menureading', 'menureadingCal', 'menuseminar', 'menuseminarspeakers', 'menuseminarcal'],
     template: `
     <header>
         <div class="navbar-fixed">
@@ -7,11 +7,11 @@ Vue.component('template-header', {
                 <div class="nav-wrapper white">
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-small-and-down">
-                        <li v-bind:class="{ active: isActiveHCID }"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
-                        <li v-bind:class="isActiveCharter ? 'active' : ''"><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
-                        <li v-bind:class="isActiveMembers ? 'active' : ''"><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
-                        <li v-bind:class="isActiveResearch ? 'active' : ''"><a href="../centre/research" class="grey-text text-darken-2">Research</a></li>
-                        <li v-bind:class="isActiveProjects ? 'active' : ''"><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
+                        <li v-bind:class="{ active: menuhcid }"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
+                        <li v-bind:class="menucharter ? 'active' : ''"><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
+                        <li v-bind:class="menumembers ? 'active' : ''"><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
+                        <li v-bind:class="menuresearch ? 'active' : ''"><a href="../centre/research" class="grey-text text-darken-2">Research</a></li>
+                        <li v-bind:class="menuprojects ? 'active' : ''"><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
                     </ul>
                     <a href="https://www.city.ac.uk" class="brand-logo right" style="opacity: 0;" aria-label="Image link to City University website"><img class="hide-on-small-and-down" src="https://www.city.ac.uk/__data/assets/git_bridge/0018/344007/main/i/logo/city-uol-logo-responsive-125.svg" alt="City University logo"></a>
                 </div>
@@ -20,32 +20,32 @@ Vue.component('template-header', {
 
         <!-- Side nav structure -->
         <ul class="sidenav" id="mobile-nav">
-            <li v-bind:class="isActiveHCID ? 'active' : 'disable'"><a class="menu-header" href="./">HCID</a></li>
-            <li v-bind:class="isActiveCharter ? 'active' : ''"><a href="./centre/charter" class="menu-subheader">Charter</a></li>
-            <li v-bind:class="isActiveMembers ? 'active' : ''"><a href="./centre/members" class="menu-subheader">Members</a></li>
-            <li v-bind:class="isActiveResearch ? 'active' : ''"><a href="./centre/research" class="menu-subheader">Research</a></li>
-            <li v-bind:class="isActiveProjects ? 'active' : ''"><a href="./centre/projects" class="menu-subheader">Projects</a></li>
-            <li v-bind:class="isActiveCalendar ? 'active' : ''"><a href="./centre/calendar" class="menu-subheader">Calendar</a></li>
+            <li v-bind:class="menuhcid ? 'active' : 'disable'"><a class="menu-header" href="./">HCID</a></li>
+            <li v-bind:class="menucharter ? 'active' : ''"><a href="./centre/charter" class="menu-subheader">Charter</a></li>
+            <li v-bind:class="menumembers ? 'active' : ''"><a href="./centre/members" class="menu-subheader">Members</a></li>
+            <li v-bind:class="menuresearch ? 'active' : ''"><a href="./centre/research" class="menu-subheader">Research</a></li>
+            <li v-bind:class="menuprojects ? 'active' : ''"><a href="./centre/projects" class="menu-subheader">Projects</a></li>
+            <li v-bind:class="menucalendar ? 'active' : ''"><a href="./centre/calendar" class="menu-subheader">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
-            <li v-bind:class="isActiveRG ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
-            <li v-bind:class="isActiveRGCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
+            <li v-bind:class="menureading ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
+            <li v-bind:class="menureadingCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
-            <li v-bind:class="isActiveSS ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
-            <li v-bind:class="isActiveSSSpeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
-            <li v-bind:class="isActiveSSCal ? 'active' : ''"><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+            <li v-bind:class="menuseminar ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
+            <li v-bind:class="menuseminarspeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+            <li v-bind:class="menuseminarcal ? 'active' : ''"><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
         </ul>
 
         <!-- HCID dropdown menu -->
         <ul id="dropdown1" class="dropdown-content">
-            <li v-bind:class="isActiveHCID ? 'active' : ''"><a class="active menu-header menu-selection" href="../">HCID</a></li>
-            <li v-bind:class="isActiveCalendar ? 'active' : ''"><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
+            <li v-bind:class="menuhcid ? 'active' : ''"><a class="active menu-header menu-selection" href="../">HCID</a></li>
+            <li v-bind:class="menucalendar ? 'active' : ''"><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
-            <li v-bind:class="isActiveRG ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
-            <li v-bind:class="isActiveRGCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
+            <li v-bind:class="menureading ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
+            <li v-bind:class="menureadingCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
-            <li v-bind:class="isActiveSS ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
-            <li v-bind:class="isActiveSSSpeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
-            <li v-bind:class="isActiveSSCal ? 'active' : ''"><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+            <li v-bind:class="menuseminar ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
+            <li v-bind:class="menuseminarspeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+            <li v-bind:class="menuseminarcal ? 'active' : ''"><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
         </ul>
 
         <!-- Page title -->
