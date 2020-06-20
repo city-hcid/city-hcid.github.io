@@ -7,7 +7,7 @@ Vue.component('template-header', {
                 <div class="nav-wrapper white">
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-small-and-down">
-                        <li v-bind:class="isActiveHCID ? 'active' : ''"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
+                        <li v-bind:class="{ active: isActiveHCID }"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
                         <li v-bind:class="isActiveCharter ? 'active' : ''"><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
                         <li v-bind:class="isActiveMembers ? 'active' : ''"><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
                         <li v-bind:class="isActiveResearch ? 'active' : ''"><a href="../centre/research" class="grey-text text-darken-2">Research</a></li>
@@ -20,7 +20,7 @@ Vue.component('template-header', {
 
         <!-- Side nav structure -->
         <ul class="sidenav" id="mobile-nav">
-            <li v-bind:class="isActiveHCID ? 'active' : ''"><a class="menu-header" href="./">HCID</a></li>
+            <li v-bind:class="isActiveHCID ? 'active' : 'disable'"><a class="menu-header" href="./">HCID</a></li>
             <li v-bind:class="isActiveCharter ? 'active' : ''"><a href="./centre/charter" class="menu-subheader">Charter</a></li>
             <li v-bind:class="isActiveMembers ? 'active' : ''"><a href="./centre/members" class="menu-subheader">Members</a></li>
             <li v-bind:class="isActiveResearch ? 'active' : ''"><a href="./centre/research" class="menu-subheader">Research</a></li>
