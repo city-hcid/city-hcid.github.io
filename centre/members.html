@@ -16,7 +16,7 @@
 
 <body>
 
-    <template-header id="header" subhead="members" menumembers="true" subtitle="<strong>The Centre for Human-Computer Interaction Design</strong><br><p class='mt-2 smaller'>City, University of London</p>"></template-header>
+    <template-header id="header" subhead="members" menumembers="true" subtitle="<strong>The Centre for Human-Computer Interaction Design</strong><br><p class='mt-2 smaller'><a class='black-text' href='https://city.ac.uk' target='_blank'>City, University of London</a></p>"></template-header>
     
     <main>
         <div class="container hide-on-small-only">
@@ -215,13 +215,13 @@
 
     <template-footer id="footer"></template-footer>
     
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script type="text/javascript" src="js/vue_components.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="text/javascript" src="../js/vue_components.js"></script>
+    <script type="text/javascript" src="../js/scripts.js"></script>
     <script type="text/javascript">
         var app = new Vue({
             el: '#app-all',
@@ -233,8 +233,8 @@
             },
             methods: {
                 loadItems: function() {
-                    var self = this
-                    this.items = []
+                    var self = this;
+                    this.items = [];
                     axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=OR((FIND(%22phd%22%2C%7Bstatus%7D))%2C(FIND(%22staff%22%2C%7Bstatus%7D))%2C(FIND(%22research%22%2C%7Bstatus%7D)))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
                             headers: {
@@ -353,15 +353,6 @@
                 }
             }
         })
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.dropdown-trigger').dropdown({
-                hover: true
-            });
-            $('.tabs').tabs();
-            $('.sidenav').sidenav();
-        });
     </script>
 </body>
 
