@@ -8,7 +8,7 @@ Vue.component('template-header', {
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-small-and-down">
                         <li v-bind:class="{ active: menuhcid }"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
-                        <li v-bind:class="menucharter ? 'active' : ''"><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
+                        <li class="hide-on-med-and-down" v-bind:class="menucharter ? 'active' : ''"><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
                         <li v-bind:class="menumembers ? 'active' : ''"><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
                         <li v-bind:class="menuresearch ? 'active' : ''"><a href="../centre/research" class="grey-text text-darken-2">Research</a></li>
                         <li v-bind:class="menuprojects ? 'active' : ''"><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
