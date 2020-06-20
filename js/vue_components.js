@@ -1,5 +1,5 @@
 Vue.component('template-header', {
-    props: ['subhead', 'subtitle', 'isActiveHCID', 'isActiveCharter', 'isActiveMembers', 'isActiveProjects', 'isActiveCalendar', 'isActiveRG', 'isActiveRGCal', 'isActiveSS', 'isActiveSSSpeakers', 'isActiveSSCal'],
+    props: ['subhead', 'subtitle', 'isActiveHCID', 'isActiveCharter', 'isActiveMembers', 'isActiveProjects', 'isActiveResearch', 'isActiveCalendar', 'isActiveRG', 'isActiveRGCal', 'isActiveSS', 'isActiveSSSpeakers', 'isActiveSSCal'],
     template: `
     <header>
         <div class="navbar-fixed">
