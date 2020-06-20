@@ -21,11 +21,11 @@ Vue.component('template-header', {
         <!-- Side nav structure -->
         <ul class="sidenav" id="mobile-nav">
             <li v-bind:class="menuhcid ? 'active' : 'disable'"><a class="menu-header" href="./">HCID</a></li>
-            <li v-bind:class="menucharter ? 'active' : ''"><a href="./centre/charter" class="menu-subheader">Charter</a></li>
-            <li v-bind:class="menumembers ? 'active' : ''"><a href="./centre/members" class="menu-subheader">Members</a></li>
-            <li v-bind:class="menuresearch ? 'active' : ''"><a href="./centre/research" class="menu-subheader">Research</a></li>
-            <li v-bind:class="menuprojects ? 'active' : ''"><a href="./centre/projects" class="menu-subheader">Projects</a></li>
-            <li v-bind:class="menucalendar ? 'active' : ''"><a href="./centre/calendar" class="menu-subheader">Calendar</a></li>
+            <li v-bind:class="menucharter ? 'active' : ''"><a href="../centre/charter" class="menu-subheader">Charter</a></li>
+            <li v-bind:class="menumembers ? 'active' : ''"><a href="../centre/members" class="menu-subheader">Members</a></li>
+            <li v-bind:class="menuresearch ? 'active' : ''"><a href="../centre/research" class="menu-subheader">Research</a></li>
+            <li v-bind:class="menuprojects ? 'active' : ''"><a href="../centre/projects" class="menu-subheader">Projects</a></li>
+            <li v-bind:class="menucalendar ? 'active' : ''"><a href="../centre/calendar" class="menu-subheader">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
             <li v-bind:class="menureading ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
             <li v-bind:class="menureadingCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
