@@ -32,11 +32,13 @@
                 </div>
             </div>
             <div class="row container">
-                <div class="col m9 l7"><img class="responsive-img" width="150%" height="150%" src="media/axes.jpg"></div>
-                <div class="col m6 l5 grey-text text-darken-3 lighten-3 ex-light">
-                    <p>The study of <strong><a href="#issues">individual and social issues</a></strong> arising from and surrounding the proliferation of information and communication technologies.</p>
-                    <p>The development of <strong><a href="#methods">design methods</a></strong> that enable us to engage with people and communities and explore new technological possibilities.</p>
-                    <p>The prototyping of <strong><a href="#systems">interactive systems</a></strong> that use existing and novel technologies in response to real-world needs.</p>
+                <div class="col m9 l7 mb-4"><img class="responsive-img" width="150%" height="150%" src="media/axes.jpg"></div>
+                <div class="col m9 l5 grey-text text-darken-3 lighten-3 ex-light">
+                    <ol>
+                    <li class="mb-3">The study of <strong><a href="#issues">individual and social issues</a></strong> arising from and surrounding the proliferation of information and communication technologies.</li>
+                    <li class="mb-3">The development of <strong><a href="#methods">design methods</a></strong> that enable us to engage with people and communities and explore new technological possibilities.</li>
+                    <li >The prototyping of <strong><a href="#systems">interactive systems</a></strong> that use existing and novel technologies in response to real-world needs.</li>
+                </ol>
                 </div>
             </div>
         </div>
@@ -46,36 +48,45 @@
                 <div class="col s12">
                     <h3 class="mb-0">Individual and Social Issues</h3>
                 </div>
-                <div class="col s12 m7 mt-0">
+                <div class="col 12 m7 mt-0">
                     <p class="ex-light">We study a wide variety of settings from the workplace to urban city farms. We aim to develop understandings of these settings and the unique issues and concerns that arise in them. In these studies, our emphasis is on
                         the role technology plays or might play, and where there is scope for rethinking the relations between the social and technical.</p>
                 </div>
                 <div class="col s12 m5">
-                    <p class="ex-light small">Projects:<br><template-listing v-for="(item,index) in items" theme="issues" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
-                    <p class="ex-light small">Select Publications:<br>
-                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('issues')" class="ex-light small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
+                    <p class="small">Projects:<br>
+                    <template-listing v-for="(item,index) in items" theme="issues" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
+                    <p class="small">Select Publications:<br>
+                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('issues')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a></span></p>
                 </div>
             </div>
             <div class="row my-5" id="methods">
                 <div class="col s12 m7 offset-m5">
                     <h3 class="mb-0">Design Methods</h3>
                 </div>
-                <div class="col s12 m7 mt-0  offset-m5">
+                <div class="col s12 m7 mt-0 push-m5">
                     <p class="ex-light">We experiment with adapting or inventing new design methods that respond to the specific settings or people we work with. Our research that represents dementia care through using the medium of comics illustrates the innovative and
                         exploratatory nature of this work.</p>
                     <p class="ex-light">Much of our work with design methods also aims to involve a wider cross-section of people in design through participatory methods. Our research with people with aphasia, for example, experiments with different co-design approaches
                         to give end-users greater influence over the design of their creative tools.</p>
-                    <p class="ex-light">Projects: <template-listing v-for="(item,index) in items" theme="methods" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
-                    <p class="ex-light small">Select Publications:<br>
-                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('methods')" class="ex-light small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
+                </div>
+                <div class="col s12 m4 pull-m7 offset-m1 right-align">
+                    <p class="small">Projects:<br><template-listing v-for="(item,index) in items" theme="methods" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
+                    <p class="small">Select Publications:<br>
+                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('methods')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
                 </div>
             </div>
             <div class="row my-5" id="systems">
-                <div class="col s12 m6">
-                    <h3>Interactive systems</h3>
+                <div class="col s12">
+                    <h3 class="mb-0">Interactive systems</h3>
+                </div>
+                <div class="col 12 m7 mt-0">
                     <p class="ex-light">Our research involes exploring both exisiting and new technologies for novel applications. We're motivated, in particular, to explore protype systems that support people in ways that meet their specific needs or that align with individual
-                        or communal values. Our projects with people with aphasia, for example has led to the design of </p>
-                    <p class="ex-light">Projects: <template-listing v-for="(item,index) in items" theme="systems" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
+                        or communal values. Our projects with people with aphasia, for example has led to the design of new creative tools for writing and producing visual media.</p>
+                </div>
+                <div class="col s12 m5">
+                    <p class="small">Projects:<br><template-listing v-for="(item,index) in items" theme="systems" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
+                    <p class="small">Select Publications:<br>
+                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('systems')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
                 </div>
             </div>
         </div>

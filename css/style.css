@@ -19,11 +19,11 @@
 }
 
 .smaller {
-    font-size: 0.8rem;
+    font-size: 0.8em;
 }
 
 .small {
-    font-size: 0.9rem;
+    font-size: 0.9em;
 }
 
 .lead::first-letter {
