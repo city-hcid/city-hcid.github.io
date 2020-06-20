@@ -38,10 +38,10 @@ Vue.component('template-header', {
         <!-- HCID dropdown menu -->
         <ul id="dropdown1" class="dropdown-content">
             <li v-bind:class="menuhcid ? 'active' : ''"><a class="active menu-header menu-selection" href="../">HCID</a></li>
-            <li v-bind:class="menucalendar ? 'active' : ''"><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
+            <li class="hide" v-bind:class="menucalendar ? 'active' : ''"><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
             <li v-bind:class="menureading ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
-            <li v-bind:class="menureadingCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
+            <li class="hide" v-bind:class="menureadingCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
             <li v-bind:class="menuseminar ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
             <li v-bind:class="menuseminarspeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
