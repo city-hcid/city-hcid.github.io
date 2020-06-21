@@ -35,10 +35,10 @@
                 <div class="col m9 l7 mb-4"><img class="responsive-img" width="150%" height="150%" src="media/axes.jpg"></div>
                 <div class="col m9 l5 grey-text text-darken-3 lighten-3 ex-light">
                     <ol>
-                    <li class="mb-3">The study of <strong><a href="#issues">individual and social issues</a></strong> arising from and surrounding the proliferation of information and communication technologies.</li>
-                    <li class="mb-3">The development of <strong><a href="#methods">design methods</a></strong> that enable us to engage with people and communities and explore new technological possibilities.</li>
-                    <li >The prototyping of <strong><a href="#systems">interactive systems</a></strong> that use existing and novel technologies in response to real-world needs.</li>
-                </ol>
+                        <li class="mb-3">The study of <strong><a href="#issues">individual and social issues</a></strong> arising from and surrounding the proliferation of information and communication technologies.</li>
+                        <li class="mb-3">The development of <strong><a href="#methods">design methods</a></strong> that enable us to engage with people and communities and explore new technological possibilities.</li>
+                        <li>The prototyping of <strong><a href="#systems">interactive systems</a></strong> that use existing and novel technologies in response to real-world needs.</li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -49,14 +49,15 @@
                     <h3 class="mb-0">Individual and Social Issues</h3>
                 </div>
                 <div class="col 12 m7 mt-0">
-                    <p class="ex-light">We study a wide variety of settings from the workplace to urban city farms. We aim to develop understandings of these settings and the unique issues and concerns that arise in them. In these studies, our emphasis is on
-                        the role technology plays or might play, and where there is scope for rethinking the relations between the social and technical.</p>
+                    <p class="ex-light">We study a wide variety of settings from the workplace to urban city farms. We aim to develop understandings of these settings and the unique issues and concerns that arise in them. In these studies, our emphasis is on the role technology
+                        plays or might play, and where there is scope for rethinking the relations between the social and technical.</p>
                 </div>
                 <div class="col s12 m5">
                     <p class="small">Projects:<br>
-                    <template-listing v-for="(item,index) in items" theme="issues" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
+                        <template-listing v-for="(item,index) in items" theme="issues" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing>
+                    </p>
                     <p class="small">Select Publications:<br>
-                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('issues')" class="small">
+                        <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('issues')" class="small">
                         <a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a>
                         <!-- <a class="tooltipped" data-position="bottom" data-tooltip="I am a tooltip">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a> -->
 
@@ -74,9 +75,11 @@
                         to give end-users greater influence over the design of their creative tools.</p>
                 </div>
                 <div class="col s12 m4 pull-m7 offset-m1 right-align">
-                    <p class="small">Projects:<br><template-listing v-for="(item,index) in items" theme="methods" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
+                    <p class="small">Projects:<br>
+                        <template-listing v-for="(item,index) in items" theme="methods" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing>
+                    </p>
                     <p class="small">Select Publications:<br>
-                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('methods')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
+                        <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('methods')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
                 </div>
             </div>
             <div class="row my-5" id="systems">
@@ -88,22 +91,25 @@
                         or communal values. Our projects with people with aphasia, for example has led to the design of new creative tools for writing and producing visual media.</p>
                 </div>
                 <div class="col s12 m5">
-                    <p class="small">Projects:<br><template-listing v-for="(item,index) in items" theme="systems" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing></p>
+                    <p class="small">Projects:<br>
+                        <template-listing v-for="(item,index) in items" theme="systems" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing>
+                    </p>
                     <p class="small">Select Publications:<br>
-                    <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('systems')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
+                        <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('systems')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
                 </div>
             </div>
         </div>
     </main>
 
     <template-footer id="footer"></template-footer>
-    
+
     <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script type="text/javascript" src="../js/vue_components.js"></script>
+    <script type="text/javascript" src="../js/vue_researchlist"></script>
     <script type="text/javascript" src="../js/scripts.js"></script>
     <script>
         var app = new Vue({
@@ -125,14 +131,14 @@
                         axios.get(projectsURL, {
                             headers: {
                                 Authorization: "Bearer " + app_key
-                                }
-                            }),
-                            axios.get(pubsURL, {
-                                headers: {
-                                    Authorization: "Bearer " + app_key
-                                }
-                            })
-                        ]).then(function(response) {
+                            }
+                        }),
+                        axios.get(pubsURL, {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        })
+                    ]).then(function(response) {
                         self.items = response[0].data.records;
                         self.pubs = response[1].data.records;
                     }).catch(function(error) {
