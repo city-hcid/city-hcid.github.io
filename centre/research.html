@@ -10,25 +10,25 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <script defer src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script defer src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+    <script defer src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
+    <script defer type="text/javascript" src="../js/vue_researchlist"></script>
+    <script defer type="text/javascript" src="../js/scripts.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCID Centre | Research</title>
 </head>
 
 <body>
-
     <template-header id="header" subtitle="" menuresearch="true" subhead="<br>research"></template-header>
-
     <main style="min-height: 40vh">
-
         <div class="section white">
             <div class="row container">
                 <div class="col s12 m7 grey-text text-darken-3 lighten-3 reg lead">
                     <p class="flow-text">Research in HCID covers a broad range of topics and design-orientated studies and interventions. We think of our work falling between three intersecting axes of research.</p>
-                </div>
-            </div>
-            <div class="row container">
-                <div class="col s11">
-
                 </div>
             </div>
             <div class="row container">
@@ -42,7 +42,6 @@
                 </div>
             </div>
         </div>
-
         <div class="container mb-5" id="app">
             <div class="row my-5" id="issues">
                 <div class="col s12">
@@ -60,7 +59,6 @@
                         <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('issues')" class="small">
                         <a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a>
                         <!-- <a class="tooltipped" data-position="bottom" data-tooltip="I am a tooltip">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a> -->
-
                     </span></p>
                 </div>
             </div>
@@ -100,17 +98,7 @@
             </div>
         </div>
     </main>
-
     <template-footer id="footer"></template-footer>
-
-    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script type="text/javascript" src="../js/vue_headfoot.js"></script>
-    <script type="text/javascript" src="../js/vue_researchlist"></script>
-    <script type="text/javascript" src="../js/scripts.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
@@ -148,10 +136,6 @@
             }
         })
     </script>
-</body>
-
-</html> });
-</script>
 </body>
 
 </html>
