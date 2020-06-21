@@ -18,6 +18,43 @@
     <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
     <script defer type="text/javascript" src="../js/vue_researchlist"></script>
     <script defer type="text/javascript" src="../js/scripts.js"></script>
+    <script defer type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: []
+            },
+            mounted: function() {
+                this.loadItems();
+            },
+            methods: {
+                loadItems: function() {
+                    let projectsURL = "https://api.airtable.com/v0/" + app_id + "/projects?filterByFormula=NOT%28%7Bresearch-theme%7D%20%3D%20%27%27%29";
+                    let pubsURL = "https://api.airtable.com/v0/" + app_id + "/select-pubs?sort%5B0%5D%5Bfield%5D=year";
+                    var self = this;
+                    self.items = [];
+                    self.pubs = [];
+                    axios.all([
+                        axios.get(projectsURL, {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        }),
+                        axios.get(pubsURL, {
+                            headers: {
+                                Authorization: "Bearer " + app_key
+                            }
+                        })
+                    ]).then(function(response) {
+                        self.items = response[0].data.records;
+                        self.pubs = response[1].data.records;
+                    }).catch(function(error) {
+                        console.log(error)
+                    })
+                }
+            }
+        })
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCID Centre | Research</title>
 </head>
@@ -99,43 +136,6 @@
         </div>
     </main>
     <template-footer id="footer"></template-footer>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    let projectsURL = "https://api.airtable.com/v0/" + app_id + "/projects?filterByFormula=NOT%28%7Bresearch-theme%7D%20%3D%20%27%27%29";
-                    let pubsURL = "https://api.airtable.com/v0/" + app_id + "/select-pubs?sort%5B0%5D%5Bfield%5D=year";
-                    var self = this;
-                    self.items = [];
-                    self.pubs = [];
-                    axios.all([
-                        axios.get(projectsURL, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }),
-                        axios.get(pubsURL, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        })
-                    ]).then(function(response) {
-                        self.items = response[0].data.records;
-                        self.pubs = response[1].data.records;
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-    </script>
 </body>
 
 </html>
