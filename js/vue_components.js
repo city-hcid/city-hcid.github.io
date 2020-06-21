@@ -20,7 +20,7 @@ Vue.component('template-header', {
 
         <!-- Side nav structure -->
         <ul class="sidenav" id="mobile-nav">
-            <li v-bind:class="menuhcid ? 'active' : 'disable'"><a class="menu-header" href="./">HCID</a></li>
+            <li v-bind:class="menuhcid ? 'active' : 'disable'"><a class="menu-header" href="https://hcid.city">HCID</a></li>
             <li v-bind:class="menucharter ? 'active' : ''"><a href="../centre/charter" class="menu-subheader">Charter</a></li>
             <li v-bind:class="menumembers ? 'active' : ''"><a href="../centre/members" class="menu-subheader">Members</a></li>
             <li v-bind:class="menuresearch ? 'active' : ''"><a href="../centre/research" class="menu-subheader">Research</a></li>
@@ -37,7 +37,7 @@ Vue.component('template-header', {
 
         <!-- HCID dropdown menu -->
         <ul id="dropdown1" class="dropdown-content">
-            <li v-bind:class="menuhcid ? 'active' : ''"><a class="active menu-header menu-selection" href="../">HCID</a></li>
+            <li v-bind:class="menuhcid ? 'active' : ''"><a class="active menu-header menu-selection" href="https://hcid.city">HCID</a></li>
             <li class="hide" v-bind:class="menucalendar ? 'active' : ''"><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
             <li class="divider" tabindex="-1"></li>
             <li v-bind:class="menureading ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
