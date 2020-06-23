@@ -4,9 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="./css/styles.css">
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap@latest/dist/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+    <link type="text/css" rel="stylesheet" href="./css/styles.css">
+    <script defer type="text/javascript" src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+    <script defer type="text/javascript" src="js/vue_components.js"></script>
+    <script defer type="text/javascript" src="js/vue_deadlines.js"></script>
     <title>interactions magazine | Deadlines</title>
 </head>
 
@@ -120,96 +128,7 @@
 
         </div>
     </main>
-    <template-footer id="footer">
-    </template-footer>
-    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-    <script src="http://unpkg.com/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
-    <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
-    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
-    <script src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
-    <script type="text/javascript" src="js/vue_components.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
-    <script type="text/javascript">
-        var appForum = new Vue({
-            el: '#app-forum',
-            data: {
-                items: [],
-                issues: [],
-                isHovered: false
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    let editors_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=forum_editors&fields%5B%5D=Name&fields%5B%5D=First%20Name&fields%5B%5D=Regular%20content%20name&fields%5B%5D=ID&fields%5B%5D=regular-content-name";
-                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming&fields%5B%5D=months&fields%5B%5D=year&fields%5B%5D=Debate&fields%5B%5D=view-id&fields%5B%5D=Forum%20editors&fields%5B%5D=reg-deadline";
-                    let self = this;
-                    axios.all([
-                        axios.get(editors_url, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }),
-                        axios.get(issues_url, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        })
-                    ]).then(function(response) {
-                        self.items = response[0].data.records;
-                        self.issues = response[1].data.records;
-                    }).catch(function(error) {
-                        console.log(error);
-                    })
-                },
-                handleHover(hovered) {
-                    this.isHovered = hovered
-                }
-            }
-        });
-
-        var appColumnists = new Vue({
-            el: '#appColumnists',
-            data: {
-                items: [],
-                issues: [],
-                isHovered: false
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    let columnists_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=columnists&fields%5B%5D=Name&fields%5B%5D=First%20Name&fields%5B%5D=Regular%20content%20name&fields%5B%5D=ID&fields%5B%5D=regular-content-name";
-                    let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming&fields%5B%5D=months&fields%5B%5D=year&fields%5B%5D=Debate&fields%5B%5D=view-id&fields%5B%5D=Columnists&fields%5B%5D=reg-deadline";
-                    let self = this;
-                    axios.all([
-                        axios.get(columnists_url, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }),
-                        axios.get(issues_url, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        })
-                    ]).then(function(response) {
-                        self.items = response[0].data.records;
-                        self.issues = response[1].data.records;
-                    }).catch(function(error) {
-                        console.log(error);
-                    })
-                },
-                handleHover(hovered) {
-                    this.isHovered = hovered
-                }
-            }
-        })
-    </script>
-
+    <template-footer id="footer"></template-footer>
 </body>
 
 </html>
