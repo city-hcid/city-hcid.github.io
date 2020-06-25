@@ -4,13 +4,20 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="members,hci,hcid,hci city,hcid city,hcid london" />
     <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link type="text/css" rel="stylesheet" href="../css/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer type="text/javascript" src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
+    <script defer type="text/javascript" src="../js/vue_members.js"></script>
     <title>HCID | Centre Members</title>
 </head>
 
@@ -215,145 +222,6 @@
 
     <template-footer id="footer"></template-footer>
 
-    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script type="text/javascript" src="../js/vue_headfoot.js"></script>
-    <script type="text/javascript" src="../js/scripts.js"></script>
-    <script type="text/javascript">
-        var app = new Vue({
-            el: '#app-all',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    var self = this;
-                    this.items = [];
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=OR((FIND(%22phd%22%2C%7Bstatus%7D))%2C(FIND(%22staff%22%2C%7Bstatus%7D))%2C(FIND(%22research%22%2C%7Bstatus%7D)))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-        var app = new Vue({
-            el: '#app-phds',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    var self = this
-                    this.items = []
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22phd%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-        var app = new Vue({
-            el: '#app-researchers',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    var self = this
-                    this.items = []
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22research%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-        var app = new Vue({
-            el: '#app-staff',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    var self = this
-                    this.items = []
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22staff%22%2C%7Bstatus%7D))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-        var app = new Vue({
-            el: '#app-alum',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    var self = this
-                    this.items = []
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=OR((FIND(%22alum%22%2C%7Bstatus%7D))%2C(FIND(%22visitor%22%2C%7Bstatus%7D)))&sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-    </script>
 </body>
 
 </html>
