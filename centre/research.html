@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <script defer src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script defer src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+    <script defer src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script defer type="text/javascript" src="../js/vue_researchlist.js"></script>
+    <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
+    <script defer type="text/javascript" src="../js/research-scripts.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCID Centre | Research</title>
 </head>
@@ -102,52 +110,6 @@
     </main>
 
     <template-footer id="footer"></template-footer>
-
-    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script type="text/javascript" src="../js/vue_researchlist.js"></script>
-    <script type="text/javascript" src="../js/vue_headfoot.js"></script>
-    <script type="text/javascript" src="../js/scripts.js"></script>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    let projectsURL = "https://api.airtable.com/v0/" + app_id + "/projects?filterByFormula=NOT%28%7Bresearch-theme%7D%20%3D%20%27%27%29";
-                    let pubsURL = "https://api.airtable.com/v0/" + app_id + "/select-pubs?sort%5B0%5D%5Bfield%5D=year";
-                    var self = this;
-                    self.items = [];
-                    self.pubs = [];
-                    axios.all([
-                        axios.get(projectsURL, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }),
-                        axios.get(pubsURL, {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        })
-                    ]).then(function(response) {
-                        self.items = response[0].data.records;
-                        self.pubs = response[1].data.records;
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-    </script>
 </body>
 
 </html>
