@@ -11,14 +11,6 @@ $(function() { // Shorthand for $( document ).ready()
 var app_id = "appVrmQAGy96E1jEP";
 var app_key = "keyC83ksN49wS10kX";
 
-new Vue({
-    el: '#footer'
-});
-
-new Vue({
-    el: '#header'
-})
-
 var app = new Vue({
     el: '#app-all',
     data: {
@@ -44,7 +36,7 @@ var app = new Vue({
             })
         }
     }
-})
+});
 var app = new Vue({
     el: '#app-phds',
     data: {
@@ -70,7 +62,7 @@ var app = new Vue({
             })
         }
     }
-})
+});
 var app = new Vue({
     el: '#app-researchers',
     data: {
@@ -96,7 +88,7 @@ var app = new Vue({
             })
         }
     }
-})
+});
 var app = new Vue({
     el: '#app-staff',
     data: {
@@ -122,7 +114,7 @@ var app = new Vue({
             })
         }
     }
-})
+});
 var app = new Vue({
     el: '#app-alum',
     data: {

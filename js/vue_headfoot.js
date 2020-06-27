@@ -1,4 +1,9 @@
 Vue.component('template-header', {
+    data: function() {
+        return {
+            count: 0
+        }
+    },
     props: ['subhead', 'subtitle', 'menuhcid', 'menucharter', 'menumembers', 'menuprojects', 'menuresearch', 'menucalendar', 'menureading', 'menureadingCal', 'menuseminar', 'menuseminarspeakers', 'menuseminarcal'],
     template: `
     <header>
@@ -59,8 +64,10 @@ Vue.component('template-header', {
         </div>
     </header>
     `
-})
-
+});
+new Vue({
+    el: '#header'
+});
 Vue.component('template-footer', function(resolve, reject) {
     setTimeout(function() {
         resolve({
@@ -114,4 +121,7 @@ Vue.component('template-footer', function(resolve, reject) {
             `
         })
     }, 1000)
+});
+new Vue({
+    el: '#footer'
 })
