@@ -13,7 +13,8 @@ var app_key = "keyC83ksN49wS10kX";
 var app = new Vue({
     el: '#app',
     data: {
-        items: []
+        items: [],
+        pubs: []
     },
     mounted: function() {
         this.loadItems();

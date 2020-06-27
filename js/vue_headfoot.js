@@ -120,7 +120,7 @@ Vue.component('template-footer', function(resolve, reject) {
             </footer>
             `
         })
-    }, 1000)
+    }, 500)
 });
 new Vue({
     el: '#footer'
