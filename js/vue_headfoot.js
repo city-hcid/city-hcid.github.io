@@ -33,8 +33,9 @@ Vue.component('template-header', {
             $("#navItem" + this.page).addClass("active");
             console.log("#navItem" + this.page);
             $("#dropDown" + this.page).addClass("active");
-            console.log("dropDown" + this.page);
-            $("#sideNavItem" + this.page).addClass("active")
+            console.log("#dropDown" + this.page);
+            $("#sideNavItem" + this.page).addClass("active");
+            console.log("#sideNavItem" + this.page)
         }
     },
     template: `
