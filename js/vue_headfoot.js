@@ -15,7 +15,7 @@ Vue.component('template-header', {
                 { url: "../centre/projects", name: "Projects" }
             ],
             dropDownCentre: [
-                { url: "../centre/members", name: "Calendar", id: "dropDownCentre_Calendar" }
+                { url: "../centre/calendar", name: "Calendar", id: "dropDownCentre_Calendar" }
             ],
             dropDownReading: [
                 { url: "../centre/reading-group", name: "Reading Group", id: "dropDownReading_Group" },
@@ -30,9 +30,9 @@ Vue.component('template-header', {
     },
     mounted: function() {
         if (this.page == "Charter") {
-            $(this.id).addClass("active hide-on-med-and-down");
+            $("#navItem" + this.page).addClass("active hide-on-med-and-down");
         } else {
-            $(this.id).addClass("active");
+            $("#navItem" + this.page).addClass("active");
             console.log(this.id);
             $("#dropDown" + this.page).addClass("active");
             console.log("dropDown" + this.page)
