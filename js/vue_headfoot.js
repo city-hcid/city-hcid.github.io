@@ -1,5 +1,5 @@
 Vue.component('template-header', {
-    props: ['item', 'subhead', 'subtitle', 'menuhcid', 'menucharter', 'menumembers', 'menuprojects', 'menuresearch', 'menucalendar', 'menureading', 'menureadingCal', 'menuseminar', 'menuseminarspeakers', 'menuseminarcal', 'page'],
+    props: ['item', 'subhead', 'subtitle', 'page'],
     data: function() {
         return {
             isOpen: false,
@@ -9,7 +9,7 @@ Vue.component('template-header', {
             dropDownSubLinkClass: "menu-subheader",
             id: "#navItem" + this.page,
             navList: [
-                { url: "../centre/members", name: "Charter" },
+                { url: "../centre/charter", name: "Charter" },
                 { url: "../centre/members", name: "Members" },
                 { url: "../centre/research", name: "Research" },
                 { url: "../centre/projects", name: "Projects" }
