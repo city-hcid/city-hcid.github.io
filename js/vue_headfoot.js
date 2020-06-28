@@ -2,12 +2,10 @@ Vue.component('template-header', {
     props: ['item', 'subhead', 'subtitle', 'page'],
     data: function() {
         return {
-            isOpen: false,
             active: false,
             navLinkClass: "grey-text text-darken-2",
             dropDownLinkClass: "menu-header",
             dropDownSubLinkClass: "menu-subheader",
-            id: "#navItem" + this.page,
             navList: [
                 { url: "../centre/charter", name: "Charter" },
                 { url: "../centre/members", name: "Members" },
@@ -33,9 +31,10 @@ Vue.component('template-header', {
             $("#navItem" + this.page).addClass("active hide-on-med-and-down");
         } else {
             $("#navItem" + this.page).addClass("active");
-            console.log(this.id);
+            console.log("#navItem" + this.page);
             $("#dropDown" + this.page).addClass("active");
-            console.log("dropDown" + this.page)
+            console.log("dropDown" + this.page);
+            $("#sideNavItem" + this.page).addClass("active")
         }
     },
     template: `
@@ -67,15 +66,23 @@ Vue.component('template-header', {
                 <a class="menu-header" href="https://hcid.city">HCID</a>
             </li>
             <li v-for="item in navList" @click="active = !active" :class="active" 
-            :id="'navItem' + item.name.replace(/ /g,'_')">
+            :id="'sideNavItem' + item.name.replace(/ /g,'_')">
                 <a 
                 :href="item.url"
                 :class="navLinkClass"
                 :title="item.name">{{ item.name }}</a>
             </li>
             <li class="divider" tabindex="-1"></li>
-            <li v-bind:class="menuseminar ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
-            <li v-bind:class="menuseminarspeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+            <li v-for="(item, index) in dropDownSeminar" @click="active = !active" :class="active" :id="item.id">
+                <a v-if="index == 0"
+                :href="item.url"
+                :class="dropDownLinkClass"
+                :title="item.name">{{ item.name }}</a>
+                <a v-else
+                :href="item.url"
+                :class="dropDownSubLinkClass"
+                :title="item.name">{{ item.name }}</a>
+            </li>
         </ul>
 
         <!-- HCID dropdown menu -->
