@@ -1,10 +1,43 @@
 Vue.component('template-header', {
+    props: ['item', 'subhead', 'subtitle', 'menuhcid', 'menucharter', 'menumembers', 'menuprojects', 'menuresearch', 'menucalendar', 'menureading', 'menureadingCal', 'menuseminar', 'menuseminarspeakers', 'menuseminarcal', 'page'],
     data: function() {
         return {
-            count: 0
+            isOpen: false,
+            active: false,
+            navLinkClass: "grey-text text-darken-2",
+            dropDownLinkClass: "menu-header",
+            dropDownSubLinkClass: "menu-subheader",
+            id: "#navItem" + this.page,
+            navList: [
+                { url: "../centre/members", name: "Charter" },
+                { url: "../centre/members", name: "Members" },
+                { url: "../centre/research", name: "Research" },
+                { url: "../centre/projects", name: "Projects" }
+            ],
+            dropDownCentre: [
+                { url: "../centre/members", name: "Calendar", id: "dropDownCentre_Calendar" }
+            ],
+            dropDownReading: [
+                { url: "../centre/reading-group", name: "Reading Group", id: "dropDownReading_Group" },
+                { url: "../centre/reading-group-calendar", name: "Calendar", id: "dropDownReadings_Calendar" }
+            ],
+            dropDownSeminar: [
+                { url: "../seminar/", name: "Seminar Series", id: "dropDownSeminar_Series" },
+                { url: "../seminar/speakers", name: "Speakers", id: "dropDownSeminar_Speakers" },
+                { url: "../seminar/calendar", name: "Calendar", id: "dropDownSeminar_Calendar" }
+            ]
         }
     },
-    props: ['subhead', 'subtitle', 'menuhcid', 'menucharter', 'menumembers', 'menuprojects', 'menuresearch', 'menucalendar', 'menureading', 'menureadingCal', 'menuseminar', 'menuseminarspeakers', 'menuseminarcal'],
+    mounted: function() {
+        if (this.page == "Charter") {
+            $(this.id).addClass("active hide-on-med-and-down");
+        } else {
+            $(this.id).addClass("active");
+            console.log(this.id);
+            $("#dropDown" + this.page).addClass("active");
+            console.log("dropDown" + this.page)
+        }
+    },
     template: `
     <header>
         <div class="navbar-fixed">
@@ -12,25 +45,34 @@ Vue.component('template-header', {
                 <div class="nav-wrapper white">
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-small-and-down">
-                        <li v-bind:class="{ active: menuhcid }"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
-                        <li class="hide-on-med-and-down" v-bind:class="menucharter ? 'active' : ''"><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
-                        <li v-bind:class="menumembers ? 'active' : ''"><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
-                        <li v-bind:class="menuresearch ? 'active' : ''"><a href="../centre/research" class="grey-text text-darken-2">Research</a></li>
-                        <li v-bind:class="menuprojects ? 'active' : ''"><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
+                        <li @click="active = !active" :class="active" id="navItemHCID">
+                            <a class="dropdown-trigger" :class="navLinkClass" href="#!" data-target="dropdown1">HCID</a>
+                        </li>
+                        <li v-for="item in navList" @click="active = !active" :class="active" 
+                        :id="'navItem' + item.name.replace(/ /g,'_')">
+                            <a 
+                            :href="item.url"
+                            :class="navLinkClass"
+                            :title="item.name">{{ item.name }}</a>
+                        </li>
                     </ul>
-                    <a href="https://www.city.ac.uk" class="brand-logo right" style="opacity: 0;" aria-label="Image link to City University website"><img class="hide-on-small-and-down" src="https://www.city.ac.uk/__data/assets/git_bridge/0018/344007/main/i/logo/city-uol-logo-responsive-125.svg" alt="City University logo"></a>
+                    <a v-if="page == 'HCID'" href="https://www.city.ac.uk" class="brand-logo right" style="opacity: 0.9;" aria-label="Image link to City University website"><img class="hide-on-small-and-down fade-out" data-aos data-aos-delay="2000" data-aos-easing="ease-in-out-quad" data-aos-duration="2000" src="https://www.city.ac.uk/__data/assets/git_bridge/0018/344007/main/i/logo/city-uol-logo-responsive.svg" alt="City University logo"></a>
                 </div>
             </nav>
         </div>
 
         <!-- Side nav structure -->
         <ul class="sidenav" id="mobile-nav">
-            <li v-bind:class="menuhcid ? 'active' : 'disable'"><a class="menu-header" href="https://hcid.city">HCID</a></li>
-            <li v-bind:class="menucharter ? 'active' : ''"><a href="../centre/charter" class="menu-subheader">Charter</a></li>
-            <li v-bind:class="menumembers ? 'active' : ''"><a href="../centre/members" class="menu-subheader">Members</a></li>
-            <li v-bind:class="menuresearch ? 'active' : ''"><a href="../centre/research" class="menu-subheader">Research</a></li>
-            <li v-bind:class="menuprojects ? 'active' : ''"><a href="../centre/projects" class="menu-subheader">Projects</a></li>
-            <li v-bind:class="menucalendar ? 'active' : ''"><a href="../centre/calendar" class="menu-subheader">Calendar</a></li>
+            <li @click="active = !active" :class="active" id="navItemHCID">
+                <a class="menu-header" href="https://hcid.city">HCID</a>
+            </li>
+            <li v-for="item in navList" @click="active = !active" :class="active" 
+            :id="'navItem' + item.name.replace(/ /g,'_')">
+                <a 
+                :href="item.url"
+                :class="navLinkClass"
+                :title="item.name">{{ item.name }}</a>
+            </li>
             <li class="divider" tabindex="-1"></li>
             <li v-bind:class="menuseminar ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
             <li v-bind:class="menuseminarspeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
@@ -38,15 +80,37 @@ Vue.component('template-header', {
 
         <!-- HCID dropdown menu -->
         <ul id="dropdown1" class="dropdown-content">
-            <li v-bind:class="menuhcid ? 'active' : ''"><a class="active menu-header menu-selection" href="https://hcid.city">HCID</a></li>
-            <li class="hide" v-bind:class="menucalendar ? 'active' : ''"><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
+            <li  @click="active = !active" :class="active" id="navItemHCID">
+                <a class="active menu-header menu-selection" href="https://hcid.city">HCID</a>
+            </li>
+            <li v-for="item in dropDownCentre" @click="active = !active" :class="active" :id="item.id">
+                <a 
+                :href="item.url"
+                :class="dropDownSubLinkClass"
+                :title="item.name">{{ item.name }}</a>
+            </li>
             <li class="divider" tabindex="-1"></li>
-            <li v-bind:class="menureading ? 'active' : ''"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
-            <li class="hide" v-bind:class="menureadingCal ? 'active' : ''"><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
+            <li v-for="(item, index) in dropDownReading" @click="active = !active" :class="active" :id="item.id">
+                <a v-if="index == 0"
+                :href="item.url"
+                :class="dropDownLinkClass"
+                :title="item.name">{{ item.name }}</a>
+                <a v-else
+                :href="item.url"
+                :class="dropDownSubLinkClass"
+                :title="item.name">{{ item.name }}</a>
+            </li>
             <li class="divider" tabindex="-1"></li>
-            <li v-bind:class="menuseminar ? 'active' : ''"><a class="menu-header" href="../seminar/">Seminar Series</a></li>
-            <li v-bind:class="menuseminarspeakers ? 'active' : ''"><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
-            <li v-bind:class="menuseminarcal ? 'active' : ''"><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+            <li v-for="(item, index) in dropDownSeminar" @click="active = !active" :class="active" :id="item.id">
+                <a v-if="index == 0"
+                :href="item.url"
+                :class="dropDownLinkClass"
+                :title="item.name">{{ item.name }}</a>
+                <a v-else
+                :href="item.url"
+                :class="dropDownSubLinkClass"
+                :title="item.name">{{ item.name }}</a>
+            </li>
         </ul>
 
         <!-- Page title -->

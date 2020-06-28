@@ -4,6 +4,14 @@
 * https://www.gnu.org/licenses/gpl.html
 */
 
+.fade-out.aos-animate {
+    opacity: 0
+}
+
+.fade-out:hover {
+    opacity: 0
+}
+
 .reg {
     font-weight: 400;
     font-size: 1.2rem;
@@ -37,22 +45,34 @@
     border-radius: 4%;
 }
 
-.tabs .tab a{
-    color:#000;
-} /*Black color to the text*/
+.tabs .tab a {
+    color: #000;
+}
+
+
+/*Black color to the text*/
 
 .tabs .tab a:hover {
-    background-color:#eee;
-    color:#000;
-} /*Text color on hover*/
+    background-color: #eee;
+    color: #000;
+}
+
+
+/*Text color on hover*/
 
 .tabs .tab a.active {
-    color:#000;
-} /*Background and text color when a tab is active*/
+    color: #000;
+}
+
+
+/*Background and text color when a tab is active*/
 
 .tabs .indicator {
-    background-color:#000;
-} /*Color of underline*/
+    background-color: #000;
+}
+
+
+/*Color of underline*/
 
 .copyleft {
     display: inline-block;
@@ -159,7 +179,7 @@ nav i.material-icons {
 }
 
 .brand-logo img {
-    height: 120px;
+    height: 80px;
 }
 
 
@@ -338,6 +358,7 @@ h1.page-title a {
 h1.page-title a:hover {
     color: #039be5
 }
+
 @media only screen and (min-width: 1201px) {
     h1.page-title {
         font-size: 100px;
