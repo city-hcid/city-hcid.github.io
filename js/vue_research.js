@@ -53,5 +53,14 @@ Vue.component('template-listing', function(resolve, reject) {
             props: ['theme', 'item', 'name', 'url'],
             template: `<span v-if="item.includes(theme)"><a v-bind:href="url" target="_blank">{{ name }}</a>, </span>`
         })
-    }, 500)
+    }, 5)
+})
+
+Vue.component('template-publication', function(resolve, reject) {
+    setTimeout(function() {
+        resolve({
+            props: ['pub', 'theme'],
+            template: `<span v-if="pub['theme'].includes(theme)"><a :href="'http://dx.doi.org/' + pub['doi']" target="_new">{{ pub['title'] }} ({{ pub['year'] }})<br></a></span>`
+        })
+    }, 10)
 })

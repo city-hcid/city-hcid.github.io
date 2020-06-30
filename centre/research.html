@@ -22,20 +22,12 @@
 </head>
 
 <body>
-
     <template-header id="header" subtitle="" subhead="<br>research" page="Research"></template-header>
-
     <main style="min-height: 40vh">
-
         <div class="section white">
             <div class="row container">
                 <div class="col s12 m7 grey-text text-darken-3 lighten-3 reg lead">
                     <p class="flow-text">Research in HCID covers a broad range of topics and design-orientated studies and interventions. We think of our work falling between three intersecting axes of research.</p>
-                </div>
-            </div>
-            <div class="row container">
-                <div class="col s11">
-
                 </div>
             </div>
             <div class="row container">
@@ -64,11 +56,8 @@
                         <template-listing v-for="(item,index) in items" theme="issues" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing>
                     </p>
                     <p class="small">Select Publications:<br>
-                        <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('issues')" class="small">
-                        <a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a>
-                        <!-- <a class="tooltipped" data-position="bottom" data-tooltip="I am a tooltip">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a> -->
-
-                    </span></p>
+                        <template-publication v-for="pub in pubs" :pub="pub.fields" theme='issues'></template-publication>
+                    </p>
                 </div>
             </div>
             <div class="row my-5" id="methods">
@@ -86,7 +75,8 @@
                         <template-listing v-for="(item,index) in items" theme="methods" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing>
                     </p>
                     <p class="small">Select Publications:<br>
-                        <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('methods')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
+                        <template-publication v-for="pub in pubs" :pub="pub.fields" theme='methods'></template-publication>
+                    </p>
                 </div>
             </div>
             <div class="row my-5" id="systems">
@@ -102,12 +92,12 @@
                         <template-listing v-for="(item,index) in items" theme="systems" v-bind:item="item['fields']['research-theme']" v-bind:name="item['fields']['project-name']" v-bind:url="item['fields']['project-url']"></template-listing>
                     </p>
                     <p class="small">Select Publications:<br>
-                        <span v-for="pub in pubs" v-if="pub['fields']['theme'].includes('systems')" class="small"><a :href="'http://dx.doi.org/' + pub['fields']['doi']" target="_new">{{ pub['fields']['title'] }} ({{ pub['fields']['year'] }})</a><br></span>
+                        <template-publication v-for="pub in pubs" :pub="pub.fields" theme='systems'></template-publication>
+                    </p>
                 </div>
             </div>
         </div>
     </main>
-
     <template-footer id="footer"></template-footer>
 </body>
 
