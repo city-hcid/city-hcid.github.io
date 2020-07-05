@@ -17,7 +17,7 @@
     <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script defer type="text/javascript" src="https://unpkg.com/aos@latest/dist/aos.js"></script>
     <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
-    <script defer type="text/javascript" src="../js/vue_members.js"></script>
+    <script defer type="text/javascript" src="../js/vue_members_new.js"></script>
     <title>HCID | Centre Members</title>
 </head>
 
@@ -52,100 +52,56 @@
                 </div>
             </div>
         </div>
-        <div class="container" id="all">
-            <div id="app-all">
+        <div id="app-all">
+            <div class="container" id="all">
                 <div class="row">
                     <div class="col s12">
-                        <template-members v-for="item in items" :item="item.fields" members="all"></template-members>
+                        <template-members v-for="item in items" v-if="item['fields']['status']=='staff' || item['fields']['status']=='research' || item['fields']['status']=='phd'" :item="item.fields" members="all"></template-members>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container" id="phds">
-            <div id="app-phds">
+            <div class="container" id="phds">
                 <div class="row">
                     <div class="col s12">
                         <template-members v-for="item in items" v-if="item['fields']['status']=='phd'" :item="item.fields" members="phds"></template-members>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container" id="researchers">
-            <div id="app-researchers">
+            <div class="container" id="researchers">
                 <div class="row">
                     <div class="col s12">
                         <template-members v-for="item in items" v-if="item['fields']['status']=='research'" :item="item.fields" members="researchers"></template-members>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container" id="staff">
-            <div id="app-staff">
+            <div class="container" id="staff">
                 <div class="row">
-                    <template-members v-for="item in items" v-if="item['fields']['status']=='staff'" :item="item.fields" members="staff"></template-members>
+                    <template-staff v-for="item in items" v-if="item['fields']['status']=='staff'" :item="item.fields" members="staff"></template-members>
                 </div>
             </div>
-        </div>
-        <div class="container hide-on-small-only" id="alum">
-            <div class="row">
-                <div class="col s12 m11 mb-1">
-                    <div class="col s12 m4 offset-m1 mb-1">
-                        <h2>Visiting</h2>
-                    </div>
-                    <div class="col s12 m7 mb-1">
-                        <h2>Alumni</h2>
+            <div class="container hide-on-small-only" id="alum">
+                <div class="row">
+                    <div class="col s12 m11 mb-1">
+                        <div class="col s12 m4 offset-m1 mb-1">
+                            <h2>Visiting</h2>
+                        </div>
+                        <div class="col s12 m7 mb-1">
+                            <h2>Alumni</h2>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="app-alum">
                 <div class="row">
                     <div class="col s12 m11 mb-1">
                         <div class="col s12 m4 offset-m1">
                             <h3 class="reg mt-0 mb-1">Honorary Senior Visiting Fellow</h3>
-                            <p class="mt-0" v-for="(item, index) in items" v-if="item['fields']['post'] == 'Honorary Senior Visiting Fellow'">
-                                <span v-if="item['fields']['bio-url']">
-                                <a class="link" v-bind:href="item['fields']['bio-url']">
-                                    {{ item['fields']['name'] }}
-                                </a>
-                            </span>
-                                <span v-else>
-                                    {{ item['fields']['name'] }}
-                                </span>
-                            </p>
+                            <template-alum v-for="item in items" :item="item.fields" post="Honorary Senior Visiting Fellow"></template-alum>
                             <h3 class="reg mt-4 mb-1">Honorary Visiting Fellows (CASS)</h3>
-                            <p class="mt-0" v-for="(item, index) in items" v-if="item['fields']['post'] == 'Honorary Visiting Fellows (CASS)'">
-                                <span v-if="item['fields']['bio-url']">
-                                <a class="link" v-bind:href="item['fields']['bio-url']">
-                                    {{ item['fields']['name'] }}
-                                </a>
-                            </span>
-                                <span v-else>
-                                    {{ item['fields']['name'] }}
-                                </span>
-                            </p>
+                            <template-alum v-for="item in items" :item="item.fields" post="Honorary Visiting Fellows (CASS)"></template-alum>
                             <h3 class="reg mt-4 mb-1">Honorary Visiting Fellows</h3>
-                            <p class="mt-0" v-for="(item, index) in items" v-if="item['fields']['post'] == 'Honorary Visiting Fellows'">
-                                <span v-if="item['fields']['bio-url']">
-                                <a class="link" v-bind:href="item['fields']['bio-url']">
-                                    {{ item['fields']['name'] }}
-                                </a>
-                            </span>
-                                <span v-else>
-                                    {{ item['fields']['name'] }}
-                                </span>
-                            </p>
+                            <template-alum v-for="item in items" :item="item.fields" post="Honorary Visiting Fellows"></template-alum>
                         </div>
                         <div class="col s12 m7" style="column-count: 3;column-width: 28%;column-gap: 5%">
-                            <p class="mt-0" v-for="item in items" v-if="item['fields']['status'] == 'alum'">
-                                <span v-if="item['fields']['bio-url']">
-                                <a class="link" v-bind:href="item['fields']['bio-url']">
-                                    {{ item['fields']['name'] }}
-                                </a>
-                                </span>
-                                <span v-else>
-                                    {{ item['fields']['name'] }}
-                                </span>
-                            </p>
+                            <template-alum v-for="item in items" :item="item.fields" post="Previous Staff and Students"></template-alum>
                         </div>
                     </div>
                 </div>
