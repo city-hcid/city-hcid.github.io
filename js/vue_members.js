@@ -141,3 +141,58 @@ var app = new Vue({
         }
     }
 })
+
+Vue.component('template-members', function(resolve, reject) {
+    setTimeout(function() {
+        resolve({
+            props: ['item', 'members'],
+            template: `
+            <div v-if="members=='staff'" class="col s12 m10 mb-5">
+                <div class="col m3 hide-on-small-only">
+                    <div class="right-align" v-if="item['photo-url']">
+                        <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+                    </div>
+                    <div v-else>
+                        <i class="large material-icons roundedElement">assignment_ind</i>
+                    </div>
+                </div>
+                <div class="col s10 mb-2 pl-5 hide-on-med-and-up">
+                    <div v-if="item['photo-url']">
+                        <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+                    </div>
+                    <div v-else>
+                        <i class="large material-icons roundedElement">assignment_ind</i>
+                    </div>
+                </div>
+                <div class="col s12 m8 pl-5">
+                    <p class="mt-0" v-if="item['bio-url']">
+                        <strong><a class="reg link" v-bind:href="item['bio-url']">{{ item['name'] }}</a><span class="reg" v-if="item['post']">, {{ item['post'] }}</span></strong>
+                        <br />
+                        <span class="reg" v-else>
+                            <strong>{{ item['name'] }}</strong><span class="reg">, {{ item['post'] }}</span>
+                        </span>
+                        <span class="grey-text text-darken-3" v-if="item['short-bio']">
+                            {{ item['short-bio'] }}
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div v-else class="col s5 m4 l3 center-align mb-4">
+                <div v-if="item['photo-url']">
+                    <img class="head-shot" v-bind:src="item['photo-url']" v-bind:alt="item['first-name'] + ' ' + item['last-name'] + ' photo'" height="120px" />
+                </div>
+                <div v-else>
+                    <i class="large material-icons roundedElement">assignment_ind</i>
+                </div>
+                <div v-if="item['bio-url']">
+                    <a v-bind:href="item['bio-url']">{{ item['first-name'] }}<br>{{ item['last-name'] }}</a>
+                </div>
+                <div v-else>
+                    {{ item['first-name'] }}<br>{{ item['last-name'] }}
+                </div>
+            </div>
+            `
+        })
+    }, 100)
+})
