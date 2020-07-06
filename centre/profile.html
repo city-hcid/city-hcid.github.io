@@ -4,105 +4,29 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="HCID member" />
     <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link type="text/css" rel="stylesheet" href="../css/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer type="text/javascript" src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/aos@latest/dist/aos.js"></script>
+    <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
+    <script defer type="text/javascript" src="../js/vue_profile.js"></script>
     <title>HCID | Members</title>
 </head>
 
 <body>
-
     <template-header id="header" subtitle="" subhead="profile" page="Members"></template-header>
-
     <main>
-        <div class="container">
-            <div class="row">
-                <div class="col s12 m9 l10" id="bodybox">
-                    <div id="app">
-                        <div v-for="(item, index) in items">
-                            <div v-if="index == 0" id="name">
-                                <div class="my-3">
-                                    <span v-if="item['fields']['photo-url']"><img class="roundedElement responsive-img" v-bind:src="item['fields']['photo-url']" v-bind:alt="item['fields']['name']" /></span>
-                                </div>
-                                <h1 class="bold">
-                                    {{ item['fields']['name'] }}
-                                </h1>
-                                <div v-if="item['fields']['post']">
-                                    <h2 class="mb-1 bold">
-                                        {{ item['fields']['post'] }}
-                                    </h2>
-                                </div>
-                                <div>
-                                    <p>
-                                        <span v-if="item['fields']['twitter']">
-                                            <strong>Twitter: </strong><a v-bind:href= "'https://twitter.com/' + item['fields']['twitter']">{{ item['fields']['twitter'] }}</a>
-                                        </span>
-                                        <br>
-                                        <span v-if="item['fields']['scholar']">
-                                            <strong>Academic record: </strong><a v-bind:href="item['fields']['scholar']">Google Scholar</a>
-                                        </span>
-                                        <div v-if="item['fields']['orcid']">
-                                            <div itemscope itemtype="https://schema.org/Person">
-                                                <a itemprop="sameAs" v-bind:content="'https://orcid.org/' + item['fields']['orcid']" v-bind:href="'https://orcid.org/' + item['fields']['orcid']" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">https://orcid.org/{{ item['fields']['orcid'] }}</a>
-                                            </div>
-                                        </div>
-                                    </p>
-                                </div>
-                                <div v-if="item['fields']['short-bio']">
-                                    <p class="lbr">{{ item['fields']['short-bio'] }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <template-profile id="app" v-for="(item, index) in items" v-if="index==0" :item="item.fields"></template-profile>
     </main>
-
     <template-footer id="footer"></template-footer>
-
-    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script type="text/javascript" src="../js/vue_headfoot.js"></script>
-    <script type="text/javascript" src="../js/scripts.js"></script>
-    <script type="text/javascript">
-        var app = new Vue({
-            el: '#app',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    var url_string = window.location.href;
-                    var url = new URL(url_string);
-                    var name = url.searchParams.get("name");
-                    var self = this;
-                    this.items = [];
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22" + name + "%22%2C%7Bname-id%7D))", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records;
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-    </script>
 </body>
 
 </html>
