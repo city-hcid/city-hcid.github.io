@@ -1,6 +1,6 @@
 AOS.init();
 
-$(function() { // Shorthand for $( document ).ready()
+$(function() {
     $('.dropdown-trigger').dropdown({
         hover: true
     });
@@ -20,8 +20,6 @@ var app = new Vue({
     },
     methods: {
         loadItems: function() {
-            //let url_string = window.location.href;
-            //let url = new URL(window.location.href);
             let name = new URL(window.location.href).searchParams.get("name");
             let self = this;
             let fields = "fields%5B%5D=name&fields%5B%5D=twitter&fields%5B%5D=scholar&fields%5B%5D=orcid&fields%5B%5D=status&fields%5B%5D=photo-url&fields%5B%5D=short-bio&fields%5B%5D=url&fields%5B%5D=post";
