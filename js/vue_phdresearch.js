@@ -12,7 +12,7 @@ var app_id = "appVrmQAGy96E1jEP";
 var app_key = "keyC83ksN49wS10kX";
 
 var app = new Vue({
-    el: '#app-phd',
+    el: '#app',
     data: {
         items: []
     },
@@ -30,7 +30,10 @@ var app = new Vue({
                     }
                 }
             ).then(function(response) {
-                self.items = response.data.records
+                self.items = response.data.records;
+                console.log("test");
+                console.log(self.items);
+                console.log(self.items[14]['fields']['status'][0])
             }).catch(function(error) {
                 console.log(error)
             })
@@ -62,62 +65,72 @@ Vue.component('template-phd', function(resolve, reject) {
     }, 100)
 })
 
-Vue.component('template-staff', function(resolve, reject) {
+Vue.component('template-current', function(resolve, reject) {
     setTimeout(function() {
         resolve({
-            props: ['item'],
+            props: ['item', 'id'],
             template: `
-            <div class="col s12 m10 mb-5">
-                <div class="col m3 hide-on-small-only">
-                    <div class="right-align" v-if="item['photo-url']">
-                        <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
-                    </div>
-                    <div v-else>
-                        <i class="large material-icons roundedElement">assignment_ind</i>
+            <div class="container" :id="id">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="col m3 hide-on-small-only">
+                            <div class="right-align" v-if="item['photo-url']">
+                                <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+                            </div>
+                            <div v-else>
+                                <i class="large material-icons roundedElement">assignment_ind</i>
+                            </div>
+                        </div>
+                        <div class="col s10 mb-2 pl-5 hide-on-med-and-up">
+                            <div v-if="item['photo-url']">
+                                <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+                            </div>
+                            <div v-else>
+                                <i class="large material-icons roundedElement">assignment_ind</i>
+                            </div>
+                        </div>
+                        <div class="col s12 m8 pl-5">
+                            <p class="mt-0" v-if="item['bio-url']">
+                                <strong><a class="reg link" v-bind:href="item['bio-url']">{{ item['name'] }}</a><span class="reg" v-if="item['post']">, {{ item['post'] }}</span></strong>
+                                <br />
+                                <span class="reg" v-else>
+                                    <strong>{{ item['name'] }}</strong><span class="reg">, {{ item['post'] }}</span>
+                                </span>
+                                <span class="grey-text text-darken-3" v-if="item['short-bio']">
+                                    {{ item['short-bio'] }}
+                                </span>
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div class="col s10 mb-2 pl-5 hide-on-med-and-up">
-                    <div v-if="item['photo-url']">
-                        <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+            </div>
+            `
+        })
+    }, 100)
+})
+
+Vue.component('template-past', function(resolve, reject) {
+    setTimeout(function() {
+        resolve({
+            props: ['item', 'id', 'post'],
+            template: `
+            <div class="container" :id="id" v-if="item['post'] === post">
+                <div class="row">
+                    <div class="col s8 offset-s4 mt-0">
+                        <p>
+                            <span v-if="item['bio-url']">
+                                <a class="link" v-bind:href="item['bio-url']">
+                                    {{ item['name'] }}
+                                </a>
+                            </span>
+                            <span v-else>
+                                {{ item['name'] }}
+                            </span>
+                        </p>
                     </div>
-                    <div v-else>
-                        <i class="large material-icons roundedElement">assignment_ind</i>
-                    </div>
-                </div>
-                <div class="col s12 m8 pl-5">
-                    <p class="mt-0" v-if="item['bio-url']">
-                        <strong><a class="reg link" v-bind:href="item['bio-url']">{{ item['name'] }}</a><span class="reg" v-if="item['post']">, {{ item['post'] }}</span></strong>
-                        <br />
-                        <span class="reg" v-else>
-                            <strong>{{ item['name'] }}</strong><span class="reg">, {{ item['post'] }}</span>
-                        </span>
-                        <span class="grey-text text-darken-3" v-if="item['short-bio']">
-                            {{ item['short-bio'] }}
-                        </span>
-                    </p>
                 </div>
             </div>
             `
         })
     }, 600)
-})
-
-Vue.component('template-alum', function(resolve, reject) {
-    setTimeout(function() {
-        resolve({
-            props: ['item', 'post'],
-            template: `
-            <p class="mt-0" v-if="item['post'] === post">
-                <span v-if="item['bio-url']">
-                    <a class="link" v-bind:href="item['bio-url']">
-                        {{ item['name'] }}
-                    </a>
-                </span>
-                <span v-else>
-                    {{ item['name'] }}
-                </span>
-            </p>
-            `
-        })
-    }, 1000)
 })

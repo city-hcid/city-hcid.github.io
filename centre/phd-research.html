@@ -22,34 +22,29 @@
 </head>
 
 <body>
-    <template-header id="header" subhead="<br>PhD Research" subtitle="" page="PhD_Research"></template-header>
+    <template-header id="header" subhead="<br>PhD Research" subtitle="PhD Programme" page="PhD_Research"></template-header>
     <main>
-        <div class="container hide-on-small-only mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="container mb-5">
             <div class="row">
                 <div class="col s12 mb-5">
+                    <h2 class="flow-text">PhD Students</h2>
                     <ul class="tabs">
-                        <li class="tab col s4"><a href="#current">Current PhD Students</a></li>
-                        <li class="tab col s4"><a href="#past">Past PhD Students</a></li>
+                        <li class="tab col s4"><a class="active" href="#current">Current</a></li>
+                        <li class="tab col s4"><a href="#past">Past</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div id="app-phd">
-            <template-phd v-for="item in items" v-if="item['fields']['status']=='phd'" :item="item.fields"></template-phd>
-            <div class="container" id="current">
-                <div class="row">
-                    <div class="col s12">
-                        <template-phd v-for="item in items" v-if="item['fields']['status']=='phd'" :item="item.fields"></template-phd>
-                    </div>
-                </div>
-            </div>
-            <div class="container" id="past">
-                <div class="row">
-                    <div class="col s12">
-                        <template-phd v-for="item in items" v-if="item['fields']['status'].includes(item['phd') && item['fields']['status'].includes(item['alum')" :item="item.fields"></template-phd>
-                    </div>
-                </div>
-            </div>
+        <div id="app">
+            <template-current v-for="item in items" v-if="item['fields']['status'][0]=='phd'" :item="item.fields"  id="current"></template-current>
+            <template-past v-for="item in items" v-if="item['fields']['status'].includes('phd') && item['fields']['status'].includes('alum')" :item="item.fields" post="Previous Staff and Students" id="past"></template-past>
         </div>
     </main>
     <template-footer id="footer"></template-footer>
