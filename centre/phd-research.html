@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="phd,hci,hcid,hci city,hcid city,hcid london" />
+    <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <script defer type="text/javascript" src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/aos@latest/dist/aos.js"></script>
+    <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
+    <script defer type="text/javascript" src="../js/vue_phdresearch.js"></script>
+    <title>HCID | PhD Research</title>
+</head>
+
+<body>
+    <template-header id="header" subhead="<br>PhD Research" subtitle="" page="PhD_Research"></template-header>
+    <main>
+        <div class="container hide-on-small-only mb-5">
+            <div class="row">
+                <div class="col s12 mb-5">
+                    <ul class="tabs">
+                        <li class="tab col s4"><a href="#current">Current PhD Students</a></li>
+                        <li class="tab col s4"><a href="#past">Past PhD Students</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="app-phd">
+            <template-phd v-for="item in items" v-if="item['fields']['status']=='phd'" :item="item.fields"></template-phd>
+            <div class="container" id="current">
+                <div class="row">
+                    <div class="col s12">
+                        <template-phd v-for="item in items" v-if="item['fields']['status']=='phd'" :item="item.fields"></template-phd>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="past">
+                <div class="row">
+                    <div class="col s12">
+                        <template-phd v-for="item in items" v-if="item['fields']['status'].includes(item['phd') && item['fields']['status'].includes(item['alum')" :item="item.fields"></template-phd>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <template-footer id="footer"></template-footer>
+</body>
+
+</html>

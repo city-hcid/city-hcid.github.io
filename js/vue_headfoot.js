@@ -13,7 +13,8 @@ Vue.component('template-header', {
                 { url: "../centre/projects", name: "Projects" }
             ],
             dropDownCentre: [
-                { url: "../centre/calendar", name: "Calendar", id: "dropDownCentre_Calendar" }
+                { url: "../centre/calendar", name: "Calendar", id: "dropDownCentre_Calendar" },
+                { url: "../centre/phd-research", name: "PhD Research", id: "dropDownPhD_Research" }
             ],
             dropDownReading: [
                 { url: "../centre/reading-group", name: "Reading Group", id: "dropDownReading_Group" },
