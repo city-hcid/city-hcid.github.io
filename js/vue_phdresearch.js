@@ -71,17 +71,17 @@ Vue.component('template-current', function(resolve, reject) {
             props: ['item'],
             template: `
             <div class="row mb-4">
-                <div class="col m5 xl-3 right-align hide-on-small-only">
+                <div class="col m5 xl-3 center-align hide-on-small-only">
                     <div v-if="item['photo-url']">
-                        <img class="head-shot" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+                        <img class="head-shot responsive" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
                     </div>
                     <div v-else>
                         <i class="large material-icons roundedElement">assignment_ind</i>
                     </div>
                 </div>
-                <div class="col s12 mb-2 pl-1 hide-on-med-and-up">
+                <div class="col s12 mb-2 hide-on-med-and-up">
                     <div v-if="item['photo-url']">
-                        <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+                        <img class="head-shot" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
                     </div>
                     <div v-else>
                         <i class="large material-icons roundedElement">assignment_ind</i>
