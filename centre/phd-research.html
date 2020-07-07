@@ -22,29 +22,66 @@
 </head>
 
 <body>
-    <template-header id="header" subhead="<br>PhD Research" subtitle="PhD Programme" page="PhD_Research"></template-header>
+    <template-header id="header" subhead="<br>PhD Research" page="PhD_Research"></template-header>
     <main>
         <div class="container">
             <div class="row">
-                <div class="col s12">
+                <div class="col s12 m6">
+                    <h2>PhD Programme</h2>
+                    <p class="lead reg">At the Centre for HCID, we encourage a diversity of PhD research related to interactive systems, interaction design, and the study of sociotechnical domains. We pride ourselves on creating a supportive culture for post graduate research that is committed to both individual and collective development.</p>
+                    <p class="reg">Topics we have expertise in include: </p>
+                    <div class="col s12 m11 L7">
+                        <ul class="collection" style="border:0">
+                            <a class="collection-item black-text">
+                                <i class="material-icons smaller">data_usage</i><span class="ml-3">Creative and inventive methods</span>
+                            </a>
+                            <a class="collection-item black-text">
+                                <i class="material-icons smaller">book</i>
+                                <span class="ml-3">Digital authoring and archiving</span></a>
+                            <a class="collection-item black-text">
+                                <i class="material-icons smaller">search</i>
+                                <span class="ml-3">Information retrieval</span></a>
+                            <a class="collection-item black-text">
+                                <i class="material-icons smaller">desktop_windows</i>
+                                <span class="ml-3">Information science</span></a> 
+                            <a class="collection-item black-text">
+                                <i class="material-icons smaller">details</i>
+                                <span class="ml-3">Interactive AI and machine learning</span></a> 
+                            <a class="collection-item black-text">
+                                <i class="material-icons smaller">healing</i>
+                                <span class="ml-3">Personal healthcare systems</span></a>
+                            <a class="collection-item black-text">
+                                <i class="material-icons smaller">share</i>
+                                <span class="ml-3">Science and technology studies</span></a>
+                        </ul>
+                    </div>
                     
                 </div>
             </div>
-        </div>
-        <div class="container mb-5">
             <div class="row">
-                <div class="col s12 mb-5">
-                    <h2 class="flow-text">PhD Students</h2>
+                <div class="col s12 m6 reg">
+                    <p>For further information about potential PhD supervisors, see our list of academics staff <a class="link" href="https://hcid.city/centre/members.html#staff" target="_new">here</a>. HCID staff members are happy to correspond or talk to about their research interests and offer advice on how to apply for a PhD.</p>
+                    <p>For details about applying to the Computer Science Department and HCID visit our departmental <a class="link" href="https://www.city.ac.uk/study/courses/research-degrees/computer-science" target="_new">pages</a>.</p>
+                    <p>Further details will be posted on this page soon, providing HCID specific information.</p>
+                </div>
+                <div class="col s12 m6 mb-5">
+                    <h2>PhD Students</h2>
+                    <div class="center-align">
                     <ul class="tabs">
                         <li class="tab col s4"><a class="active" href="#current">Current</a></li>
                         <li class="tab col s4"><a href="#past">Past</a></li>
                     </ul>
+                    </div>
+                </div>
+                <div id="app">
+                    <div class="mb-5" id="current">
+                        <template-current v-for="item in items" v-if="item['fields']['status'][0]=='phd'" :item="item.fields"></template-current>
+                    </div>
+                    <div class="mb-5" id="past">
+                        <template-past v-for="item in items" v-if="item['fields']['status'].includes('phd') && item['fields']['status'].includes('alum')" :item="item.fields" post="Previous Staff and Students"></template-past>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="app">
-            <template-current v-for="item in items" v-if="item['fields']['status'][0]=='phd'" :item="item.fields"  id="current"></template-current>
-            <template-past v-for="item in items" v-if="item['fields']['status'].includes('phd') && item['fields']['status'].includes('alum')" :item="item.fields" post="Previous Staff and Students" id="past"></template-past>
         </div>
     </main>
     <template-footer id="footer"></template-footer>

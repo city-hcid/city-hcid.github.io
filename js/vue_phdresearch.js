@@ -46,7 +46,7 @@ Vue.component('template-phd', function(resolve, reject) {
         resolve({
             props: ['item'],
             template: `
-            <div class="col s5 m4 l3 center-align mb-4">
+            <div class="col s5 center-align mb-4">
                 <div v-if="item['photo-url']">
                     <img class="head-shot" v-bind:src="item['photo-url']" v-bind:alt="item['first-name'] + ' ' + item['last-name'] + ' photo'" height="120px" />
                 </div>
@@ -68,40 +68,34 @@ Vue.component('template-phd', function(resolve, reject) {
 Vue.component('template-current', function(resolve, reject) {
     setTimeout(function() {
         resolve({
-            props: ['item', 'id'],
+            props: ['item'],
             template: `
-            <div class="container" :id="id">
-                <div class="row">
-                    <div class="col s12">
-                        <div class="col m3 hide-on-small-only">
-                            <div class="right-align" v-if="item['photo-url']">
-                                <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
-                            </div>
-                            <div v-else>
-                                <i class="large material-icons roundedElement">assignment_ind</i>
-                            </div>
-                        </div>
-                        <div class="col s10 mb-2 pl-5 hide-on-med-and-up">
-                            <div v-if="item['photo-url']">
-                                <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
-                            </div>
-                            <div v-else>
-                                <i class="large material-icons roundedElement">assignment_ind</i>
-                            </div>
-                        </div>
-                        <div class="col s12 m8 pl-5">
-                            <p class="mt-0" v-if="item['bio-url']">
-                                <strong><a class="reg link" v-bind:href="item['bio-url']">{{ item['name'] }}</a><span class="reg" v-if="item['post']">, {{ item['post'] }}</span></strong>
-                                <br />
-                                <span class="reg" v-else>
-                                    <strong>{{ item['name'] }}</strong><span class="reg">, {{ item['post'] }}</span>
-                                </span>
-                                <span class="grey-text text-darken-3" v-if="item['short-bio']">
-                                    {{ item['short-bio'] }}
-                                </span>
-                            </p>
-                        </div>
+            <div class="row mb-4">
+                <div class="col m5 xl-3 right-align hide-on-small-only">
+                    <div v-if="item['photo-url']">
+                        <img class="head-shot" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
                     </div>
+                    <div v-else>
+                        <i class="large material-icons roundedElement">assignment_ind</i>
+                    </div>
+                </div>
+                <div class="col s12 mb-2 pl-1 hide-on-med-and-up">
+                    <div v-if="item['photo-url']">
+                        <img class="head-shot right-align" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+                    </div>
+                    <div v-else>
+                        <i class="large material-icons roundedElement">assignment_ind</i>
+                    </div>
+                </div>
+                <div class="col s12 m7 xl-9 pl-1">
+                    <a class="link" v-bind:href="item['bio-url']">{{ item['name'] }}</a><span v-if="item['post']">, {{ item['post'] }}</span>
+                    <br />
+                    <span class="lbr" v-else>
+                        <strong>{{ item['name'] }}</strong><span class="reg">, {{ item['post'] }}</span>
+                    </span>
+                    <span class="lbr grey-text text-darken-3" v-if="item['short-bio']">
+                        {{ item['short-bio'] }}
+                    </span>
                 </div>
             </div>
             `
@@ -112,22 +106,18 @@ Vue.component('template-current', function(resolve, reject) {
 Vue.component('template-past', function(resolve, reject) {
     setTimeout(function() {
         resolve({
-            props: ['item', 'id', 'post'],
+            props: ['item', 'post'],
             template: `
-            <div class="container" :id="id" v-if="item['post'] === post">
-                <div class="row">
-                    <div class="col s8 offset-s4 mt-0">
-                        <p>
-                            <span v-if="item['bio-url']">
-                                <a class="link" v-bind:href="item['bio-url']">
-                                    {{ item['name'] }}
-                                </a>
-                            </span>
-                            <span v-else>
-                                {{ item['name'] }}
-                            </span>
-                        </p>
-                    </div>
+            <div class="row">
+                <div class="col s8 offset-s1 ml-5">
+                    <span v-if="item['bio-url']">
+                        <a class="link" v-bind:href="item['bio-url']">
+                            {{ item['name'] }}
+                        </a>
+                    </span>
+                    <span v-else>
+                        {{ item['name'] }}
+                    </span>
                 </div>
             </div>
             `
