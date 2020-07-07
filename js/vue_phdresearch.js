@@ -38,30 +38,6 @@ var app = new Vue({
     }
 })
 
-Vue.component('template-phd', function(resolve, reject) {
-    setTimeout(function() {
-        resolve({
-            props: ['item'],
-            template: `
-            <div class="col s5 center-align mb-4">
-                <div v-if="item['photo-url']">
-                    <img class="head-shot" v-bind:src="item['photo-url']" v-bind:alt="item['first-name'] + ' ' + item['last-name'] + ' photo'" height="120px" />
-                </div>
-                <div v-else>
-                    <i class="large material-icons roundedElement">assignment_ind</i>
-                </div>
-                <div v-if="item['bio-url']">
-                    <a v-bind:href="item['bio-url']">{{ item['first-name'] }}<br>{{ item['last-name'] }}</a>
-                </div>
-                <div v-else>
-                    {{ item['first-name'] }}<br>{{ item['last-name'] }}
-                </div>
-            </div>
-            `
-        })
-    }, 100)
-})
-
 Vue.component('template-current', function(resolve, reject) {
     setTimeout(function() {
         resolve({
