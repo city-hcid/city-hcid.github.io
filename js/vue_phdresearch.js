@@ -30,10 +30,7 @@ var app = new Vue({
                     }
                 }
             ).then(function(response) {
-                self.items = response.data.records;
-                console.log("test");
-                console.log(self.items);
-                console.log(self.items[14]['fields']['status'][0])
+                self.items = response.data.records
             }).catch(function(error) {
                 console.log(error)
             })
