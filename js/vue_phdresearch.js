@@ -73,7 +73,7 @@ Vue.component('template-current', function(resolve, reject) {
             <div class="row mb-4">
                 <div class="col m5 xl-3 center-align hide-on-small-only">
                     <div v-if="item['photo-url']">
-                        <img class="head-shot responsive" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+                        <img class="head-shot responsive-img" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
                     </div>
                     <div v-else>
                         <i class="large material-icons roundedElement">assignment_ind</i>
@@ -81,13 +81,13 @@ Vue.component('template-current', function(resolve, reject) {
                 </div>
                 <div class="col s12 mb-2 hide-on-med-and-up">
                     <div v-if="item['photo-url']">
-                        <img class="head-shot" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
+                        <img class="head-shot responsive-img" v-bind:src="item['photo-url']" v-bind:alt="item['name'] + ' photo'" height="120px" />
                     </div>
                     <div v-else>
                         <i class="large material-icons roundedElement">assignment_ind</i>
                     </div>
                 </div>
-                <div class="col s12 m7 xl-9 pl-1">
+                <div class="col s12 m7 xl-9 pl-md-5 pl-lg-1 pl-xl-0">
                     <a class="link" v-bind:href="item['bio-url']">{{ item['name'] }}</a><span v-if="item['post']">, {{ item['post'] }}</span>
                     <br />
                     <span class="lbr" v-else>
