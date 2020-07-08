@@ -68,11 +68,13 @@
                 <div class="col s12 m6 reg">
                     <p>For further information about potential PhD supervisors, see our list of academics staff <a class="link" href="https://hcid.city/centre/members.html#staff" target="_new">here</a>. HCID staff members are happy to correspond or talk
                         to about their research interests and offer advice on how to apply for a PhD.</p>
-                    <p>For details about applying to the Computer Science Department and HCID visit our departmental <a class="link" href="https://www.city.ac.uk/study/courses/research-degrees/computer-science" target="_new">pages</a>.</p>
+                    <h3>Applying</h3>
+                    <p>For information about applying to the Computer Science Department and HCID visit our departmental <a class="link" href="https://www.city.ac.uk/study/courses/research-degrees/computer-science" target="_new">pages</a>.</p>
                     <p>Further details will be posted on this page soon, providing HCID specific information.</p>
                 </div>
-                <div class="col s12 m6 mt-md-n5 pl-md-5">
-                    <h2>PhD Students</h2>
+                <div class="col m1 hide-on-small-only"></div>
+                <div class="col s12 m5 mt-md-n5">
+                    <h3>PhD Students</h3>
                     <div class="mb-5">
                         <ul class="tabs">
                             <li class="tab col s4"><a class="active" href="#current">Current</a></li>
@@ -84,7 +86,9 @@
                             <template-current v-for="item in items" v-if="item['fields']['status'][0]=='phd'" :item="item.fields"></template-current>
                         </div>
                         <div class="mb-5" id="past">
-                            <template-past v-for="item in items" v-if="item['fields']['status'].includes('phd') && item['fields']['status'].includes('alum')" :item="item.fields" post="Previous Staff and Students"></template-past>
+                            <div class="row">
+                                <template-past v-for="item in items" v-if="item['fields']['status'].includes('phd') && item['fields']['status'].includes('alum')" :item="item.fields" post="Previous Staff and Students"></template-past>
+                            </div>
                         </div>
                     </div>
                 </div>
