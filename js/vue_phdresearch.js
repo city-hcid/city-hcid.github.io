@@ -14,7 +14,8 @@ var app_key = "keyC83ksN49wS10kX";
 var app = new Vue({
     el: '#app',
     data: {
-        items: []
+        items: [],
+        supervisors: []
     },
     mounted: function() {
         this.loadItems();
@@ -61,11 +62,14 @@ Vue.component('template-current', function(resolve, reject) {
                     </div>
                 </div>
                 <div class="col s12 m8 l9">
-                    <a class="link" v-bind:href="item['bio-url']">{{ item['name'] }}</a><span v-if="item['post']">, {{ item['post'] }}</span>
-                    <br />
-                    <span v-else>
-                        <strong>{{ item['name'] }}</strong><span class="reg">, {{ item['post'] }}</span>
+                    <span v-if="item['bio-url']">
+                        <a class="link" v-bind:href="item['bio-url']"><strong>{{ item['name'] }}</strong></a><span v-if="item['post']">, {{ item['post'] }}.</span>
                     </span>
+                    <span v-else>
+                        <strong>{{ item['name'] }}</strong><span>, {{ item['post'] }}.</span>
+                    </span>
+                    <br />
+                    <span class="small hide" v-if="item['supervisors']" v-for="(id,index) in item.supervisors"><span v-if="index>0">, </span>{{ id }}</span>
                     <span class="lbr grey-text text-darken-3" v-if="item['short-bio']">
                         {{ item['short-bio'] }}
                     </span>
