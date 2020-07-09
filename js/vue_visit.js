@@ -26,6 +26,7 @@ var appLive = new Vue({
                 }
             ).then(function(response) {
                 self.items = response.data.records
+                console.log(self.items)
             }).catch(function(error) {
                 console.log(error)
             })
@@ -33,35 +34,23 @@ var appLive = new Vue({
     }
 })
 
-
-var map;
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-            lat: -34.397,
-            lng: 150.644
-        },
-        zoom: 8
-    });
-}
-
-// Initialize and add the map
-function initMap() {
-    // The location of Uluru
-    var uluru = {
-        lat: 51.527187,
-        lng: -0.104427
-    };
-    // The map, centered at Uluru
-    var map = new google.maps.Map(
-        document.getElementById('map'), {
-            zoom: 14,
-            center: uluru
-        });
-    // The marker, positioned at Uluru
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
-}
+Vue.component('template', function(resolve, reject) {
+    setTimeout(function() {
+        resolve({
+            props: ['item'],
+            template: `
+            <div :id="item['Name']" class="my-2">
+                <div>
+                    <strong>
+                        <span v-if="item['url']"><a :href="item['url']" class="black-text">{{ item['Name'] }}</a></span>
+                        <span v-else>{{ item['Name'] }}</span>
+                    </strong>
+                </div>
+                <div>
+                    <span v-if="item['Note']" class="lbr grey-text text-darken-2">{{ item['Note'] }}</span>
+                </div>
+            </div>
+            `
+        })
+    }, 300)
+})
