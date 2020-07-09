@@ -1,4 +1,5 @@
 AOS.init();
+
 $(function() { // Shorthand for $( document ).ready()
     $('.dropdown-trigger').dropdown({
         hover: true
@@ -6,18 +7,18 @@ $(function() { // Shorthand for $( document ).ready()
     $('.sidenav').sidenav()
 })
 
-var appLive = new Vue({
+var app = new Vue({
     el: '#app',
     data: {
         items: []
     },
     mounted: function() {
-        this.loadItems();
+        this.loadItems()
     },
     methods: {
         loadItems: function() {
-            var self = this
-            this.items = []
+            var self = this;
+            this.items = [];
             axios.get(
                 "https://api.airtable.com/v0/" + app_id + "/accomodation?sortField=Name&sortDirection=asc", {
                     headers: {
@@ -26,27 +27,9 @@ var appLive = new Vue({
                 }
             ).then(function(response) {
                 self.items = response.data.records
-                console.log(self.items)
             }).catch(function(error) {
                 console.log(error)
             })
         }
     }
-})
-
-Vue.component('template', function(resolve, reject) {
-    setTimeout(function() {
-        resolve({
-            props: ['item'],
-            template: `
-            <div class="my-2">
-                <strong>
-                    <span v-if="item['url']"><a :href="item['url']" class="black-text">{{ item['Name'] }}</a></span>
-                    <span v-else>{{ item['Name'] }}</span>
-                </strong><br>
-                <span v-if="item['Note']" class="lbr grey-text text-darken-2">{{ item['Note'] }}</span>
-            </div>
-            `
-        })
-    }, 300)
 })
