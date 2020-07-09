@@ -7,9 +7,6 @@ $(function() { // Shorthand for $( document ).ready()
     $('.sidenav').sidenav()
 })
 
-var app_id = "appVrmQAGy96E1jEP";
-var app_key = "key8l5YZtQ9FyUoxF";
-
 var app = new Vue({
     el: '#app',
     data: {

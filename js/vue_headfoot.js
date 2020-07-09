@@ -195,3 +195,6 @@ Vue.component('template-footer', function(resolve, reject) {
 new Vue({
     el: '#footer'
 })
+
+var app_id = "appVrmQAGy96E1jEP";
+var app_key = "key8l5YZtQ9FyUoxF";
