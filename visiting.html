@@ -3,14 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="hci,chi,ux,design,ux design,hcid,hci city,hcid city,hci london" />
-    <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link type="text/css" rel="stylesheet" href="https://www.unpkg.com/materialize-css@1.0.0/dist/css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="hci,chi,ux,design,ux design,hcid,hci city,hcid city,hci london" />
+        <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css" />
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link type="text/css" rel="stylesheet" href="css/style.css" />
+        <script defer type="text/javascript" src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+        <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script defer type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+        <script defer type="text/javascript" src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMIU9O1aK_61I3KzIQw16QgXp9b-d6f3M&callback=initMap" type="text/javascript"></script>
+        <script defer type="text/javascript" src="js/vue_headfoot.js"></script>
+        <script defer type="text/javascript" src="js/scripts.js"></script>
     <style>
         #map {
             height: 400px;
@@ -74,77 +82,7 @@
             </div>
         </div>
     </main>
-
     <template-footer id="footer"></template-footer>
-
-    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script type="text/javascript" src="../js/vue_headfoot.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
-    <script type="text/javascript">
-        var appLive = new Vue({
-            el: '#app',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    var self = this
-                    this.items = []
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/accomodation?sortField=Name&sortDirection=asc", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-
-        var map;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: -34.397,
-                    lng: 150.644
-                },
-                zoom: 8
-            });
-        }
-
-        // Initialize and add the map
-        function initMap() {
-            // The location of Uluru
-            var uluru = {
-                lat: 51.527187,
-                lng: -0.104427
-            };
-            // The map, centered at Uluru
-            var map = new google.maps.Map(
-                document.getElementById('map'), {
-                    zoom: 14,
-                    center: uluru
-                });
-            // The marker, positioned at Uluru
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMIU9O1aK_61I3KzIQw16QgXp9b-d6f3M&callback=initMap" type="text/javascript"></script>
 </body>
 
 </html>

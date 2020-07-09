@@ -6,6 +6,4 @@ $(function() { // Shorthand for $( document ).ready()
     $('.tabs').tabs();
     $('.sidenav').sidenav();
     $('.parallax').parallax()
-});
-var app_id = "appVrmQAGy96E1jEP";
-var app_key = "keyC83ksN49wS10kX";
+})
