@@ -67,8 +67,10 @@ Vue.component('template-current', function(resolve, reject) {
                     </span>
                     <br />
                     <span class="small hide" v-if="item['supervisors']" v-for="(id,index) in item.supervisors"><span v-if="index>0">, </span>{{ id }}</span>
+                    <span class="small" v-if="item['supvervisor-str']>
+                        {{ item['supvervisor-str'] }}<br />
                     <span class="lbr grey-text text-darken-3" v-if="item['short-bio']">
-                        {{ item['short-bio'] }}
+                        {{ item['short-bio'] }}<br />
                     </span>
                 </div>
             </div>
