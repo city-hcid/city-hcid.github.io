@@ -39,16 +39,12 @@ Vue.component('template', function(resolve, reject) {
         resolve({
             props: ['item'],
             template: `
-            <div :id="item['Name']" class="my-2">
-                <div>
-                    <strong>
-                        <span v-if="item['url']"><a :href="item['url']" class="black-text">{{ item['Name'] }}</a></span>
-                        <span v-else>{{ item['Name'] }}</span>
-                    </strong>
-                </div>
-                <div>
-                    <span v-if="item['Note']" class="lbr grey-text text-darken-2">{{ item['Note'] }}</span>
-                </div>
+            <div class="my-2">
+                <strong>
+                    <span v-if="item['url']"><a :href="item['url']" class="black-text">{{ item['Name'] }}</a></span>
+                    <span v-else>{{ item['Name'] }}</span>
+                </strong><br>
+                <span v-if="item['Note']" class="lbr grey-text text-darken-2">{{ item['Note'] }}</span>
             </div>
             `
         })
