@@ -51,7 +51,10 @@
             loadItems: function() {
                 var self = this;
                 this.items = [];
-                axios.get("../functions/members.js"
+                const myFunction = async() =>
+                    await (await fetch('../functions/members.js')).json();
+                console.log(myFunction)
+                    //axios.get("../functions/members.js"
                     /* fetch("../functions/members.js", {
                             method: "GET"
                         } */
@@ -60,13 +63,13 @@
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
-                        } */
+                        } 
                 ).then(function(response) {
                     //self.items = response.data.body;
                     console.log(response)
                 }).catch(function(error) {
                     console.log(error)
-                })
+                })*/
             }
         }
     })
