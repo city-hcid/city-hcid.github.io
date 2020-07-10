@@ -51,7 +51,7 @@
             loadItems: function() {
                 var self = this;
                 this.items = [];
-                axios.fetch("../functions/members.js"
+                axios.get("../functions/members.js"
                     /* fetch("../functions/members.js", {
                             method: "GET"
                         } */
@@ -63,7 +63,7 @@
                         } */
                 ).then(function(response) {
                     //self.items = response.data.body;
-                    console.log(response.data)
+                    console.log(response)
                 }).catch(function(error) {
                     console.log(error)
                 })
