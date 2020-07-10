@@ -61,7 +61,8 @@
                             }
                         } */
                 ).then(function(response) {
-                    self.items = response.data.records
+                    self.items = response.data.records;
+                    console.log("success")
                 }).catch(function(error) {
                     console.log(error)
                 })
