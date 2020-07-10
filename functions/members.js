@@ -1,5 +1,5 @@
 // Functions
-import Airtable from 'airtable';
+const Airtable = require('airtable');
 
 /** THIS IS YOUR SERVERLESS FUNCTION */
 exports.handler = function(event, context, callback) {
