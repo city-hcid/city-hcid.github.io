@@ -51,25 +51,25 @@
             loadItems: function() {
                 var self = this;
                 this.items = [];
-                const myFunction = async() =>
-                    await (await fetch('../.netlify/functions/members.js')).json();
-                console.log(myFunction)
-                    //axios.get("../functions/members.js"
-                    /* fetch("../functions/members.js", {
-                            method: "GET"
-                        } */
+                //const myFunction = async() =>
+                //await (await fetch('../.netlify/functions/members.js')).json();
+                //console.log(myFunction)
+                //axios.get("../functions/members.js"
+                fetch('../.netlify/functions/members.js', {
+                        method: "GET"
+                    }
                     /* axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members", {
                             headers: {
                                 Authorization: "Bearer " + app_key
                             }
-                        } 
+                        } */
                 ).then(function(response) {
                     //self.items = response.data.body;
                     console.log(response)
                 }).catch(function(error) {
                     console.log(error)
-                })*/
+                })
             }
         }
     })
