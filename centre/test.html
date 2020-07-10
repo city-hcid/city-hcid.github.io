@@ -52,7 +52,7 @@
                 var self = this;
                 this.items = [];
                 const myFunction = async() =>
-                    await (await fetch('../functions/members.js')).json();
+                    await (await fetch('../.netlify/functions/members.js')).json();
                 console.log(myFunction)
                     //axios.get("../functions/members.js"
                     /* fetch("../functions/members.js", {
