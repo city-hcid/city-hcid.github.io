@@ -51,9 +51,10 @@
             loadItems: function() {
                 var self = this;
                 this.items = [];
-                fetch("../functions/members.js", {
-                        method: "GET"
-                    }
+                axios.get("../functions/members.js"
+                    /* fetch("../functions/members.js", {
+                            method: "GET"
+                        } */
                     /* axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members", {
                             headers: {
@@ -62,8 +63,7 @@
                         } */
                 ).then(function(response) {
                     //self.items = response.data.body;
-                    console.log("success");
-                    console.log(response)
+                    console.log(response.body)
                 }).catch(function(error) {
                     console.log(error)
                 })
