@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/city-hcid/city-hcid.github.io#readme",
   "dependencies": {
-    "airtable": "^0.8.1",
-    "express": "^4.17.1"
+    "airtable": "^0.8.1"
   }
 }
