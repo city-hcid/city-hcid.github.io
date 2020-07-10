@@ -1,3 +1,6 @@
 [build]
-    functions = ".netlify/functions"
-    command = "echo 'this is only here so that netlify deploys functions within folders'"
+    # Default build command.
+    command = "echo 'default context'"
+
+    # Directory with the serverless Lambda functions to deploy to AWS.
+    functions = "functions/"
