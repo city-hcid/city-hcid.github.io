@@ -1,0 +1,22 @@
+{
+  "name": "city-hcid.github.io",
+  "version": "1.0.0",
+  "description": "Human-Computer Interaction Design (HCID) at City, University of London",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/city-hcid/city-hcid.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/city-hcid/city-hcid.github.io/issues"
+  },
+  "homepage": "https://github.com/city-hcid/city-hcid.github.io#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
