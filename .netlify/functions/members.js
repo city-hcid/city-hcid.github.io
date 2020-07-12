@@ -1,5 +1,5 @@
 // Functions
-const Airtable = require('airtable');
+var Airtable = require('airtable');
 
 /** THIS IS YOUR SERVERLESS FUNCTION */
 exports.handler = function(event, context, callback) {
@@ -25,15 +25,27 @@ exports.handler = function(event, context, callback) {
         apiKey: HCID_KEY
     });
     var base = Airtable.base(HCID_ID);
+    var table = base('members');
 
-    const data = [];
+    var data = [];
 
     /**
       AIRTABLE REQUEST LOGIC GOES HERE, APPENDING TO DATA
       REFERENCE YOUR BASE-SPECIFIC API FOR EXAMPLES OF
       COMMON CRUD OPERATIONS
     */
-
+   table.select({
+    view: VIEW_NAME
+}).firstPage((err, records) => {
+    if (err) {
+        console.error(err)
+        return
+    }
+    //all records are in the `records` array, do something with it
+    else {
+        data = records;
+    }
+})
     send(data);
 }
 
