@@ -16,7 +16,7 @@ exports.handler = function(event, context, callback) {
 
     // CONFIGURE YOUR AIRTABLE BASE CONNECTION
     Airtable.configure({
-        endpointUrl: "https://api.airtable.com/v0/appVrmQAGy96E1jEP/members",
+        endpointUrl: "https://api.airtable.com/v0/" + HCID_ID + "/members",
         apiKey: HCID_KEY
     });
     var base = Airtable.base(HCID_ID);
