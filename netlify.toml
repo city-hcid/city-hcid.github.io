@@ -3,7 +3,7 @@
     command = "echo 'default context'"
 
     # Directory with the serverless Lambda functions to deploy to AWS.
-    functions = ".netlify/functions/"
+    functions = ".netlify/functions"
 
 [dev]
     framework = "#static"
