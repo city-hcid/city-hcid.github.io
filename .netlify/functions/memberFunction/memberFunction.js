@@ -4,6 +4,11 @@ exports.handler = async (event, context) => {
     const subject = event.queryStringParameters.name || 'World'
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept',
+      },
       body: JSON.stringify({ message: `Hello ${subject}` }),
       // // more keys you can return:
       // headers: { "headerName": "headerValue", ... },
