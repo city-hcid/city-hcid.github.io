@@ -39,7 +39,9 @@
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 <script type="text/javascript">
-    var app = new Vue({
+const myFunction = async () =>
+   await (await fetch('/.netlify/functions/my-function/my-function.js')).json();
+/*     var app = new Vue({
         el: '#app',
         data: {
             items: []
@@ -71,7 +73,7 @@
                 })
             }
         }
-    })
+    }) */
 </script>
 
 </html>
