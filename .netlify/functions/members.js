@@ -35,17 +35,17 @@ exports.handler = function(event, context, callback) {
       COMMON CRUD OPERATIONS
     */
    table.select({
-    view: "Grid view"
-}).firstPage((err, records) => {
-    if (err) {
-        console.error(err)
-        return
-    }
-    //all records are in the `records` array, do something with it
-    else {
-        data = records;
-    }
-})
+       view: "Grid view"
+    }).firstPage((err, records) => {
+        if (err) {
+            console.error(err);
+            return
+        }
+        //all records are in the `records` array, do something with it
+        else {
+            data = records;
+        }
+    })
     send(data);
 }
 
