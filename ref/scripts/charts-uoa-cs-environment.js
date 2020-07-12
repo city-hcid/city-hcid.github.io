@@ -2,7 +2,7 @@ var ctx = document.getElementById("4*-graph");
 var threeStarGraph = document.getElementById("3*-graph");
 
 var app_id = "appYnSjlUbAA4VSHc";
-var app_key = "keyC83ksN49wS10kX";
+var app_key = "key8l5YZtQ9FyUoxF";
 
 axios.get(
         "https://api.airtable.com/v0/" + app_id + "/results?view=uoa-cs&filterByFormula=IF(%7Buoa%7D+%3D+%22CS%22%2C+%22true%22%2C+%22%22)", {

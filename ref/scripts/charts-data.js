@@ -1,5 +1,5 @@
 var app_id = "appunQ0V4X7SQIIk7";
-var app_key = "keyC83ksN49wS10kX";
+var app_key = "key8l5YZtQ9FyUoxF";
 
 // Labels along the x-axis
 var levels = ["4*", "3*", "2*", "1*", "U/C"];

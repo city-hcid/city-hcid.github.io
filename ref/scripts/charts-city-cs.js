@@ -13,11 +13,9 @@ var app = new Vue({
         loadItems: function() {
             var self = this;
             var app_id = "appYnSjlUbAA4VSHc";
-            var app_key = "keyC83ksN49wS10kX";
+            var app_key = "key8l5YZtQ9FyUoxF";
             this.items = [];
             axios.get(
-                    // https://api.airtable.com/v0/appYnSjlUbAA4VSHc/results?api_key=keyC83ksN49wS10kX&view=Grid%20view&filterByFormula=IF(AND(%7Binst%7D+%3D+%22City%22%2C+%7Buoa%7D+%3D+%22CS%22)%2C+%22true%22%2C+%22%22)
-                    //"https://api.airtable.com/v0/" + app_id + "/results?view=city-uoa-cs&filterByFormula=IF(AND(%7Binst%7D+%3D+%22City%22%2C+%7Buoa%7D+%3D+%22CS%22)%2C+%22true%22%2C+%22%22)"
                     "https://api.airtable.com/v0/" + app_id + "/results?view=city-uoa-cs", {
                         headers: {
                             Authorization: "Bearer " + app_key

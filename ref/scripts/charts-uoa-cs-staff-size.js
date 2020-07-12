@@ -2,7 +2,6 @@ var ctx = document.getElementById("4*-graph");
 var threeStarGraph = document.getElementById("3*-graph");
 
 axios.get(
-        //"https://api.airtable.com/v0/" + app_id + "/results?view=uoa-cs&filterByFormula=IF(%7Buoa%7D+%3D+%22CS%22%2C+%22true%22%2C+%22%22)", {
         "https://api.airtable.com/v0/appunQ0V4X7SQIIk7/results?view=uoa-cs", {
             headers: { Authorization: "Bearer " + app_key }
         })

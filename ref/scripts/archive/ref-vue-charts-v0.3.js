@@ -14,10 +14,9 @@ var app = new Vue({
             loading = true;
             var self = this;
             var app_id = "appYnSjlUbAA4VSHc";
-            var app_key = "keyC83ksN49wS10kX";
+            var app_key = "key8l5YZtQ9FyUoxF";
             this.items = []
             axios.get(
-                    // https://api.airtable.com/v0/appYnSjlUbAA4VSHc/City-CS-2014?api_key=keyC83ksN49wS10kX&view=Grid%20view
                     "https://api.airtable.com/v0/" + app_id + "/City-CS-2014?view=Grid%20view", {
                         headers: {
                             Authorization: "Bearer " + app_key

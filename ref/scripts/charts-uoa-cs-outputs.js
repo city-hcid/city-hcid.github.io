@@ -2,7 +2,7 @@
 //var threeStarGraph = document.getElementById("3*-graph").getContext('2d');
 
 var app_id = "appYnSjlUbAA4VSHc";
-var app_key = "keyC83ksN49wS10kX";
+var app_key = "key8l5YZtQ9FyUoxF";
 
 axios.get(
         //https://api.airtable.com/v0/appYnSjlUbAA4VSHc/outputs?api_key=keyC83ksN49wS10kX&view=cs-outputs-all
