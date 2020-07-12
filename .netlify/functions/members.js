@@ -35,7 +35,7 @@ exports.handler = function(event, context, callback) {
       COMMON CRUD OPERATIONS
     */
    table.select({
-    view: VIEW_NAME
+    view: "Grid view"
 }).firstPage((err, records) => {
     if (err) {
         console.error(err)
