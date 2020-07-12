@@ -55,9 +55,10 @@ var app = new Vue({
                 //const myFunction = async() =>
                 //await (await fetch('../.netlify/functions/members.js')).json();
                 //console.log(myFunction)
-                fetch('../.netlify/functions/memberFunction/memberFunction.js', {
+                /* fetch('../.netlify/functions/memberFunction/memberFunction.js', {
                             method: "GET"
-                        } 
+                        }  */        
+                axios.get('../.netlify/functions/memberFunction/memberFunction.js'
                     /* axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members", {
                             headers: {
