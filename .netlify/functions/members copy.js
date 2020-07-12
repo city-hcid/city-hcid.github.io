@@ -4,7 +4,7 @@ const Airtable = require('airtable');
 /** THIS IS YOUR SERVERLESS FUNCTION */
 exports.handler = function(event, context, callback) {
     //pull the required information from your environment variables, which can be set in the Netlify UI
-    const { HCID_ID, HCID_KEY } = process.env;
+    const { AIRTABLE_ENDPOINT, HCID_ID, HCID_KEY } = process.env;
 
     // THIS FUNCTION FORMATS AND SENDS YOUR RESPONSE BACK TO YOUR FRONT-END
     const send = body => {
@@ -16,7 +16,7 @@ exports.handler = function(event, context, callback) {
 
     // CONFIGURE YOUR AIRTABLE BASE CONNECTION
     Airtable.configure({
-        endpointUrl: "https://api.airtable.com/v0/" + HCID_ID + "/members",
+        endpointUrl: AIRTABLE_ENDPOINT,
         apiKey: HCID_KEY
     });
     var base = Airtable.base(HCID_ID);
