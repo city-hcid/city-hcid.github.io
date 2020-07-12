@@ -39,9 +39,8 @@
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 <script type="text/javascript">
-const myFunction = async () =>
-   await (await fetch('/.netlify/functions/my-function/my-function.js')).json();
-/*     var app = new Vue({
+const myFunction = async () => await (await fetch('/.netlify/functions/my-function/my-function.js')).json();
+var app = new Vue({
         el: '#app',
         data: {
             items: []
@@ -58,7 +57,7 @@ const myFunction = async () =>
                 //console.log(myFunction)
                 fetch('../.netlify/functions/members.js', {
                             method: "GET"
-                        }
+                        } 
                     /* axios.get(
                         "https://api.airtable.com/v0/" + app_id + "/members", {
                             headers: {
@@ -73,7 +72,7 @@ const myFunction = async () =>
                 })
             }
         }
-    }) */
+    }) 
 </script>
 
 </html>
