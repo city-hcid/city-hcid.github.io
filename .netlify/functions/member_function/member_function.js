@@ -16,7 +16,7 @@ exports.handler = function(event, context, callback) {
               'Access-Control-Allow-Headers':
                 'Origin, X-Requested-With, Content-Type, Accept',
             },
-            body: JSON.stringify(body),
+            body: JSON.stringify("hello"),
             message: "v0.1"
         });
     }
@@ -45,10 +45,10 @@ exports.handler = function(event, context, callback) {
         }
         //all records are in the `records` array, do something with it
         else {
-            data = records;
+            console.log(records)
         }
     })
-    send(data);
+    //send(data);
 }
 
 /* exports.handler = async(event, context, callback) => {
