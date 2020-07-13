@@ -2,3 +2,5 @@
 .DS_Store
 node_modules
 .netlify/state.json
+# Local Netlify folder
+.netlify
