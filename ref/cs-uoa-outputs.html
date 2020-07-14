@@ -70,11 +70,11 @@
                             </template> -->
                                     <v-card>
                                         <v-card-title>
+                                            <div v-if="editedItem.id" class="left text-truncate">Edit output</div>
+                                            <div v-else class="left text-truncate">New REF Output</div>
                                             <div class="right">
                                                 <v-icon small class="text-right" @click="closeDialog()" color="primary">mdi-close</v-icon>
                                             </div>
-                                            <span v-if="editedItem.id" class="text-truncate">Edit output</span>
-                                            <span v-else>New REF Output</span>
                                         </v-card-title>
                                         <v-card-text>
                                             <v-row>
