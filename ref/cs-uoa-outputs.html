@@ -72,6 +72,7 @@
                                         <v-card-title>
                                             <span v-if="editedItem.id" class="text-truncate">Edit output</span>
                                             <span v-else>New REF Output</span>
+                                            <v-icon small class="text-right" @click="showEditDialog()" color="primary">mdi-close</v-icon>
                                         </v-card-title>
                                         <v-card-text>
                                             <v-row>
@@ -100,7 +101,7 @@
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
-                                            <v-btn color="blue" text @click="showEditDialog()">Cancel</v-btn>
+                                            <v-btn color="blue" text @click="showEditDialog()">Close</v-btn>
                                             <v-btn color="blue" text @click="saveItem(editedItem)">Save</v-btn>
                                         </v-card-actions>
                                     </v-card>
