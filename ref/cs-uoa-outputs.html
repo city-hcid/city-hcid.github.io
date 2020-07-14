@@ -73,7 +73,7 @@
                                             <span v-if="editedItem.id" class="text-truncate">Edit output</span>
                                             <span v-else>New REF Output</span>
                                             <span class="text-right">
-                                                <v-icon small class="text-right" @click="showEditDialog()" color="primary">mdi-close</v-icon>
+                                                <v-icon small class="text-right" @click="closeDialog()" color="primary">mdi-close</v-icon>
                                             </span>
                                         </v-card-title>
                                         <v-card-text>
@@ -225,6 +225,7 @@
                     this.editedItem = item || {}
                     this.dialog = !this.dialog
                 },
+                closeDialog() {this.dialog = false},
                 loadItems() {
                     let url = new URL(window.location.href);
                     if (url.searchParams.get("au") == null) {
