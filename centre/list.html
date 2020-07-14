@@ -20,7 +20,7 @@
         <div class="container" id="app">
             <div class="row">
                 <div class="col s12">
-                    <p v-for="(item,index) in items">{{index + 1}}. {{ item['fields']['name'] }}</p>
+                    <p v-for="(item,index) in items">{{index + 1}}. {{ item['name'] }}</p>
                 </div>
             </div>
         </div>
@@ -39,7 +39,6 @@
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 <script type="text/javascript">
-//const myFunction = async () => await (await fetch('/.netlify/functions/members.js')).json();
 var app = new Vue({
         el: '#app',
         data: {
@@ -52,22 +51,10 @@ var app = new Vue({
             loadItems: function() {
                 var self = this;
                 this.items = [];
-                //const myFunction = async() =>
-                //await (await fetch('../.netlify/functions/members.js')).json();
-                //console.log(myFunction)
-                /* fetch('../.netlify/functions/memberFunction/memberFunction.js', {
-                            method: "GET"
-                        }  */        
-                axios.get('../.netlify/functions/memberFunction/memberFunction.js'
-                    /* axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/members", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        } */
+                axios.get('../.netlify/functions/memberFn/memberFn.js'
                 ).then(function(response) {
-                    //self.items = response.data.body;
-                    console.log(response)
+                    self.items = response.data;
+                    //console.log(self.items)
                 }).catch(function(error) {
                     console.log(error)
                 })
