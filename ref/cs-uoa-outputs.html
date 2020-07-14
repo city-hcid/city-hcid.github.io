@@ -72,7 +72,9 @@
                                         <v-card-title>
                                             <span v-if="editedItem.id" class="text-truncate">Edit output</span>
                                             <span v-else>New REF Output</span>
-                                            <v-icon small class="text-right" @click="showEditDialog()" color="primary">mdi-close</v-icon>
+                                            <span class="text-right">
+                                                <v-icon small class="text-right" @click="showEditDialog()" color="primary">mdi-close</v-icon>
+                                            </span>
                                         </v-card-title>
                                         <v-card-text>
                                             <v-row>
