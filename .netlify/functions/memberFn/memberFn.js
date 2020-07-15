@@ -27,7 +27,8 @@ exports.handler = function(event, context, callback) {
       .base(HCID_ID)('members')
       .select({
         //maxRecords: 3,
-        view: "Grid view"
+        view: "Grid view",
+        sort: [{field: "last-name", direction: "asc"}]
      }).firstPage((err, records) => {
         if (err) {
             console.error(err);
@@ -39,6 +40,6 @@ exports.handler = function(event, context, callback) {
             //console.log(records[i].fields);
         }
         //console.log("DATA: " + JSON.stringify(data));
-        send(data);
+        send(records);
      })
 }
