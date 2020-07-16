@@ -12,8 +12,7 @@ exports.handler = function(event, context, callback) {
                 'Access-Control-Allow-Headers':
                 'Origin, X-Requested-With, Content-Type, Accept',
             },
-            body: JSON.stringify( body ),
-            message: "v0.1"
+            body: JSON.stringify( body )
         });
     }
     
@@ -26,8 +25,8 @@ exports.handler = function(event, context, callback) {
     var result = new Airtable({apiKey: HCID_KEY})
       .base(HCID_ID)('members')
       .select({
-        //maxRecords: 3,
         view: "Grid view",
+        fields: ["name", "first-name", "last-name", "status", "bio-url", "photo-url", "post", "short-bio"],
         sort: [{field: "last-name", direction: "asc"}]
      }).firstPage((err, records) => {
         if (err) {
@@ -39,7 +38,6 @@ exports.handler = function(event, context, callback) {
             data.push(records[i].fields);
             //console.log(records[i].fields);
         }
-        //console.log("DATA: " + JSON.stringify(data));
-        send(records);
+        send(data);
      })
 }

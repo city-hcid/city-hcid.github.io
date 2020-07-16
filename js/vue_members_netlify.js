@@ -23,6 +23,7 @@ var app = new Vue({
             axios.get('https://happy-galileo-a42c9d.netlify.app/.netlify/functions/memberFn/memberFn.js'
             ).then(function(response) {
                 self.items = response.data;
+                console.log(self.items)
             }).catch(function(error) {
                 console.log(error)
             })
@@ -33,7 +34,7 @@ var app = new Vue({
 Vue.component('template-members', function(resolve, reject) {
     setTimeout(function() {
         resolve({
-            props: ['item', 'members'],
+            props: ['item'],
             template: `
             <div class="col s5 m4 l3 center-align mb-4">
                 <div v-if="item['photo-url']">
@@ -57,7 +58,7 @@ Vue.component('template-members', function(resolve, reject) {
 Vue.component('template-staff', function(resolve, reject) {
     setTimeout(function() {
         resolve({
-            props: ['item', 'members'],
+            props: ['item'],
             template: `
             <div class="col s12 m10 mb-5">
                 <div class="col m3 hide-on-small-only">
