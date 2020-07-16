@@ -20,7 +20,9 @@ var app = new Vue({
         loadItems: function() {
             var self = this;
             this.items = [];
-            axios.get('https://happy-galileo-a42c9d.netlify.app/.netlify/functions/memberFn/memberFn.js'
+            axios.get('https://happy-galileo-a42c9d.netlify.app/.netlify/functions/memberFn/memberFn.js', {
+                params: {table: 'members'}
+            }
             ).then(function(response) {
                 self.items = response.data
             }).catch(function(error) {
