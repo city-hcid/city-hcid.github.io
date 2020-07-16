@@ -22,8 +22,7 @@ var app = new Vue({
             this.items = [];
             axios.get('https://happy-galileo-a42c9d.netlify.app/.netlify/functions/memberFn/memberFn.js'
             ).then(function(response) {
-                self.items = response.data;
-                console.log(self.items)
+                self.items = response.data
             }).catch(function(error) {
                 console.log(error)
             })
@@ -52,7 +51,7 @@ Vue.component('template-members', function(resolve, reject) {
             </div>
             `
         })
-    }, 100)
+    }, 50)
 })
 
 Vue.component('template-staff', function(resolve, reject) {
