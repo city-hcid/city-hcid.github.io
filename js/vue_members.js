@@ -20,14 +20,11 @@ var app = new Vue({
         loadItems: function() {
             var self = this;
             this.items = [];
-            axios.get(
-                "https://api.airtable.com/v0/" + app_id + "/members?sort%5B0%5D%5Bfield%5D=last-name&sort%5B0%5D%5Bdirection%5D=asc", {
-                    headers: {
-                        Authorization: "Bearer " + app_key
-                    }
-                }
+            axios.get('https://happy-galileo-a42c9d.netlify.app/.netlify/functions/memberFn/memberFn.js', {
+                params: {table: 'members'}
+            }
             ).then(function(response) {
-                self.items = response.data.records
+                self.items = response.data
             }).catch(function(error) {
                 console.log(error)
             })
@@ -38,7 +35,7 @@ var app = new Vue({
 Vue.component('template-members', function(resolve, reject) {
     setTimeout(function() {
         resolve({
-            props: ['item', 'members'],
+            props: ['item'],
             template: `
             <div class="col s5 m4 l3 center-align mb-4">
                 <div v-if="item['photo-url']">
@@ -56,13 +53,13 @@ Vue.component('template-members', function(resolve, reject) {
             </div>
             `
         })
-    }, 100)
+    }, 50)
 })
 
 Vue.component('template-staff', function(resolve, reject) {
     setTimeout(function() {
         resolve({
-            props: ['item', 'members'],
+            props: ['item'],
             template: `
             <div class="col s12 m10 mb-5">
                 <div class="col m3 hide-on-small-only">
