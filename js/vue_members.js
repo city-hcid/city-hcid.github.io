@@ -20,10 +20,17 @@ var app = new Vue({
         loadItems: function() {
             var self = this;
             this.items = [];
-            axios.get('https://happy-galileo-a42c9d.netlify.app/.netlify/functions/memberFn/memberFn.js', {
+            let url = '';
+            if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
+                url = '../.netlify/functions/memberFn/memberFn.js'
+            } else {
+                url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/memberFn/memberFn.js'
+            };
+            axios.get(url, {
                 params: {
-                    table: 'members',
-                    view: 'Grid view'
+                    table: encodeURI('members'),
+                    view: encodeURI('Grid view'),
+                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio')
                 }
             }
             ).then(function(response) {
