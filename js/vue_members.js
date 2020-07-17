@@ -21,7 +21,10 @@ var app = new Vue({
             var self = this;
             this.items = [];
             axios.get('https://happy-galileo-a42c9d.netlify.app/.netlify/functions/memberFn/memberFn.js', {
-                params: {table: 'members'}
+                params: {
+                    table: 'members',
+                    view: 'Grid view'
+                }
             }
             ).then(function(response) {
                 self.items = response.data

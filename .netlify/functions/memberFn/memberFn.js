@@ -1,7 +1,15 @@
+
+
 /** THIS IS YOUR SERVERLESS FUNCTION */
 exports.handler = function(event, context, callback) {
     const Airtable = require('airtable');
     const { AIRTABLE_ENDPOINT, HCID_ID, HCID_KEY } = process.env;
+    const table = decodeURIComponent(event.queryStringParameters.table);
+    const view = decodeURIComponent(event.queryStringParameters.view);
+    console.log(table);
+    console.log(view);
+    
+    //var table = new URL(window.location.href).searchParams.get("table");
 
     // THIS FUNCTION FORMATS AND SENDS YOUR RESPONSE BACK TO YOUR FRONT-END
     const send = body => {
@@ -23,9 +31,9 @@ exports.handler = function(event, context, callback) {
     }); */
 
     var result = new Airtable({apiKey: HCID_KEY})
-      .base(HCID_ID)('members')
+      .base(HCID_ID)(table)
       .select({
-        view: "Grid view",
+        view: view,
         fields: ["name", "first-name", "last-name", "status", "bio-url", "photo-url", "post", "short-bio"],
         sort: [{field: "last-name", direction: "asc"}]
      }).firstPage((err, records) => {
@@ -36,6 +44,7 @@ exports.handler = function(event, context, callback) {
         var data = [];
         for (i in records) {
             data.push(records[i].fields);
+            
             //console.log(records[i].fields);
         }
         send(data);

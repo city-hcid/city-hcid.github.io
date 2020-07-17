@@ -15,7 +15,7 @@ exports.handler = function(event, context, callback) {
   }
 
   var result = new Airtable({apiKey: HCID_KEY})
-    .base(HCID_ID)('publications')
+    .base(HCID_ID)('tblFDwFg5I8zBDwIN')
     .select({
       view: "Grid view",
       //fields: ["name", "first-name", "last-name", "status", "bio-url", "photo-url", "post", "short-bio"],
