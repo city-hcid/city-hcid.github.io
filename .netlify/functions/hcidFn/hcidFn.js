@@ -1,0 +1,35 @@
+exports.handler = function(event, context, callback) {
+  const Airtable = require('airtable');
+  const { AIRTABLE_ENDPOINT, HCID_ID, HCID_KEY } = process.env;
+  const table = decodeURIComponent(event.queryStringParameters.table);
+  const view = decodeURIComponent(event.queryStringParameters.view);
+  const fields = decodeURIComponent(event.queryStringParameters.fields).split(',');
+  const sortString = JSON.parse(decodeURIComponent(event.queryStringParameters.sort));
+  var sort = [];
+  sort.push(sortString);
+  
+  const send = body => {
+      callback(null, {
+          statusCode: 200,
+          body: JSON.stringify( body )
+      });
+  }
+
+  new Airtable({apiKey: HCID_KEY})
+    .base(HCID_ID)(table)
+    .select({
+      view: view,
+      fields: fields,
+      sort: sort,
+    }).firstPage((err, records) => {
+      if (err) {
+          console.error(err);
+          return
+      }
+      var data = [];
+      for (i in records) {
+          data.push(records[i].fields);
+      }
+      send(data);//use records if you are using self.items = response.data.records and item['fields']...
+   })
+}

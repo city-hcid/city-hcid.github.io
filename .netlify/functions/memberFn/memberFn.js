@@ -1,13 +1,13 @@
-
-
 /** THIS IS YOUR SERVERLESS FUNCTION */
 exports.handler = function(event, context, callback) {
     const Airtable = require('airtable');
     const { AIRTABLE_ENDPOINT, HCID_ID, HCID_KEY } = process.env;
     const table = decodeURIComponent(event.queryStringParameters.table);
     const view = decodeURIComponent(event.queryStringParameters.view);
-    //const fieldsString = decodeURIComponent(event.queryStringParameters.fields);
     const fields = decodeURIComponent(event.queryStringParameters.fields).split(',');
+    const sortString = JSON.parse(decodeURIComponent(event.queryStringParameters.sort));
+    var sort = [];
+    sort.push(sortString);
 
     // THIS FUNCTION FORMATS AND SENDS YOUR RESPONSE BACK TO YOUR FRONT-END
     const send = body => {
@@ -33,7 +33,7 @@ exports.handler = function(event, context, callback) {
       .select({
         view: view,
         fields: fields,
-        sort: [{field: "last-name", direction: "asc"}]
+        sort: sort,
      }).firstPage((err, records) => {
         if (err) {
             console.error(err);

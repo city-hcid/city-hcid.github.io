@@ -18,19 +18,20 @@ var app = new Vue({
     },
     methods: {
         loadItems: function() {
-            var self = this;
+            let self = this;
             this.items = [];
             let url = '';
             if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
-                url = '../.netlify/functions/memberFn/memberFn.js'
+                url = '../.netlify/functions/hcidFn/hcidFn.js'
             } else {
-                url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/memberFn/memberFn.js'
+                url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidFn/hcidFn.js'
             };
             axios.get(url, {
                 params: {
                     table: encodeURI('members'),
                     view: encodeURI('Grid view'),
-                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio')
+                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio'),
+                    sort: encodeURI('{"field":"last-name","direction":"asc"}')
                 }
             }
             ).then(function(response) {
