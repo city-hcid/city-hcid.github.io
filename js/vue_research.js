@@ -19,7 +19,7 @@ var app = new Vue({
     methods: {
         loadItems: function() {
             let projectsURL = "https://api.airtable.com/v0/" + app_id + "/projects?filterByFormula=NOT%28%7Bresearch-theme%7D%20%3D%20%27%27%29";
-            let pubsURL = "https://api.airtable.com/v0/" + app_id + "/select-pubs?sort%5B0%5D%5Bfield%5D=year";
+            let pubsURL = "https://api.airtable.com/v0/" + app_id + "/publications?sort%5B0%5D%5Bfield%5D=year";
             var self = this;
             self.items = [];
             self.pubs = [];
