@@ -10,8 +10,7 @@ $(function() { // Shorthand for $( document ).ready()
 var app = new Vue({
     el: '#app',
     data: {
-        items: [],
-        pubs: []
+        items: []
     },
     mounted: function() {
         this.loadItems();
@@ -46,9 +45,7 @@ var app = new Vue({
                 })
             ]).then(function(response) {
                 self.items = response[0].data;
-                console.log(self.items);
-                self.pubs = response[1].data;
-                console.log(self.pubs)
+                self.pubs = response[1].data
             }).catch(function(error) {
                 console.log(error)
             })
