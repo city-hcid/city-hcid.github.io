@@ -64,7 +64,7 @@ Vue.component('template-members', function(resolve, reject) {
             </div>
             `
         })
-    }, 50)
+    }, 10)
 })
 
 Vue.component('template-staff', function(resolve, reject) {

@@ -3,7 +3,10 @@ exports.handler = function(event, context, callback) {
   const { AIRTABLE_ENDPOINT, HCID_ID, HCID_KEY } = process.env;
   const table = decodeURIComponent(event.queryStringParameters.table);
   const view = decodeURIComponent(event.queryStringParameters.view);
-  const fields = decodeURIComponent(event.queryStringParameters.fields).split(',');
+  //var fields = '';
+  if (event.queryStringParameters.fields) {
+    var fields = decodeURIComponent(event.queryStringParameters.fields).split(',');
+  }  
   const sortString = JSON.parse(decodeURIComponent(event.queryStringParameters.sort));
   var sort = [];
   sort.push(sortString);
