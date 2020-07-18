@@ -11,8 +11,7 @@ $(function() { // Shorthand for $( document ).ready()
 var app = new Vue({
     el: '#app',
     data: {
-        items: [],
-        supervisors: []
+        items: []
     },
     mounted: function() {
         this.loadItems();
@@ -22,7 +21,7 @@ var app = new Vue({
             let self = this;
             this.items = [];
             let url = '';
-            if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
+            if (location.hostname === "localhost" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
                 url = '../.netlify/functions/hcidFn/hcidFn.js'
             } else {
                 url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidFn/hcidFn.js'
@@ -31,8 +30,7 @@ var app = new Vue({
                 params: {
                     table: encodeURI('members'),
                     view: encodeURI('phds'),
-                    //filterByFormula: encodeURI('NOT({name} = "")'),
-                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio'),
+                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,supervisors,supvervisor-str'),
                     sort: encodeURI('{"field":"last-name","direction":"asc"}')
                 }
             }
