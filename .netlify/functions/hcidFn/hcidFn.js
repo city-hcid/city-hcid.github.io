@@ -1,6 +1,6 @@
 exports.handler = function(event, context, callback) {
   const Airtable = require('airtable');
-  const { AIRTABLE_ENDPOINT, HCID_ID, HCID_KEY } = process.env;
+  const { HCID_ID, HCID_KEY } = process.env;
   const table = decodeURIComponent(event.queryStringParameters.table);
   const view = decodeURIComponent(event.queryStringParameters.view);
   const fields = decodeURIComponent(event.queryStringParameters.fields).split(',');

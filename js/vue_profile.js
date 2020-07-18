@@ -19,16 +19,24 @@ var app = new Vue({
         loadItems: function() {
             let name = new URL(window.location.href).searchParams.get("name");
             let self = this;
-            let fields = "fields%5B%5D=name&fields%5B%5D=twitter&fields%5B%5D=scholar&fields%5B%5D=orcid&fields%5B%5D=status&fields%5B%5D=photo-url&fields%5B%5D=short-bio&fields%5B%5D=url&fields%5B%5D=post";
+            //let fields = "fields%5B%5D=name&fields%5B%5D=twitter&fields%5B%5D=scholar&fields%5B%5D=orcid&fields%5B%5D=status&fields%5B%5D=photo-url&fields%5B%5D=short-bio&fields%5B%5D=url&fields%5B%5D=post";
             this.items = [];
-            axios.get(
-                "https://api.airtable.com/v0/" + app_id + "/members?filterByFormula=(FIND(%22" + name + "%22%2C%7Bname-id%7D))&" + fields, {
-                    headers: {
-                        Authorization: "Bearer " + app_key
-                    }
+            let url = '';
+            if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
+                url = '../.netlify/functions/hcidRecFn/hcidRecFn.js'
+            } else {
+                url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidRecFn/hcidRecFn.js'
+            };
+            axios.get(url, {
+                params: {
+                    table: encodeURI('members'),
+                    view: encodeURI('Grid view'),
+                    filter: encodeURI('({name-id}="' + name + '")'),
+                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,twitter,scholar,orcid')
                 }
-            ).then(function(response) {
-                self.items = response.data.records;
+            }).then(function(response) {
+                self.items = response.data;
+                console.log(self.items)
             }).catch(function(error) {
                 console.log(error)
             })

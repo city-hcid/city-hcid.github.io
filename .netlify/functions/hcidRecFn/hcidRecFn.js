@@ -1,7 +1,12 @@
 exports.handler = function(event, context, callback) {
   const Airtable = require('airtable');
-  const { AIRTABLE_ENDPOINT, HCID_ID, HCID_KEY } = process.env;
-
+  const { HCID_ID, HCID_KEY } = process.env;
+  const table = decodeURIComponent(event.queryStringParameters.table);
+  const filter = decodeURIComponent(event.queryStringParameters.filter);
+  const view = decodeURIComponent(event.queryStringParameters.view);
+  console.log(filter);
+  const fields = decodeURIComponent(event.queryStringParameters.fields).split(',');
+  
   const send = body => {
       callback(null, {
           statusCode: 200,
@@ -14,13 +19,14 @@ exports.handler = function(event, context, callback) {
       });
   }
 
-  var result = new Airtable({apiKey: HCID_KEY})
-    .base(HCID_ID)('tblFDwFg5I8zBDwIN')
+    new Airtable({apiKey: HCID_KEY})
+    .base(HCID_ID)(table)
     .select({
-      view: "Grid view",
-      //fields: ["name", "first-name", "last-name", "status", "bio-url", "photo-url", "post", "short-bio"],
-      sort: [{field: "last-name", direction: "asc"}]
-   }).firstPage((err, records) => {
+      maxRecords: 1,
+      view: view,
+      filterByFormula: filter,
+      fields: fields
+    }).firstPage((err, records) => {
       if (err) {
           console.error(err);
           return
@@ -30,5 +36,6 @@ exports.handler = function(event, context, callback) {
           data.push(records[i].fields);
       }
       send(data);
+      console.log(data)
    })
 }
