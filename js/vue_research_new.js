@@ -57,7 +57,7 @@ var app = new Vue({
 Vue.component('template-listing', function(resolve, reject) {
     setTimeout(function() {
         resolve({
-            props: ['theme', 'item'],
+            props: ['item', 'theme'],
             template: `<span v-if="item['research-theme'].includes(theme)"><a href="item['project-url']" target="_blank">{{ item['project-name'] }}</a>, </span>`
         })
     }, 200)

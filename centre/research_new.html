@@ -53,7 +53,7 @@
                 </div>
                 <div class="col s12 m5">
                     <p class="small">Projects:<br>
-                        <template-listing v-for="item in items" theme="issues" :item="item"></template-listing>
+                        <template-listing v-for="item in items" :item="item" theme="issues"></template-listing>
                     </p>
                     <p class="small">Select Publications:<br>
                         <template-publication v-for="pub in pubs" :pub="pub" theme='issues'></template-publication>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col s12 m4 pull-m7 offset-m1 right-align">
                     <p class="small">Projects:<br>
-                        <template-listing v-for="item in items" theme="methods" :item="item"></template-listing>
+                        <template-listing v-for="item in items" :item="item" theme="methods"></template-listing>
                     </p>
                     <p class="small">Select Publications:<br>
                         <template-publication v-for="pub in pubs" :pub="pub" theme='methods'></template-publication>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col s12 m5">
                     <p class="small">Projects:<br>
-                        <template-listing v-for="item in items" theme="systems" :item="item"></template-listing>
+                        <template-listing v-for="item in items" :item="item" theme="systems"></template-listing>
                     </p>
                     <p class="small">Select Publications:<br>
                         <template-publication v-for="pub in pubs" :pub="pub" theme='systems'></template-publication>
