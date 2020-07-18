@@ -35,6 +35,6 @@ exports.handler = function(event, context, callback) {
       for (i in records) {
           data.push(records[i].fields);
       }
-      send(data);//use records if you are using self.items = response.data.records and item['fields']...
+      send(data);//send records if you are using self.items = response.data.records and item['fields']...
    })
 }
