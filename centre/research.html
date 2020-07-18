@@ -53,10 +53,10 @@
                 </div>
                 <div class="col s12 m5">
                     <p class="small">Projects:<br>
-                        <template-listing v-for="item in items" :item="item" theme="issues"></template-listing>
+                        <template-projects v-for="item in items" :item="item" theme="issues"></template-projects>
                     </p>
                     <p class="small">Select Publications:<br>
-                        <template-publication v-for="pub in pubs" :pub="pub" theme='issues'></template-publication>
+                        <template-publications v-for="pub in pubs" :pub="pub" theme='issues'></template-publications>
                     </p>
                 </div>
             </div>
@@ -72,10 +72,10 @@
                 </div>
                 <div class="col s12 m4 pull-m7 offset-m1 right-align">
                     <p class="small">Projects:<br>
-                        <template-listing v-for="item in items" :item="item" theme="methods"></template-listing>
+                        <template-projects v-for="item in items" :item="item" theme="methods"></template-projects>
                     </p>
                     <p class="small">Select Publications:<br>
-                        <template-publication v-for="pub in pubs" :pub="pub" theme='methods'></template-publication>
+                        <template-publications v-for="pub in pubs" :pub="pub" theme='methods'></template-publications>
                     </p>
                 </div>
             </div>
@@ -89,10 +89,10 @@
                 </div>
                 <div class="col s12 m5">
                     <p class="small">Projects:<br>
-                        <template-listing v-for="item in items" :item="item" theme="systems"></template-listing>
+                        <template-projects v-for="item in items" :item="item" theme="systems"></template-projects>
                     </p>
                     <p class="small">Select Publications:<br>
-                        <template-publication v-for="pub in pubs" :pub="pub" theme='systems'></template-publication>
+                        <template-publications v-for="pub in pubs" :pub="pub" theme='systems'></template-publications>
                     </p>
                 </div>
             </div>

@@ -54,7 +54,7 @@ var app = new Vue({
     }
 })
 
-Vue.component('template-listing', function(resolve, reject) {
+Vue.component('template-projects', function(resolve, reject) {
     setTimeout(function() {
         resolve({
             props: ['item', 'theme'],
@@ -63,7 +63,7 @@ Vue.component('template-listing', function(resolve, reject) {
     }, 200)
 })
 
-Vue.component('template-publication', function(resolve, reject) {
+Vue.component('template-publications', function(resolve, reject) {
     setTimeout(function() {
         resolve({
             props: ['pub', 'theme'],
