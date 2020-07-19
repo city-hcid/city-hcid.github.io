@@ -1,8 +1,9 @@
+.gitignore
 **/.DS_Store
 .DS_Store
 .notes
 **/archive
 archive
-node_modules
+/node_modules
 .netlify/state.json
 **/**.zip
