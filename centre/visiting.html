@@ -51,10 +51,10 @@
                     <h2 class="flow-text">Accomodation</h2>
                     <div v-for="item in items" class="my-2">
                         <strong>
-                            <span v-if="item.fields['url']"><a :href="item.fields['url']" class="black-text">{{ item.fields['Name'] }}</a></span>
-                            <span v-else>{{ item.fields['Name'] }}</span>
+                            <span v-if="item['url']"><a :href="item['url']" class="black-text">{{ item['Name'] }}</a></span>
+                            <span v-else>{{ item['Name'] }}</span>
                         </strong><br>
-                        <span v-if="item.fields['Note']" class="lbr grey-text text-darken-2">{{ item.fields['Note'] }}</span>
+                        <span v-if="item['Note']" class="lbr grey-text text-darken-2">{{ item['Note'] }}</span>
                     </div>
                 </div>
             </div>

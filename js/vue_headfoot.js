@@ -178,7 +178,7 @@ Vue.component('template-footer', function(resolve, reject) {
                                     <a class="grey-text text-darken-1" href="https://goo.gl/maps/QbdWpuT8ycp">London, EC1V 4PB</a>
                                 </li>
                                 <li aria-label="Link to Visting page" class="mt-3">
-                                    <a class="grey-text text-lighten-1 link" href="https://hcid.city/visiting.html"><i class="material-icons md-14 pt-1">location_on</i>&nbsp;Visiting us...</a>
+                                    <a class="grey-text text-lighten-1 link" href="https://hcid.city/centre/visiting.html"><i class="material-icons md-14 pt-1">location_on</i>&nbsp;Visiting us...</a>
                                 </li>
                             </ul>
                         </div>
