@@ -5,3 +5,4 @@
 archive
 node_modules
 .netlify/state.json
+**/**.zip
