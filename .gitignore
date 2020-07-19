@@ -5,6 +5,7 @@
 **/archive
 archive
 /node_modules
+node_modules/
 *node_modules/
 .netlify/state.json
-**/**.zipnode_modules/
+**/**.zip
