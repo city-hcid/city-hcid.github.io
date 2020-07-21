@@ -47,9 +47,7 @@ var app = new Vue({
                 })
             ]).then(function(response) {
                 self.liveItems = response[0].data;
-                console.log(self.liveItems);
                 self.archiveItems = response[1].data;
-                console.log(self.archiveItems);
             }).catch(function(error) {
                 console.log(error)
             })
