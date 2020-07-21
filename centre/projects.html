@@ -17,7 +17,7 @@
     <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script defer type="text/javascript" src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
-    <script defer type="text/javascript" src="../js/vue_projects.js"></script>
+    <script defer type="text/javascript" src="../js/vue_projects_new.js"></script>
     <title>HCID | Projects</title>
 </head>
 
@@ -38,14 +38,14 @@
             <div class="container" id="live">
                 <div class="row">
                     <div class="col s12">
-                        <template-project v-for="item in liveItems" :item="item.fields"></template-project>
+                        <template-project v-for="item in liveItems" :item="item"></template-project>
                     </div>
                 </div>
             </div>
             <div class="container" id="archive">
                 <div class="row">
                     <div class="col s12">
-                        <template-project v-for="item in archiveItems" :item="item.fields"></template-project>
+                        <template-project v-for="item in archiveItems" :item="item"></template-project>
                     </div>
                 </div>
             </div>
