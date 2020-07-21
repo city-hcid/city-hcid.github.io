@@ -21,9 +21,9 @@ var app = new Vue({
         loadItems: function() {
             let url = '';
             if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
-                url = '../.netlify/functions/hcidFn/hcidFn.js'
+                url = '../.netlify/functions/hcidFn'
             } else {
-                url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidFn/hcidFn.js'
+                url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidFn'
             };
             var self = this;
             self.liveItems = [];
@@ -47,7 +47,9 @@ var app = new Vue({
                 })
             ]).then(function(response) {
                 self.liveItems = response[0].data.records;
+                console.log(self.liveItems);
                 self.archiveItems = response[1].data.records;
+                console.log(self.archiveItems);
             }).catch(function(error) {
                 console.log(error)
             })
