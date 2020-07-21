@@ -25,8 +25,6 @@ var app = new Vue({
             } else {
                 url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidFn/hcidFn.js'
             };
-            let liveProjectsURL = "https://api.airtable.com/v0/" + app_id + "/projects?view=live&sortField=project-name&sortDirection=asc";
-            let archiveProjectsURL = "https://api.airtable.com/v0/" + app_id + "/projects?view=archive&sortField=project-name&sortDirection=asc";
             var self = this;
             self.liveItems = [];
             self.archiveItems = [];
