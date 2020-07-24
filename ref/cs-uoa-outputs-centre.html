@@ -240,7 +240,6 @@
         const airTableApp = "appunQ0V4X7SQIIk7";
         const airTableName = "tblDN6QUoVueC6fkg";
         const airTableView = "all";
-        const el_key = "7f1899f42f07990cb442322cb322c588";
         let specialism = "";
 
         new Vue({
@@ -501,11 +500,18 @@
                     })
                 },
                 scopusCount(item) {
+                    const elKey = "7f1899f42f07990cb442322cb322c588";
                     let scopusApiURL= "https://api.elsevier.com/content/search/scopus?apiKey=7f1899f42f07990cb442322cb322c588&query=DOI(" + item.doi + ")&field=citedby-count";
-                    axios.get(scopusApiURL)
-                    .then((response) => {
+                    axios.get(scopusApiURL, {
+                        headers: {
+                            Authorization: "Bearer " + elKey,
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+                        }
+                    }
+                    ).then((response) => {
                         //item.crossRef = response.data.message["is-referenced-by-count"];
-                        console.log(response);
+                        console.log(response.data["search-results"]["entry"][0]["citedby-count"]);
                         //this.saveRank(item, "crossRef")
                     }).catch((error) => {
                         console.log(error)
