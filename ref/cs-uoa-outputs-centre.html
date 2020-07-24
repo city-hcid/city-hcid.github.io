@@ -490,7 +490,7 @@
                     this.snackText = 'Not uploaded'
                 },
                 citeCount(item) {
-                    let doiURL = "http://api.crossref.org/works/" + item.doi;
+                    let doiURL = "https://api.crossref.org/works/" + item.doi;
                     axios.get(doiURL)
                     .then((response) => {
                         item.crossRef = response.data.message["is-referenced-by-count"];
