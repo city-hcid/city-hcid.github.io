@@ -47,6 +47,7 @@
                                     multi-sort
                                     mobile-breakpoint="800"
                                     class="elevation-0"
+                                    :loading="loading"
                                     :headers="headers"
                                     :items="items"
                                     :single-expand="singleExpand"
@@ -153,18 +154,8 @@
                                             <v-icon small class="mr-2" @click="showEditDialog(props.item),open()" color="primary">mdi-pencil</v-icon>
                                         </div>
                                     </template>
-                                    
-                                    <!-- Group Header -->
-                                    <template v-slot:group.header="{items, isOpen, toggle}">
-                                        <th colspan="100%">
-                                           <v-btn text icon small color="black" @click="toggle">
-                                              <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon> 
-                                           </v-btn>
-                                           <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed for REF</span>
-                                           <span v-else class="mx-2 subtitle-2">Long-listed</span>
-                                        </th>
-                                     </template>
 
+                                    <!-- Table Header -->
                                     <template v-slot:expanded-item="{ headers, item }">
                                         <td :colspan="headers.length" :id="item.lastName + item.doi">
                                             <div class="mt-2">
@@ -180,12 +171,38 @@
                                             </div>
                                         </td>
                                     </template>
+                                    
+                                    <!-- Group Header -->
+                                    <template v-slot:group.header="{items, isOpen, toggle}">
+                                        <th colspan="100%">
+                                           <v-btn text icon small color="black" @click="toggle">
+                                              <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon> 
+                                           </v-btn>
+                                           <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed for REF</span>
+                                           <span v-else class="mx-2 subtitle-2">Long-listed</span>
+                                        </th>
+                                     </template>
+
                                 </v-data-table>
+                                
+                                <!-- Expanded Row -->
+                                <template v-slot:expanded-item="{ headers, item }">
+                                    <td :colspan="headers.length" :id="item.lastName + item.doi">
+                                        <div class="mt-2">
+                                            <p><strong>Author(s):</strong> {{ item.authors }}<br>
+                                            <strong>Year:</strong> {{ item.year }}<br>
+                                            <strong>Title:</strong> {{ item.title }}<br>
+                                            <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}</p>
 
-                                <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-                                    <div class="text-center">{{ snackText }}</div>
-                                </v-snackbar>
+                                            <p v-if="item.crossRef"><strong>Citations</strong> (using the <a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong> (needs valid doi).<br> 
+                                                See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
+                                            </p>
+                                            
+                                        </div>
+                                    </td>
+                                </template>
 
+                                <!-- Update entry dialog -->
                                 <v-dialog v-model="dialog" max-width="640px">
                                     <v-card>
                                         <v-card-title>
@@ -240,10 +257,15 @@
                                         </v-card-actions>
                                     </v-card>
                                 </v-dialog>
+                                
+                                <!-- Snack bar save messages -->
+                                <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+                                    <div class="text-center">{{ snackText }}</div>
+                                </v-snackbar>
+
                             </v-card>
                         </v-col>
                     </v-row>
-
                 </v-container>
             </v-content>
         </v-app>
@@ -263,6 +285,7 @@
             vuetify: new Vuetify(),
             data() {
                 return {
+                    loading: true,
                     expanded: [],
                     singleExpand: true,
                     snack: false,
@@ -344,6 +367,7 @@
                             }
                         })
                         .then((response) => {
+                            
                             this.items = response.data.records.map((item) => {
                                 return {
                                     id: item.id,
@@ -356,6 +380,7 @@
                                     //this.scopusCount(this.items[i])
                                 }
                             }
+                            this.loading = false;
                         }).catch((error) => {
                             console.log(error)
                         })
@@ -372,6 +397,13 @@
 
                     //console.log(data);
 
+                    /* if (id && key) {
+                        data = {
+                            fields: {
+                                key: item.rank
+                            }
+                        } */
+
                     if (id && key == "rank") {
                         data = {
                             fields: {
@@ -384,17 +416,9 @@
                                 crossRef: item.crossRef}
                         }
                     }  else if (id) {
-                        // airtable API needs the data to be placed in fields object
                         data = {
                             fields: item
                         }
-                        // must remove id from the data for airtable patch to work
-                        delete data.fields.id
-                        delete data.fields.firstName
-                        delete data.fields.lastName
-                        delete data.fields.authorName
-                        delete data.fields.authorID
-                        //delete data.fields.Centre
                     } else {
                         data = {
                             records: item
@@ -408,7 +432,20 @@
                             headers: {
                                 Authorization: "Bearer " + apiToken,
                                 "Content-Type": "application/json"
-                            }
+                            },
+                            transformRequest: [(data) => {
+                                if (data.fields.id) {
+                                    delete data.fields.id // must remove id from the data for airtable patch to work
+                                }
+                                if (key == null) {
+                                delete data.fields.firstName
+                                delete data.fields.lastName
+                                delete data.fields.authorName
+                                delete data.fields.authorID
+                                //delete data.fields.Centre
+                                }
+                                return  JSON.stringify(data);
+                            }]
                         }
                     ).then(response => {
                         if (response.data && response.data.id) {
@@ -419,9 +456,11 @@
                             this.editedItem = {}
                         }
                         this.dialog = !this.dialog
-                        setTimeout(function() {
-                            location.reload();
-                        }, 500);
+                        if (key == null) {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 500);
+                        }
                     }).catch(error => {
                         console.log(error.response)
                     })
