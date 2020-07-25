@@ -35,36 +35,30 @@
                     </v-row>
                     <v-row justify="center">
                         <v-col cols="12">
-                            <!-- <div class="text-right pt-2">
-                                <v-btn color="primary" class="mr-2 my-3" @click="toggleOrder">Update all citations</v-btn>
-                            </div> -->
                             <v-card>
 
-                                <v-data-table dense disable-pagination hide-default-footer show-expand :sort-by="['ref']" group-by="ref" group-desc :headers="headers" :items="items" mobile-breakpoint="800" class="elevation-0" :single-expand="singleExpand" :expanded.sync="expanded">
-                                    
+                                <v-data-table
+                                    disable-pagination
+                                    hide-default-footer
+                                    show-expand
+                                    group-by="ref"
+                                    group-desc
+                                    sort-by="rank"
+                                    multi-sort
+                                    mobile-breakpoint="800"
+                                    class="elevation-0"
+                                    :headers="headers"
+                                    :items="items"
+                                    :single-expand="singleExpand"
+                                    :expanded.sync="expanded">
 
-                                    <template v-slot:group.header="{items, isOpen, toggle}">
-                                        <th colspan="100%">
-                                           <v-btn text icon small color="black" @click="toggle">
-                                              <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon> 
-                                           </v-btn>
-                                           <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed for REF</span>
-                                           <span v-else class="mx-2 subtitle-2">Long-listed</span>
-                                        </th>
-                                     </template>
-
+                                    <!-- Expand icon/column -->
                                      <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
                                         <v-icon small @click="expand(true)" v-if="!isExpanded" color="primary">mdi-arrow-right</v-icon>
                                         <v-icon small @click="expand(false)" v-if="isExpanded" color="primary">mdi-arrow-bottom-right</v-icon>
                                     </template>
-                                    
-                                    <template v-slot:item.actions="props">
-                                        <div class="text-center text-truncate">
-                                        <v-icon small class="mr-2" @click="showEditDialog(props.item),open()" color="primary">mdi-pencil</v-icon>
-                                        <!-- <v-icon small @click="deleteItem(item)" color="pink">mdi-delete</v-icon> -->
-                                        </div>
-                                    </template>
 
+                                    <!-- Primary Author Column -->
                                     <template v-slot:item.author="props">
                                         <div v-if="props.item.ref">
                                             <span v-for="first in props.item.firstName">
@@ -84,6 +78,7 @@
                                         </div>
                                     </template>
 
+                                    <!-- Rank Column -->
                                     <template v-slot:item.rank="props">
                                         <v-edit-dialog 
                                             :return-value.sync="props.item.rank" 
@@ -107,49 +102,68 @@
                                         </v-edit-dialog>
                                     </template>
 
+                                    <!-- REF Column -->
                                     <template v-slot:item.rf="props">
                                         <div class="text-truncate">
                                             <v-icon small class="mr-2" v-if="props.item.ref" color="primary">mdi-check</v-icon>
                                         </div>
                                     </template>
 
+                                    <!-- Ouput Column -->
                                     <template v-slot:item.output="props">
-                                        <div v-if="props.item.ref">
-                                            <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
-                                        </div>
-                                        <div v-else class="text--disabled">
-                                            <a class="blue-grey--text text--lighten-3 font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                        <div>
+                                            <p v-if="props.item.ref">
+                                                <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                            </p>
+                                            <p v-else class="text--disabled">
+                                                <a class="blue-grey--text text--lighten-3 font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                            </p>
                                         </div>
                                     </template>
 
+                                    <!-- Hundred Words Column -->
                                     <template v-slot:item.hundredwords="props">
-                                        <div v-if="props.item.ref">
-                                            <p>{{props.item.hundredWords}}</p>
-                                        </div>
-                                        <div v-else class="text--disabled">
-                                            {{props.item.hundredWords}}
+                                        <div>
+                                            <p v-if="props.item.ref">{{props.item.hundredWords}}</p>
+                                            <p v-else class="text--disabled">{{props.item.hundredWords}}</p>
                                         </div>
                                     </template>
 
-                                    
+                                    <!-- Citations column -->
                                     <template v-slot:item.crossref="props">
-                                        <div v-if="props.item.ref">
+                                        <div>
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
-                                                    <span v-bind="attrs" v-on="on"><a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a></span>
+                                                    <span v-bind="attrs" v-on="on">
+                                                        <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
+                                                        <a v-else class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
+                                                    </span>
                                                 </template>
-                                                <span>From CrossRef api.<br>Click for Google Scholar result.<p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.<p></span>
-                                            </v-tooltip>
-                                        </div>
-                                        <div v-else class="text--disabled">                                            
-                                            <v-tooltip bottom>
-                                                <template v-slot:activator="{ on, attrs }">
-                                                    <span v-bind="attrs" v-on="on"><a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a></span>
-                                                </template>
-                                                <span>From CrossRef api.<br>Click for Google Scholar result.<p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.<p></span>
+                                                <span>From CrossRef api.<br>
+                                                    Click for Google Scholar result.
+                                                    <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
+                                                </span>
                                             </v-tooltip>
                                         </div>
                                     </template>
+
+                                    <!-- Pencil icon / Edit Column -->
+                                    <template v-slot:item.actions="props">
+                                        <div class="text-center text-truncate">
+                                            <v-icon small class="mr-2" @click="showEditDialog(props.item),open()" color="primary">mdi-pencil</v-icon>
+                                        </div>
+                                    </template>
+                                    
+                                    <!-- Group Header -->
+                                    <template v-slot:group.header="{items, isOpen, toggle}">
+                                        <th colspan="100%">
+                                           <v-btn text icon small color="black" @click="toggle">
+                                              <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon> 
+                                           </v-btn>
+                                           <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed for REF</span>
+                                           <span v-else class="mx-2 subtitle-2">Long-listed</span>
+                                        </th>
+                                     </template>
 
                                     <template v-slot:expanded-item="{ headers, item }">
                                         <td :colspan="headers.length" :id="item.lastName + item.doi">
@@ -171,13 +185,16 @@
                                 <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
                                     <div class="text-center">{{ snackText }}</div>
                                 </v-snackbar>
+
                                 <v-dialog v-model="dialog" max-width="640px">
                                     <v-card>
                                         <v-card-title>
-                                            <div v-if="editedItem.id" class="left text-truncate">Edit output</div>
-                                            <div v-else class="left text-truncate">New REF Output</div>
-                                            <div class="right mx-1">
-                                                <v-icon small class="text-right" @click="closeDialog()" color="primary">mdi-close</v-icon>
+                                            <div>
+                                                <div v-if="editedItem.id" class="left text-truncate">Edit output</div>
+                                                <div v-else class="left text-truncate">New REF Output</div>
+                                                <div class="right mx-1">
+                                                    <v-icon small class="text-right" @click="closeDialog()" color="primary">mdi-close</v-icon>
+                                                </div>
                                             </div>
                                         </v-card-title>
                                         <v-card-text>
@@ -207,7 +224,7 @@
                                                     <v-checkbox v-model="editedItem.ref" label="Submit to REF?"></v-checkbox>
                                                 </v-col>
                                                 <v-col cols="12" sm="12">
-                                                    <v-textarea auto-grow v-model="editedItem.hunderdWords" label="100 word summary"></v-textarea>
+                                                    <v-textarea auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
                                                 </v-col>
                                                 <v-col>
                                                     <div>
@@ -218,7 +235,7 @@
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
-                                            <v-btn color="blue" text @click="showEditDialog(),close()">Close</v-btn>
+                                            <v-btn color="blue" text @click="closeDialog()">Close</v-btn>
                                             <v-btn color="blue" text @click="saveItem(editedItem),save()">Save</v-btn>
                                         </v-card-actions>
                                     </v-card>
@@ -239,8 +256,7 @@
         const apiToken = "keyAKLpRf8ec2XWH9";
         const airTableApp = "appunQ0V4X7SQIIk7";
         const airTableName = "tblDN6QUoVueC6fkg";
-        const airTableView = "all";
-        let specialism = "";
+        const airTableView = "all"
 
         new Vue({
             el: '#app',
@@ -303,21 +319,25 @@
             },
             methods: {
                 showEditDialog(item) {
-                    this.editedItem = item || {}
-                    this.dialog = !this.dialog
+                    this.editedItem = item || {};
+                    this.dialog = !this.dialog /***** could delete? ****/
                 },
-                closeDialog() {this.dialog = false},
+                closeDialog() {
+                    this.dialog = false; 
+                    this.close('Not saved')
+                },
                 loadItems() {
                     let url = new URL(window.location.href);
-                    if (url.searchParams.get("spec") == null) {
-                        specialism = '';
-                    } else {
-                        specialism = url.searchParams.get("spec");
-                    }
+                    let specialism = url.searchParams.get("spec");
+                    
                     this.items = [];
+
                     const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=refScore";
-                    const sort = "sort%5B0%5D%5Bfield%5D=rank&sort%5B0%5D%5Bdirection%5D=asc";
+
+                    const sort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc";
+
                     let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22${specialism}%22%2C%7Bspecialism%7D)`;
+
                     axios.get(submissionURL, {
                             headers: {
                                 Authorization: "Bearer " + apiToken
@@ -332,7 +352,7 @@
                             })
                             for (let i = 0; i < this.items.length; i++) {
                                 if (this.items[i].doi) {
-                                    this.citeCount(this.items[i]);
+                                    this.citeCount(this.items[i]); // loads latest citations
                                     //this.scopusCount(this.items[i])
                                 }
                             }
@@ -340,34 +360,46 @@
                             console.log(error)
                         })
                 },
-                saveItem(item) {
+                saveItem(item, key) {
                     /* this is used for both creating and updating API records
                      the default method is POST for creating a new item */
+                    
                     let data = item
-                    let method = "post"
-                    let url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}`
+                    let method = "patch"
                     let id = item.id
 
-                    if (id) {
+                    let url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`
+
+                    //console.log(data);
+
+                    if (id && key == "rank") {
+                        data = {
+                            fields: {
+                                rank: item.rank
+                            }
+                        }
+                    } else if (id && key == "crossRef") {
+                        data = {
+                            fields: {
+                                crossRef: item.crossRef}
+                        }
+                    }  else if (id) {
                         // airtable API needs the data to be placed in fields object
                         data = {
                             fields: item
                         }
-                        // if the item has an id, we're updating an existing item
-                        method = "patch"
-                        url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`
-
                         // must remove id from the data for airtable patch to work
                         delete data.fields.id
                         delete data.fields.firstName
                         delete data.fields.lastName
                         delete data.fields.authorName
-                            //delete data.fields.Centre
                         delete data.fields.authorID
+                        //delete data.fields.Centre
                     } else {
                         data = {
                             records: item
                         }
+                        delete data.records.fields.id
                     }
 
                     // save the record
@@ -472,10 +504,10 @@
                     this.snackColor = 'info'
                     this.snackText = 'Dialog opened'
                 },
-                close() {
+                close(msg) {
                     this.snack = true
                     this.snackColor = 'error'
-                    this.snackText = 'Not uploaded'
+                    this.snackText = msg || 'Not uploaded'
                 },
                 citeCount(item) {
                     let doiURL = "https://api.crossref.org/works/" + item.doi;
