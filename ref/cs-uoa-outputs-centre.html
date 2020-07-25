@@ -236,7 +236,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vuetify@2.3.6/dist/vuetify.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
     <script>
-        const apiToken = "keyAKLpRf8ec2XWH9"; // "key8l5YZtQ9FyUoxF"
+        const apiToken = "keyAKLpRf8ec2XWH9";
         const airTableApp = "appunQ0V4X7SQIIk7";
         const airTableName = "tblDN6QUoVueC6fkg";
         const airTableView = "all";
@@ -324,28 +324,18 @@
                             }
                         })
                         .then((response) => {
-                            //console.log(response.data.records);
                             this.items = response.data.records.map((item) => {
-                                
-                                //console.log(this.cites);
                                 return {
                                     id: item.id,
                                     ...item.fields
                                 }
                             })
-                            //console.log(this.items);
                             for (let i = 0; i < this.items.length; i++) {
-                                //console.log(this.items);
-                                //this.citeCount(this.item)
                                 if (this.items[i].doi) {
                                     this.citeCount(this.items[i]);
                                     //this.scopusCount(this.items[i])
                                 }
                             }
-
-                            //console.log(this.items);
-                            //console.log(response.data);
-                            
                         }).catch((error) => {
                             console.log(error)
                         })
@@ -389,13 +379,13 @@
                             }
                         }
                     ).then(response => {
-                        /* if (response.data && response.data.id) {
+                        if (response.data && response.data.id) {
                             this.editedItem.id = response.data.id
                             if (!id) {
                                 this.items.push(this.editedItem)
                             }
                             this.editedItem = {}
-                        } */
+                        }
                         this.dialog = !this.dialog
                         setTimeout(function() {
                             location.reload();
@@ -425,7 +415,6 @@
                                 rank: item.rank
                             }
                         }
-                        //console.log(data);
                         url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`
                         // if the item has an id, we're updating an existing item
                         //method = "patch"
@@ -493,7 +482,6 @@
                     axios.get(doiURL)
                     .then((response) => {
                         item.crossRef = response.data.message["is-referenced-by-count"];
-                        //console.log(item.title + ": " + item.CrossRef);
                         this.saveRank(item, "crossRef")
                     }).catch((error) => {
                         console.log(error)

@@ -294,28 +294,18 @@
                         }
                     })
                         .then((response) => {
-                            //console.log(response.data.records);
                             this.items = response.data.records.map((item) => {
-
-                                //console.log(this.cites);
                                 return {
                                     id: item.id,
                                     ...item.fields
                                 }
                             })
-                            //console.log(this.items);
                             for (let i = 0; i < this.items.length; i++) {
-                                //console.log(this.items);
-                                //this.citeCount(this.item)
                                 if (this.items[i].doi) {
                                     this.citeCount(this.items[i]);
                                     this.scopusCount(this.items[i])
                                 }
                             }
-
-                            //console.log(this.items);
-                            //console.log(response.data);
-
                         }).catch((error) => {
                             console.log(error)
                         })
@@ -359,13 +349,13 @@
                         }
                     }
                     ).then(response => {
-                        /* if (response.data && response.data.id) {
+                        if (response.data && response.data.id) {
                             this.editedItem.id = response.data.id
                             if (!id) {
                                 this.items.push(this.editedItem)
                             }
                             this.editedItem = {}
-                        } */
+                        }
                         this.dialog = !this.dialog
                         setTimeout(function () {
                             location.reload();
