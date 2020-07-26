@@ -3,11 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css">
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/roboto-fontface@0.10.0/css/roboto/roboto-fontface.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.3.45/css/materialdesignicons.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.3.6/dist/vuetify.min.css">
 </head>
 
 <body>
@@ -15,6 +15,7 @@
         <v-app>
             <v-content>
                 <v-container>
+
                     <v-row justify="center">
                         <v-col cols="12">
                             <div class="mb-5">
@@ -33,6 +34,7 @@
                             </div>
                         </v-col>
                     </v-row>
+
                     <v-row justify="center">
                         <v-col cols="12">
                             <v-card>
@@ -84,7 +86,7 @@
                                         <v-edit-dialog 
                                             :return-value.sync="props.item.rank" 
                                             large
-                                            @save="saveRank(props.item,'rank'),save()" 
+                                            @save="saveItem(props.item,'rank'),save()" 
                                             @cancel="cancel" 
                                             @open="open" >
                                             <div v-if="props.item.ref" class="text-truncate text-decoration-underline blue--text text--darken-2">
@@ -206,13 +208,10 @@
                                 <v-dialog v-model="dialog" max-width="640px">
                                     <v-card>
                                         <v-card-title>
-                                            <div>
-                                                <div v-if="editedItem.id" class="left text-truncate">Edit output</div>
-                                                <div v-else class="left text-truncate">New REF Output</div>
-                                                <div class="right mx-1">
+                                                <span v-if="editedItem.id" class="left text-truncate">Edit output</span>
+                                                <span v-else class="left text-truncate">New REF Output</span>
+                                                <v-spacer></v-spacer>
                                                     <v-icon small class="text-right" @click="closeDialog()" color="primary">mdi-close</v-icon>
-                                                </div>
-                                            </div>
                                         </v-card-title>
                                         <v-card-text>
                                             <v-row>
@@ -266,6 +265,7 @@
                             </v-card>
                         </v-col>
                     </v-row>
+                    
                 </v-container>
             </v-content>
         </v-app>
@@ -347,11 +347,13 @@
                 },
                 closeDialog() {
                     this.dialog = false; 
-                    this.close('Not saved')
+                    this.close('Not saved');
+                    localStorage.clear();
                 },
                 loadItems() {
                     let url = new URL(window.location.href);
                     let specialism = url.searchParams.get("spec");
+                    sessionStorage.loaded = 1;
                     
                     this.items = [];
 
@@ -374,10 +376,15 @@
                                     ...item.fields
                                 }
                             })
-                            for (let i = 0; i < this.items.length; i++) {
-                                if (this.items[i].doi) {
-                                    this.citeCount(this.items[i]); // loads latest citations
-                                    //this.scopusCount(this.items[i])
+                            if (!sessionStorage.loaded) {
+                                let v = sessionStorage.loaded;
+                                console.log("Once per session");
+                                console.log(v);
+                                for (let i = 0; i < this.items.length; i++) {
+                                    if (this.items[i].doi) {
+                                        this.citeCount(this.items[i]); // loads latest citations
+                                        //this.scopusCount(this.items[i])
+                                    }
                                 }
                             }
                             this.loading = false;
@@ -404,22 +411,26 @@
                             }
                         } */
 
-                    if (id && key == "rank") {
+                    if (key === 'rank') {
+                        console.log("Saved Rank");
                         data = {
                             fields: {
                                 rank: item.rank
                             }
                         }
-                    } else if (id && key == "crossRef") {
+                    } else if (key === "crossRef") {
+                        console.log("Saved Citations");
                         data = {
                             fields: {
                                 crossRef: item.crossRef}
                         }
                     }  else if (id) {
+                        console.log("Saved Item");
                         data = {
                             fields: item
                         }
                     } else {
+                        console.log("Saved Records");
                         data = {
                             records: item
                         }
@@ -455,8 +466,10 @@
                             }
                             this.editedItem = {}
                         }
-                        this.dialog = !this.dialog
+                        
                         if (key == null) {
+                            console.log("Doing key is null actions");
+                            this.dialog = !this.dialog
                             setTimeout(function() {
                                 location.reload();
                             }, 500);
@@ -575,7 +588,7 @@
                         console.log(error)
                     })
                 }
-            },
+            }
         })
     </script>
 </body>
