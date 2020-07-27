@@ -134,7 +134,7 @@
 
                                     <!-- Citations column -->
                                     <template v-slot:item.crossref="props">
-                                        <div>
+                                        <span>
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <span v-bind="attrs" v-on="on">
@@ -147,7 +147,21 @@
                                                     <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                 </span>
                                             </v-tooltip>
-                                        </div>
+                                        </span> 
+                                        <span v-if="props.item.scopus">
+                                            <v-tooltip bottom>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <span v-bind="attrs" v-on="on">
+                                                        / <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a>
+                                                        / <a v-else class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a>
+                                                    </span>
+                                                </template>
+                                                <span>From Elsiver/Scopus api.<br>
+                                                    Click for Google Scholar result.
+                                                    <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
+                                                </span>
+                                            </v-tooltip>
+                                        </span>
                                     </template>
 
                                     <!-- Pencil icon / Edit Column -->
@@ -196,7 +210,9 @@
                                             <strong>Title:</strong> {{ item.title }}<br>
                                             <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}</p>
 
-                                            <p v-if="item.crossRef"><strong>Citations</strong> (using the <a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong> (needs valid doi).<br> 
+                                            <p v-if="item.doi">
+                                                <span v-if="item.crossRef"><strong>Citations</strong> (<a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong><br></span>
+                                                <span v-if="item.scopus"></span><strong>Citations</strong> (<a href="https://dev.elsevier.com">Elsiver/Scopus API</a>): <strong>{{ item.scopus }}</strong><br></span>
                                                 See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
                                             </p>
                                             
@@ -211,7 +227,7 @@
                                                 <span v-if="editedItem.id" class="left text-truncate">Edit output</span>
                                                 <span v-else class="left text-truncate">New REF Output</span>
                                                 <v-spacer></v-spacer>
-                                                    <v-icon small class="text-right" @click="closeDialog()" color="primary">mdi-close</v-icon>
+                                                    <v-icon small class="text-right" @click="closeDialog(),scopusCount(editedItem)" color="primary">mdi-close</v-icon>
                                         </v-card-title>
                                         <v-card-text>
                                             <v-row>
@@ -251,7 +267,7 @@
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
-                                            <v-btn color="blue" text @click="closeDialog()">Close</v-btn>
+                                            <v-btn color="blue" text @click="closeDialog(),scopusCount(editedItem)">Close</v-btn>
                                             <v-btn color="blue" text @click="saveItem(editedItem),save()">Save</v-btn>
                                         </v-card-actions>
                                     </v-card>
@@ -353,11 +369,11 @@
                 loadItems() {
                     let url = new URL(window.location.href);
                     let specialism = url.searchParams.get("spec");
-                    sessionStorage.loaded = 1;
+                    
                     
                     this.items = [];
 
-                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=refScore";
+                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore";
 
                     const sort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc";
 
@@ -411,7 +427,7 @@
                             }
                         } */
 
-                    if (key === 'rank') {
+                    if (key === "rank") {
                         console.log("Saved Rank");
                         data = {
                             fields: {
@@ -419,12 +435,18 @@
                             }
                         }
                     } else if (key === "crossRef") {
-                        console.log("Saved Citations");
+                        console.log("Saved crossRef Citations");
                         data = {
                             fields: {
                                 crossRef: item.crossRef}
                         }
-                    }  else if (id) {
+                    }  else if (key === "scopus") {
+                        console.log("Saved Scopus Citations");
+                        data = {
+                            fields: {
+                                scopus: item.scopus}
+                        }
+                    }else if (id) {
                         console.log("Saved Item");
                         data = {
                             fields: item
@@ -449,10 +471,7 @@
                                     delete data.fields.id // must remove id from the data for airtable patch to work
                                 }
                                 if (key == null) {
-                                delete data.fields.firstName
-                                delete data.fields.lastName
-                                delete data.fields.authorName
-                                delete data.fields.authorID
+                                delete data.fields.firstName, data.fields.lastName, data.fields.authorName, data.fields.authorID;
                                 //delete data.fields.Centre
                                 }
                                 return  JSON.stringify(data);
@@ -567,26 +586,32 @@
                     .then((response) => {
                         item.crossRef = response.data.message["is-referenced-by-count"];
                         this.saveRank(item, "crossRef")
+                        sessionStorage.loaded = 1;
                     }).catch((error) => {
                         console.log(error)
                     })
                 },
                 scopusCount(item) {
-                    const elKey = "7f1899f42f07990cb442322cb322c588";
-                    //let scopusApiURL= "https://api.elsevier.com/content/search/scopus?apiKey=7f1899f42f07990cb442322cb322c588&query=DOI(" + item.doi + ")&field=citedby-count";
-                    let scopusApiURL= "https://api.elsevier.com/content/search/scopus?query=DOI(" + item.doi + ")&field=citedby-count";
-                    axios.get(scopusApiURL, {
-                        headers: {
-                            Authorization: "Bearer " + elKey,
-                            'Access-Control-Allow-Origin': 'https:hcid.city',
-                            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+                    console.log(item);
+                    if (item.id && item.doi) {
+                        const elKey = "7f1899f42f07990cb442322cb322c588";
+                        //let id = item.id, doi = item.doi;
+                        let scopusApiURL= "https://api.elsevier.com/content/search/scopus?apiKey=7f1899f42f07990cb442322cb322c588&query=DOI(" + item.doi + ")&field=citedby-count";
+                        axios.get(scopusApiURL, {
+                            headers: {
+                                //Authorization: "Bearer " + elKey,
+                                'Access-Control-Allow-Origin': 'https:hcid.city',
+                                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+                            }
                         }
+                        ).then((response) => {
+                            item.scopus = response.data["search-results"].entry[0]["citedby-count"];
+                            console.log(item.scopus)
+                            this.saveItem(item,"scopus")
+                        }).catch((error) => {
+                            console.log(error)
+                        })
                     }
-                    ).then((response) => {
-                        console.log(response.data["search-results"]["entry"][0]["citedby-count"]);
-                    }).catch((error) => {
-                        console.log(error)
-                    })
                 }
             }
         })
