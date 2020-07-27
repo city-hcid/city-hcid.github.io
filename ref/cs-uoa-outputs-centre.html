@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/roboto-fontface@0.10.0/css/roboto/roboto-fontface.min.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.3.45/css/materialdesignicons.min.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.3.6/dist/vuetify.min.css">
+    <style>input, textarea, .v-label { font-size: 0.875rem !important; }</style>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
                     <v-row justify="center">
                         <v-col cols="12">
                             <div class="mb-5">
-                                <h1 class="mt-5 font-weight-bold"> REF 2021 Outputs: <span v-for="(item, index) in items" v-if="index == 0" class="font-weight-black">Specialism {{item.specialism}}</span></h1>
+                                <h1 class="mt-5 font-weight-bold">B11 REF 2021 Outputs: <span v-for="(item, index) in items" v-if="index == 0" class="font-weight-black">Specialism {{item.specialism}}</span></h1>
                             </div>
                         </v-col>
                         <v-col cols="12" md="11">
@@ -27,9 +28,9 @@
                                 <p v-for="(item, index) in items" v-if="index == 0">Below is a list of <span class="font-italic">{{item.specialism}}</span> outputs that could potentially be included as part of City's <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a> (i.e., Computer Science), <a href="https://ref.ac.uk/about/"
                                         target="_blank">REF 2021</a> submission.</p>
                                 <p>In the table, the checked (
-                                    <v-icon small color="primary">mdi-check</v-icon>) outputs (in the top half of the table) are currently shortlisted as candidates for submission. A long-list is included if you think an output might be missing.</p>
+                                    <v-icon small color="primary">mdi-check</v-icon>) outputs (in the top half of the table) are currently shortlisted as candidates for submission. A <a href="#longlist">long-list</a> is included if you think an output might be missing. You can edit items by selecting <v-icon small color="primary">mdi-pencil</v-icon> under the Edit columnn. To add/remove outputs from the shortlist check/uncheck "<span class="font-italic">Submit to REF?</span>".</p>
                                 <p>
-                                    For the eternal review process and, eventually, in order to identify outputs for our 2021 REF submission, Pplease rank the outputs from highest (1) to lowest. This is not intended to be indicative of individual staff member's work, but purely for the purposes of identifying strong REF output candidates. 
+                                    For the external review process and, eventually, in order to identify outputs for our 2021 REF submission, Pplease rank the outputs from highest (1) to lowest. This is not intended to be indicative of individual staff member's work, but purely for the purposes of identifying strong REF output candidates. 
                                 </p>
                             </div>
                         </v-col>
@@ -45,7 +46,7 @@
                                     show-expand
                                     group-by="ref"
                                     group-desc
-                                    sort-by="rank"
+                                    :sort-by="sortby"
                                     multi-sort
                                     mobile-breakpoint="800"
                                     class="elevation-0"
@@ -116,10 +117,15 @@
                                     <template v-slot:item.output="props">
                                         <div>
                                             <p v-if="props.item.ref">
-                                                <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                                <div v-if="props.item.doi">
+                                                    <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                                </div>
+                                                <div v-else>
+                                                    {{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em>
+                                                </div>
                                             </p>
                                             <p v-else class="text--disabled">
-                                                <a class="blue-grey--text text--lighten-3 font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                                {{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em> <a v-if="props.item.doi" class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
                                             </p>
                                         </div>
                                     </template>
@@ -180,8 +186,8 @@
                                            <v-btn text icon small color="black" @click="toggle">
                                               <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon> 
                                            </v-btn>
-                                           <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed for REF</span>
-                                           <span v-else class="mx-2 subtitle-2">Long-listed</span>
+                                           <span v-if="items[0].ref" class="mx-2 subtitle-2" id="shortlist">Short-listed for REF</span>
+                                           <span v-else class="mx-2 subtitle-2" id="longlist">Long-listed</span>
                                         </th>
                                      </template>
 
@@ -219,7 +225,7 @@
                                                     <v-text-field v-model="editedItem.authors" label="Authors"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="12">
-                                                    <v-textarea rows="1" auto-grow v-model="editedItem.title" label="Title"></v-textarea>
+                                                    <v-textarea class="" rows="1" auto-grow v-model="editedItem.title" label="Title"></v-textarea>
                                                 </v-col>
                                                 <v-col cols="12" sm="12">
                                                     <v-textarea rows="1" auto-grow v-model="editedItem.source" label="Conference or Journal"></v-textarea>
@@ -240,9 +246,9 @@
                                                     <v-checkbox v-model="editedItem.ref" label="Submit to REF?"></v-checkbox>
                                                 </v-col>
                                                 <v-col cols="12" sm="12">
-                                                    <v-textarea auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
+                                                    <v-textarea rows="1" auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
                                                 </v-col>
-                                                <v-col>
+                                                <v-col cols="12">
                                                     <div>
                                                         <p class="text-right">To upload any changes to the database, press "Save".</p>
                                                     </div>
@@ -252,7 +258,7 @@
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue" text @click="closeDialog()">Close</v-btn>
-                                            <v-btn color="blue" text @click="saveItem(editedItem),save()">Save</v-btn>
+                                            <v-btn color="blue" text @click="saveItem(editedItem,'saveFormItem'),save()">Save</v-btn>
                                         </v-card-actions>
                                     </v-card>
                                 </v-dialog>
@@ -278,7 +284,7 @@
         const apiToken = "keyAKLpRf8ec2XWH9";
         const airTableApp = "appunQ0V4X7SQIIk7";
         const airTableName = "tblDN6QUoVueC6fkg";
-        const airTableView = "all"
+        const airTableView = "viw35VHz91GGUnt1q"
 
         new Vue({
             el: '#app',
@@ -291,6 +297,7 @@
                     snack: false,
                     snackColor: '',
                     snackText: '',
+                    sortby: 'rank',
                     headers: [{ 
                         text: '', 
                         value: 'data-table-expand'
@@ -343,17 +350,19 @@
             methods: {
                 showEditDialog(item) {
                     this.editedItem = item || {};
-                    this.dialog = !this.dialog /***** could delete? ****/
+                    this.dialog = !this.dialog; /***** could delete? ****/
+                    this.sortby = ''
                 },
                 closeDialog() {
+                    //sessionStorage.clear();
                     this.dialog = false; 
                     this.close('Not saved');
-                    localStorage.clear();
+                    this.sortby = 'rank'
                 },
                 loadItems() {
                     let url = new URL(window.location.href);
                     let specialism = url.searchParams.get("spec");
-                    sessionStorage.loaded = 1;
+                    sessionStorage.clear();
                     
                     this.items = [];
 
@@ -369,25 +378,32 @@
                             }
                         })
                         .then((response) => {
-                            
+                            console.log("loaditem response: ");
+                            console.log(response);
                             this.items = response.data.records.map((item) => {
                                 return {
                                     id: item.id,
                                     ...item.fields
                                 }
                             })
+
+                            // Check citations once per session
                             if (!sessionStorage.loaded) {
-                                let v = sessionStorage.loaded;
-                                console.log("Once per session");
-                                console.log(v);
+                                this.citeCount(this.items)
+                            }
+
+/*                             if (!sessionStorage.loaded) {
+                                //console.log("Once per session");
                                 for (let i = 0; i < this.items.length; i++) {
                                     if (this.items[i].doi) {
                                         this.citeCount(this.items[i]); // loads latest citations
                                         //this.scopusCount(this.items[i])
                                     }
                                 }
-                            }
-                            this.loading = false;
+                                sessionStorage.loaded = 1;
+                                console.log(sessionStorage);
+                            } */
+                            this.loading = false //Turns off loader
                         }).catch((error) => {
                             console.log(error)
                         })
@@ -395,23 +411,19 @@
                 saveItem(item, key) {
                     /* this is used for both creating and updating API records
                      the default method is POST for creating a new item */
-                    
-                    let data = item
-                    let method = "patch"
-                    let id = item.id
+                    let data = item,
+                    method = "patch",
+                    url = null,
+                    id = null;
 
-                    let url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`
+                    if (item.id) {
+                        id = item.id;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`
+                    } else {
+                        url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}`
+                    }
 
-                    //console.log(data);
-
-                    /* if (id && key) {
-                        data = {
-                            fields: {
-                                key: item.rank
-                            }
-                        } */
-
-                    if (key === 'rank') {
+/*                     if (key === 'rank') {
                         console.log("Saved Rank");
                         data = {
                             fields: {
@@ -431,11 +443,11 @@
                         }
                     } else {
                         console.log("Saved Records");
+                        url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}`
                         data = {
                             records: item
                         }
-                        delete data.records.fields.id
-                    }
+                    } */
 
                     // save the record
                     axios[method](url,
@@ -445,17 +457,68 @@
                                 "Content-Type": "application/json"
                             },
                             transformRequest: [(data) => {
-                                if (data.fields.id) {
+
+                                if (id) {
+                                    delete data.id // must remove id from the data for airtable patch to work
+                                    console.log("ID deleted...")
+                                }
+
+                                if (key === 'rank') {
+                                    data = {
+                                        fields: {
+                                            rank: item.rank
+                                        }
+                                    }
+                                    console.log('Saved rank:')
+                                }
+                                else if (key === "citationsForItem") {
+                                    data = {
+                                        fields: {
+                                            crossRef: item.crossRef
+                                        }
+                                    }
+                                    console.log('Saved citation count:')
+                                }
+                                else if (key === 'saveFormItem') {
+                                    data = {
+                                        fields: item
+                                    }
+                                    delete data.fields.firstName
+                                    delete data.fields.lastName
+                                    delete data.fields.authorName
+                                    delete data.fields.authorID
+                                    console.log('Saved Item:')
+                                }
+                                else if (key === 'citationsForRecords' || !item.id) {
+                                    data = {
+                                        records: item
+                                    }
+                                    console.log('Saved records:');
+                                }
+                                console.log(data);
+                                console.log('Records to be patched:');
+                                let jsonData = JSON.stringify(data);
+                                console.log(jsonData);
+                                return JSON.stringify(data);
+
+
+/*                                 if (id) {
                                     delete data.fields.id // must remove id from the data for airtable patch to work
                                 }
-                                if (key == null) {
-                                delete data.fields.firstName
-                                delete data.fields.lastName
-                                delete data.fields.authorName
-                                delete data.fields.authorID
-                                //delete data.fields.Centre
+                                if (id && !key) {
+                                    delete data.fields.firstName
+                                    delete data.fields.lastName
+                                    delete data.fields.authorName
+                                    delete data.fields.authorID
                                 }
-                                return  JSON.stringify(data);
+                                if (!id) {
+                                    delete data.records.fields.id
+                                    delete data.records.fields.firstName
+                                    delete data.records.fields.lastName
+                                    delete data.records.fields.authorName
+                                    delete data.records.fields.authorID
+                                    console.log(data);
+                                } */                                
                             }]
                         }
                     ).then(response => {
@@ -466,13 +529,17 @@
                             }
                             this.editedItem = {}
                         }
+
+                        if (key === "citationsForItem") {
+                            console.log("Citations uploaded to Airtable");
+                            console.log(response.data.crossRef);
+                        }
                         
-                        if (key == null) {
-                            console.log("Doing key is null actions");
-                            this.dialog = !this.dialog
+                        if (key === "saveFormItem") {
+                            this.dialog = !this.dialog;
                             setTimeout(function() {
-                                location.reload();
-                            }, 500);
+                                location.reload()
+                            }, 500)
                         }
                     }).catch(error => {
                         console.log(error.response)
@@ -545,31 +612,56 @@
                     this.snack = true
                     this.snackColor = 'success'
                     this.snackText = 'Change uploaded'
+                    this.sortby = 'rank'
                 },
                 cancel() {
                     this.snack = true
                     this.snackColor = 'error'
                     this.snackText = 'Not uploaded'
+                    this.sortby = 'rank'
                 },
                 open() {
                     this.snack = true
                     this.snackColor = 'info'
                     this.snackText = 'Dialog opened'
+                    this.sortby = ''
                 },
                 close(msg) {
                     this.snack = true
                     this.snackColor = 'error'
                     this.snackText = msg || 'Not uploaded'
+                    this.sortby = 'rank'
                 },
-                citeCount(item) {
-                    let doiURL = "https://api.crossref.org/works/" + item.doi;
+                citeCount(items) {
+                    //let data = [];
+                    for (let i = 0; i < items.length; i++) {
+                        if (items[i].doi) {
+                            let doiURL = "https://api.crossref.org/works/" + items[i].doi;
+                            axios.get(doiURL)
+                            .then((response) => {
+                                items[i].crossRef = response.data.message["is-referenced-by-count"].toString();
+                            }).catch((error) => {
+                                console.log(error)
+                            }).finally(() => {
+                                setTimeout(() => {
+                                    console.log("Citations from CrossRef");
+                                    console.log(items[i].crossRef);
+                                    this.saveItem(items[i], 'citationsForItem');
+                                }, 2000);
+                                
+                            });
+                        }
+                    }
+                    sessionStorage.loaded = 1;
+
+                    /* let doiURL = "https://api.crossref.org/works/" + item.doi;
                     axios.get(doiURL)
                     .then((response) => {
                         item.crossRef = response.data.message["is-referenced-by-count"];
-                        this.saveRank(item, "crossRef")
+                        this.saveItem(item, "crossRef")
                     }).catch((error) => {
                         console.log(error)
-                    })
+                    }) */
                 },
                 scopusCount(item) {
                     const elKey = "7f1899f42f07990cb442322cb322c588";

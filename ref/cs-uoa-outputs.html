@@ -99,7 +99,7 @@
                                                     <v-checkbox v-model="editedItem.ref" label="Submit to REF?"></v-checkbox>
                                                 </v-col>
                                                 <v-col cols="12" sm="12">
-                                                    <v-textarea auto-grow v-model="editedItem.hunderdWords" label="100 word summary"></v-textarea>
+                                                    <v-textarea auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
                                                 </v-col>
                                             </v-row>
                                         </v-card-text>
@@ -205,7 +205,7 @@
                         width: '25%'
                     }, {
                         text: "100 word summary",
-                        value: "hunderdWords",
+                        value: "hundredWords",
                         sortable: false,
                         width: '40%'
                     }, {
@@ -236,7 +236,7 @@
                         authorID = url.searchParams.get("au");
                     }
                     this.items = [];
-                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hunderdWords&filterByFormula=FIND(%22${authorID}%22%2C%7BauthorID%7D)`;
+                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&filterByFormula=FIND(%22${authorID}%22%2C%7BauthorID%7D)`;
                     axios.get(submissionURL, {
                             headers: {
                                 Authorization: "Bearer " + apiToken
