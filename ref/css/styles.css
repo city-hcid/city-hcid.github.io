@@ -1,3 +1,7 @@
+.textarea {
+    font-size: 0.9rem !important;
+}
+
 .overall-series .ct-bar,
 .ct-series-a .ct-bar {
     stroke: #282B28;
