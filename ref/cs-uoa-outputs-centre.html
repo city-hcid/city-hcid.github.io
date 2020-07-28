@@ -116,10 +116,15 @@
                                     <template v-slot:item.output="props">
                                         <div>
                                             <p v-if="props.item.ref">
-                                                <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                                <div v-if="props.item.doi">
+                                                    <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                                </div>
+                                                <div v-else>
+                                                    {{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em>
+                                                </div>
                                             </p>
                                             <p v-else class="text--disabled">
-                                                <a class="blue-grey--text text--lighten-3 font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                                {{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em> <a v-if="props.item.doi" class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
                                             </p>
                                         </div>
                                     </template>
@@ -134,34 +139,36 @@
 
                                     <!-- Citations column -->
                                     <template v-slot:item.crossref="props">
-                                        <span>
-                                            <v-tooltip bottom>
-                                                <template v-slot:activator="{ on, attrs }">
-                                                    <span v-bind="attrs" v-on="on">
-                                                        <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
-                                                        <a v-else class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
+                                        <div>
+                                            <span>
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on, attrs }">
+                                                        <span v-bind="attrs" v-on="on">
+                                                            <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
+                                                            <a v-else class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
+                                                        </span>
+                                                    </template>
+                                                    <span>From CrossRef api.<br>
+                                                        Click for Google Scholar result.
+                                                        <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                     </span>
-                                                </template>
-                                                <span>From CrossRef api.<br>
-                                                    Click for Google Scholar result.
-                                                    <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
-                                                </span>
-                                            </v-tooltip>
-                                        </span> 
-                                        <span v-if="props.item.scopus">
-                                            <v-tooltip bottom>
-                                                <template v-slot:activator="{ on, attrs }">
-                                                    <span v-bind="attrs" v-on="on">
-                                                        / <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a>
-                                                        / <a v-else class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a>
+                                                </v-tooltip>
+                                            </span> 
+                                            <span v-if="props.item.scopus">
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on, attrs }">
+                                                        <span v-bind="attrs" v-on="on">
+                                                            / <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a>
+                                                            / <a v-else class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a>
+                                                        </span>
+                                                    </template>
+                                                    <span>From Elsiver/Scopus api.<br>
+                                                        Click for Google Scholar result.
+                                                        <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                     </span>
-                                                </template>
-                                                <span>From Elsiver/Scopus api.<br>
-                                                    Click for Google Scholar result.
-                                                    <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
-                                                </span>
-                                            </v-tooltip>
-                                        </span>
+                                                </v-tooltip>
+                                            </span>
+                                        </div>
                                     </template>
 
                                     <!-- Pencil icon / Edit Column -->
@@ -180,7 +187,9 @@
                                                 <strong>Title:</strong> {{ item.title }}<br>
                                                 <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}</p>
 
-                                                <p v-if="item.crossRef"><strong>Citations</strong> (using the <a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong> (needs valid doi).<br> 
+                                                <p v-if="item.doi">
+                                                    <span v-if="item.crossRef"><strong>Citations</strong> (<a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong><br></span>
+                                                    <span v-if="item.scopus"></span><strong>Citations</strong> (<a href="https://dev.elsevier.com">Elsiver/Scopus API</a>): <strong>{{ item.scopus }}</strong><br></span>
                                                     See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
                                                 </p>
                                                 
@@ -200,25 +209,6 @@
                                      </template>
 
                                 </v-data-table>
-                                
-                                <!-- Expanded Row -->
-                                <template v-slot:expanded-item="{ headers, item }">
-                                    <td :colspan="headers.length" :id="item.lastName + item.doi">
-                                        <div class="mt-2">
-                                            <p><strong>Author(s):</strong> {{ item.authors }}<br>
-                                            <strong>Year:</strong> {{ item.year }}<br>
-                                            <strong>Title:</strong> {{ item.title }}<br>
-                                            <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}</p>
-
-                                            <p v-if="item.doi">
-                                                <span v-if="item.crossRef"><strong>Citations</strong> (<a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong><br></span>
-                                                <span v-if="item.scopus"></span><strong>Citations</strong> (<a href="https://dev.elsevier.com">Elsiver/Scopus API</a>): <strong>{{ item.scopus }}</strong><br></span>
-                                                See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
-                                            </p>
-                                            
-                                        </div>
-                                    </td>
-                                </template>
 
                                 <!-- Update entry dialog -->
                                 <v-dialog v-model="dialog" max-width="640px">
@@ -227,7 +217,7 @@
                                                 <span v-if="editedItem.id" class="left text-truncate">Edit output</span>
                                                 <span v-else class="left text-truncate">New REF Output</span>
                                                 <v-spacer></v-spacer>
-                                                    <v-icon small class="text-right" @click="closeDialog(),scopusCount(editedItem)" color="primary">mdi-close</v-icon>
+                                                    <v-icon small class="text-right" @click="closeDialog(),scopusCount(editedItem),sessionStorage.clear()" color="primary">mdi-close</v-icon>
                                         </v-card-title>
                                         <v-card-text>
                                             <v-row>
@@ -268,7 +258,7 @@
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue" text @click="closeDialog(),scopusCount(editedItem)">Close</v-btn>
-                                            <v-btn color="blue" text @click="saveItem(editedItem),save()">Save</v-btn>
+                                            <v-btn color="blue" text @click="saveItem(editedItem,'saveFormItem'),save()">Save</v-btn>
                                         </v-card-actions>
                                     </v-card>
                                 </v-dialog>
@@ -400,6 +390,7 @@
                                     if (this.items[i].doi) {
                                         this.citeCount(this.items[i]); // loads latest citations
                                         //this.scopusCount(this.items[i])
+                                        this.scopusCount(this.items[i]);
                                     }
                                 }
                             }
@@ -438,15 +429,17 @@
                         console.log("Saved crossRef Citations");
                         data = {
                             fields: {
-                                crossRef: item.crossRef}
+                                crossRef: item.crossRef//,
+                                //issn: item.issn
+                            }
                         }
-                    }  else if (key === "scopus") {
+                    } else if (key === "scopus") {
                         console.log("Saved Scopus Citations");
                         data = {
                             fields: {
                                 scopus: item.scopus}
                         }
-                    }else if (id) {
+                    } else if (key === "saveFormItem") {
                         console.log("Saved Item");
                         data = {
                             fields: item
@@ -470,8 +463,11 @@
                                 if (data.fields.id) {
                                     delete data.fields.id // must remove id from the data for airtable patch to work
                                 }
-                                if (key == null) {
-                                delete data.fields.firstName, data.fields.lastName, data.fields.authorName, data.fields.authorID;
+                                if (key === "saveFormItem") {
+                                delete data.fields.firstName; 
+                                delete data.fields.lastName;
+                                delete data.fields.authorName;
+                                delete data.fields.authorID;
                                 //delete data.fields.Centre
                                 }
                                 return  JSON.stringify(data);
@@ -486,8 +482,7 @@
                             this.editedItem = {}
                         }
                         
-                        if (key == null) {
-                            console.log("Doing key is null actions");
+                        if (key === "saveFormItem") {
                             this.dialog = !this.dialog
                             setTimeout(function() {
                                 location.reload();
@@ -584,7 +579,11 @@
                     let doiURL = "https://api.crossref.org/works/" + item.doi;
                     axios.get(doiURL)
                     .then((response) => {
-                        item.crossRef = response.data.message["is-referenced-by-count"];
+                        item.crossRef = response.data.message["is-referenced-by-count"].toString();
+                        // let isNo = response.data.message["ISSN"][0];
+                        // if (isNo) {
+                        //     item.issn = isNo;
+                        // };
                         this.saveRank(item, "crossRef")
                         sessionStorage.loaded = 1;
                     }).catch((error) => {
@@ -600,7 +599,7 @@
                         axios.get(scopusApiURL, {
                             headers: {
                                 //Authorization: "Bearer " + elKey,
-                                'Access-Control-Allow-Origin': 'https:hcid.city',
+                                'Access-Control-Allow-Origin': 'https://hcid.city',
                                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
                             }
                         }

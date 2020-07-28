@@ -19,6 +19,5 @@
   "dependencies": {
     "airtable": "^0.8.1",
     "axios": "^0.19.2"
-  },
-  "proxy": "http://localhost:8080"
+  }
 }
