@@ -400,6 +400,16 @@
                         data = {
                             fields: item
                         }
+                    } else if (key === "outputMetaData") {
+                        data = {
+                            fields: {
+                                crossRef: item.crossRef,
+                                scopus: item.scopus,
+                                issn: item.issn,
+                                isbn: item.isbn
+                            }
+                        }
+
                     } else {
                         data = {
                             records: item
@@ -500,6 +510,34 @@
                             item.scopus = response.data["search-results"].entry[0]["citedby-count"];
                             this.saveItem(item, "scopus")
                         }).catch((error) => {
+                            console.log(error)
+                        })
+                    }
+                },
+                getOutputMetaData(item) {
+                    if (item.doi) {
+                        const elsiverKey = "7f1899f42f07990cb442322cb322c588";
+                        let crossrefURL = "https://api.crossref.org/works/" + item.doi;
+                        let scopusURL= `https://api.elsevier.com/content/search/scopus?apiKey=${elKey}&query=DOI(${item.doi})&field=citedby-count`;
+                        axios.all([
+                            axios.get(crossrefURL),
+                            axios.get(scopusURL, {
+                                headers: {
+                                    'Access-Control-Allow-Origin': '*',
+                                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                                }
+                            })
+                        ]).then(function(response) {
+                            item.crossRef = response[0].data.message["is-referenced-by-count"].toString();
+                            if (item.type === "Journal") {
+                                item.issn = response[0].data.message["ISSN"][0]
+                            }
+                            if (item.type === "Conference") {
+                                item.isbn = response[0].data.message["ISBN"][0]
+                            }
+                            item.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            this.saveItem(item, "outputMetaData")
+                        }).catch(function(error) {
                             console.log(error)
                         })
                     }
