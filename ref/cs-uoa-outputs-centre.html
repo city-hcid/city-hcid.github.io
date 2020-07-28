@@ -152,6 +152,16 @@
                                         </span>
                                     </template>
                                     
+                                    <!-- CiteScore Column -->
+                                    <template v-slot:item.citeScore="props">
+                                        <v-tooltip bottom>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <span v-bind="attrs" v-on="on" class="text-truncate">{{ props.item.citeScore }}</span>
+                                            </template>
+                                            <p class="text-center">Using Elsiver's journal<br>metric - CiteScore</p>
+                                        </v-tooltip>
+                                    </template>
+                                    
                                     <!-- Pencil icon / Edit Column -->
                                     <template v-slot:item.actions="props">
                                         <div class="text-center text-truncate">
@@ -171,6 +181,9 @@
                                                     <span v-if="item.crossRef"><strong>Citations</strong> (<a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong><br></span>
                                                     <span v-if="item.scopus"></span><strong>Citations</strong> (<a href="https://dev.elsevier.com">Elsiver/Scopus API</a>): <strong>{{ item.scopus }}</strong><br></span>
                                                     See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
+                                                </p>
+                                                <p v-if="item.citeScore">
+                                                    <strong>Journal CiteScore</strong> (<a href="https://www.elsevier.com/editors-update/story/journal-metrics/citescore-a-new-metric-to-help-you-choose-the-right-journal" target="_blank" rel="noopener noreferrer">Elsiver</a>): <strong>{{ item.citeScore }}</strong>
                                                 </p>
                                             </div>
                                         </td>
@@ -196,7 +209,7 @@
                                             <span v-if="editedItem.id" class="left text-truncate">Edit output</span>
                                             <span v-else class="left text-truncate">New REF Output</span>
                                             <v-spacer></v-spacer>
-                                            <v-icon small class="text-right" @click="closeDialog(),close('Not saved'),scopusCount(editedItem),citeCount(editedItem)" color="primary">mdi-close</v-icon>
+                                            <v-icon small class="text-right" @click="closeDialog(),close('Not saved'),getOutputMetaData(editedItem)" color="primary">mdi-close</v-icon>
                                         </v-card-title>
                                         <v-card-text>
                                             <v-row>
@@ -283,7 +296,7 @@
                     },{
                         text: 'Primary Author',
                         value: 'author',
-                        width: '15%',
+                        width: '12%',
                         sortable: false
                     }, {
                         text: 'Rank',
@@ -304,13 +317,19 @@
                         text: "100 word summary",
                         value: "hundredwords",
                         sortable: false,
-                        width: '40%'
+                        width: '37%'
                     }, {
                         text: "Citations",
                         value: "crossref",
                         align: 'center',
-                        sortable: true,
-                        width: '10%'
+                        width: '8%',
+                        sortable: false
+                    }, {
+                        text: "CiteScore",
+                        value: "citeScore",
+                        align: 'center',
+                        width: '8%',
+                        sortable: false
                     }, {
                         text: 'Edit',
                         value: 'actions',
@@ -330,7 +349,7 @@
                 showEditDialog(item) {
                     this.editedItem = item || {};
                     this.dialog = !this.dialog; /***** could delete? ****/
-                    this.sortBy = ''
+                    //this.sortBy = ''
                 },
                 closeDialog() {
                     this.dialog = false; 
@@ -342,7 +361,7 @@
                 loadItems() {
                     let url = new URL(window.location.href);
                     let specialism = url.searchParams.get("spec");
-                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore";
+                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore";
                     const sort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc";
                     let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22${specialism}%22%2C%7Bspecialism%7D)`;
                     this.items = [];
@@ -402,14 +421,8 @@
                         }
                     } else if (key === "outputMetaData") {
                         data = {
-                            fields: {
-                                crossRef: item.crossRef,
-                                scopus: item.scopus,
-                                issn: item.issn,
-                                isbn: item.isbn
-                            }
+                            fields: item
                         }
-
                     } else {
                         data = {
                             records: item
@@ -515,10 +528,52 @@
                     }
                 },
                 getOutputMetaData(item) {
-                    if (item.doi) {
+                    if (item.doi && item.issn) {
                         const elsiverKey = "7f1899f42f07990cb442322cb322c588";
                         let crossrefURL = "https://api.crossref.org/works/" + item.doi;
-                        let scopusURL= `https://api.elsevier.com/content/search/scopus?apiKey=${elKey}&query=DOI(${item.doi})&field=citedby-count`;
+                        let scopusURL= `https://api.elsevier.com/content/search/scopus?apiKey=${elsiverKey}&query=DOI(${item.doi})&field=citedby-count`;
+                        let elsiverURL= `https://api.elsevier.com/content/serial/title?apiKey=${elsiverKey}&issn=${item.issn}`;
+                        var fields = {};
+                        axios.all([
+                            axios.get(crossrefURL),
+                            axios.get(scopusURL, {
+                                headers: {
+                                    'Access-Control-Allow-Origin': '*',
+                                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                                }
+                            }),
+                            axios.get(elsiverURL, {
+                                headers: {
+                                    'Access-Control-Allow-Origin': '*',
+                                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                                }
+                            })
+                        ]).then((response) => {
+                            fields.id = item.id;
+                            fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
+                            //fields.crossRef = item.crossRef;
+                            if (item.type === "Journal") {
+                                fields.issn = response[0].data.message["ISSN"][0];
+                                fields.citeScore = response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric'];
+                                console.log(response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric']); //fields.sjr = response[3].data.entry.SJRList['SJR'];
+                                //fields.issn = item.issn;
+                            }
+                            if (item.type === "Conference") {
+                                fields.isbn = response[0].data.message["ISBN"][0];
+                                //fields.isbn = item.isbn;
+                            }
+                            fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            fields.scopus = item.scopus;
+                            console.log(fields);
+                            this.saveItem(fields, "outputMetaData")
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                    } else if (item.doi) {
+                        const elsiverKey = "7f1899f42f07990cb442322cb322c588";
+                        let crossrefURL = "https://api.crossref.org/works/" + item.doi;
+                        let scopusURL= `https://api.elsevier.com/content/search/scopus?apiKey=${elsiverKey}&query=DOI(${item.doi})&field=citedby-count`;
+                        var fields = {};
                         axios.all([
                             axios.get(crossrefURL),
                             axios.get(scopusURL, {
@@ -527,17 +582,28 @@
                                     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
                                 }
                             })
-                        ]).then(function(response) {
+                        ]).then((response) => {
+                            fields.id = item.id;
+                            console.log(fields.id);
                             item.crossRef = response[0].data.message["is-referenced-by-count"].toString();
+                            //fields.push({crossRef: item.crossRef});
+                            fields.crossRef = item.crossRef;
                             if (item.type === "Journal") {
-                                item.issn = response[0].data.message["ISSN"][0]
+                                item.issn = response[0].data.message["ISSN"][0];
+                                fields.issn = item.issn;
+                                //fields.push({issn: item.issn});
                             }
                             if (item.type === "Conference") {
-                                item.isbn = response[0].data.message["ISBN"][0]
+                                item.isbn = response[0].data.message["ISBN"][0];
+                                fields.isbn = item.isbn;
+                                //fields.push({isbn: item.isbn});
                             }
                             item.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
-                            this.saveItem(item, "outputMetaData")
-                        }).catch(function(error) {
+                            //fields = {scopus: item.scopus};
+                            fields.scopus = item.scopus;
+                            console.log(fields);
+                            this.saveItem(fields, "outputMetaData")
+                        }).catch((error) => {
                             console.log(error)
                         })
                     }
