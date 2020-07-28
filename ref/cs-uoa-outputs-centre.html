@@ -64,32 +64,26 @@
                                     <!-- Primary Author Column -->
                                     <template v-slot:item.author="props">
                                         <div v-if="props.item.ref">
-                                            <span v-for="first in props.item.firstName">
-                                                {{ first }}
-                                            </span>&nbsp;
-                                            <span v-for="last in props.item.lastName">
-                                                {{ last }}
-                                            </span>
+                                            <span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span>
                                         </div>
                                         <div v-else class="text--disabled">
-                                            <span v-for="first in props.item.firstName">
-                                                {{ first }}
-                                            </span>&nbsp;
-                                            <span v-for="last in props.item.lastName">
-                                                {{ last }}
-                                            </span>
+                                            <span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span>
                                         </div>
                                     </template>
 
                                     <!-- Rank Column -->
                                     <template v-slot:item.rank="props">
+
+                                        <v-tooltip bottom>
+                                            <template v-slot:activator="{ on, attrs }">
+
                                         <v-edit-dialog 
                                             :return-value.sync="props.item.rank" 
                                             large
                                             @save="saveItem(props.item,'rank'),save()" 
                                             @cancel="cancel" 
-                                            @open="open" >
-                                            <div v-if="props.item.ref" class="text-truncate text-decoration-underline blue--text text--darken-2">
+                                            @open="open">
+                                            <div v-if="props.item.ref" v-bind="attrs" v-on="on" class="text-truncate text-decoration-underline blue--text text--darken-2">
                                                 {{ props.item.rank }}
                                             </div>
                                             <template v-slot:input>
@@ -103,30 +97,45 @@
                                                 </v-text-field>
                                             </template>
                                         </v-edit-dialog>
+
+                                    </template>
+                                    <p class="text-center">Rank order outputs<br>starting from 1 (highest)</p>
+                                </v-tooltip>
+
+
                                     </template>
 
                                     <!-- REF Column -->
                                     <template v-slot:item.rf="props">
-                                        <div class="text-truncate">
-                                            <v-icon small class="mr-2" v-if="props.item.ref" color="primary">mdi-check</v-icon>
+
+                                        <v-tooltip bottom>
+                                            <template v-slot:activator="{ on, attrs }">
+
+                                        <div v-bind="attrs" v-on="on" class="text-truncate">
+                                            <v-icon small class="mr-2" v-if="props.item.ref" color="black">mdi-check</v-icon>
                                         </div>
+
+
+                                    </template>
+                                    <p class="text-center">Shortlisted for REF.<br>Check/uncheck in edit pane ( <v-icon small class="mr-2" color="white">mdi-pencil</v-icon>).</p>
+
+
+
                                     </template>
 
                                     <!-- Ouput Column -->
                                     <template v-slot:item.output="props">
-                                        <div>
-                                            <p v-if="props.item.ref">
-                                                <div v-if="props.item.doi">
-                                                    <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
-                                                </div>
-                                                <div v-else>
-                                                    {{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em>
-                                                </div>
-                                            </p>
-                                            <p v-else class="text--disabled">
-                                                {{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em> <a v-if="props.item.doi" class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
-                                            </p>
-                                        </div>
+                                        <p v-if="props.item.ref">
+                                            <span v-if="props.item.doi">
+                                                <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                            </span>
+                                            <span v-else>
+                                                {{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em>
+                                            </span>
+                                        </p>
+                                        <p v-else class="text--disabled">
+                                            {{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em> <a v-if="props.item.doi" class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                        </p>
                                     </template>
 
                                     <!-- Hundred Words Column -->
@@ -139,7 +148,6 @@
 
                                     <!-- Citations column -->
                                     <template v-slot:item.crossref="props">
-                                        <div>
                                             <span>
                                                 <v-tooltip bottom>
                                                     <template v-slot:activator="{ on, attrs }">
@@ -158,8 +166,8 @@
                                                 <v-tooltip bottom>
                                                     <template v-slot:activator="{ on, attrs }">
                                                         <span v-bind="attrs" v-on="on">
-                                                            / <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a>
-                                                            / <a v-else class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a>
+                                                            <span v-if="props.item.ref"> / <a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
+                                                            <span v-else class="text--disabled"> / <a class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
                                                         </span>
                                                     </template>
                                                     <span>From Elsiver/Scopus api.<br>
@@ -168,7 +176,6 @@
                                                     </span>
                                                 </v-tooltip>
                                             </span>
-                                        </div>
                                     </template>
 
                                     <!-- Pencil icon / Edit Column -->
@@ -178,7 +185,7 @@
                                         </div>
                                     </template>
 
-                                    <!-- Table Header -->
+                                    <!-- Expanded row -->
                                     <template v-slot:expanded-item="{ headers, item }">
                                         <td :colspan="headers.length" :id="item.lastName + item.doi">
                                             <div class="mt-2">
