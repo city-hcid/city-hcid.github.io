@@ -198,6 +198,7 @@
                                                 </p>
                                                 <p v-if="item.citeScore">
                                                     <strong>Journal CiteScore</strong> (<a href="https://www.elsevier.com/editors-update/story/journal-metrics/citescore-a-new-metric-to-help-you-choose-the-right-journal" target="_blank" rel="noopener noreferrer">Elsiver</a>): <strong>{{ item.citeScore }}</strong>
+                                                    <span v-if="item.sjr"><br><strong>Journal rank</strong> (<a href="https://www.scimagojr.com/aboutus.php" target="_blank" rel="noopener noreferrer">SJR</a>): <strong>{{ item.sjr }}</strong></span>
                                                 </p>
                                             </div>
                                         </td>
@@ -263,7 +264,7 @@
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
-                                            <v-btn color="blue" text @click="closeDialog(),close('Not saved'),scopusCount(editedItem),citeCount(editedItem)">Close</v-btn>
+                                            <v-btn color="blue" text @click="closeDialog(),close('Not saved'),getOutputMetaData(editedItem)">Close</v-btn>
                                             <v-btn color="blue" text @click="saveItem(editedItem,'saveFormItem'),save('Changes saved')">Save</v-btn>
                                         </v-card-actions>
                                     </v-card>
@@ -496,8 +497,7 @@
                 open(msg) {
                     this.snack = true;
                     this.snackColor = 'info';
-                    this.snackText = msg || 'Dialog opened';
-                    this.sortBy = ''
+                    this.snackText = msg || 'Dialog opened'
                 },
                 close(msg) {
                     this.snack = true;
@@ -557,12 +557,11 @@
                             axios.get(crossrefURL),
                             axios.get(scopusURL, {scopusHeaders}),
                             axios.get(sourceIDURL, {scopusHeaders})
-                        ]).then((response) => {
+                        ]).then((response) => {console.log("Update output and source metadata using SourceID.");
                             fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
                             fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
                             fields.citeScore = response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric'];
                             fields.sjr = response[2].data['serial-metadata-response']['entry'][0]['SJRList']['SJR'][0]['$'];
-                            console.log("Update output and source metadata using SourceID.");
                             this.saveItem(fields, "outputMetaData")
                         }).catch((error) => {
                             console.log(error)
@@ -574,6 +573,7 @@
                             axios.get(scopusURL, {scopusHeaders}),
                             axios.get(elsiverURL, {scopusHeaders})
                         ]).then((response) => {
+                            console.log("Update output and source metadata using ISSN.");
                             fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
                             if (item.type === "Journal") {
                                 fields.issn = response[0].data.message["ISSN"][0];
@@ -585,7 +585,6 @@
                             }
                             fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
                             fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
-                            console.log("Update output and source metadata using ISSN.");
                             this.saveItem(fields, "outputMetaData")
                         }).catch((error) => {
                             console.log(error)
@@ -600,6 +599,7 @@
                                 }
                             })
                         ]).then((response) => {
+                            fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
                             fields.id = item.id;
                             fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
                             if (item.type === "Journal") {
@@ -609,7 +609,6 @@
                                 fields.isbn = response[0].data.message["ISBN"][0];
                             }
                             fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
-                            fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
                             console.log("Update output metadata using doi.");
                             this.saveItem(fields, "outputMetaData")
                         }).catch((error) => {
