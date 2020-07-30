@@ -253,7 +253,9 @@
                                                     <v-checkbox v-model="editedItem.ref" label="Submit to REF?"></v-checkbox>
                                                 </v-col>
                                                 <v-col cols="12" sm="12">
-                                                    <v-textarea auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
+                                                    <v-textarea rows="1" :rules="[() => {
+                                                        const count = editedItem.hundredWords.match(/\w+/g).length.toString();
+                                                        return editedItem.hundredWords.match(/\w+/g).length >=100 || count + '/100'}, () => editedItem.hundredWords.match(/\w+/g).length <=100 || 'Max 100 words']" auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
                                                 </v-col>
                                                 <v-col>
                                                     <div>
@@ -305,6 +307,14 @@
                     snackColor: '',
                     snackText: '',
                     sortBy: 'rank',
+                    value: '',
+                    rules: {
+                        counter: value => {
+                            const count = value.match(/\w+/g).length.toString()
+                            return value.match(/\w+/g).length >=100 || count + "/100"
+                            },
+                        max: value => value.match(/\w+/g).length <=100 || "Max 100 words"
+                    },
                     headers: [{ 
                         text: '', 
                         value: 'data-table-expand'
