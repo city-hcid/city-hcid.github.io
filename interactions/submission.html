@@ -13,6 +13,7 @@
     <script defer type="text/javascript" src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
     <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script defer type="text/javascript" src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script defer type="text/javascript" src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
     <script defer type="text/javascript" src="js/vue_components.js"></script>
     <script defer type="text/javascript" src="js/vue_submission.js"></script>
@@ -142,7 +143,10 @@
                                                 <div class="d-flex flex-row" v-if="item['fields']['Original submission']">
                                                     <div class="p-2 align-items-center" v-for="file in item['fields']['Original submission']">
                                                         <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                        <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
+                                                        <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']">
+                                                            <!-- <i class="material-icons md-48 text-muted">insert_drive_file</i> -->
+                                                            <i style="font-size: 32px" class="fas fa-file md-48 mx-2 text-muted"></i>
+                                                        </a></span>
                                                     </div>
                                                 </div>
                                             </td>
@@ -160,7 +164,10 @@
                                                 <div class="d-flex flex-row" v-if="item['fields']['Final text']">
                                                     <div class="p-2 align-items-center" v-for="file in item['fields']['Final text']">
                                                         <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                        <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><i class="material-icons md-48 text-muted">insert_drive_file</i></a></span>
+                                                        <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']">
+                                                            <!-- <i class="material-icons md-48 text-muted">insert_drive_file</i> -->
+                                                            <i style="font-size: 32px" class="fas fa-file md-48 mx-2 text-muted"></i>
+                                                        </a></span>
                                                     </div>
                                                 </div>
                                                 <div v-else>
