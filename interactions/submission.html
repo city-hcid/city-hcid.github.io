@@ -145,7 +145,7 @@
                                                         <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']">
                                                             <!-- <i class="material-icons md-48 text-muted">insert_drive_file</i> -->
-                                                            <i style="font-size: 32px" class="fas fa-file md-48 mx-2 text-muted"></i>
+                                                            <i style="font-size: 32px" class="fas fa-file md-48 mx-2"></i>
                                                         </a></span>
                                                     </div>
                                                 </div>
@@ -166,7 +166,7 @@
                                                         <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']">
                                                             <!-- <i class="material-icons md-48 text-muted">insert_drive_file</i> -->
-                                                            <i style="font-size: 32px" class="fas fa-file md-48 mx-2 text-muted"></i>
+                                                            <i style="font-size: 32px" class="fas fa-file md-48 mx-2"></i>
                                                         </a></span>
                                                     </div>
                                                 </div>
@@ -243,8 +243,10 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div class="d-flex flex-row" v-if="item['fields']['Graphics']">
                                                     <div class="p-2 align-items-center" v-for="graphic in graphics">
-                                                        <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                        <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><i class="material-icons md-48 text-muted">photo_size_select_actual</i></a></span>
+                                                        <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']">
+                                                            <i style="font-size: 32px" class="fas fa-file-image md-48"></i>
+                                                        </a></span>
                                                     </div>
                                                 </div>
                                                 <div v-else>
