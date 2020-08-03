@@ -1,6 +1,6 @@
 AOS.init();
 
-$(function() { // Shorthand for $( document ).ready()
+$(function() {
     $('.dropdown-trigger').dropdown({
         hover: true
     });
@@ -19,25 +19,35 @@ var app = new Vue({
     },
     methods: {
         loadItems: function() {
-            let liveProjectsURL = "https://api.airtable.com/v0/" + app_id + "/projects?view=live&sortField=project-name&sortDirection=asc";
-            let archiveProjectsURL = "https://api.airtable.com/v0/" + app_id + "/projects?view=archive&sortField=project-name&sortDirection=asc";
+            let url = '';
+            if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
+                url = '../.netlify/functions/hcidFn'
+            } else {
+                url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidFn'
+            };
             var self = this;
             self.liveItems = [];
             self.archiveItems = [];
             axios.all([
-                axios.get(liveProjectsURL, {
-                    headers: {
-                        Authorization: "Bearer " + app_key
+                axios.get(url, {
+                    params: {
+                        table: encodeURI('projects'),
+                        view: encodeURI('live'),
+                        fields: encodeURI('project-name,image-url,project-url,long-name,about,lead,lead-url,members,members-str,lead-str,research-theme'),
+                        sort: encodeURI('{"field":"project-name","direction":"asc"}')
                     }
                 }),
-                axios.get(archiveProjectsURL, {
-                    headers: {
-                        Authorization: "Bearer " + app_key
+                axios.get(url, {
+                    params: {
+                        table: encodeURI('projects'),
+                        view: encodeURI('archive'),
+                        fields: encodeURI('project-name,image-url,project-url,long-name,about,lead,lead-url,members,members-str,lead-str,research-theme'),
+                        sort: encodeURI('{"field":"project-name","direction":"asc"}')
                     }
                 })
             ]).then(function(response) {
-                self.liveItems = response[0].data.records;
-                self.archiveItems = response[1].data.records;
+                self.liveItems = response[0].data;
+                self.archiveItems = response[1].data;
             }).catch(function(error) {
                 console.log(error)
             })

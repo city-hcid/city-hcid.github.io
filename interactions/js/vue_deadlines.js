@@ -19,7 +19,7 @@ var appForum = new Vue({
     methods: {
         loadItems: function() {
             let editors_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=forum_editors&fields%5B%5D=Name&fields%5B%5D=First%20Name&fields%5B%5D=Regular%20content%20name&fields%5B%5D=ID&fields%5B%5D=regular-content-name";
-            let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming&fields%5B%5D=months&fields%5B%5D=year&fields%5B%5D=Debate&fields%5B%5D=view-id&fields%5B%5D=Forum%20editors&fields%5B%5D=reg-deadline";
+            let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming&fields%5B%5D=months&fields%5B%5D=year&fields%5B%5D=dialogue&fields%5B%5D=view-id&fields%5B%5D=Forum%20editors&fields%5B%5D=reg-deadline";
             let self = this;
             axios.all([
                 axios.get(editors_url, {
@@ -58,7 +58,7 @@ var appColumnists = new Vue({
     methods: {
         loadItems: function() {
             let columnists_url = "https://api.airtable.com/v0/" + app_id + "/Editors%20%26%20Authors?view=columnists&fields%5B%5D=Name&fields%5B%5D=First%20Name&fields%5B%5D=Regular%20content%20name&fields%5B%5D=ID&fields%5B%5D=regular-content-name";
-            let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming&fields%5B%5D=months&fields%5B%5D=year&fields%5B%5D=Debate&fields%5B%5D=view-id&fields%5B%5D=Columnists&fields%5B%5D=reg-deadline";
+            let issues_url = "https://api.airtable.com/v0/" + app_id + "/Issues?view=Upcoming&fields%5B%5D=months&fields%5B%5D=year&fields%5B%5D=dialogue&fields%5B%5D=view-id&fields%5B%5D=Columnists&fields%5B%5D=reg-deadline";
             let self = this;
             axios.all([
                 axios.get(columnists_url, {

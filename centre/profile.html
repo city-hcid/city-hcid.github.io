@@ -24,7 +24,7 @@
 <body>
     <template-header id="header" subtitle="" subhead="profile" page="Members"></template-header>
     <main>
-        <template-profile id="profile" v-for="(item, index) in items" v-if="index==0" :item="item.fields"></template-profile>
+        <template-profile id="profile" v-for="item in items" :item="item"></template-profile>
     </main>
     <template-footer id="footer"></template-footer>
 </body>

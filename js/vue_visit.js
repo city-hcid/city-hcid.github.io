@@ -19,14 +19,21 @@ var app = new Vue({
         loadItems: function() {
             var self = this;
             this.items = [];
-            axios.get(
-                "https://api.airtable.com/v0/" + app_id + "/accomodation?sortField=Name&sortDirection=asc", {
-                    headers: {
-                        Authorization: "Bearer " + app_key
-                    }
+            let url = '';
+            if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
+                url = '../.netlify/functions/hcidFn/hcidFn.js'
+            } else {
+                url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidFn/hcidFn.js'
+            };
+            axios.get(url, {
+                params: {
+                    table: encodeURI('accomodation'),
+                    view: encodeURI('short-list'),
+                    fields: encodeURI('Name,Note,url'),
+                    sort: encodeURI('{"field":"Name","direction":"asc"}')
                 }
-            ).then(function(response) {
-                self.items = response.data.records
+            }).then(function(response) {
+                self.items = response.data
             }).catch(function(error) {
                 console.log(error)
             })

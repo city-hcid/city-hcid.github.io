@@ -83,11 +83,11 @@
                     </div>
                     <div id="app">
                         <div class="mb-5" id="current">
-                            <template-current v-for="item in items" v-if="item['fields']['status'][0]=='phd'" :item="item.fields"></template-current>
+                            <template-current v-for="item in items" v-if="item['status'][0]=='phd'" :item="item"></template-current>
                         </div>
                         <div class="mb-5" id="past">
                             <div class="row">
-                                <template-past v-for="item in items" v-if="item['fields']['status'].includes('phd') && item['fields']['status'].includes('alum')" :item="item.fields" post="Previous Staff and Students"></template-past>
+                                <template-past v-for="item in items" v-if="item['status'].includes('phd') && item['status'].includes('alum')" :item="item" post="Previous Staff and Students"></template-past>
                             </div>
                         </div>
                     </div>

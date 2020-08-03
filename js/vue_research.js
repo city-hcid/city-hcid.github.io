@@ -18,25 +18,35 @@ var app = new Vue({
     },
     methods: {
         loadItems: function() {
-            let projectsURL = "https://api.airtable.com/v0/" + app_id + "/projects?filterByFormula=NOT%28%7Bresearch-theme%7D%20%3D%20%27%27%29";
-            let pubsURL = "https://api.airtable.com/v0/" + app_id + "/select-pubs?sort%5B0%5D%5Bfield%5D=year";
+            let url = '';
+            if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
+                url = '../.netlify/functions/hcidFn/hcidFn.js'
+            } else {
+                url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidFn/hcidFn.js'
+            };
             var self = this;
             self.items = [];
             self.pubs = [];
             axios.all([
-                axios.get(projectsURL, {
-                    headers: {
-                        Authorization: "Bearer " + app_key
+                axios.get(url, {
+                    params: {
+                        table: encodeURI('projects'),
+                        view: encodeURI('live'),
+                        fields: encodeURI('project-name,project-url,research-theme'),
+                        sort: encodeURI('{"field":"project-name","direction":"asc"}')
                     }
                 }),
-                axios.get(pubsURL, {
-                    headers: {
-                        Authorization: "Bearer " + app_key
+                axios.get(url, {
+                    params: {
+                        table: encodeURI('publications'),
+                        view: encodeURI('selected'),
+                        fields: encodeURI('title,author,authors,doi,year,journal-conference,type,theme'),
+                        sort: encodeURI('{"field":"year","direction":"asc"}')
                     }
                 })
             ]).then(function(response) {
-                self.items = response[0].data.records;
-                self.pubs = response[1].data.records;
+                self.items = response[0].data;
+                self.pubs = response[1].data
             }).catch(function(error) {
                 console.log(error)
             })
@@ -44,16 +54,16 @@ var app = new Vue({
     }
 })
 
-Vue.component('template-listing', function(resolve, reject) {
+Vue.component('template-projects', function(resolve, reject) {
     setTimeout(function() {
         resolve({
-            props: ['theme', 'item', 'name', 'url'],
-            template: `<span v-if="item.includes(theme)"><a v-bind:href="url" target="_blank">{{ name }}</a>, </span>`
+            props: ['item', 'theme'],
+            template: `<span v-if="item['research-theme'].includes(theme)"><a href="item['project-url']" target="_blank">{{ item['project-name'] }}</a>, </span>`
         })
     }, 200)
 })
 
-Vue.component('template-publication', function(resolve, reject) {
+Vue.component('template-publications', function(resolve, reject) {
     setTimeout(function() {
         resolve({
             props: ['pub', 'theme'],

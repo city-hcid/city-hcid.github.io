@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-content>
+                <v-container>
+                    <v-row justify="center">
+                        <v-col cols="12">
+                            <div class="mb-5">
+                                <h1 class="mt-5 font-weight-bold"> REF 2021 Outputs: <span v-for="(item, index) in items" v-if="index == 0" class="font-weight-black">Specialism {{item.specialism}}</span></h1>
+                            </div>
+                        </v-col>
+                        <v-col cols="12" md="11">
+                            <div>
+                                <p v-for="(item, index) in items" v-if="index == 0">Below is a list of <span class="font-italic">{{item.specialism}}</span> outputs that could potentially be included as part of City's <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a> (i.e., Computer Science), <a href="https://ref.ac.uk/about/" target="_blank">REF 2021</a> submission.</p>
+                                <p>In the table, the checked (
+                                    <v-icon small color="primary">mdi-check</v-icon>) outputs (in the top half of the table) are currently shortlisted as candidates for submission. A long-list is included if you think an output might be missing.</p>
+                                <p>
+                                    For the eternal review process and, eventually, in order to identify outputs for our 2021 REF submission, Pplease rank the outputs from highest (1) to lowest. This is not intended to be indicative of individual staff member's work, but purely for the purposes of identifying strong REF output candidates.
+                                </p>
+                            </div>
+                        </v-col>
+                    </v-row>
+                    <v-row justify="center">
+                        <v-col cols="12">
+                            <v-card>
+                                <v-data-table dense disable-pagination hide-default-footer show-expand :sort-by="['ref']" group-by="ref" group-desc :headers="headers" :items="items" mobile-breakpoint="800" class="elevation-0" :single-expand="singleExpand" :expanded.sync="expanded">
+                                    <template v-slot:group.header="{items, isOpen, toggle}">
+                                        <th colspan="100%">
+                                            <v-btn text icon small color="black" @click="toggle">
+                                                <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon>
+                                            </v-btn>
+                                            <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed for REF</span>
+                                            <span v-else class="mx-2 subtitle-2">Long-listed</span>
+                                        </th>
+                                    </template>
+                                    <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
+                                        <v-icon small @click="expand(true)" v-if="!isExpanded" color="primary">mdi-arrow-right</v-icon>
+                                        <v-icon small @click="expand(false)" v-if="isExpanded" color="primary">mdi-arrow-bottom-right</v-icon>
+                                    </template>
+                                    <template v-slot:item.actions="props">
+                                        <div class="text-center text-truncate">
+                                            <v-icon small class="mr-2" @click="showEditDialog(props.item),open()" color="primary">mdi-pencil</v-icon>
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.author="props">
+                                        <div v-if="props.item.ref">
+                                            <span v-for="first in props.item.firstName">
+                                                {{ first }}
+                                            </span>&nbsp;
+                                            <span v-for="last in props.item.lastName">
+                                                {{ last }}
+                                            </span>
+                                        </div>
+                                        <div v-else class="text--disabled">
+                                            <span v-for="first in props.item.firstName">
+                                                {{ first }}
+                                            </span>&nbsp;
+                                            <span v-for="last in props.item.lastName">
+                                                {{ last }}
+                                            </span>
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.rank="props">
+                                        <v-edit-dialog :return-value.sync="props.item.rank" large @save="saveRank(props.item,'rank'),save()" @cancel="cancel" @open="open">
+                                            <div v-if="props.item.ref" class="text-truncate text-decoration-underline blue--text text--darken-2">
+                                                {{ props.item.rank }}
+                                            </div>
+                                            <template v-slot:input>
+                                                <v-text-field v-model="props.item.rank" label="Edit" hint="Ent number 1 or above. 1 is highest" flat single-line autofocus>
+                                                </v-text-field>
+                                            </template>
+                                        </v-edit-dialog>
+                                    </template>
+                                    <template v-slot:item.rf="props">
+                                        <div class="text-truncate">
+                                            <v-icon small class="mr-2" v-if="props.item.ref" color="primary">mdi-check</v-icon>
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.output="props">
+                                        <div v-if="props.item.ref">
+                                            <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                        </div>
+                                        <div v-else class="text--disabled">
+                                            <a class="blue-grey--text text--lighten-3 font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.hundredwords="props">
+                                        <div v-if="props.item.ref">
+                                            <p>{{props.item.hundredWords}}</p>
+                                        </div>
+                                        <div v-else class="text--disabled">
+                                            {{props.item.hundredWords}}
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.crossref="props">
+                                        <div v-if="props.item.ref">
+                                            <v-tooltip bottom>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <span v-bind="attrs" v-on="on"><a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a></span>
+                                                </template>
+                                                <span>From CrossRef api.<br>Click for Google Scholar result.<p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.
+                                                    <p>
+                                                </span>
+                                            </v-tooltip>
+                                        </div>
+                                        <div v-else class="text--disabled">
+                                            <v-tooltip bottom>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <span v-bind="attrs" v-on="on"><a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a></span>
+                                                </template>
+                                                <span>From CrossRef api.<br>Click for Google Scholar result.<p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.
+                                                    <p>
+                                                </span>
+                                            </v-tooltip>
+                                        </div>
+                                    </template>
+                                    <template v-slot:expanded-item="{ headers, item }">
+                                        <td :colspan="headers.length" :id="item.lastName + item.doi">
+                                            <div class="mt-2">
+                                                <p><strong>Author(s):</strong> {{ item.authors }}<br>
+                                                    <strong>Year:</strong> {{ item.year }}<br>
+                                                    <strong>Title:</strong> {{ item.title }}<br>
+                                                    <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}</p>
+                                                <p v-if="item.crossRef"><strong>Citations</strong> (using the <a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong> (needs valid doi).<br>
+                                                    See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </template>
+                                </v-data-table>
+                                <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+                                    <div class="text-center">{{ snackText }}</div>
+                                </v-snackbar>
+                                <v-dialog v-model="dialog" max-width="640px">
+                                    <v-card>
+                                        <v-card-title>
+                                            <div v-if="editedItem.id" class="left text-truncate">Edit output</div>
+                                            <div v-else class="left text-truncate">New REF Output</div>
+                                            <div class="right mx-1">
+                                                <v-icon small class="text-right" @click="closeDialog()" color="primary">mdi-close</v-icon>
+                                            </div>
+                                        </v-card-title>
+                                        <v-card-text>
+                                            <v-row>
+                                                <v-col cols="12" sm="12">
+                                                    <v-text-field v-model="editedItem.authors" label="Authors"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" sm="12">
+                                                    <v-textarea rows="1" auto-grow v-model="editedItem.title" label="Title"></v-textarea>
+                                                </v-col>
+                                                <v-col cols="12" sm="12">
+                                                    <v-textarea rows="1" auto-grow v-model="editedItem.source" label="Conference or Journal"></v-textarea>
+                                                </v-col>
+                                                <v-col cols="12" sm="12">
+                                                    <v-textarea rows="1" auto-grow v-model="editedItem.doi" label="DOI (just the number not the http link)"></v-textarea>
+                                                </v-col>
+                                                <v-col cols="12" sm="3">
+                                                    <v-select v-model="editedItem.type" :items="typeSelect" label="Type"></v-select>
+                                                </v-col>
+                                                <v-col cols="12" sm="3">
+                                                    <v-text-field v-model="editedItem.year" label="Year"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="6" sm="3">
+                                                    <v-text-field v-model="editedItem.rank" label="Rank"></v-text-field>
+                                                </v-col>
+                                                <v-col cols="6" sm="3" class="pl-5">
+                                                    <v-checkbox v-model="editedItem.ref" label="Submit to REF?"></v-checkbox>
+                                                </v-col>
+                                                <v-col cols="12" sm="12">
+                                                    <v-textarea auto-grow v-model="editedItem.hunderdWords" label="100 word summary"></v-textarea>
+                                                </v-col>
+                                                <v-col>
+                                                    <div>
+                                                        <p class="text-right">To upload any changes to the database, press "Save".</p>
+                                                    </div>
+                                                </v-col>
+                                            </v-row>
+                                        </v-card-text>
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+                                            <v-btn color="blue" text @click="showEditDialog(),close()">Close</v-btn>
+                                            <v-btn color="blue" text @click="saveItem(editedItem),save()">Save</v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-dialog>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-content>
+        </v-app>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@latest/dist/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vuetify@latest/dist/vuetify.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        const apiToken = "keyAKLpRf8ec2XWH9"; // "key8l5YZtQ9FyUoxF"
+        const airTableApp = "appunQ0V4X7SQIIk7";
+        const airTableName = "tblDN6QUoVueC6fkg";
+        const airTableView = "all";
+        let specialism = "";
+
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() {
+                return {
+                    expanded: [],
+                    singleExpand: true,
+                    snack: false,
+                    snackColor: '',
+                    snackText: '',
+                    headers: [{
+                        text: '',
+                        value: 'data-table-expand'
+                    }, {
+                        text: 'Primary Author',
+                        value: 'author',
+                        width: '15%',
+                        sortable: false
+                    }, {
+                        text: 'Rank',
+                        value: 'rank',
+                        align: 'center',
+                        width: '10%'
+                    }, {
+                        text: 'REF',
+                        value: 'rf',
+                        width: '5%',
+                        sortable: false
+                    }, {
+                        text: 'Output',
+                        value: 'output',
+                        width: '20%',
+                        sortable: false
+                    }, {
+                        text: "100 word summary",
+                        value: "hundredwords",
+                        sortable: false,
+                        width: '40%'
+                    }, {
+                        text: "Citations",
+                        value: "crossref",
+                        align: 'center',
+                        sortable: true,
+                        width: '10%'
+                    }, {
+                        text: 'Edit',
+                        value: 'actions',
+                        sortable: false
+                    }],
+                    items: [],
+                    cites: "",
+                    typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
+                    dialog: false, // used to toggle the dialog
+                    editedItem: {} // empty holder for create/update ops
+                }
+            },
+            mounted() {
+                this.loadItems()
+            },
+            methods: {
+                showEditDialog(item) {
+                    this.editedItem = item || {}
+                    this.dialog = !this.dialog
+                },
+                closeDialog() { this.dialog = false },
+                loadItems() {
+                    let url = new URL(window.location.href);
+                    if (url.searchParams.get("spec") == null) {
+                        specialism = '';
+                    } else {
+                        specialism = url.searchParams.get("spec");
+                    }
+                    this.items = [];
+                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=refScore";
+                    const sort = "sort%5B0%5D%5Bfield%5D=rank&sort%5B0%5D%5Bdirection%5D=asc";
+                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22${specialism}%22%2C%7Bspecialism%7D)`;
+                    axios.get(submissionURL, {
+                        headers: {
+                            Authorization: "Bearer " + apiToken
+                        }
+                    })
+                        .then((response) => {
+                            this.items = response.data.records.map((item) => {
+                                return {
+                                    id: item.id,
+                                    ...item.fields
+                                }
+                            })
+                            for (let i = 0; i < this.items.length; i++) {
+                                if (this.items[i].doi) {
+                                    this.citeCount(this.items[i]);
+                                    this.scopusCount(this.items[i])
+                                }
+                            }
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                },
+                saveItem(item) {
+                    /* this is used for both creating and updating API records
+                     the default method is POST for creating a new item */
+                    let data = item
+                    let method = "post"
+                    let url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}`
+                    let id = item.id
+
+                    if (id) {
+                        // airtable API needs the data to be placed in fields object
+                        data = {
+                            fields: item
+                        }
+                        // if the item has an id, we're updating an existing item
+                        method = "patch"
+                        url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`
+
+                        // must remove id from the data for airtable patch to work
+                        delete data.fields.id
+                        delete data.fields.firstName
+                        delete data.fields.lastName
+                        delete data.fields.authorName
+                        //delete data.fields.Centre
+                        delete data.fields.authorID
+                    } else {
+                        data = {
+                            records: item
+                        }
+                    }
+
+                    // save the record
+                    axios[method](url,
+                        data, {
+                        headers: {
+                            Authorization: "Bearer " + apiToken,
+                            "Content-Type": "application/json"
+                        }
+                    }
+                    ).then(response => {
+                        if (response.data && response.data.id) {
+                            this.editedItem.id = response.data.id
+                            if (!id) {
+                                this.items.push(this.editedItem)
+                            }
+                            this.editedItem = {}
+                        }
+                        this.dialog = !this.dialog
+                        setTimeout(function () {
+                            location.reload();
+                        }, 500);
+                    }).catch(error => {
+                        console.log(error.response)
+                    })
+                },
+                deleteItem(item) {
+                    let id = item.id
+                    let idx = this.items.findIndex(item => item.id === id)
+                    if (confirm('Are you sure you want to delete this?')) {
+                        this.items.splice(idx, 1)
+                    }
+                },
+                saveRank(item, key) {
+                    this.snack = true
+                    this.snackColor = 'success'
+                    this.snackText = 'Change uploaded'
+                    let id = item.id
+                    let data = item
+                    let url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`
+
+                    if (id && key == "rank") {
+                        data = {
+                            fields: {
+                                rank: item.rank
+                            }
+                        }
+                        //console.log(data);
+                        url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`
+                        // if the item has an id, we're updating an existing item
+                        //method = "patch"
+
+
+                        // must remove id from the data for airtable patch to work
+                        delete data.fields.id
+                        //delete data.fields.firstName
+                        //delete data.fields.lastName
+                        delete data.fields.authorName
+                        //delete data.fields.Centre
+                        delete data.fields.authorID
+                        //console.log(data);
+                    } else if (id && key == "crossRef") {
+                        data = {
+                            fields: {
+                                crossRef: item.crossRef
+                            }
+                        }
+                    } else if (id) {
+                        data = {
+                            fields: item
+                        }
+                    }
+                    else {
+                        data = {
+                            records: item
+                        };
+                        url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}`
+                    }
+
+                    axios.patch(url,
+                        data, {
+                        headers: {
+                            Authorization: "Bearer " + apiToken,
+                            "Content-Type": "application/json"
+                        }
+                    }
+                    ).then(response => {
+                    }).catch(error => {
+                        console.log(error.response)
+                    })
+                },
+                save() {
+                    this.snack = true
+                    this.snackColor = 'success'
+                    this.snackText = 'Change uploaded'
+                },
+                cancel() {
+                    this.snack = true
+                    this.snackColor = 'error'
+                    this.snackText = 'Not uploaded'
+                },
+                open() {
+                    this.snack = true
+                    this.snackColor = 'info'
+                    this.snackText = 'Dialog opened'
+                },
+                close() {
+                    this.snack = true
+                    this.snackColor = 'error'
+                    this.snackText = 'Not uploaded'
+                },
+                citeCount(item) {
+                    let doiURL = "https://api.crossref.org/works/" + item.doi;
+                    axios.get(doiURL)
+                        .then((response) => {
+                            item.crossRef = response.data.message["is-referenced-by-count"];
+                            //console.log(item.title + ": " + item.CrossRef);
+                            this.saveRank(item, "crossRef")
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                },
+                scopusCount(item) {
+                    const elKey = "7f1899f42f07990cb442322cb322c588";
+                    let scopusApiURL = "https://api.elsevier.com/content/search/scopus?apiKey=7f1899f42f07990cb442322cb322c588&query=DOI(" + item.doi + ")&field=citedby-count";
+                    axios.get(scopusApiURL, {
+                        headers: {
+                            Authorization: "Bearer " + elKey,
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+                        }
+                    }
+                    ).then((response) => {
+                        //item.crossRef = response.data.message["is-referenced-by-count"];
+                        console.log(response.data["search-results"]["entry"][0]["citedby-count"]);
+                        //this.saveRank(item, "crossRef")
+                    }).catch((error) => {
+                        console.log(error)
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

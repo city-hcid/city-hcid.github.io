@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
@@ -70,8 +72,11 @@
                             </template> -->
                                     <v-card>
                                         <v-card-title>
-                                            <span v-if="editedItem.id" class="text-truncate">Edit output</span>
-                                            <span v-else>New REF Output</span>
+                                            <div v-if="editedItem.id" class="left text-truncate">Edit output</div>
+                                            <div v-else class="left text-truncate">New REF Output</div>
+                                            <div class="right mx-1">
+                                                <v-icon small class="text-right" @click="closeDialog()" color="primary">mdi-close</v-icon>
+                                            </div>
                                         </v-card-title>
                                         <v-card-text>
                                             <v-row>
@@ -94,13 +99,13 @@
                                                     <v-checkbox v-model="editedItem.ref" label="Submit to REF?"></v-checkbox>
                                                 </v-col>
                                                 <v-col cols="12" sm="12">
-                                                    <v-textarea auto-grow v-model="editedItem.hunderdWords" label="100 word summary"></v-textarea>
+                                                    <v-textarea auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
                                                 </v-col>
                                             </v-row>
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
-                                            <v-btn color="blue" text @click="showEditDialog()">Cancel</v-btn>
+                                            <v-btn color="blue" text @click="showEditDialog()">Close</v-btn>
                                             <v-btn color="blue" text @click="saveItem(editedItem)">Save</v-btn>
                                         </v-card-actions>
                                     </v-card>
@@ -171,11 +176,11 @@
         </v-app>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@latest/dist/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vuetify@latest/dist/vuetify.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script>
-        const apiToken = "key8l5YZtQ9FyUoxF"
+        const apiToken = "keyAKLpRf8ec2XWH9" // "key8l5YZtQ9FyUoxF"
         const airTableApp = "appunQ0V4X7SQIIk7"
         const airTableName = "tblDN6QUoVueC6fkg"
         const airTableView = "submissions-provisional"
@@ -200,7 +205,7 @@
                         width: '25%'
                     }, {
                         text: "100 word summary",
-                        value: "hunderdWords",
+                        value: "hundredWords",
                         sortable: false,
                         width: '40%'
                     }, {
@@ -222,6 +227,7 @@
                     this.editedItem = item || {}
                     this.dialog = !this.dialog
                 },
+                closeDialog() {this.dialog = false},
                 loadItems() {
                     let url = new URL(window.location.href);
                     if (url.searchParams.get("au") == null) {
@@ -230,7 +236,7 @@
                         authorID = url.searchParams.get("au");
                     }
                     this.items = [];
-                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hunderdWords&filterByFormula=FIND(%22${authorID}%22%2C%7BauthorID%7D)`;
+                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&filterByFormula=FIND(%22${authorID}%22%2C%7BauthorID%7D)`;
                     axios.get(submissionURL, {
                             headers: {
                                 Authorization: "Bearer " + apiToken
