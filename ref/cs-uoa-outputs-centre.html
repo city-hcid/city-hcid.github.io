@@ -24,12 +24,12 @@
                         </v-col>
                         <v-col cols="12" md="11">
                             <div>
-                                <p v-for="(item, index) in items" v-if="index == 0">Below is a list of <span class="font-italic">{{item.specialism}}</span> outputs that could potentially be included as part of City's <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a> (i.e., Computer Science), <a href="https://ref.ac.uk/about/"
-                                        target="_blank">REF 2021</a> submission.</p>
+                                <p v-for="(item, index) in items" v-if="index == 0">Below is a list of <span class="font-italic">{{item.specialism}}</span> outputs that could potentially be included as part of City's <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a>                                    (i.e., Computer Science), <a href="https://ref.ac.uk/about/" target="_blank">REF 2021</a> submission.</p>
                                 <p>In the table, the checked (
                                     <v-icon small color="primary">mdi-check</v-icon>) outputs (in the top half of the table) are currently shortlisted as candidates for submission. A long-list is included if you think an output might be missing.</p>
                                 <p>
-                                    For the eternal review process and, eventually, in order to identify outputs for our 2021 REF submission, Pplease rank the outputs from highest (1) to lowest. This is not intended to be indicative of individual staff member's work, but purely for the purposes of identifying strong REF output candidates. 
+                                    For the eternal review process and, eventually, in order to identify outputs for our 2021 REF submission, Pplease rank the outputs from highest (1) to lowest. This is not intended to be indicative of individual staff member's work, but purely for the
+                                    purposes of identifying strong REF output candidates.
                                 </p>
                             </div>
                         </v-col>
@@ -39,28 +39,14 @@
                         <v-col cols="12">
                             <v-card>
 
-                                <v-data-table
-                                    disable-pagination 
-                                    hide-default-footer 
-                                    show-expand 
-                                    group-by="ref" 
-                                    group-desc 
-                                    :sort-by="sortBy" 
-                                    multi-sort 
-                                    mobile-breakpoint="800" 
-                                    class="elevation-0" 
-                                    :loading="loading" 
-                                    :headers="headers" 
-                                    :items="items" 
-                                    :single-expand="singleExpand" 
-                                    :expanded.sync="expanded">
+                                <v-data-table disable-pagination hide-default-footer show-expand group-by="ref" group-desc :sort-by="sortBy" multi-sort mobile-breakpoint="800" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand" :expanded.sync="expanded">
 
                                     <!-- Expand icon/column -->
                                     <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
                                         <v-icon small @click="expand(true)" v-if="!isExpanded" color="primary">mdi-arrow-right</v-icon>
                                         <v-icon small @click="expand(false)" v-if="isExpanded" color="primary">mdi-arrow-bottom-right</v-icon>
                                     </template>
-                                    
+
                                     <!-- Primary Author Column -->
                                     <template v-slot:item.author="props">
                                         <div v-if="props.item.ref">
@@ -70,7 +56,7 @@
                                             <span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span>
                                         </div>
                                     </template>
-                                    
+
                                     <!-- Rank Column -->
                                     <template v-slot:item.rank="props">
                                         <v-tooltip bottom>
@@ -83,12 +69,12 @@
                                                         <v-text-field v-model="props.item.rank" label="Edit" hint="Ent number 1 or above. 1 is highest" flat single-line autofocus>
                                                         </v-text-field>
                                                     </template>
-                                                </v-edit-dialog>
-                                            </template>
-                                            <p class="text-center">Select to enter rank -<br>rank order outputs<br>starting from 1 (highest)</p>
-                                        </v-tooltip>
+                                    </v-edit-dialog>
                                     </template>
-                                    
+                                    <p class="text-center">Select to enter rank -<br>rank order outputs<br>starting from 1 (highest)</p>
+                                    </v-tooltip>
+                                    </template>
+
                                     <!-- REF Column -->
                                     <template v-slot:item.rf="props">
                                         <v-tooltip bottom>
@@ -97,10 +83,11 @@
                                                     <v-icon small class="mr-2" v-if="props.item.ref" color="black">mdi-check</v-icon>
                                                 </div>
                                             </template>
-                                            <p class="text-center">Shortlisted for REF.<br>Check/uncheck in edit pane ( <v-icon small class="mr-2" color="white">mdi-pencil</v-icon>)</p>
-                                        </v-tooltip>
+                                    <p class="text-center">Shortlisted for REF.<br>Check/uncheck in edit pane (
+                                        <v-icon small class="mr-2" color="white">mdi-pencil</v-icon>)</p>
+                                    </v-tooltip>
                                     </template>
-                                    
+
                                     <!-- Ouput Column -->
                                     <template v-slot:item.output="props">
                                         <p v-if="props.item.ref">
@@ -111,7 +98,7 @@
                                             {{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em> <a v-if="props.item.doi" class="blue-grey--text text--lighten-3" :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
                                         </p>
                                     </template>
-                                    
+
                                     <!-- Hundred Words Column -->
                                     <template v-slot:item.hundredwords="props">
                                         <div>
@@ -119,7 +106,7 @@
                                             <p v-else class="text--disabled">{{props.item.hundredWords}}</p>
                                         </div>
                                     </template>
-                                    
+
                                     <!-- Citations column -->
                                     <template v-slot:item.crossref="props">
                                         <span>
@@ -130,28 +117,28 @@
                                                         <a v-else class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
                                                     </span>
                                                 </template>
-                                                <span>From CrossRef api.<br>
+                                    <span>From CrossRef api.<br>
                                                     Click for Google Scholar result.
                                                     <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                 </span>
-                                            </v-tooltip>
-                                        </span>
-                                        <span v-if="props.item.scopus">
+                                    </v-tooltip>
+                                    </span>
+                                    <span v-if="props.item.scopus">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <span v-bind="attrs" v-on="on">
                                                         <span v-if="props.item.ref"> / <a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
-                                                        <span v-else class="text--disabled"> / <a class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
-                                                    </span>
-                                                </template>
-                                                <span>From Elsiver/Scopus api.<br>
+                                    <span v-else class="text--disabled"> / <a class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
+                                    </span>
+                                    </template>
+                                    <span>From Elsiver/Scopus api.<br>
                                                     Click for Google Scholar result.
                                                     <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                 </span>
-                                            </v-tooltip>
-                                        </span>
+                                    </v-tooltip>
+                                    </span>
                                     </template>
-                                    
+
                                     <!-- Source Column -->
                                     <template v-slot:item.sourcescore="props">
                                         <span>
@@ -160,29 +147,29 @@
                                                     <span v-if="props.item.ref" v-bind="attrs" v-on="on" class="text-truncate">{{ props.item.citeScore }}</span>
                                                     <span v-else v-bind="attrs" v-on="on" class="text-truncate text--disabled">{{ props.item.citeScore }}</span>
                                                 </template>
-                                                <p class="text-center">CiteScore: using Elsiver's journal metric</p>
-                                            </v-tooltip>
-                                        </span>
-                                        <span v-if="props.item.sjr">
+                                    <p class="text-center">CiteScore: using Elsiver's journal metric</p>
+                                    </v-tooltip>
+                                    </span>
+                                    <span v-if="props.item.sjr">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <span v-bind="attrs" v-on="on">
                                                         <span v-if="props.item.ref" v-bind="attrs" v-on="on" class="text-truncate"> / {{props.item.sjr}}</span>
-                                                        <span v-else v-bind="attrs" v-on="on" class="text-truncate text--disabled"> / {{props.item.sjr}}</span>
-                                                    </span>
-                                                </template>
-                                                <p class="mt-2 font-italic" target="_blank">SJR: SCImago journal rank</p>
-                                            </v-tooltip>
-                                        </span>
+                                    <span v-else v-bind="attrs" v-on="on" class="text-truncate text--disabled"> / {{props.item.sjr}}</span>
+                                    </span>
                                     </template>
-                                    
+                                    <p class="mt-2 font-italic" target="_blank">SJR: SCImago journal rank</p>
+                                    </v-tooltip>
+                                    </span>
+                                    </template>
+
                                     <!-- Pencil icon / Edit Column -->
                                     <template v-slot:item.actions="props">
                                         <div class="text-center text-truncate">
                                             <v-icon small class="mr-2" @click="showEditDialog(props.item),open('Edit output')" color="primary">mdi-pencil</v-icon>
                                         </div>
                                     </template>
-                                    
+
                                     <!-- Expanded row -->
                                     <template v-slot:expanded-item="{ headers, item }">
                                         <td :colspan="headers.length" :id="item.lastName + item.doi">
@@ -203,7 +190,7 @@
                                             </div>
                                         </td>
                                     </template>
-                                    
+
                                     <!-- Group Header -->
                                     <template v-slot:group.header="{items, isOpen, toggle}">
                                         <th colspan="100%">
@@ -214,9 +201,9 @@
                                             <span v-else class="mx-2 subtitle-2">Long-listed</span>
                                         </th>
                                     </template>
-                                    
+
                                 </v-data-table>
-                                    
+
                                 <!-- Update entry dialog -->
                                 <v-dialog v-model="dialog" max-width="640px">
                                     <v-card>
@@ -253,9 +240,7 @@
                                                     <v-checkbox v-model="editedItem.ref" label="Submit to REF?"></v-checkbox>
                                                 </v-col>
                                                 <v-col cols="12" sm="12">
-                                                    <v-textarea rows="1" :rules="[() => {
-                                                        const count = editedItem.hundredWords.match(/\w+/g).length.toString();
-                                                        return editedItem.hundredWords.match(/\w+/g).length >=100 || count + '/100'}, () => editedItem.hundredWords.match(/\w+/g).length <=100 || 'Max 100 words']" auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
+                                                    <v-textarea rows="1" auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
                                                 </v-col>
                                                 <v-col>
                                                     <div>
@@ -271,7 +256,7 @@
                                         </v-card-actions>
                                     </v-card>
                                 </v-dialog>
-                                
+
                                 <!-- Snack bar save messages -->
                                 <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
                                     <div class="text-center">{{ snackText }}</div>
@@ -311,14 +296,14 @@
                     rules: {
                         counter: value => {
                             const count = value.match(/\w+/g).length.toString()
-                            return value.match(/\w+/g).length >=100 || count + "/100"
-                            },
-                        max: value => value.match(/\w+/g).length <=100 || "Max 100 words"
+                            return value.match(/\w+/g).length >= 100 || count + "/100"
+                        },
+                        max: value => value.match(/\w+/g).length <= 100 || "Max 100 words"
                     },
-                    headers: [{ 
-                        text: '', 
+                    headers: [{
+                        text: '',
                         value: 'data-table-expand'
-                    },{
+                    }, {
                         text: 'Primary Author',
                         value: 'author',
                         width: '12%',
@@ -377,7 +362,7 @@
                     //this.sortBy = ''
                 },
                 closeDialog() {
-                    this.dialog = false; 
+                    this.dialog = false;
                     this.close('Not saved');
                     localStorage.clear(); /***** here debug so cite counts can be retrieved ****/
                     this.sortBy = 'rank'
@@ -390,36 +375,36 @@
                     let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22${specialism}%22%2C%7Bspecialism%7D)`;
                     this.items = [];
                     axios.get(submissionURL, {
-                        headers: {
-                            Authorization: "Bearer " + apiToken
-                        }
-                    })
-                    .then((response) => {
-                        this.items = response.data.records.map((item) => {
-                            return {
-                                id: item.id,
-                                ...item.fields
+                            headers: {
+                                Authorization: "Bearer " + apiToken
                             }
                         })
-                        if (!sessionStorage.loaded) {
-                            for (let i = 0; i < this.items.length; i++) {
-                                if (this.items[i].doi) {
-                                    //this.getOutputMetaData(this.items[i])
-                                    // Only when we want to run all citation counts
+                        .then((response) => {
+                            this.items = response.data.records.map((item) => {
+                                return {
+                                    id: item.id,
+                                    ...item.fields
+                                }
+                            })
+                            if (!sessionStorage.loaded) {
+                                for (let i = 0; i < this.items.length; i++) {
+                                    if (this.items[i].doi) {
+                                        //this.getOutputMetaData(this.items[i])
+                                        // Only when we want to run all citation counts
+                                    }
                                 }
                             }
-                        }
-                        this.loading = false; // Removes table loader graphic
-                    }).catch((error) => {
-                        console.log(error)
-                    })
+                            this.loading = false; // Removes table loader graphic
+                        }).catch((error) => {
+                            console.log(error)
+                        })
                 },
                 saveItem(item, key) {
                     let data = item,
                         method = "patch",
                         id = item.id,
                         url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`;
-                    
+
                     if (key === "rank") {
                         data = {
                             fields: {
@@ -436,7 +421,8 @@
                     } else if (key === "scopus") {
                         data = {
                             fields: {
-                                scopus: item.scopus}
+                                scopus: item.scopus
+                            }
                         }
                     } else if (key === "saveFormItem") {
                         data = {
@@ -469,7 +455,7 @@
                                     delete data.fields.authorID;
                                     //delete data.fields.Centre
                                 }
-                                return  JSON.stringify(data);
+                                return JSON.stringify(data);
                             }]
                         }
                     ).then(response => {
@@ -517,25 +503,25 @@
                     if (item.doi) {
                         let doiURL = "https://api.crossref.org/works/" + item.doi;
                         axios.get(doiURL)
-                        .then((response) => {
-                            item.crossRef = response.data.message["is-referenced-by-count"].toString();
-                            if (item.type === "Journal") {
-                                item.issn = response.data.message["ISSN"][0]
-                            }
-                            if (item.type === "Conference") {
-                                item.isbn = response.data.message["ISBN"][0]
-                            }
-                            this.saveItem(item, "crossRef");
-                            sessionStorage.loaded = 1
-                        }).catch((error) => {
-                            console.log(error)
-                        })
+                            .then((response) => {
+                                item.crossRef = response.data.message["is-referenced-by-count"].toString();
+                                if (item.type === "Journal") {
+                                    item.issn = response.data.message["ISSN"][0]
+                                }
+                                if (item.type === "Conference") {
+                                    item.isbn = response.data.message["ISBN"][0]
+                                }
+                                this.saveItem(item, "crossRef");
+                                sessionStorage.loaded = 1
+                            }).catch((error) => {
+                                console.log(error)
+                            })
                     }
                 },
                 scopusCount(item) {
                     if (item.doi) {
                         const elKey = "7f1899f42f07990cb442322cb322c588";
-                        let scopusApiURL= `https://api.elsevier.com/content/search/scopus?apiKey=${elKey}&query=DOI(${item.doi})&field=citedby-count`;
+                        let scopusApiURL = `https://api.elsevier.com/content/search/scopus?apiKey=${elKey}&query=DOI(${item.doi})&field=citedby-count`;
                         axios.get(scopusApiURL, {
                             headers: {
                                 'Access-Control-Allow-Origin': '*',
@@ -552,8 +538,8 @@
                 getOutputMetaData(item) {
                     const elsiverKey = "7f1899f42f07990cb442322cb322c588";
                     let crossrefURL = `https://api.crossref.org/works/${item.doi}`,
-                        scopusURL= `https://api.elsevier.com/content/search/scopus?apiKey=${elsiverKey}&query=DOI(${item.doi})&field=citedby-count,source-id`,
-                        sourceIDURL= `https://api.elsevier.com/content/serial/title?apiKey=${elsiverKey}&source-id=${item.sourceID}`,
+                        scopusURL = `https://api.elsevier.com/content/search/scopus?apiKey=${elsiverKey}&query=DOI(${item.doi})&field=citedby-count,source-id`,
+                        sourceIDURL = `https://api.elsevier.com/content/serial/title?apiKey=${elsiverKey}&source-id=${item.sourceID}`,
                         scopusHeaders = `headers: {
                                     'Access-Control-Allow-Origin': '*',
                                     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
@@ -563,9 +549,14 @@
                     if (item.doi && item.sourceID) {
                         axios.all([
                             axios.get(crossrefURL),
-                            axios.get(scopusURL, {scopusHeaders}),
-                            axios.get(sourceIDURL, {scopusHeaders})
-                        ]).then((response) => {console.log("Update output and source metadata using SourceID.");
+                            axios.get(scopusURL, {
+                                scopusHeaders
+                            }),
+                            axios.get(sourceIDURL, {
+                                scopusHeaders
+                            })
+                        ]).then((response) => {
+                            console.log("Update output and source metadata using SourceID.");
                             fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
                             fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
                             fields.citeScore = response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric'];
@@ -578,8 +569,12 @@
                         let elsiverURL = `https://api.elsevier.com/content/serial/title?apiKey=7f1899f42f07990cb442322cb322c588&issn=${item.issn}`;
                         axios.all([
                             axios.get(crossrefURL),
-                            axios.get(scopusURL, {scopusHeaders}),
-                            axios.get(elsiverURL, {scopusHeaders})
+                            axios.get(scopusURL, {
+                                scopusHeaders
+                            }),
+                            axios.get(elsiverURL, {
+                                scopusHeaders
+                            })
                         ]).then((response) => {
                             console.log("Update output and source metadata using ISSN.");
                             fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
