@@ -10,6 +10,7 @@ Vue.component('template-header', {
                 { url: "../centre/charter", name: "Charter" },
                 { url: "../centre/members", name: "Members" },
                 { url: "../centre/research", name: "Research" },
+                { url: "../centre/phd-research", name: "PhD Research" },
                 { url: "../centre/projects", name: "Projects" }
             ],
             dropDownCentre: [
