@@ -65,9 +65,7 @@ Vue.component('template-project', {
                     <span v-if="item['project-url']"><a v-bind:href="item['project-url']" class="black-text">{{ item['project-name'] }}</a></span>
                     <span v-else><a v-bind:href="'/centre/project?name=' + item['project-name']" class="black-text">{{ item['project-name'] }}</a></span>
                 </h1>
-                <span v-if="item['long-name']" class="lbr">
-                    {{ item['long-name'] }}
-                </span>
+                <span v-if="item['long-name']" class="lbr flow-text">{{ item['long-name'] }}</span>
                 <p>
                     <strong>About: </strong>
                     <span v-if="item['about']" class="lbr grey-text text-darken-2">{{ item['about'] }}</span>
