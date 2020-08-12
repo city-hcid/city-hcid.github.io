@@ -4,13 +4,20 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HCID project" />
-    <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="hci,chi,ux,design,ux design,hcid,hci city,hcid city,hci london" />
+    <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <script defer type="text/javascript" src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
+    <script defer type="text/javascript" src="../js/vue_projects.js"></script>
     <title>HCID | Project</title>
 </head>
 
@@ -30,7 +37,7 @@
                                     <span v-if="item['fields']['project-url']"><a v-bind:href="item['fields']['project-url']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
                                     <span v-else><a v-bind:href="'/centre/project?name=' + item['fields']['project-name']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
                                 </h1>
-                                <span v-if="item['fields']['long-name']">
+                                <span v-if="item['fields']['long-name']" class="lbr">
                                     {{ item['fields']['long-name'] }}
                                 </span>
                                 <p v-if="item['fields']['about']">
