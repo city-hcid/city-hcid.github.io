@@ -19,12 +19,13 @@
                     <v-row justify="center">
                         <v-col cols="12">
                             <div class="mb-5">
-                                <h1 class="mt-5 font-weight-bold"> REF 2021 Outputs: <span v-for="(item, index) in items" v-if="index == 0" class="font-weight-black">Specialism {{item.specialism}}</span></h1>
+                                <h1 class="mt-5 font-weight-bold"> REF 2021 Outputs: <span v-for="(item, index) in items" v-if="index == 0" class="font-weight-black">Reviewer {{item.reviewer}}</span></h1>
                             </div>
                         </v-col>
                         <v-col cols="12" md="11">
                             <div>
-                                <p v-for="(item, index) in items" v-if="index == 0">Below is a list of <span class="font-italic">{{item.specialism}}</span> outputs that could potentially be included as part of City's <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a>                                    (i.e., Computer Science), <a href="https://ref.ac.uk/about/" target="_blank">REF 2021</a> submission.</p>
+                                <p v-for="(item, index) in items" v-if="index == 0">Below is a list of outputs that could potentially be included in City's <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a> (i.e., Computer Science), <a href="https://ref.ac.uk/about/"
+                                        target="_blank">REF 2021</a> submission.</p>
                                 <p>In the table, the checked (
                                     <v-icon small color="primary">mdi-check</v-icon>) outputs (in the top half of the table) are currently shortlisted as candidates for submission. A long-list is included if you think an output might be missing.</p>
                                 <p>
@@ -39,7 +40,7 @@
                         <v-col cols="12">
                             <v-card>
 
-                                <v-data-table disable-pagination hide-default-footer show-expand group-by="ref" group-desc :sort-by="sortBy" multi-sort mobile-breakpoint="800" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand" :expanded.sync="expanded">
+                                <v-data-table disable-pagination hide-default-footer show-expand :sort-by="sortBy" multi-sort mobile-breakpoint="800" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand" :expanded.sync="expanded">
 
                                     <!-- Expand icon/column -->
                                     <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
@@ -47,31 +48,21 @@
                                         <v-icon small @click="expand(false)" v-if="isExpanded" color="primary">mdi-arrow-bottom-right</v-icon>
                                     </template>
 
-                                    <!-- Primary Author Column -->
-                                    <template v-slot:item.author="props">
-                                        <div v-if="props.item.ref">
-                                            <span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span>
-                                        </div>
-                                        <div v-else class="text--disabled">
-                                            <span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span>
-                                        </div>
-                                    </template>
-
-                                    <!-- Rank Column -->
-                                    <template v-slot:item.rank="props">
+                                    <!-- reviewerScore Column -->
+                                    <template v-slot:item.reviewerScore="props">
                                         <v-tooltip bottom>
                                             <template v-slot:activator="{ on, attrs }">
-                                                <v-edit-dialog :return-value.sync="props.item.rank" large @save="saveItem(props.item,'rank'),save('Rank saved')" @cancel="cancel('Not saved')" @open="open('Rank output')">
-                                                    <div v-if="props.item.ref" v-bind="attrs" v-on="on" class="text-truncate text-decoration-underline blue--text text--darken-2">
-                                                        {{ props.item.rank }}
+                                                <v-edit-dialog :return-value.sync="props.item.reviewerScore" large @save="saveItem(props.item,'reviewerScore'),save('Rank saved')" @cancel="cancel('Not saved')" @open="open('Rank output')">
+                                                    <div v-bind="attrs" v-on="on" class="text-truncate text-decoration-underline blue--text text--darken-2">
+                                                        {{ props.item.reviewerScore }}
                                                     </div>
                                                     <template v-slot:input>
-                                                        <v-text-field v-model.lazy="props.item.rank" label="Edit" hint="Ent number 1 or above. 1 is highest" flat single-line autofocus>
+                                                        <v-text-field v-model.lazy="props.item.reviewerScore" label="Edit" hint="Ent number 1 or above. 1 is highest" flat single-line autofocus>
                                                         </v-text-field>
                                                     </template>
                                     </v-edit-dialog>
                                     </template>
-                                    <p class="text-center">Select to enter rank -<br>rank order outputs<br>starting from 1 (highest)</p>
+                                    <p class="text-center">Select to enter rank</p>
                                     </v-tooltip>
                                     </template>
 
@@ -113,28 +104,28 @@
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <span v-bind="attrs" v-on="on">
-                                                        <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
-                                                        <a v-else class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
+                                                        <span v-if="props.item.ref">{{props.item.crossRef}}</span>
+                                                        <span v-else class="text--disabled">{{props.item.crossRef}}</span>
                                                     </span>
                                                 </template>
                                     <span>From CrossRef api.<br>
-                                                    Click for Google Scholar result.
-                                                    <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
-                                                </span>
+                                                        Click for Google Scholar result.
+                                                        <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
+                                                    </span>
                                     </v-tooltip>
                                     </span>
                                     <span v-if="props.item.scopus">
-                                            <v-tooltip bottom>
-                                                <template v-slot:activator="{ on, attrs }">
-                                                    <span v-bind="attrs" v-on="on">
-                                                        <span v-if="props.item.ref"> / <a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on, attrs }">
+                                                        <span v-bind="attrs" v-on="on">
+                                                            <span v-if="props.item.ref"> / <a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
                                     <span v-else class="text--disabled"> / <a class="text--disabled" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
                                     </span>
                                     </template>
                                     <span>From Elsiver/Scopus api.<br>
-                                                    Click for Google Scholar result.
-                                                    <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
-                                                </span>
+                                                        Click for Google Scholar result.
+                                                        <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
+                                                    </span>
                                     </v-tooltip>
                                     </span>
                                     </template>
@@ -163,13 +154,6 @@
                                     </span>
                                     </template>
 
-                                    <!-- Pencil icon / Edit Column -->
-                                    <template v-slot:item.actions="props">
-                                        <div class="text-center text-truncate">
-                                            <v-icon small class="mr-2" @click="showEditDialog(props.item),open('Edit output')" color="primary">mdi-pencil</v-icon>
-                                        </div>
-                                    </template>
-
                                     <!-- Expanded row -->
                                     <template v-slot:expanded-item="{ headers, item }">
                                         <td :colspan="headers.length" :id="item.lastName + item.doi">
@@ -191,71 +175,9 @@
                                         </td>
                                     </template>
 
-                                    <!-- Group Header -->
-                                    <template v-slot:group.header="{items, isOpen, toggle}">
-                                        <th colspan="100%">
-                                            <v-btn text icon small color="black" @click="toggle">
-                                                <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon>
-                                            </v-btn>
-                                            <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed for REF</span>
-                                            <span v-else class="mx-2 subtitle-2">Long-listed</span>
-                                        </th>
-                                    </template>
-
                                 </v-data-table>
 
-                                <!-- Update entry dialog -->
-                                <v-dialog v-model="dialog" max-width="640px">
-                                    <v-card>
-                                        <v-card-title>
-                                            <span v-if="editedItem.id" class="left text-truncate">Edit output</span>
-                                            <span v-else class="left text-truncate">New REF Output</span>
-                                            <v-spacer></v-spacer>
-                                            <v-icon small class="text-right" @click="closeDialog(),close('Not saved'),getOutputMetaData(editedItem)" color="primary">mdi-close</v-icon>
-                                        </v-card-title>
-                                        <v-card-text>
-                                            <v-row>
-                                                <v-col cols="12" sm="12">
-                                                    <v-text-field v-model="editedItem.authors" label="Authors"></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="12">
-                                                    <v-textarea rows="1" auto-grow v-model="editedItem.title" label="Title"></v-textarea>
-                                                </v-col>
-                                                <v-col cols="12" sm="12">
-                                                    <v-textarea rows="1" auto-grow v-model="editedItem.source" label="Conference or Journal"></v-textarea>
-                                                </v-col>
-                                                <v-col cols="12" sm="12">
-                                                    <v-textarea rows="1" auto-grow v-model="editedItem.doi" label="DOI (just the number not the http link)"></v-textarea>
-                                                </v-col>
-                                                <v-col cols="12" sm="3">
-                                                    <v-select v-model="editedItem.type" :items="typeSelect" label="Type"></v-select>
-                                                </v-col>
-                                                <v-col cols="12" sm="3">
-                                                    <v-text-field v-model="editedItem.year" label="Year"></v-text-field>
-                                                </v-col>
-                                                <v-col cols="6" sm="3">
-                                                    <v-text-field v-model="editedItem.rank" label="Rank"></v-text-field>
-                                                </v-col>
-                                                <v-col cols="6" sm="3" class="pl-5">
-                                                    <v-checkbox v-model="editedItem.ref" label="Submit to REF?"></v-checkbox>
-                                                </v-col>
-                                                <v-col cols="12" sm="12">
-                                                    <v-textarea rows="1" auto-grow v-model="editedItem.hundredWords" label="100 word summary"></v-textarea>
-                                                </v-col>
-                                                <v-col>
-                                                    <div>
-                                                        <p class="text-right">To upload any changes to the database, press "Save".</p>
-                                                    </div>
-                                                </v-col>
-                                            </v-row>
-                                        </v-card-text>
-                                        <v-card-actions>
-                                            <v-spacer></v-spacer>
-                                            <v-btn color="blue" text @click="closeDialog(),close('Not saved'),getOutputMetaData(editedItem)">Close</v-btn>
-                                            <v-btn color="blue" text @click="saveItem(editedItem,'saveFormItem'),save('Changes saved')">Save</v-btn>
-                                        </v-card-actions>
-                                    </v-card>
-                                </v-dialog>
+
 
                                 <!-- Snack bar save messages -->
                                 <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -278,8 +200,7 @@
         const apiToken = "keyAKLpRf8ec2XWH9",
             airTableApp = "appunQ0V4X7SQIIk7",
             airTableName = "tblDN6QUoVueC6fkg",
-            airTableView = "viw35VHz91GGUnt1q";
-
+            airTableView = "viwH3RIyw6VZCf9jx";
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
@@ -304,50 +225,35 @@
                         text: '',
                         value: 'data-table-expand'
                     }, {
-                        text: 'Primary Author',
-                        value: 'author',
-                        width: '12%',
-                        sortable: false
-                    }, {
                         text: 'Rank',
-                        value: 'rank',
+                        value: 'reviewerScore',
                         align: 'center',
                         width: '10%'
                     }, {
-                        text: 'REF',
-                        value: 'rf',
-                        width: '5%',
-                        sortable: false
-                    }, {
                         text: 'Output',
                         value: 'output',
-                        width: '20%',
+                        width: '30%',
                         sortable: false
                     }, {
                         text: "100 word summary",
                         value: "hundredwords",
                         sortable: false,
-                        width: '30%'
+                        width: '40%'
                     }, {
                         text: "Citations",
                         value: "crossref",
                         align: 'center',
-                        width: '8%',
+                        width: '10%',
                         sortable: false
                     }, {
                         text: "Source",
                         value: "sourcescore",
                         align: 'center',
-                        width: '8%',
-                        sortable: false
-                    }, {
-                        text: 'Edit',
-                        value: 'actions',
+                        width: '10%',
                         sortable: false
                     }],
                     items: [],
                     cites: "",
-                    typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
                     dialog: false, // used to toggle the dialog
                     editedItem: {} // empty holder for edit output dialog
                 }
@@ -365,39 +271,39 @@
                     this.dialog = false;
                     this.close('Not saved');
                     localStorage.clear(); /***** here debug so cite counts can be retrieved ****/
-                    this.sortBy = 'rank'
+                    this.sortBy = 'title'
                 },
                 loadItems() {
                     let url = new URL(window.location.href);
-                    let specialism = url.searchParams.get("spec");
-                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr";
+                    let reviewer = url.searchParams.get("reviewer");
+                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=reviewerScore&fields%5B%5D=reviewerID&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=reviewer";
                     const sort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc";
-                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22${specialism}%22%2C%7Bspecialism%7D)`;
+                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22recgIBTqnDdv4a0J6%22%2C%7BreviewerID%7D)`;
                     this.items = [];
+                    console.log(submissionURL);
                     axios.get(submissionURL, {
-                            headers: {
-                                Authorization: "Bearer " + apiToken
+                        headers: {
+                            Authorization: "Bearer " + apiToken
+                        }
+                    }).then((response) => {
+                        this.items = response.data.records.map((item) => {
+                            return {
+                                id: item.id,
+                                ...item.fields
                             }
                         })
-                        .then((response) => {
-                            this.items = response.data.records.map((item) => {
-                                return {
-                                    id: item.id,
-                                    ...item.fields
-                                }
-                            })
-                            if (!sessionStorage.loaded) {
-                                for (let i = 0; i < this.items.length; i++) {
-                                    if (this.items[i].doi) {
-                                        //this.getOutputMetaData(this.items[i])
-                                        // Only when we want to run all citation counts
-                                    }
+                        if (!sessionStorage.loaded) {
+                            for (let i = 0; i < this.items.length; i++) {
+                                if (this.items[i].doi) {
+                                    //this.getOutputMetaData(this.items[i])
+                                    // Only when we want to run all citation counts
                                 }
                             }
-                            this.loading = false; // Removes table loader graphic
-                        }).catch((error) => {
-                            console.log(error)
-                        })
+                        }
+                        this.loading = false; // Removes table loader graphic
+                    }).catch((error) => {
+                        console.log(error)
+                    })
                 },
                 saveItem(item, key) {
                     let data = item,
