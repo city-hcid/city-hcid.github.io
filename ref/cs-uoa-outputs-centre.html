@@ -71,7 +71,7 @@
                                                     </template>
                                     </v-edit-dialog>
                                     </template>
-                                    <p class="text-center">Select to enter rank -<br>rank order outputs<br>starting from 1 (highest)</p>
+                                    <span class="text-center">Select to enter rank -<br>rank order outputs<br>starting from 1 (highest)</span>
                                     </v-tooltip>
                                     </template>
 
@@ -80,11 +80,27 @@
                                         <v-tooltip bottom>
                                             <template v-slot:activator="{ on, attrs }">
                                                 <div v-bind="attrs" v-on="on" class="text-truncate">
-                                                    <v-icon small class="mr-2" v-if="props.item.ref" color="black">mdi-check</v-icon>
+                                                    <v-simple-checkbox v-if="props.item.ref" v-model="props.item.ref" @click="cancel('Removed from shortlist'),saveItem(props.item,'ref')"></v-simple-checkbox>
+                                                    <v-simple-checkbox v-else v-model="props.item.ref" @click="save('Added to shortlist'),saveItem(props.item,'ref')" 
+                                                    label="grey lighten-5"
+                                                    color="grey lighten-5"
+                                                    value="grey lighten-5"></v-simple-checkbox>
                                                 </div>
                                             </template>
-                                    <p class="text-center">Shortlisted for REF.<br>Check/uncheck in edit pane (
-                                        <v-icon small class="mr-2" color="white">mdi-pencil</v-icon>)</p>
+                                    <span class="text-center">Check to be shortlisted for REF.</span>
+                                    </v-tooltip>
+                                    </template>
+
+                                    <!-- Review Column -->
+                                    <template v-slot:item.review="props">
+                                        <v-tooltip bottom>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <div v-bind="attrs" v-on="on" class="text-truncate">
+                                                    <v-simple-checkbox v-if="props.item.ref && props.item.review" v-model="props.item.review" @click="cancel('Not selected for review'),saveItem(props.item,'review')"></v-simple-checkbox>
+                                                    <v-simple-checkbox v-if="props.item.ref && !props.item.review" v-model="props.item.review" @click="save('Selected for review'),saveItem(props.item,'review')"></v-simple-checkbox>
+                                                </div>
+                                            </template>
+                                    <span class="text-center">Check to be reviewed.</span>
                                     </v-tooltip>
                                     </template>
 
@@ -319,6 +335,11 @@
                         width: '5%',
                         sortable: false
                     }, {
+                        text: 'Review',
+                        value: 'review',
+                        width: '5%',
+                        sortable: false
+                    }, {
                         text: 'Output',
                         value: 'output',
                         width: '20%',
@@ -370,7 +391,7 @@
                 loadItems() {
                     let url = new URL(window.location.href);
                     let specialism = url.searchParams.get("spec");
-                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr";
+                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=review";
                     const sort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc";
                     let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22${specialism}%22%2C%7Bspecialism%7D)`;
                     this.items = [];
@@ -409,6 +430,18 @@
                         data = {
                             fields: {
                                 rank: item.rank
+                            }
+                        }
+                    } else if (key === "ref") {
+                        data = {
+                            fields: {
+                                review: item.ref
+                            }
+                        }
+                    } else if (key === "review") {
+                        data = {
+                            fields: {
+                                review: item.review
                             }
                         }
                     } else if (key === "crossRef") {

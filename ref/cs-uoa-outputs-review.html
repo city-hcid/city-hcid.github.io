@@ -18,36 +18,37 @@
 
                     <v-row justify="center">
                         <v-col cols="12">
-                            <v-row class="mb-5">
-                                <h1 class="mt-5 font-weight-bold"> REF 2021 Outputs: <span v-for="(item, index) in items" v-if="index == 0" class="font-weight-black">Reviewer {{item.reviewer}}</span></h1>
-                            </v-row>
+                                <h1 class="mt-5 font-weight-bold">City CS REF 2021 Reviewer: <span v-for="item in reviewer.Reviewer" class="font-weight-black">{{ item }}</span></h1>
                         </v-col>
-                        <v-col cols="12" md="11">
-                            <v-row>
+                        <v-col cols="12" sm="11">
                                 <p v-for="(item, index) in items" v-if="index == 0">
-                                    Below is a list of outputs that could potentially be included in City's <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a> (i.e., Computer Science), <a href="https://ref.ac.uk/about/"
-                                        target="_blank">REF 2021</a> submission.
+                                    The list of outputs below have been assigned to you to review for City's <a href="https://ref.ac.uk/about/" target="_blank">REF 2021</a> Computer Science submission (i.e. <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a>).
                                 </p>
                                 <p>
-                                    Please review each output and use the selection menus to <em>score</em> them and <em>rate your confidence</em> for each score. After reviewing the outputs please <em>complete the questions</em> below the table.
+                                    These are potential candidates for our eventual submission and we are seeking estimates of <a href="#scores">scores</a> and an <a href="#report">overall report</a> on their quality and suitability.
                                 </p>
-                            </v-row>
-                        </v-col>
-                        <v-col cols="10" md="10">
-                            <v-row :align="alignment">
                                 <p>
-                                    The REF scoring is as follows (also see <a href="https://www.ref.ac.uk/publications/guidance-on-submissions-201901/" target="_blank">REF 2021 guidance</a> Appendix A).
+                                    In some cases, you may have been assigned outputs to review that are not in your area of expertise. We've made this decision deliberately, so we can get an indication of how the outputs might be judged beyond a specific specialism. 
                                 </p>
-                                TABLE
-                                <p>
-                                    We have added extra increments for the 3* score so you can indicate whether the output might be close to 4* or 2*.
-                                </p>
-                            </v-row>
                         </v-col>
                     </v-row>
 
                     <v-row justify="center">
-                        <v-col cols="12">
+                        <v-col cols="12" class="mt-3" id="scores">
+                                <h2>REF Scores and confidence ratings</h2>
+                        </v-col>
+                        <v-col cols="12" sm="11">
+                            <p>
+                                Please review each output below and use the selection menus to <em>score</em> them and <em>rate your confidence</em> for each score. For further details of each output, click on the arrow icon (<v-icon small color="primary">mdi-arrow-right</v-icon>). To download the publication, see the link under the "output" column.
+                            </p>
+                            <p>
+                                See the bottom of this page for a <a href="#criteria">table</a> summarising the REF scoring critera. We have added extra increments for the 3* score for you to indicate whether the output might be close to 4* or 2*.
+                            </p>
+                            <p class="small">
+                                For official documentation of scoring criteria, see the <a href="https://www.ref.ac.uk/publications/guidance-on-submissions-201901/" target="_blank">REF 2021 guidance</a>, Appendix A.
+                            </p>
+                        </v-col>
+                        <v-col cols="12" sm="12">
                             <v-card>
 
                                 <v-data-table disable-pagination hide-default-footer show-expand dense :sort-by="sortBy" mobile-breakpoint="800" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand" :expanded.sync="expanded">
@@ -91,7 +92,7 @@
                                     <!-- Ouput Column -->
                                     <template v-slot:item.output="props">
                                         <div>
-                                            <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                            <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> (<a :href="props.item.attachment[0].url" target="_new"><strong>download</strong></a> <em>{{props.item.kb}})</em>
                                         </div>
                                     </template>
 
@@ -150,10 +151,11 @@
                                     <template v-slot:expanded-item="{ headers, item }">
                                         <td :colspan="headers.length" :id="item.lastName + item.doi">
                                             <div class="mt-2">
-                                                <p><strong>Author(s):</strong> {{ item.authors }}<br>
-                                                    <strong>Year:</strong> {{ item.year }}<br>
-                                                    <strong>Title:</strong> {{ item.title }}<br>
-                                                    <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}</p>
+                                                <p><strong v-if="item.authors">Author(s):</strong> {{ item.authors }}<br>
+                                                    <strong v-if="item.year">Year:</strong> {{ item.year }}<br>
+                                                    <strong v-if="item.title">Title:</strong> {{ item.title }}<br>
+                                                    <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}<br>
+                                                    <strong v-if="item.doi">DOI:</strong> <a :href="'http://dx.doi.org/' + item.doi" target="_new">{{ item.doi }}</a></p>
                                                 <p v-if="item.doi">
                                                     <span v-if="item.crossRef"><strong>Citations</strong> (<a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong><br></span>
                                                     <span v-if="item.scopus"></span><strong>Citations</strong> (<a href="https://dev.elsevier.com">Elsiver/Scopus API</a>): <strong>{{ item.scopus }}</strong><br></span>
@@ -179,6 +181,106 @@
                     </v-row>
 
                 </v-container>
+
+                <v-container>
+                    <v-row justify="center">
+                        <v-col cols="12" class="mt-3" id="report">
+                                <h2>Reviewer Report</h2>
+                        </v-col>
+                        <v-col cols="12" sm="11">
+                            <p>
+                                Please complete the questions below and click on the submit button to save them to our system.
+                            </p>
+                        </v-col>
+                    </v-row>
+                </v-container>
+                <template>
+                    <v-form>
+                        <v-container>
+                            <v-row justify="center">
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">1. Can you summarise the outputs you’ve reviewed as a whole, specifically in terms of the REF criteria: <em>originality</em>, <em>significance</em> and <em>rigour</em>. (For the REF criteria see the <a href="#criteria">table</a> below).</div>
+                                    <v-textarea v-model="form_overall" label="" hint="Overall summary" required auto-grow outlined></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">2. Are there any outputs that you feel wouldn’t be suitable for the REF Computer Science Unit of Assessment because of their quality (e.g. good but not what REF is looking for) or the type of content (e.g. stretching the interdisciplinarity that REF encourages)?</div>
+                                    <v-textarea v-model="form_suitability" label="" hint="Suitability of outputs?" auto-grow outlined></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">3. If there are “How to” or “Review” papers included in your list of outputs could you provide your opinion on how these stand against the REF criteria?</div>
+                                    <v-textarea v-model="form_strongweak" label="" hint="Specific strong or weak outputs?" auto-grow outlined></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">4. Are there specific outputs that stand out as either strong or weak candidates for REF, and why?</div>
+                                    <v-textarea v-model="form_strongweak" label="" hint="How-tos and reviews against REF criteria?" auto-grow outlined></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">5. Can you comment on the quality of the 100 word summaries for the outputs you’ve reviewed and suggest areas for improvement?</div>
+                                    <v-textarea v-model="form_strongweak" label="" hint="Quality of 100 word summaries?" auto-grow outlined></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9" justify="end">
+                                    <v-btn class="mr-4" @click="">clear</v-btn>
+                                    <v-btn @click="">submit</v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-form>
+                </template>
+
+                <v-container>
+                    <v-row justify="center">
+                        <v-col cols="12" class="mt-3" id="criteria">
+                                <h2>REF 2021 Scoring Criteria</h2>
+                        </v-col>
+                        <v-col class="mb-5" cols="12" sm="11">
+                            <template>
+                                <v-simple-table>
+                                  <template>
+                                    <thead>
+                                      <tr>
+                                        <th class="text-left">Rating</th>
+                                        <th class="text-left">Description</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>Four star</td>
+                                        <td>Quality that is world-leading in terms of originality, significance and rigour.</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Three star</td>
+                                        <td>Quality that is internationally excellent in terms of originality, significance and rigour but which falls short of the highest standards of excellence.</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Two star</td>
+                                        <td>Quality that is recognised internationally in terms of originality, significance and rigour.</td>
+                                      </tr>
+                                      <tr>
+                                        <td>One star</td>
+                                        <td>Quality that is recognised nationally in terms of originality, significance and rigour.</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Unclassified</td>
+                                        <td>Quality that falls below the standard of nationally recognised work. Or work which does not meet the published definition of research for the purposes of this assessment.</td>
+                                      </tr>
+                                    </tbody>
+                                  </template>
+                                </v-simple-table>
+                              </template>
+                              <div class="caption ml-5 mt-3">The criteria for assessing the quality of outputs based on ‘originality, significance and rigour’.</div>
+                        </v-col>
+                    </v-row>
+                </v-container>
+
+                <v-container>
+                    <v-row justify="center">
+                        <v-col cols="12" class="mt-3" id="criteria">
+                                <p>Email <a href="mailto:alex.taylor@city.ac.uk">Alex Taylor</a> with any queries, REF coordinator for City's CS dept.</p>
+                        </v-col>
+                    </v-row>
+
+                </v-container>
+
             </v-content>
         </v-app>
     </div>
@@ -189,8 +291,9 @@
     <script>
         const apiToken = "keyAKLpRf8ec2XWH9",
             airTableApp = "appunQ0V4X7SQIIk7",
-            airTableName = "tblDN6QUoVueC6fkg",
-            airTableView = "viwH3RIyw6VZCf9jx";
+            outputTable = "tblDN6QUoVueC6fkg",
+            outputView = "viwH3RIyw6VZCf9jx",
+            reviewerTable = "tbl3wygJ0TChPwNrq";
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
@@ -236,9 +339,15 @@
                     snackText: '',
                     sortBy: 'title',
                     items: [],
+                    reviewer: [],
                     cites: "",
                     alignment: 'center',
-                    dialog: false // used to toggle the dialog
+                    dialog: false, // used to toggle the dialog
+                    form_overall: '',
+                    form_strongweak: '',
+                    form_suitability: '',
+                    form_howtosreviews: '',
+                    form_hundredwords: ''
                 }
             },
             mounted() {
@@ -246,24 +355,34 @@
             },
             methods: {
                 loadItems() {
-                    let url = new URL(window.location.href);
-                    let reviewer = url.searchParams.get("reviewer");
-                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=reviewer&fields%5B%5D=reviewerScore&fields%5B%5D=reviewerID&fields%5B%5D=reviewerConfidence";
-                    const sort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc";
-                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22recgIBTqnDdv4a0J6%22%2C%7BreviewerID%7D)`;
-                    this.items = [];
-                    console.log(submissionURL);
-                    axios.get(submissionURL, {
-                        headers: {
-                            Authorization: "Bearer " + apiToken
-                        }
-                    }).then((response) => {
-                        this.items = response.data.records.map((item) => {
+                    const url = new URL(window.location.href),
+                        reviewer = url.searchParams.get("reviewer"),
+                        outputFields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=reviewer&fields%5B%5D=reviewerScore&fields%5B%5D=reviewerID&fields%5B%5D=reviewerConfidence&fields%5B%5D=attachment",
+                        outputSort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc",
+                        reviewerFields = "",
+                        outputsURL = `https://api.airtable.com/v0/${airTableApp}/${outputTable}?view=${outputView}&${outputFields}&${outputSort}&filterByFormula=FIND(%22${reviewer}%22%2C%7BreviewerID%7D)`,
+                        reviewerURL = `https://api.airtable.com/v0/${airTableApp}/${reviewerTable}/${reviewer}`,
+                        config = {
+                            headers: {
+                                Authorization: "Bearer " + apiToken,
+                                Accept: "application/json",
+                            },
+                        };
+                    axios.all([
+                        axios.get(outputsURL, config),
+                        axios.get(reviewerURL, config),
+                    ]).then((response) => {
+                        this.items = response[0].data.records.map((item) => {
                             return {
+                                kb: this.formatBytes(item.fields.attachment[0].size),
                                 id: item.id,
                                 ...item.fields
                             }
-                        })
+                        });
+
+                        this.reviewer = response[1].data.fields;
+
+                        console.log(this.items)
                         this.loading = false; // Removes table loader graphic
                     }).catch((error) => {
                         console.log(error)
@@ -273,7 +392,7 @@
                     let data = item,
                         method = "patch",
                         id = item.id,
-                        url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${outputTable}/${id}`;
 
                     if (key === "reviewerScore") {
                         data = {
@@ -325,6 +444,17 @@
                     }).catch(error => {
                         console.log(error.response)
                     })
+                },
+                formatBytes(bytes, decimals = 2) {
+                    if (bytes === 0) return '0 Bytes';
+
+                    const k = 1024;
+                    const dm = decimals < 0 ? 0 : decimals;
+                    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+                    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+                    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
                 },
                 save(msg) {
                     this.snack = true;
