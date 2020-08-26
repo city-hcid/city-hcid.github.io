@@ -39,7 +39,7 @@
                         <v-col cols="12">
                             <v-card>
 
-                                <v-data-table disable-pagination hide-default-footer show-expand group-by="ref" group-desc :sort-by="sortBy" multi-sort mobile-breakpoint="800" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand" :expanded.sync="expanded">
+                                <v-data-table show-expand group-by="ref" group-desc :sort-by="sortBy" multi-sort mobile-breakpoint="800" items-per-page="200" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand" :expanded.sync="expanded">
 
                                     <!-- Expand icon/column -->
                                     <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
@@ -294,7 +294,7 @@
         const apiToken = "keyAKLpRf8ec2XWH9",
             airTableApp = "appunQ0V4X7SQIIk7",
             airTableName = "tblDN6QUoVueC6fkg",
-            airTableView = "viw35VHz91GGUnt1q";
+            airTableView = "viwxVgiASQcOzvIKf";
 
         new Vue({
             el: '#app',
