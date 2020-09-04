@@ -199,7 +199,7 @@
                         <v-container>
                             <v-row justify="center">
                                 <v-col cols="12" sm="9">
-                                    <div class="mb-2">1. Can you summarise the outputs you’ve reviewed as a whole, specifically in terms of the REF criteria: <em>originality</em>, <em>significance</em> and <em>rigour</em>. (For the REF criteria see the <a href="#criteria">table</a> below).</div>
+                                    <div class="mb-2">1. Can you summarise the individual outputs you’ve reviewed, specifically in terms of the REF criteria: <em>originality</em>, <em>significance</em> and <em>rigour</em>. Summaries should be two or three sentences for each output. (For the REF criteria see the <a href="#criteria">table</a> below).</div>
                                     <v-textarea v-model="form_overall" label="" hint="Overall summary" required auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
@@ -207,16 +207,16 @@
                                     <v-textarea v-model="form_suitability" label="" hint="Suitability of outputs?" auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
-                                    <div class="mb-2">3. If there are “How to” or “Review” papers included in your list of outputs could you provide your opinion on how these stand against the REF criteria?</div>
+                                    <div class="mb-2">3. Are there specific outputs that stand out as either strong or weak candidates for REF, and why?</div>
                                     <v-textarea v-model="form_strongweak" label="" hint="Specific strong or weak outputs?" auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
-                                    <div class="mb-2">4. Are there specific outputs that stand out as either strong or weak candidates for REF, and why?</div>
-                                    <v-textarea v-model="form_strongweak" label="" hint="How-tos and reviews against REF criteria?" auto-grow outlined></v-textarea>
+                                    <div class="mb-2">4. If there are “How to” or “Review” papers included in your list of outputs could you provide your opinion on how these stand against the REF criteria?</div>
+                                    <v-textarea v-model="form_howtosreviews" label="" hint="How-tos and reviews against REF criteria?" auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">5. Can you comment on the quality of the 100 word summaries for the outputs you’ve reviewed and suggest areas for improvement?</div>
-                                    <v-textarea v-model="form_strongweak" label="" hint="Quality of 100 word summaries?" auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="form_hundredwords" label="" hint="Quality of 100 word summaries?" auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9" justify="end">
                                     <v-btn class="mr-4" @click="">clear</v-btn>
