@@ -91,14 +91,14 @@
 
                                     <!-- Ouput Column -->
                                     <template v-slot:item.output="props">
-                                        <div>
-                                            <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> (<a :href="props.item.attachment[0].url" target="_new"><strong>download</strong></a> <em>{{props.item.kb}})</em>
+                                        <div class="my-3">
+                                            <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em><span v-if="props.item.attachment"> (<a :href="props.item.attachment[0].url" target="_new"><strong>download</strong></a> <em>{{props.item.kb}})</span></em>
                                         </div>
                                     </template>
 
                                     <!-- Hundred Words Column -->
                                     <template v-slot:item.hundredwords="props">
-                                        <div>{{props.item.hundredWords}}</div>
+                                        <div class="my-3">{{props.item.hundredWords}}</div>
                                     </template>
 
                                     <!-- Citations column -->
@@ -199,28 +199,27 @@
                         <v-container>
                             <v-row justify="center">
                                 <v-col cols="12" sm="9">
-                                    <div class="mb-2">1. Can you summarise the individual outputs you’ve reviewed, specifically in terms of the REF criteria: <em>originality</em>, <em>significance</em> and <em>rigour</em>. Summaries should be two or three sentences for each output. (For the REF criteria see the <a href="#criteria">table</a> below).</div>
-                                    <v-textarea v-model="form_overall" label="" hint="Overall summary" required auto-grow outlined></v-textarea>
+                                    <div class="mb-2">1. Can you summarise the individual outputs you’ve reviewed using the REF criteria: <em>originality</em>, <em>significance</em> and <em>rigour</em>. Summaries should be two or three sentences for each output. (For the REF criteria see the <a href="#criteria">table</a> below).</div>
+                                    <v-textarea v-model="reviewerForm.overall" label="" hint="Overall summary" required auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">2. Are there any outputs that you feel wouldn’t be suitable for the REF Computer Science Unit of Assessment because of their quality (e.g. good but not what REF is looking for) or the type of content (e.g. stretching the interdisciplinarity that REF encourages)?</div>
-                                    <v-textarea v-model="form_suitability" label="" hint="Suitability of outputs?" auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="reviewerForm.suitability" label="" hint="Suitability of outputs?" auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">3. Are there specific outputs that stand out as either strong or weak candidates for REF, and why?</div>
-                                    <v-textarea v-model="form_strongweak" label="" hint="Specific strong or weak outputs?" auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="reviewerForm.strongWeak" label="" hint="Specific strong or weak outputs?" auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">4. If there are “How to” or “Review” papers included in your list of outputs could you provide your opinion on how these stand against the REF criteria?</div>
-                                    <v-textarea v-model="form_howtosreviews" label="" hint="How-tos and reviews against REF criteria?" auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="reviewerForm.howTosReviews" label="" hint="How-tos and reviews against REF criteria?" auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">5. Can you comment on the quality of the 100 word summaries for the outputs you’ve reviewed and suggest areas for improvement?</div>
-                                    <v-textarea v-model="form_hundredwords" label="" hint="Quality of 100 word summaries?" auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="reviewerForm.hundredWord" label="" hint="Quality of 100 word summaries?" auto-grow outlined></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9" justify="end">
-                                    <v-btn class="mr-4" @click="">clear</v-btn>
-                                    <v-btn @click="">submit</v-btn>
+                                    <v-btn class="float-right mr-5" color="primary" @click="saveItem(reviewerForm, 'saveReviewerForm'), save('Form submitted')">submit</v-btn>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -334,6 +333,7 @@
                     loading: true,
                     expanded: [],
                     singleExpand: true,
+                    reviewerForm: {},
                     snack: false,
                     snackColor: '',
                     snackText: '',
@@ -372,38 +372,57 @@
                         axios.get(outputsURL, config),
                         axios.get(reviewerURL, config),
                     ]).then((response) => {
+                        
                         this.items = response[0].data.records.map((item) => {
+                            if (item.fields.attachment) {
+                                var attachmentSize = this.formatBytes(item.fields.attachment[0].size);
+                            }
                             return {
-                                kb: this.formatBytes(item.fields.attachment[0].size),
+                                kb: attachmentSize || "no file",
                                 id: item.id,
                                 ...item.fields
                             }
                         });
-
                         this.reviewer = response[1].data.fields;
-
-                        console.log(this.items)
+                        this.reviewerForm = this.reviewer;
+                        
                         this.loading = false; // Removes table loader graphic
                     }).catch((error) => {
                         console.log(error)
                     })
                 },
                 saveItem(item, key) {
-                    let data = item,
+                    let data = {},
                         method = "patch",
-                        id = item.id,
-                        url = `https://api.airtable.com/v0/${airTableApp}/${outputTable}/${id}`;
+                        id = "",
+                        url = "";
 
                     if (key === "reviewerScore") {
+                        id = item.id;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${outputTable}/${id}`;
                         data = {
                             fields: {
                                 reviewerScore: item.reviewerScore
                             }
                         }
                     } else if (key === "reviewerConfidence") {
+                        id = item.id;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${outputTable}/${id}`;
                         data = {
                             fields: {
                                 reviewerConfidence: item.reviewerConfidence
+                            }
+                        }
+                    } else if (key === "saveReviewerForm") {
+                        id = item.reviewerID;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${reviewerTable}/${id}`;
+                        data = {
+                            fields: {
+                                overall: item.overall,
+                                suitability: item.suitability,
+                                strongWeak: item.strongWeak,
+                                hundredWord: item.hundredWord,
+                                howTosReviews: item.howTosReviews
                             }
                         }
                     }
@@ -417,31 +436,10 @@
                                 if (data.fields.id) {
                                     delete data.fields.id // must remove id from the data for airtable patch to work
                                 }
-                                if (key === "saveFormItem") {
-                                    delete data.fields.firstName; // must remove all computed fields if saving entire record
-                                    delete data.fields.lastName;
-                                    delete data.fields.authorName;
-                                    delete data.fields.authorID;
-                                    //delete data.fields.Centre
-                                }
                                 return JSON.stringify(data);
                             }]
                         }
-                    ).then(response => {
-                        if (response.data && response.data.id) {
-                            this.editedItem.id = response.data.id
-                            if (!id) {
-                                this.items.push(this.editedItem)
-                            }
-                            this.editedItem = {}
-                        }
-                        if (key === "saveFormItem") {
-                            this.dialog = !this.dialog;
-                            setTimeout(function() {
-                                location.reload();
-                            }, 500)
-                        }
-                    }).catch(error => {
+                    ).catch(error => {
                         console.log(error.response)
                     })
                 },
