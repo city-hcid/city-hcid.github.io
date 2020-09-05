@@ -92,7 +92,7 @@
                                     <!-- Ouput Column -->
                                     <template v-slot:item.output="props">
                                         <div class="my-3">
-                                            <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em><span v-if="props.item.attachment"> (<a :href="props.item.attachment[0].url" target="_new"><strong>download</strong></a> <em>{{props.item.kb}})</span></em>
+                                            {{ props.item.index }}. <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em><span v-if="props.item.attachment"> (<a :href="props.item.attachment[0].url" target="_new"><strong>download</strong></a> <em>{{props.item.kb}})</span></em>
                                         </div>
                                     </template>
 
@@ -305,7 +305,7 @@
                         text: 'Score',
                         value: 'reviewerscore',
                         align: 'center',
-                        width: '12%'
+                        width: '14%'
                     }, {
                         text: 'Confidence',
                         value: 'reviewerconfidence',
@@ -314,13 +314,13 @@
                     }, {
                         text: 'Output',
                         value: 'output',
-                        width: '28%',
+                        width: '24%',
                         sortable: false
                     }, {
                         text: "100 word summary",
                         value: "hundredwords",
                         sortable: false,
-                        width: '36%'
+                        width: '35%'
                     }, {
                         text: "Citations",
                         value: "crossref",
@@ -347,7 +347,8 @@
                     form_strongweak: '',
                     form_suitability: '',
                     form_howtosreviews: '',
-                    form_hundredwords: ''
+                    form_hundredwords: '',
+                    index: 0
                 }
             },
             mounted() {
@@ -358,7 +359,7 @@
                     const url = new URL(window.location.href),
                         reviewer = url.searchParams.get("reviewer"),
                         outputFields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=reviewer&fields%5B%5D=reviewerScore&fields%5B%5D=reviewerID&fields%5B%5D=reviewerConfidence&fields%5B%5D=attachment",
-                        outputSort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc",
+                        outputSort = "sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc",
                         reviewerFields = "",
                         outputsURL = `https://api.airtable.com/v0/${airTableApp}/${outputTable}?view=${outputView}&${outputFields}&${outputSort}&filterByFormula=FIND(%22${reviewer}%22%2C%7BreviewerID%7D)`,
                         reviewerURL = `https://api.airtable.com/v0/${airTableApp}/${reviewerTable}/${reviewer}`,
@@ -372,14 +373,15 @@
                         axios.get(outputsURL, config),
                         axios.get(reviewerURL, config),
                     ]).then((response) => {
-                        
                         this.items = response[0].data.records.map((item) => {
+                            this.index += 1;
                             if (item.fields.attachment) {
                                 var attachmentSize = this.formatBytes(item.fields.attachment[0].size);
                             }
                             return {
                                 kb: attachmentSize || "no file",
                                 id: item.id,
+                                index: this.index,
                                 ...item.fields
                             }
                         });
