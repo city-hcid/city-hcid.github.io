@@ -381,7 +381,7 @@
                                 ...item.fields
                             }
                         });
-                        sessionStorage.clear();
+                        sessionStorage.clear(); // Forces citation check
                         if (!sessionStorage.loaded) {
                             console.log("Running citation check");
                             for (let i = 0; i < this.items.length; i++) {
@@ -488,8 +488,7 @@
                     this.snackText = msg || 'Not uploaded'
                 },
                 getOutputMetaData(item) {
-                    //sessionStorage.loaded = 1;
-                    sessionStorage.clear();
+                    sessionStorage.loaded = 1;
                     const elsiverKey = "7f1899f42f07990cb442322cb322c588";
                     let crossrefURL = `https://api.crossref.org/works/${item.doi}`,
                         scopusURL = `https://api.elsevier.com/content/search/scopus?apiKey=${elsiverKey}&query=DOI(${item.doi})&field=citedby-count,source-id`,
