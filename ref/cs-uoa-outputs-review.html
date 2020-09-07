@@ -381,6 +381,7 @@
                                 ...item.fields
                             }
                         });
+                        sessionStorage.clear();
                         if (!sessionStorage.loaded) {
                             console.log("Running citation check");
                             for (let i = 0; i < this.items.length; i++) {
@@ -430,6 +431,12 @@
                                 hundredWord: item.hundredWord,
                                 howTosReviews: item.howTosReviews
                             }
+                        }
+                    } else if (key === "outputMetaData") {
+                        id = item.id;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${outputTable}/${id}`;
+                        data = {
+                            fields: item
                         }
                     }
                     axios[method](url,
@@ -481,7 +488,8 @@
                     this.snackText = msg || 'Not uploaded'
                 },
                 getOutputMetaData(item) {
-                    sessionStorage.loaded = 1;
+                    //sessionStorage.loaded = 1;
+                    sessionStorage.clear();
                     const elsiverKey = "7f1899f42f07990cb442322cb322c588";
                     let crossrefURL = `https://api.crossref.org/works/${item.doi}`,
                         scopusURL = `https://api.elsevier.com/content/search/scopus?apiKey=${elsiverKey}&query=DOI(${item.doi})&field=citedby-count,source-id`,
