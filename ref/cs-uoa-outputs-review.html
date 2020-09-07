@@ -382,10 +382,10 @@
                             }
                         });
                         if (!sessionStorage.loaded) {
+                            console.log("Running citation check");
                             for (let i = 0; i < this.items.length; i++) {
                                 if (this.items[i].doi) {
                                     this.getOutputMetaData(this.items[i])
-                                    // Only when we want to run all citation counts
                                 }
                             }
                         }
@@ -493,6 +493,7 @@
                     var fields = {};
                     fields.id = item.id;
                     if (item.doi && item.sourceID) {
+                        console.log("Checking citations using source ID");
                         axios.all([
                             axios.get(crossrefURL),
                             axios.get(scopusURL, {
@@ -512,6 +513,7 @@
                             console.log(error)
                         })
                     } else if (item.doi && item.issn) {
+                        console.log("Checking citations using issn");
                         let elsiverURL = `https://api.elsevier.com/content/serial/title?apiKey=7f1899f42f07990cb442322cb322c588&issn=${item.issn}`;
                         axios.all([
                             axios.get(crossrefURL),
@@ -539,6 +541,7 @@
                             console.log(error)
                         })
                     } else if (item.doi) {
+                        console.log("Checking citations using DOI");
                         axios.all([
                             axios.get(crossrefURL),
                             axios.get(scopusURL, {
