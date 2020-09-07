@@ -109,9 +109,7 @@
                                                     {{props.item.crossRef}}
                                                 </span>
                                             </template>
-                                    <div>From CrossRef api.
-                                        <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
-                                    </div>
+                                    <span>Using CrossRef.</span>
                                     </v-tooltip>
                                     <v-tooltip bottom v-if="props.item.scopus">
                                         <template v-slot:activator="{ on, attrs }">
@@ -119,9 +117,7 @@
                                                     / {{props.item.scopus}}
                                                 </span>
                                             </template>
-                                        <div>From Elsiver/Scopus api.
-                                            <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
-                                        </div>
+                                        <span>Using Elsiver/Scopus.</span>
                                     </v-tooltip>
                                     </template>
 
@@ -157,8 +153,8 @@
                                                     <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}<br>
                                                     <strong v-if="item.doi">DOI:</strong> <a :href="'http://dx.doi.org/' + item.doi" target="_new">{{ item.doi }}</a></p>
                                                 <p v-if="item.doi">
-                                                    <span v-if="item.crossRef"><strong>Citations</strong> (<a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong><br></span>
-                                                    <span v-if="item.scopus"></span><strong>Citations</strong> (<a href="https://dev.elsevier.com">Elsiver/Scopus API</a>): <strong>{{ item.scopus }}</strong><br></span>
+                                                    <span v-if="item.crossRef"><strong>Citations</strong> (<a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref</a>): <strong>{{ item.crossRef }}</strong><br></span>
+                                                    <span v-if="item.scopus"></span><strong>Citations</strong> (<a href="https://dev.elsevier.com">Elsiver/Scopus</a>): <strong>{{ item.scopus }}</strong><br></span>
                                                     See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
                                                 </p>
                                                 <p v-if="item.citeScore">
@@ -200,26 +196,26 @@
                             <v-row justify="center">
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">1. Can you summarise the individual outputs you’ve reviewed using the REF criteria: <em>originality</em>, <em>significance</em> and <em>rigour</em>. Summaries should be two or three sentences for each output. (For the REF criteria see the <a href="#criteria">table</a> below).</div>
-                                    <v-textarea v-model="reviewerForm.overall" label="" hint="Overall summary" required auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="reviewerForm.overall" label="" hint="Overall summary" required auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">2. Are there any outputs that you feel wouldn’t be suitable for the REF Computer Science Unit of Assessment (e.g. good but not what REF is looking for) or the type of content (e.g. stretching the interdisciplinarity that REF encourages)?</div>
-                                    <v-textarea v-model="reviewerForm.suitability" label="" hint="Suitability of outputs?" auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="reviewerForm.suitability" label="" hint="Suitability of outputs?" auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">3. Are there specific outputs that stand out as either strong or weak candidates for REF, and why?</div>
-                                    <v-textarea v-model="reviewerForm.strongWeak" label="" hint="Specific strong or weak outputs?" auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="reviewerForm.strongWeak" label="" hint="Specific strong or weak outputs?" auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">4. If there are “How to” or “Review” papers included in your list of outputs could you provide your opinion on how these stand against the REF criteria?</div>
-                                    <v-textarea v-model="reviewerForm.howTosReviews" label="" hint="How-tos and reviews against REF criteria?" auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="reviewerForm.howTosReviews" label="" hint="How-tos and reviews against REF criteria?" auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9">
                                     <div class="mb-2">5. Can you comment on the quality of the 100 word summaries for the outputs you’ve reviewed and suggest areas for improvement?</div>
-                                    <v-textarea v-model="reviewerForm.hundredWord" label="" hint="Quality of 100 word summaries?" auto-grow outlined></v-textarea>
+                                    <v-textarea v-model="reviewerForm.hundredWord" label="" hint="Quality of 100 word summaries?" auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="9" justify="end">
-                                    <v-btn class="float-right mr-5" color="primary" @click="saveItem(reviewerForm, 'saveReviewerForm'), save('Form submitted')">submit</v-btn>
+                                    <v-btn class="float-right mr-5" color="primary" @click="saveItem(reviewerForm, 'saveReviewerForm'), save('Form submitted')">Save</v-btn>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -385,6 +381,14 @@
                                 ...item.fields
                             }
                         });
+                        if (!sessionStorage.loaded) {
+                            for (let i = 0; i < this.items.length; i++) {
+                                if (this.items[i].doi) {
+                                    this.getOutputMetaData(this.items[i])
+                                    // Only when we want to run all citation counts
+                                }
+                            }
+                        }
                         this.reviewer = response[1].data.fields;
                         this.reviewerForm = this.reviewer;
                         
@@ -475,6 +479,91 @@
                     this.snack = true;
                     this.snackColor = 'error';
                     this.snackText = msg || 'Not uploaded'
+                },
+                getOutputMetaData(item) {
+                    sessionStorage.loaded = 1;
+                    const elsiverKey = "7f1899f42f07990cb442322cb322c588";
+                    let crossrefURL = `https://api.crossref.org/works/${item.doi}`,
+                        scopusURL = `https://api.elsevier.com/content/search/scopus?apiKey=${elsiverKey}&query=DOI(${item.doi})&field=citedby-count,source-id`,
+                        sourceIDURL = `https://api.elsevier.com/content/serial/title?apiKey=${elsiverKey}&source-id=${item.sourceID}`,
+                        scopusHeaders = `headers: {
+                                    'Access-Control-Allow-Origin': '*',
+                                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                                }`;
+                    var fields = {};
+                    fields.id = item.id;
+                    if (item.doi && item.sourceID) {
+                        axios.all([
+                            axios.get(crossrefURL),
+                            axios.get(scopusURL, {
+                                scopusHeaders
+                            }),
+                            axios.get(sourceIDURL, {
+                                scopusHeaders
+                            })
+                        ]).then((response) => {
+                            console.log("Update output and source metadata using SourceID.");
+                            fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
+                            fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            fields.citeScore = response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric'];
+                            fields.sjr = response[2].data['serial-metadata-response']['entry'][0]['SJRList']['SJR'][0]['$'];
+                            this.saveItem(fields, "outputMetaData")
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                    } else if (item.doi && item.issn) {
+                        let elsiverURL = `https://api.elsevier.com/content/serial/title?apiKey=7f1899f42f07990cb442322cb322c588&issn=${item.issn}`;
+                        axios.all([
+                            axios.get(crossrefURL),
+                            axios.get(scopusURL, {
+                                scopusHeaders
+                            }),
+                            axios.get(elsiverURL, {
+                                scopusHeaders
+                            })
+                        ]).then((response) => {
+                            console.log("Update output and source metadata using ISSN.");
+                            fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
+                            if (item.type === "Journal") {
+                                fields.issn = response[0].data.message["ISSN"][0];
+                                fields.citeScore = response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric'];
+                                fields.sjr = response[2].data['serial-metadata-response']['entry'][0]['SJRList']['SJR'][0]['$'];
+                            }
+                            if (item.type === "Conference") {
+                                //fields.isbn = response[0].data.message["ISBN"][0];
+                            }
+                            fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
+                            this.saveItem(fields, "outputMetaData")
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                    } else if (item.doi) {
+                        axios.all([
+                            axios.get(crossrefURL),
+                            axios.get(scopusURL, {
+                                headers: {
+                                    'Access-Control-Allow-Origin': '*',
+                                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                                }
+                            })
+                        ]).then((response) => {
+                            fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
+                            fields.id = item.id;
+                            fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
+                            if (item.type === "Journal") {
+                                fields.issn = response[0].data.message["ISSN"][0];
+                            }
+                            if (item.type === "Conference") {
+                                fields.isbn = response[0].data.message["ISBN"][0];
+                            }
+                            fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            console.log("Update output metadata using doi.");
+                            this.saveItem(fields, "outputMetaData")
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                    }
                 }
             }
         })
