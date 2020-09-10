@@ -17,6 +17,16 @@
     <script defer type="text/javascript" src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
     <script defer type="text/javascript" src="js/vue_components.js"></script>
     <script defer type="text/javascript" src="js/vue_submission.js"></script>
+    <style>
+        table td {
+            white-space: normal !important;
+            word-wrap: break-word;
+        }
+        
+        table {
+            table-layout: fixed;
+        }
+    </style>
     <title>interactions magazine | Submission</title>
 </head>
 
@@ -72,7 +82,7 @@
                                     <h3 class="font-weight-bold">{{ item['fields']['Type'] }} submission details</h3>
                                 </div>
 
-                                <table class="table table-bordered table-hover">
+                                <table class="table table-bordered table-hover table-responsive">
                                     <tbody>
 
                                         <tr>
@@ -240,8 +250,8 @@
                                         <!-- GRAPHICS -->
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Graphics</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div class="d-flex flex-row" v-if="item['fields']['Graphics']">
+                                            <td class="align-middle border-right-0" max-width="65%">
+                                                <div class="d-flex flex-row img-fluid" v-if="item['fields']['Graphics']">
                                                     <div class="p-2 align-items-center" v-for="graphic in graphics">
                                                         <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']">
@@ -382,7 +392,7 @@
                     <div id="app-auth">
                         <div v-for="item in items">
                             <div v-if="item['fields']['Name']" id="author">
-                                <table class="table table-bordered table-hover">
+                                <table class="table table-bordered table-hover table-responsive">
                                     <tbody>
 
                                         <tr>
