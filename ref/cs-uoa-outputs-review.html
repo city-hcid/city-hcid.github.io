@@ -357,7 +357,7 @@
                         outputFields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=reviewer&fields%5B%5D=reviewerScore&fields%5B%5D=reviewerID&fields%5B%5D=reviewerConfidence&fields%5B%5D=attachment",
                         outputSort = "sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc",
                         reviewerFields = "",
-                        outputsURL = `https://api.airtable.com/v0/${airTableApp}/${outputTable}?view=${outputView}&${outputFields}&${outputSort}&filterByFormula=FIND(%22${reviewer}%22%2C%7BreviewerID%7D)`,
+                        outputsURL = `https://api.airtable.com/v0/${airTableApp}/${outputTable}?view=${outputView}&${outputFields}&${outputSort}&filterByFormula=FIND(%22${reviewer}%22%2CARRAYJOIN(%7BreviewerID%7D))`,
                         reviewerURL = `https://api.airtable.com/v0/${airTableApp}/${reviewerTable}/${reviewer}`,
                         config = {
                             headers: {
@@ -383,7 +383,7 @@
                         });
                         sessionStorage.clear(); // Forces citation check
                         if (!sessionStorage.loaded) {
-                            console.log("Running citation check");
+                            console.log("Running citation check: ");
                             for (let i = 0; i < this.items.length; i++) {
                                 if (this.items[i].doi) {
                                     this.getOutputMetaData(this.items[i])
