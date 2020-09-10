@@ -18,36 +18,37 @@
 
                     <v-row justify="center">
                         <v-col cols="12">
-                            <v-row class="mb-5">
-                                <h1 class="mt-5 font-weight-bold"> REF 2021 Outputs: <span v-for="(item, index) in items" v-if="index == 0" class="font-weight-black">Reviewer {{item.reviewer}}</span></h1>
-                            </v-row>
+                                <h1 class="mt-5 font-weight-bold">City CS REF 2021 Reviewer: <span v-for="item in reviewer.Reviewer" class="font-weight-black">{{ item }}</span></h1>
                         </v-col>
-                        <v-col cols="12" md="11">
-                            <v-row>
+                        <v-col cols="12" sm="11">
                                 <p v-for="(item, index) in items" v-if="index == 0">
-                                    Below is a list of outputs that could potentially be included in City's <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a> (i.e., Computer Science), <a href="https://ref.ac.uk/about/"
-                                        target="_blank">REF 2021</a> submission.
+                                    The list of outputs below have been assigned to you to review for City's <a href="https://ref.ac.uk/about/" target="_blank">REF 2021</a> Computer Science submission (i.e. <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a>).
                                 </p>
                                 <p>
-                                    Please review each output and use the selection menus to <em>score</em> them and <em>rate your confidence</em> for each score. After reviewing the outputs please <em>complete the questions</em> below the table.
+                                    These are potential candidates for our eventual submission and we are seeking estimates of <a href="#scores">scores</a> and an <a href="#report">overall report</a> on their quality and suitability.
                                 </p>
-                            </v-row>
-                        </v-col>
-                        <v-col cols="10" md="10">
-                            <v-row :align="alignment">
                                 <p>
-                                    The REF scoring is as follows (also see <a href="https://www.ref.ac.uk/publications/guidance-on-submissions-201901/" target="_blank">REF 2021 guidance</a> Appendix A).
+                                    In some cases, you may have been assigned outputs to review that are not in your area of expertise. We've made this decision deliberately, so we can get an indication of how the outputs might be judged beyond a specific specialism. 
                                 </p>
-                                TABLE
-                                <p>
-                                    We have added extra increments for the 3* score so you can indicate whether the output might be close to 4* or 2*.
-                                </p>
-                            </v-row>
                         </v-col>
                     </v-row>
 
                     <v-row justify="center">
-                        <v-col cols="12">
+                        <v-col cols="12" class="mt-3" id="scores">
+                                <h2>REF Scores and confidence ratings</h2>
+                        </v-col>
+                        <v-col cols="12" sm="11">
+                            <p>
+                                Please review each output below and use the selection menus to <em>score</em> them and <em>rate your confidence</em> for each score. For the purposes of this exercise, confidence refers to the level of knowledge/expertise you have in the output's research area.
+                            </p>    
+                            <p>
+                                For further details of each output, click on the arrow icon (<v-icon small color="primary">mdi-arrow-right</v-icon>). To download the publication, see the "download" link under the "output" column.
+                            </p>
+                            <p>
+                                See the bottom of this page for a <a href="#criteria">table</a> summarising the REF scoring critera. We have added extra increments for the 3* score for you to indicate whether the output might be close to 4* or 2*. For official documentation of the scoring criteria, see the <a href="https://www.ref.ac.uk/publications/guidance-on-submissions-201901/" target="_blank">REF 2021 guidance</a>, Appendix A.
+                            </p>
+                        </v-col>
+                        <v-col cols="12" sm="12">
                             <v-card>
 
                                 <v-data-table disable-pagination hide-default-footer show-expand dense :sort-by="sortBy" mobile-breakpoint="800" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand" :expanded.sync="expanded">
@@ -90,14 +91,14 @@
 
                                     <!-- Ouput Column -->
                                     <template v-slot:item.output="props">
-                                        <div>
-                                            <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a>
+                                        <div class="my-3">
+                                            {{ props.item.index }}. <a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em><span v-if="props.item.attachment"> (<a :href="props.item.attachment[0].url" target="_new"><strong>download</strong></a> <em>{{props.item.kb}})</span></em>
                                         </div>
                                     </template>
 
                                     <!-- Hundred Words Column -->
                                     <template v-slot:item.hundredwords="props">
-                                        <div>{{props.item.hundredWords}}</div>
+                                        <div class="my-3">{{props.item.hundredWords}}</div>
                                     </template>
 
                                     <!-- Citations column -->
@@ -108,9 +109,7 @@
                                                     {{props.item.crossRef}}
                                                 </span>
                                             </template>
-                                    <div>From CrossRef api.
-                                        <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
-                                    </div>
+                                    <span>Using CrossRef.</span>
                                     </v-tooltip>
                                     <v-tooltip bottom v-if="props.item.scopus">
                                         <template v-slot:activator="{ on, attrs }">
@@ -118,9 +117,7 @@
                                                     / {{props.item.scopus}}
                                                 </span>
                                             </template>
-                                        <div>From Elsiver/Scopus api.
-                                            <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
-                                        </div>
+                                        <span>Using Elsiver/Scopus.</span>
                                     </v-tooltip>
                                     </template>
 
@@ -150,13 +147,14 @@
                                     <template v-slot:expanded-item="{ headers, item }">
                                         <td :colspan="headers.length" :id="item.lastName + item.doi">
                                             <div class="mt-2">
-                                                <p><strong>Author(s):</strong> {{ item.authors }}<br>
-                                                    <strong>Year:</strong> {{ item.year }}<br>
-                                                    <strong>Title:</strong> {{ item.title }}<br>
-                                                    <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}</p>
+                                                <p><strong v-if="item.authors">Author(s):</strong> {{ item.authors }}<br>
+                                                    <strong v-if="item.year">Year:</strong> {{ item.year }}<br>
+                                                    <strong v-if="item.title">Title:</strong> {{ item.title }}<br>
+                                                    <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}<br>
+                                                    <strong v-if="item.doi">DOI:</strong> <a :href="'http://dx.doi.org/' + item.doi" target="_new">{{ item.doi }}</a></p>
                                                 <p v-if="item.doi">
-                                                    <span v-if="item.crossRef"><strong>Citations</strong> (<a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref API</a>): <strong>{{ item.crossRef }}</strong><br></span>
-                                                    <span v-if="item.scopus"></span><strong>Citations</strong> (<a href="https://dev.elsevier.com">Elsiver/Scopus API</a>): <strong>{{ item.scopus }}</strong><br></span>
+                                                    <span v-if="item.crossRef"><strong>Citations</strong> (<a href="https://www.crossref.org/education/retrieve-metadata/rest-api/">Crossref</a>): <strong>{{ item.crossRef }}</strong><br></span>
+                                                    <span v-if="item.scopus"></span><strong>Citations</strong> (<a href="https://dev.elsevier.com">Elsiver/Scopus</a>): <strong>{{ item.scopus }}</strong><br></span>
                                                     See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
                                                 </p>
                                                 <p v-if="item.citeScore">
@@ -179,6 +177,105 @@
                     </v-row>
 
                 </v-container>
+
+                <v-container>
+                    <v-row justify="center">
+                        <v-col cols="12" class="mt-3" id="report">
+                                <h2>Reviewer Report</h2>
+                        </v-col>
+                        <v-col cols="12" sm="11">
+                            <p>
+                                Please complete the questions below and click on the submit button to save them to our system.
+                            </p>
+                        </v-col>
+                    </v-row>
+                </v-container>
+                <template>
+                    <v-form>
+                        <v-container>
+                            <v-row justify="center">
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">1. Can you summarise the individual outputs you’ve reviewed using the REF criteria: <em>originality</em>, <em>significance</em> and <em>rigour</em>. Summaries should be two or three sentences for each output. (For the REF criteria see the <a href="#criteria">table</a> below).</div>
+                                    <v-textarea v-model="reviewerForm.overall" label="" hint="Overall summary" required auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">2. Are there any outputs that you feel wouldn’t be suitable for the REF Computer Science Unit of Assessment (e.g. good but not what REF is looking for) or the type of content (e.g. stretching the interdisciplinarity that REF encourages)?</div>
+                                    <v-textarea v-model="reviewerForm.suitability" label="" hint="Suitability of outputs?" auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">3. Are there specific outputs that stand out as either strong or weak candidates for REF, and why?</div>
+                                    <v-textarea v-model="reviewerForm.strongWeak" label="" hint="Specific strong or weak outputs?" auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">4. If there are “How to” or “Review” papers included in your list of outputs could you provide your opinion on how these stand against the REF criteria?</div>
+                                    <v-textarea v-model="reviewerForm.howTosReviews" label="" hint="How-tos and reviews against REF criteria?" auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9">
+                                    <div class="mb-2">5. Can you comment on the quality of the 100 word summaries for the outputs you’ve reviewed and suggest areas for improvement?</div>
+                                    <v-textarea v-model="reviewerForm.hundredWord" label="" hint="Quality of 100 word summaries?" auto-grow outlined @change="saveItem(reviewerForm, 'saveReviewerForm'), save('Auto save')"></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="9" justify="end">
+                                    <v-btn class="float-right mr-5" color="primary" @click="saveItem(reviewerForm, 'saveReviewerForm'), save('Form submitted')">Save</v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-form>
+                </template>
+
+                <v-container>
+                    <v-row justify="center">
+                        <v-col cols="12" class="mt-3" id="criteria">
+                                <h2>REF 2021 Scoring Criteria</h2>
+                        </v-col>
+                        <v-col class="mb-5" cols="12" sm="11">
+                            <template>
+                                <v-simple-table>
+                                  <template>
+                                    <thead>
+                                      <tr>
+                                        <th class="text-left">Rating</th>
+                                        <th class="text-left">Description</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>Four star</td>
+                                        <td>Quality that is world-leading in terms of originality, significance and rigour.</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Three star</td>
+                                        <td>Quality that is internationally excellent in terms of originality, significance and rigour but which falls short of the highest standards of excellence.</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Two star</td>
+                                        <td>Quality that is recognised internationally in terms of originality, significance and rigour.</td>
+                                      </tr>
+                                      <tr>
+                                        <td>One star</td>
+                                        <td>Quality that is recognised nationally in terms of originality, significance and rigour.</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Unclassified</td>
+                                        <td>Quality that falls below the standard of nationally recognised work. Or work which does not meet the published definition of research for the purposes of this assessment.</td>
+                                      </tr>
+                                    </tbody>
+                                  </template>
+                                </v-simple-table>
+                              </template>
+                              <div class="caption ml-5 mt-3">The criteria for assessing the quality of outputs based on ‘originality, significance and rigour’.</div>
+                        </v-col>
+                    </v-row>
+                </v-container>
+
+                <v-container>
+                    <v-row justify="center">
+                        <v-col cols="12" class="mt-3" id="criteria">
+                                <p>For queries, email <a href="mailto:alex.taylor@city.ac.uk">Alex Taylor</a>, REF coordinator for City's CS dept.</p>
+                        </v-col>
+                    </v-row>
+
+                </v-container>
+
             </v-content>
         </v-app>
     </div>
@@ -189,8 +286,9 @@
     <script>
         const apiToken = "keyAKLpRf8ec2XWH9",
             airTableApp = "appunQ0V4X7SQIIk7",
-            airTableName = "tblDN6QUoVueC6fkg",
-            airTableView = "viwH3RIyw6VZCf9jx";
+            outputTable = "tblDN6QUoVueC6fkg",
+            outputView = "viwH3RIyw6VZCf9jx",
+            reviewerTable = "tbl3wygJ0TChPwNrq";
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
@@ -203,7 +301,7 @@
                         text: 'Score',
                         value: 'reviewerscore',
                         align: 'center',
-                        width: '12%'
+                        width: '14%'
                     }, {
                         text: 'Confidence',
                         value: 'reviewerconfidence',
@@ -212,13 +310,13 @@
                     }, {
                         text: 'Output',
                         value: 'output',
-                        width: '28%',
+                        width: '24%',
                         sortable: false
                     }, {
                         text: "100 word summary",
                         value: "hundredwords",
                         sortable: false,
-                        width: '36%'
+                        width: '35%'
                     }, {
                         text: "Citations",
                         value: "crossref",
@@ -231,14 +329,22 @@
                     loading: true,
                     expanded: [],
                     singleExpand: true,
+                    reviewerForm: {},
                     snack: false,
                     snackColor: '',
                     snackText: '',
                     sortBy: 'title',
                     items: [],
+                    reviewer: [],
                     cites: "",
                     alignment: 'center',
-                    dialog: false // used to toggle the dialog
+                    dialog: false, // used to toggle the dialog
+                    form_overall: '',
+                    form_strongweak: '',
+                    form_suitability: '',
+                    form_howtosreviews: '',
+                    form_hundredwords: '',
+                    index: 0
                 }
             },
             mounted() {
@@ -246,46 +352,91 @@
             },
             methods: {
                 loadItems() {
-                    let url = new URL(window.location.href);
-                    let reviewer = url.searchParams.get("reviewer");
-                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=reviewer&fields%5B%5D=reviewerScore&fields%5B%5D=reviewerID&fields%5B%5D=reviewerConfidence";
-                    const sort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc";
-                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22recgIBTqnDdv4a0J6%22%2C%7BreviewerID%7D)`;
-                    this.items = [];
-                    console.log(submissionURL);
-                    axios.get(submissionURL, {
-                        headers: {
-                            Authorization: "Bearer " + apiToken
-                        }
-                    }).then((response) => {
-                        this.items = response.data.records.map((item) => {
+                    const url = new URL(window.location.href),
+                        reviewer = url.searchParams.get("reviewer"),
+                        outputFields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=reviewer&fields%5B%5D=reviewerScore&fields%5B%5D=reviewerID&fields%5B%5D=reviewerConfidence&fields%5B%5D=attachment",
+                        outputSort = "sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc",
+                        reviewerFields = "",
+                        outputsURL = `https://api.airtable.com/v0/${airTableApp}/${outputTable}?view=${outputView}&${outputFields}&${outputSort}&filterByFormula=FIND(%22${reviewer}%22%2C%7BreviewerID%7D)`,
+                        reviewerURL = `https://api.airtable.com/v0/${airTableApp}/${reviewerTable}/${reviewer}`,
+                        config = {
+                            headers: {
+                                Authorization: "Bearer " + apiToken,
+                                Accept: "application/json",
+                            },
+                        };
+                    axios.all([
+                        axios.get(outputsURL, config),
+                        axios.get(reviewerURL, config),
+                    ]).then((response) => {
+                        this.items = response[0].data.records.map((item) => {
+                            this.index += 1;
+                            if (item.fields.attachment) {
+                                var attachmentSize = this.formatBytes(item.fields.attachment[0].size);
+                            }
                             return {
+                                kb: attachmentSize || "no file",
                                 id: item.id,
+                                index: this.index,
                                 ...item.fields
                             }
-                        })
+                        });
+                        sessionStorage.clear(); // Forces citation check
+                        if (!sessionStorage.loaded) {
+                            console.log("Running citation check");
+                            for (let i = 0; i < this.items.length; i++) {
+                                if (this.items[i].doi) {
+                                    this.getOutputMetaData(this.items[i])
+                                }
+                            }
+                        }
+                        this.reviewer = response[1].data.fields;
+                        this.reviewerForm = this.reviewer;
+                        
                         this.loading = false; // Removes table loader graphic
                     }).catch((error) => {
                         console.log(error)
                     })
                 },
                 saveItem(item, key) {
-                    let data = item,
+                    let data = {},
                         method = "patch",
-                        id = item.id,
-                        url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`;
+                        id = "",
+                        url = "";
 
                     if (key === "reviewerScore") {
+                        id = item.id;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${outputTable}/${id}`;
                         data = {
                             fields: {
                                 reviewerScore: item.reviewerScore
                             }
                         }
                     } else if (key === "reviewerConfidence") {
+                        id = item.id;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${outputTable}/${id}`;
                         data = {
                             fields: {
                                 reviewerConfidence: item.reviewerConfidence
                             }
+                        }
+                    } else if (key === "saveReviewerForm") {
+                        id = item.reviewerID;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${reviewerTable}/${id}`;
+                        data = {
+                            fields: {
+                                overall: item.overall,
+                                suitability: item.suitability,
+                                strongWeak: item.strongWeak,
+                                hundredWord: item.hundredWord,
+                                howTosReviews: item.howTosReviews
+                            }
+                        }
+                    } else if (key === "outputMetaData") {
+                        id = item.id;
+                        url = `https://api.airtable.com/v0/${airTableApp}/${outputTable}/${id}`;
+                        data = {
+                            fields: item
                         }
                     }
                     axios[method](url,
@@ -298,33 +449,23 @@
                                 if (data.fields.id) {
                                     delete data.fields.id // must remove id from the data for airtable patch to work
                                 }
-                                if (key === "saveFormItem") {
-                                    delete data.fields.firstName; // must remove all computed fields if saving entire record
-                                    delete data.fields.lastName;
-                                    delete data.fields.authorName;
-                                    delete data.fields.authorID;
-                                    //delete data.fields.Centre
-                                }
                                 return JSON.stringify(data);
                             }]
                         }
-                    ).then(response => {
-                        if (response.data && response.data.id) {
-                            this.editedItem.id = response.data.id
-                            if (!id) {
-                                this.items.push(this.editedItem)
-                            }
-                            this.editedItem = {}
-                        }
-                        if (key === "saveFormItem") {
-                            this.dialog = !this.dialog;
-                            setTimeout(function() {
-                                location.reload();
-                            }, 500)
-                        }
-                    }).catch(error => {
+                    ).catch(error => {
                         console.log(error.response)
                     })
+                },
+                formatBytes(bytes, decimals = 2) {
+                    if (bytes === 0) return '0 Bytes';
+
+                    const k = 1024;
+                    const dm = decimals < 0 ? 0 : decimals;
+                    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+                    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+                    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
                 },
                 save(msg) {
                     this.snack = true;
@@ -345,6 +486,94 @@
                     this.snack = true;
                     this.snackColor = 'error';
                     this.snackText = msg || 'Not uploaded'
+                },
+                getOutputMetaData(item) {
+                    sessionStorage.loaded = 1;
+                    const elsiverKey = "7f1899f42f07990cb442322cb322c588";
+                    let crossrefURL = `https://api.crossref.org/works/${item.doi}`,
+                        scopusURL = `https://api.elsevier.com/content/search/scopus?apiKey=${elsiverKey}&query=DOI(${item.doi})&field=citedby-count,source-id`,
+                        sourceIDURL = `https://api.elsevier.com/content/serial/title?apiKey=${elsiverKey}&source-id=${item.sourceID}`,
+                        scopusHeaders = `headers: {
+                                    'Access-Control-Allow-Origin': '*',
+                                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                                }`;
+                    var fields = {};
+                    fields.id = item.id;
+                    if (item.doi && item.sourceID) {
+                        console.log("Checking citations using source ID");
+                        axios.all([
+                            axios.get(crossrefURL),
+                            axios.get(scopusURL, {
+                                scopusHeaders
+                            }),
+                            axios.get(sourceIDURL, {
+                                scopusHeaders
+                            })
+                        ]).then((response) => {
+                            console.log("Update output and source metadata using SourceID.");
+                            fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
+                            fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            fields.citeScore = response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric'];
+                            fields.sjr = response[2].data['serial-metadata-response']['entry'][0]['SJRList']['SJR'][0]['$'];
+                            this.saveItem(fields, "outputMetaData")
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                    } else if (item.doi && item.issn) {
+                        console.log("Checking citations using issn");
+                        let elsiverURL = `https://api.elsevier.com/content/serial/title?apiKey=7f1899f42f07990cb442322cb322c588&issn=${item.issn}`;
+                        axios.all([
+                            axios.get(crossrefURL),
+                            axios.get(scopusURL, {
+                                scopusHeaders
+                            }),
+                            axios.get(elsiverURL, {
+                                scopusHeaders
+                            })
+                        ]).then((response) => {
+                            console.log("Update output and source metadata using ISSN.");
+                            fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
+                            if (item.type === "Journal") {
+                                fields.issn = response[0].data.message["ISSN"][0];
+                                fields.citeScore = response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric'];
+                                fields.sjr = response[2].data['serial-metadata-response']['entry'][0]['SJRList']['SJR'][0]['$'];
+                            }
+                            if (item.type === "Conference") {
+                                //fields.isbn = response[0].data.message["ISBN"][0];
+                            }
+                            fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
+                            this.saveItem(fields, "outputMetaData")
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                    } else if (item.doi) {
+                        console.log("Checking citations using DOI");
+                        axios.all([
+                            axios.get(crossrefURL),
+                            axios.get(scopusURL, {
+                                headers: {
+                                    'Access-Control-Allow-Origin': '*',
+                                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                                }
+                            })
+                        ]).then((response) => {
+                            fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
+                            fields.id = item.id;
+                            fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
+                            if (item.type === "Journal") {
+                                fields.issn = response[0].data.message["ISSN"][0];
+                            }
+                            if (item.type === "Conference") {
+                                fields.isbn = response[0].data.message["ISBN"][0];
+                            }
+                            fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            console.log("Update output metadata using doi.");
+                            this.saveItem(fields, "outputMetaData")
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                    }
                 }
             }
         })
