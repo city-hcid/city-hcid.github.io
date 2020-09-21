@@ -31,8 +31,7 @@
                     <ul class="tabs">
                         <li class="tab col s2"><a class="active" href="#all">All members</a></li>
                         <li class="tab col s2"><a href="#phds">PhD Students</a></li>
-                        <li class="tab col s2"><a href="#researchers">Researchers</a></li>
-                        <li class="tab col s3"><a href="#staff">Permanent Staff</a></li>
+                        <li class="tab col s3"><a href="#staff">Staff</a></li>
                         <li class="tab col s3"><a href="#alum">Visitors &amp; Alumni</a></li>
                     </ul>
                 </div>
@@ -44,7 +43,6 @@
                     <ul class="tabs">
                         <li class="tab col s3"><a class="active" href="#all">All</a></li>
                         <li class="tab col s3"><a href="#phds">PhDs</a></li>
-                        <li class="tab col s3"><a href="#researchers">Research</a></li>
                         <li class="tab col s3"><a href="#staff">Staff</a></li>
                     </ul>
                 </div>
@@ -62,13 +60,6 @@
                 <div class="row">
                     <div class="col s12">
                         <template-members v-for="item in items" v-if="item['status']=='phd'" :item="item" members="phds"></template-members>
-                    </div>
-                </div>
-            </div>
-            <div class="container" id="researchers">
-                <div class="row">
-                    <div class="col s12">
-                        <template-members v-for="item in items" v-if="item['status']=='research'" :item="item" members="researchers"></template-members>
                     </div>
                 </div>
             </div>
