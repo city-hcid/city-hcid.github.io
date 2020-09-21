@@ -107,7 +107,7 @@
                                     <!-- Ouput Column -->
                                     <template v-slot:item.output="props">
                                         <p v-if="props.item.ref">
-                                            <span v-if="props.item.doi"><a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a></span>
+                                            {{ props.item.index }}. <span v-if="props.item.doi"><a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a></span>
                                             <span v-else>{{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em></span>
                                         </p>
                                         <p v-else class="text--disabled">
@@ -370,7 +370,8 @@
                     cites: "",
                     typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
                     dialog: false, // used to toggle the dialog
-                    editedItem: {} // empty holder for edit output dialog
+                    editedItem: {}, // empty holder for edit output dialog
+                    index: 0
                 }
             },
             mounted() {
@@ -392,7 +393,7 @@
                     let url = new URL(window.location.href);
                     let specialism = url.searchParams.get("spec");
                     const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=review";
-                    const sort = "sort%5B0%5D%5Bfield%5D=lastName&sort%5B0%5D%5Bdirection%5D=asc";
+                    const sort = "sort%5B0%5D%5Bfield%5D=ref&sort%5B0%5D%5Bdirection%5D=desc&sort%5B1%5D%5Bfield%5D=rank&sort%5B1%5D%5Bdirection%5D=asc&sort%5B2%5D%5Bfield%5D=lastName&sort%5B2%5D%5Bdirection%5D=asc";
                     let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${fields}&${sort}&filterByFormula=FIND(%22${specialism}%22%2C%7Bspecialism%7D)`;
                     this.items = [];
                     axios.get(submissionURL, {
@@ -402,8 +403,10 @@
                         })
                         .then((response) => {
                             this.items = response.data.records.map((item) => {
+                                this.index += 1;
                                 return {
                                     id: item.id,
+                                    index: this.index,
                                     ...item.fields
                                 }
                             })
