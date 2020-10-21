@@ -251,7 +251,15 @@
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Graphics</th>
                                             <td class="align-middle border-right-0" max-width="65%">
-                                                <div class="d-flex flex-row img-fluid" v-if="item['fields']['Graphics']">
+                                                <div class="" v-if="item['fields']['Graphics'].length > 4">
+                                                    <div class="p-2 align-items-center" v-for="graphic in graphics">
+                                                        <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']">
+                                                            <i style="font-size: 32px" class="fas fa-file-image md-48"></i>
+                                                        </a></span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row img-fluid" v-else-if="item['fields']['Graphics']">
                                                     <div class="p-2 align-items-center" v-for="graphic in graphics">
                                                         <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']">
