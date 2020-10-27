@@ -251,409 +251,411 @@
                                         <tr>
                                             <th class="align-middle" width="25%" scope="row">Graphics</th>
                                             <td class="align-middle border-right-0" max-width="65%">
+                                                <div class="d-flex flex-row img-fluid" v-if="item['fields']['Graphics']"></div>
                                                 <div class="" v-if="item['fields']['Graphics'].length > 4">
                                                     <div class="p-2 align-items-center" v-for="graphic in graphics">
                                                         <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']">
-                                                            <i style="font-size: 32px" class="fas fa-file-image md-48"></i>
-                                                        </a></span>
+                                                                <i style="font-size: 32px" class="fas fa-file-image md-48"></i>
+                                                            </a></span>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex flex-row img-fluid" v-else-if="item['fields']['Graphics']">
+                                                <div class="d-flex flex-row img-fluid" v-else>
                                                     <div class="p-2 align-items-center" v-for="graphic in graphics">
                                                         <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
                                                         <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']">
-                                                            <i style="font-size: 32px" class="fas fa-file-image md-48"></i>
-                                                        </a></span>
+                                                                <i style="font-size: 32px" class="fas fa-file-image md-48"></i>
+                                                            </a></span>
                                                     </div>
                                                 </div>
-                                                <div v-else>
-                                                    <p class="lbr text-muted my-2"><em>If you have images or graphics please upload them using the "add" button.</em></p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                                <div class="text-right">
-                                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" id="upload_widget" class="btn btn-sm btn-success upload-widget" aria-label="green tag">add...</button>
-                                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-warning upload-widget" aria-label="orange tag">add...</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr v-if="item['fields']['Graphics']">
-                                            <th class="align-middle" width="25%" scope="row">Image Caption(s)</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div v-if="item['fields']['Image Captions']">
-                                                    <p class="lbr my-2">{{ item['fields']['Image Captions'] }}</p>
-                                                </div>
-                                                <div v-else>
-                                                    <p class="lbr text-muted my-2"><em>Provide a caption for each image, clearly indicating which image the caption corresponds to.</em></p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                                <div class="text-right">
-                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission"
-                                                        data-placeholder="Image captions..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions..."><span>add...</span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr v-if="item['fields']['Graphics']">
-                                            <th class="align-middle" width="25%" scope="row">Image alt-text</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div v-if="item['fields']['Image alt-text']">
-                                                    <p class="lbr my-2">{{ item['fields']['Image alt-text'] }}</p>
-                                                </div>
-                                                <div v-else>
-                                                    <p class="lbr text-muted my-2"><em>Provide <a href="https://www.rnib.org.uk/accessibility-guidelines-alt-text-what-you-need-know" target="_blank">alt-text</a> for each image, clearly indicating which image the alt-text corresponds to...</em></p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                                <div class="text-right">
-                                                    <button v-if="item['fields']['Image alt-text']" v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."
-                                                        aria-label="Green tag"><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."><span>add...</span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr v-if="item['fields']['Responsibility']">
-                                            <th class="align-middle" width="25%" scope="row">Responsibility</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div>
-                                                    <p class="lbr my-2"><span v-if="item['fields']['Responsibility']">Submission under responsibility of {{ item['fields']['responsibility-string'] }}</span>
-                                                    </p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
                             </div>
-                        </div>
-
-                        <!-- Attachment Modal -->
-                        <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add or update files</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        To update your submission text, or add graphics/images please <a href="mailto:eic@interactions.acm.org" target="_top">email</a> the file(s) to the editorial team.
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ok</button>
-                                    </div>
+                            <div v-else>
+                                <p class="lbr text-muted my-2"><em>If you have images or graphics please upload them using the "add" button.</em></p>
+                            </div>
+                            </td>
+                            <td class="align-middle border-left-0" width="10%">
+                                <div class="text-right">
+                                    <button v-if="item['fields']['Graphics']" v-on:click="fieldName = 'Graphics'" id="upload_widget" class="btn btn-sm btn-success upload-widget" aria-label="green tag">add...</button>
+                                    <button v-else v-on:click="fieldName = 'Final text'" id="upload_widget" class="btn btn-sm btn-warning upload-widget" aria-label="orange tag">add...</button>
                                 </div>
-                            </div>
-                        </div>
+                            </td>
+                            </tr>
 
-                        <!-- Submission Modal -->
-                        <div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel">Update</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <tr v-if="item['fields']['Graphics']">
+                                <th class="align-middle" width="25%" scope="row">Image Caption(s)</th>
+                                <td class="align-middle border-right-0" width="65%">
+                                    <div v-if="item['fields']['Image Captions']">
+                                        <p class="lbr my-2">{{ item['fields']['Image Captions'] }}</p>
                                     </div>
-
-                                    <div class="modal-body">
-                                        <form id="updateForm" action="" method="get">
-
-                                            <div v-if="fieldName == 'Insights' || fieldName == 'Author Order' || fieldName == 'Image Captions' || fieldName == 'Image alt-text'" class="form-group" id="updateFormGroup">
-                                                <textarea type="text" name="updateInput" value="" class="form-control" id="updateText" rows="6" placeholder=""></textarea>
-                                            </div>
-
-                                            <div v-else class="form-group" id="updateFormGroup">
-                                                <input type="text" name="updateInput" value="" class="form-control" id="updateInput" placeholder="">
-                                            </div>
-
-                                            <div class="form-group mt-3 text-right">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" Name="updateButton" value="Click" onClick="submitForm(this.form)" data-dismiss="modal">Update</button>
-                                            </div>
-
-                                        </form>
+                                    <div v-else>
+                                        <p class="lbr text-muted my-2"><em>Provide a caption for each image, clearly indicating which image the caption corresponds to.</em></p>
                                     </div>
+                                </td>
+                                <td class="align-middle border-left-0" width="10%">
+                                    <div class="text-right">
+                                        <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission"
+                                            data-placeholder="Image captions..."><span>update...</span></button>
+                                        <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions..."><span>add...</span></button>
+                                    </div>
+                                </td>
+                            </tr>
 
-                                </div>
-                            </div>
+                            <tr v-if="item['fields']['Graphics']">
+                                <th class="align-middle" width="25%" scope="row">Image alt-text</th>
+                                <td class="align-middle border-right-0" width="65%">
+                                    <div v-if="item['fields']['Image alt-text']">
+                                        <p class="lbr my-2">{{ item['fields']['Image alt-text'] }}</p>
+                                    </div>
+                                    <div v-else>
+                                        <p class="lbr text-muted my-2"><em>Provide <a href="https://www.rnib.org.uk/accessibility-guidelines-alt-text-what-you-need-know" target="_blank">alt-text</a> for each image, clearly indicating which image the alt-text corresponds to...</em></p>
+                                    </div>
+                                </td>
+                                <td class="align-middle border-left-0" width="10%">
+                                    <div class="text-right">
+                                        <button v-if="item['fields']['Image alt-text']" v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."
+                                            aria-label="Green tag"><span>update...</span></button>
+                                        <button v-else v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."><span>add...</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr v-if="item['fields']['Responsibility']">
+                                <th class="align-middle" width="25%" scope="row">Responsibility</th>
+                                <td class="align-middle border-right-0" width="65%">
+                                    <div>
+                                        <p class="lbr my-2"><span v-if="item['fields']['Responsibility']">Submission under responsibility of {{ item['fields']['responsibility-string'] }}</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td class="align-middle border-left-0" width="10%">
+                                </td>
+                            </tr>
+
+                            </tbody>
+                            </table>
                         </div>
-
                     </div>
+
+                    <!-- Attachment Modal -->
+                    <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add or update files</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    To update your submission text, or add graphics/images please <a href="mailto:eic@interactions.acm.org" target="_top">email</a> the file(s) to the editorial team.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ok</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submission Modal -->
+                    <div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel">Update</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form id="updateForm" action="" method="get">
+
+                                        <div v-if="fieldName == 'Insights' || fieldName == 'Author Order' || fieldName == 'Image Captions' || fieldName == 'Image alt-text'" class="form-group" id="updateFormGroup">
+                                            <textarea type="text" name="updateInput" value="" class="form-control" id="updateText" rows="6" placeholder=""></textarea>
+                                        </div>
+
+                                        <div v-else class="form-group" id="updateFormGroup">
+                                            <input type="text" name="updateInput" value="" class="form-control" id="updateInput" placeholder="">
+                                        </div>
+
+                                        <div class="form-group mt-3 text-right">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" Name="updateButton" value="Click" onClick="submitForm(this.form)" data-dismiss="modal">Update</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </div>
 
-            <div class="row justify-content-center" id="author-title">
-                <div class="col-12 col-md-10">
-                    <h3 class="font-weight-bold mt-5 px-2">Contact author details</h3>
-                </div>
+        <div class="row justify-content-center" id="author-title">
+            <div class="col-12 col-md-10">
+                <h3 class="font-weight-bold mt-5 px-2">Contact author details</h3>
             </div>
+        </div>
 
-            <div class="row justify-content-center my-3" id="author-details">
-                <div class="col-12 col-md-10">
-                    <div id="app-auth">
-                        <div v-for="item in items">
-                            <div v-if="item['fields']['Name']" id="author">
-                                <table class="table table-bordered table-hover table-responsive">
-                                    <tbody>
+        <div class="row justify-content-center my-3" id="author-details">
+            <div class="col-12 col-md-10">
+                <div id="app-auth">
+                    <div v-for="item in items">
+                        <div v-if="item['fields']['Name']" id="author">
+                            <table class="table table-bordered table-hover table-responsive">
+                                <tbody>
 
-                                        <tr>
-                                            <th class="align-middle" width="25%" scope="row">Contact Author</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div v-if="item['fields']['Name']">
-                                                    <p class="lbr font-weight-bold my-2">{{ item['fields']['Name'] }}</p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <th class="align-middle" width="25%" scope="row">Contact Author</th>
+                                        <td class="align-middle border-right-0" width="65%">
+                                            <div v-if="item['fields']['Name']">
+                                                <p class="lbr font-weight-bold my-2">{{ item['fields']['Name'] }}</p>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle border-left-0" width="10%">
+                                        </td>
+                                    </tr>
 
-                                        <tr v-if="item['fields']['Photo']">
-                                            <th class="align-middle" width="25%" scope="row">Photo</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div>
+                                    <tr v-if="item['fields']['Photo']">
+                                        <th class="align-middle" width="25%" scope="row">Photo</th>
+                                        <td class="align-middle border-right-0" width="65%">
+                                            <div>
 
-                                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".photo-modal-sm">View photo</button>
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".photo-modal-sm">View photo</button>
 
-                                                    <div class="modal fade photo-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                                                            <div class="modal-content my-2">
+                                                <div class="modal fade photo-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                                        <div class="modal-content my-2">
 
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="ModalTitle">{{ item['fields']['Name'] }}</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="ModalTitle">{{ item['fields']['Name'] }}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
-                                                                </div>
-                                                                <p class="text-center mt-3">
-                                                                    <a v-bind:href="item['fields']['Photo']['0']['url']">
-                                                                        <img v-bind:src="item['fields']['Photo'][0]['thumbnails']['large']['url']" class="rounded" alt="Thumbnail. Click to download file" width='250' height='250'>
-                                                                    </a>
-                                                                </p>
                                                             </div>
+                                                            <p class="text-center mt-3">
+                                                                <a v-bind:href="item['fields']['Photo']['0']['url']">
+                                                                    <img v-bind:src="item['fields']['Photo'][0]['thumbnails']['large']['url']" class="rounded" alt="Thumbnail. Click to download file" width='250' height='250'>
+                                                                </a>
+                                                            </p>
                                                         </div>
                                                     </div>
+                                                </div>
 
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle border-left-0" width="10%">
+                                        </td>
+                                    </tr>
 
-                                        <tr>
-                                            <th class="align-middle" width="25%" scope="row">Group</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div>
-                                                    <p class="lbr my-2" v-if="item['fields']['Group']">{{ item['fields']['Group'] }}</p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                                <div class="text-right">
-                                                    <button v-if="item['fields']['Group']" v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..." aria-label="Green tag"><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..."><span>add...</span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <th class="align-middle" width="25%" scope="row">Group</th>
+                                        <td class="align-middle border-right-0" width="65%">
+                                            <div>
+                                                <p class="lbr my-2" v-if="item['fields']['Group']">{{ item['fields']['Group'] }}</p>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle border-left-0" width="10%">
+                                            <div class="text-right">
+                                                <button v-if="item['fields']['Group']" v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..." aria-label="Green tag"><span>update...</span></button>
+                                                <button v-else v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..."><span>add...</span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                                        <tr>
-                                            <th class="align-middle" width="25%" scope="row">Department</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div>
-                                                    <p class="lbr my-2" v-if="item['fields']['Department']">{{ item['fields']['Department'] }}</p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                                <div class="text-right">
-                                                    <button v-if="item['fields']['Department']" v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name..."><span>add...</span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <th class="align-middle" width="25%" scope="row">Department</th>
+                                        <td class="align-middle border-right-0" width="65%">
+                                            <div>
+                                                <p class="lbr my-2" v-if="item['fields']['Department']">{{ item['fields']['Department'] }}</p>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle border-left-0" width="10%">
+                                            <div class="text-right">
+                                                <button v-if="item['fields']['Department']" v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name..."><span>update...</span></button>
+                                                <button v-else v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name..."><span>add...</span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                                        <tr>
-                                            <th class="align-middle" width="25%" scope="row">Organisation</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div>
-                                                    <p class="lbr my-2" v-if="item['fields']['Organisation']">{{ item['fields']['Organisation'] }}</p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                                <div class="text-right">
-                                                    <button v-if="item['fields']['Organisation']" v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name..."><span>add...</span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <th class="align-middle" width="25%" scope="row">Organisation</th>
+                                        <td class="align-middle border-right-0" width="65%">
+                                            <div>
+                                                <p class="lbr my-2" v-if="item['fields']['Organisation']">{{ item['fields']['Organisation'] }}</p>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle border-left-0" width="10%">
+                                            <div class="text-right">
+                                                <button v-if="item['fields']['Organisation']" v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name..."><span>update...</span></button>
+                                                <button v-else v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name..."><span>add...</span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                                        <tr>
-                                            <th class="align-middle" width="25%" scope="row">Twitter</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div v-if="item['fields']['Twitter']">
-                                                    <p class="lbr my-2">{{ item['fields']['Twitter'] }}</p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                                <div class="text-right">
-                                                    <button v-if="item['fields']['Twitter']" v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Twitter" data-source="Author" data-placeholder="Twitter handle..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Twitter" data-source="Author" data-placeholder="Twitter handle..."><span>add...</span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <th class="align-middle" width="25%" scope="row">Twitter</th>
+                                        <td class="align-middle border-right-0" width="65%">
+                                            <div v-if="item['fields']['Twitter']">
+                                                <p class="lbr my-2">{{ item['fields']['Twitter'] }}</p>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle border-left-0" width="10%">
+                                            <div class="text-right">
+                                                <button v-if="item['fields']['Twitter']" v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Twitter" data-source="Author" data-placeholder="Twitter handle..."><span>update...</span></button>
+                                                <button v-else v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Twitter" data-source="Author" data-placeholder="Twitter handle..."><span>add...</span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                                        <tr v-if="item['fields']['Type']=='Features' || item['fields']['Type']=='Forums' || item['fields']['Type']=='Columns' || item['fields']['Type']=='Blog' || item['fields']['Type']=='Blog@UX'">
-                                            <th class="align-middle" width="25%" scope="row">Bio</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div>
-                                                    <p class="lbr my-2" v-if="item['fields']['Short Bio']">{{ item['fields']['Short Bio'] }}</p>
-                                                    <p class="lbr my-2" v-else>50 words maximum.</p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                                <div class="text-right">
-                                                    <button v-if="item['fields']['Short Bio']" v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Short Bio" data-source="Author" data-placeholder="Short Bio..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#updateModal" data-field="Short Bio" data-source="Author" data-placeholder="Short Bio..."><span>add...</span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tr v-if="item['fields']['Type']=='Features' || item['fields']['Type']=='Forums' || item['fields']['Type']=='Columns' || item['fields']['Type']=='Blog' || item['fields']['Type']=='Blog@UX'">
+                                        <th class="align-middle" width="25%" scope="row">Bio</th>
+                                        <td class="align-middle border-right-0" width="65%">
+                                            <div>
+                                                <p class="lbr my-2" v-if="item['fields']['Short Bio']">{{ item['fields']['Short Bio'] }}</p>
+                                                <p class="lbr my-2" v-else>50 words maximum.</p>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle border-left-0" width="10%">
+                                            <div class="text-right">
+                                                <button v-if="item['fields']['Short Bio']" v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Short Bio" data-source="Author" data-placeholder="Short Bio..."><span>update...</span></button>
+                                                <button v-else v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#updateModal" data-field="Short Bio" data-source="Author" data-placeholder="Short Bio..."><span>add...</span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                                        <tr>
-                                            <th class="align-middle" width="25%" scope="row">Postal Address</th>
-                                            <td class="align-middle border-right-0" width="65%">
-                                                <div v-if="item['fields']['Postal Address']">
-                                                    <p class="lbr my-2">{{ item['fields']['Postal Address'] }}</p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle border-left-0" width="10%">
-                                                <div class="text-right">
-                                                    <button v-if="item['fields']['Postal Address']" v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author"
-                                                        data-placeholder="Postal Address..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author" data-placeholder="Postal Address..."><span>add...</span></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <th class="align-middle" width="25%" scope="row">Postal Address</th>
+                                        <td class="align-middle border-right-0" width="65%">
+                                            <div v-if="item['fields']['Postal Address']">
+                                                <p class="lbr my-2">{{ item['fields']['Postal Address'] }}</p>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle border-left-0" width="10%">
+                                            <div class="text-right">
+                                                <button v-if="item['fields']['Postal Address']" v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author"
+                                                    data-placeholder="Postal Address..."><span>update...</span></button>
+                                                <button v-else v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author" data-placeholder="Postal Address..."><span>add...</span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div v-else class="my-5 text-center">
-                                <p>The author details didn't load properly. Try <a href="javascript:window.location.reload();">refreshing the page.</a></p>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
+                        <div v-else class="my-5 text-center">
+                            <p>The author details didn't load properly. Try <a href="javascript:window.location.reload();">refreshing the page.</a></p>
+                        </div>
+                    </div>
 
-                        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
+                    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
 
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel">Update</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <form id="updateForm" action="" method="get">
-
-                                            <div v-if="fieldName == 'Twitter'" class="input-group" id="updateFormGroup">
-                                                <!-- insert @ prepend -->
-                                                <div class='input-group-prepend' id='twitterAt'>
-                                                    <div class='input-group-text'>@</div>
-                                                </div>
-                                                <input type="text" name="updateInput" value="" class="form-control" id="updateTwitter" placeholder="">
-                                            </div>
-
-                                            <div v-else-if="fieldName == 'Short Bio' || fieldName == 'Postal Address' || fieldName == 'Author Order' || fieldName == 'Image Captions' || fieldName == 'Image alt-text'" class="form-group" id="updateFormGroup">
-                                                <textarea type="text" name="updateInput" value="" class="form-control" id="updateText" rows="6" placeholder=""></textarea>
-                                            </div>
-
-                                            <div v-else class="form-group" id="updateFormGroup">
-                                                <input type="text" name="updateInput" value="" class="form-control" id="updateInput" placeholder="">
-                                            </div>
-
-                                            <div class="form-group mt-3 text-right">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" Name="updateButton" value="Click" onClick="submitForm(this.form)" data-dismiss="modal">Update</button>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel">Update</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
+
+                                <div class="modal-body">
+                                    <form id="updateForm" action="" method="get">
+
+                                        <div v-if="fieldName == 'Twitter'" class="input-group" id="updateFormGroup">
+                                            <!-- insert @ prepend -->
+                                            <div class='input-group-prepend' id='twitterAt'>
+                                                <div class='input-group-text'>@</div>
+                                            </div>
+                                            <input type="text" name="updateInput" value="" class="form-control" id="updateTwitter" placeholder="">
+                                        </div>
+
+                                        <div v-else-if="fieldName == 'Short Bio' || fieldName == 'Postal Address' || fieldName == 'Author Order' || fieldName == 'Image Captions' || fieldName == 'Image alt-text'" class="form-group" id="updateFormGroup">
+                                            <textarea type="text" name="updateInput" value="" class="form-control" id="updateText" rows="6" placeholder=""></textarea>
+                                        </div>
+
+                                        <div v-else class="form-group" id="updateFormGroup">
+                                            <input type="text" name="updateInput" value="" class="form-control" id="updateInput" placeholder="">
+                                        </div>
+
+                                        <div class="form-group mt-3 text-right">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" Name="updateButton" value="Click" onClick="submitForm(this.form)" data-dismiss="modal">Update</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </div>
+        </div>
 
-            <div class="row justify-content-center my-3" id="FAQs">
-                <div class="col-12 col-md-9">
-                    <h2 class="font-weight-bold mt-5">Frequently Asked Questions</h2>
+        <div class="row justify-content-center my-3" id="FAQs">
+            <div class="col-12 col-md-9">
+                <h2 class="font-weight-bold mt-5">Frequently Asked Questions</h2>
 
-                    <p class="mb-4">Read the following for information about submissions to <em>interactions</em>, and the process we follow to edit and then publish content.</p>
+                <p class="mb-4">Read the following for information about submissions to <em>interactions</em>, and the process we follow to edit and then publish content.</p>
 
-                    <h3>Content</h3>
-                    <p class="mb-4"><em>What types of content can I submit to interactions?</em><br/>For the types of content in the magazine see <a href="https://interactions.acm.org/submissions">here</a>.</p class="mb-4">
+                <h3>Content</h3>
+                <p class="mb-4"><em>What types of content can I submit to interactions?</em><br/>For the types of content in the magazine see <a href="https://interactions.acm.org/submissions">here</a>.</p class="mb-4">
 
-                    <p class="mb-1"><em>How long should my contribution be?</em><br/>The maximum lengths for the different content types are:</p>
-                    <ul class="mb-4">
-                        <li>Abracadabra columns: 1200 words</li>
-                        <li>Blogs: 800-1200 words</li>
-                        <li>Community Square articles: 550 words</li>
-                        <li>Cover story: 3500 words</li>
-                        <li>Demo Hour: 100 words</li>
-                        <li>Feature articles: 2750 words</li>
-                        <li>How Was It Made? pieces: 500 words</li>
-                        <li>What Are Your Reading pieces: 500 words</li>
-                    </ul>
+                <p class="mb-1"><em>How long should my contribution be?</em><br/>The maximum lengths for the different content types are:</p>
+                <ul class="mb-4">
+                    <li>Abracadabra columns: 1200 words</li>
+                    <li>Blogs: 800-1200 words</li>
+                    <li>Community Square articles: 550 words</li>
+                    <li>Cover story: 3500 words</li>
+                    <li>Demo Hour: 100 words</li>
+                    <li>Feature articles: 2750 words</li>
+                    <li>How Was It Made? pieces: 500 words</li>
+                    <li>What Are Your Reading pieces: 500 words</li>
+                </ul>
 
-                    <p class="mb-4"><em>What file type should I use to submit content?</em><br/>We need to have content in an editable format such as Microsoft Word doc/docx, RTFs, or plain text files.</p>
+                <p class="mb-4"><em>What file type should I use to submit content?</em><br/>We need to have content in an editable format such as Microsoft Word doc/docx, RTFs, or plain text files.</p>
 
-                    <p class="mb-1"><em>How many references can I include?</em></p>
-                    <ul class="mb-4">
-                        <li>Cover stories: 9 max.</li>
-                        <li>Abracadabra and Features: 6 max</li>
-                    </ul>
+                <p class="mb-1"><em>How many references can I include?</em></p>
+                <ul class="mb-4">
+                    <li>Cover stories: 9 max.</li>
+                    <li>Abracadabra and Features: 6 max</li>
+                </ul>
 
-                    <p class="mb-1"><em>How many figures or images can I include?</em></p>
-                    <ul class="mb-4">
-                        <li>Cover stories : approx 3-5.</li>
-                        <li>Abracadabra and Features: 1-3</li>
-                    </ul>
+                <p class="mb-1"><em>How many figures or images can I include?</em></p>
+                <ul class="mb-4">
+                    <li>Cover stories : approx 3-5.</li>
+                    <li>Abracadabra and Features: 1-3</li>
+                </ul>
 
-                    <p><em>What is the expected image quality?</em><br/> Ideally figures should be in a vector graphic format (e.g. Adobe Illustrator, eps, etc.). For bitmap figures or photographs we aim for 300 dpi.</p>
-                    <br/>
+                <p><em>What is the expected image quality?</em><br/> Ideally figures should be in a vector graphic format (e.g. Adobe Illustrator, eps, etc.). For bitmap figures or photographs we aim for 300 dpi.</p>
+                <br/>
 
-                    <h3>Process</h3>
-                    <p class="mb-4"><em>Is the work reviewed?</em><br/><em>interactions</em> is a magazine and thus content does not undergo a formal or blind review process. However, the sub-editors and/or editors in chief do carefully view incoming content to assess
-                        it's suitability. Content may be accepted as is or authors may be asked to make amendments to ensure it speaks to the magazine's general readership and is in line with the goals of the publication. Submissions may be deemed outside
-                        the scope of the magazine in which case the editors in chief will inform the authors.</p>
+                <h3>Process</h3>
+                <p class="mb-4"><em>Is the work reviewed?</em><br/><em>interactions</em> is a magazine and thus content does not undergo a formal or blind review process. However, the sub-editors and/or editors in chief do carefully view incoming content to assess it's
+                    suitability. Content may be accepted as is or authors may be asked to make amendments to ensure it speaks to the magazine's general readership and is in line with the goals of the publication. Submissions may be deemed outside the
+                    scope of the magazine in which case the editors in chief will inform the authors.</p>
 
-                    <p class="mb-4"><em>When will my contribution be published?</em><br/>Content is published on a rolling basis and also where possible organised around particular issues or topics. Once a submission is finalised, our aim is to have the work in the magazine
-                        within one of the next three issues.</p>
+                <p class="mb-4"><em>When will my contribution be published?</em><br/>Content is published on a rolling basis and also where possible organised around particular issues or topics. Once a submission is finalised, our aim is to have the work in the magazine
+                    within one of the next three issues.</p>
 
-                    <h3>Contact</h3>
-                    <p class="mb-4"><em>Who should I contact about any administrative or procedural matters?</em><br/>If you're seeking further clarity about the process we follow in accepting and publishing work, or where your submission is in the process please address
-                        communications to the <em>Assistant to the Editors in Chief</em>, using <a href="mailto:eic@interactions.acm.org?Subject=[interactions] Query to Assistant" target="_top">eic@interactions.acm.org</a>.</p>
+                <h3>Contact</h3>
+                <p class="mb-4"><em>Who should I contact about any administrative or procedural matters?</em><br/>If you're seeking further clarity about the process we follow in accepting and publishing work, or where your submission is in the process please address
+                    communications to the <em>Assistant to the Editors in Chief</em>, using <a href="mailto:eic@interactions.acm.org?Subject=[interactions] Query to Assistant" target="_top">eic@interactions.acm.org</a>.</p>
 
-                    <p class="mb-5"><em>Who should I contact about any substantive questions about content?</em><br/>If you have substantive questions about work you have submitted or about work you plan to submit, such as questions about the kind of content to submit
-                        or the style of writing, please address communications to the <em>Editors in Chief</em>, using <a href="mailto:eic@interactions.acm.org?Subject=[interactions] Query to EIC" target="_top">eic@interactions.acm.org</a>.</p>
+                <p class="mb-5"><em>Who should I contact about any substantive questions about content?</em><br/>If you have substantive questions about work you have submitted or about work you plan to submit, such as questions about the kind of content to submit or
+                    the style of writing, please address communications to the <em>Editors in Chief</em>, using <a href="mailto:eic@interactions.acm.org?Subject=[interactions] Query to EIC" target="_top">eic@interactions.acm.org</a>.</p>
+            </div>
+        </div>
+
+        <div id="reload-page">
+            <div class="d-flex justify-content-center">
+                <div class="mt-5 text-center text-light">
+                    <p><strong>Loading...</strong></p>
+                </div>
+                <div class="spinner-grow text-light mt-5" style="width: 3rem; height: 3rem;" role="status">
                 </div>
             </div>
-
-            <div id="reload-page">
-                <div class="d-flex justify-content-center">
-                    <div class="mt-5 text-center text-light">
-                        <p><strong>Loading...</strong></p>
-                    </div>
-                    <div class="spinner-grow text-light mt-5" style="width: 3rem; height: 3rem;" role="status">
-                    </div>
-                </div>
-            </div>
+        </div>
 
         </div>
     </main>
