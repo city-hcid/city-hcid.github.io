@@ -19,15 +19,54 @@
                     <v-row justify="center">
                         <v-col cols="12">
                             <div class="mb-5">
-                                <h1 class="mt-5 font-weight-bold"> REF 2021 Outputs: <span v-for="(item, index) in items" v-if="index == 0" class="font-weight-black">Specialism {{item.specialism}}</span></h1>
+                                <h1 class="mt-5 font-weight-bold"> REF 2021 Outputs and Reviews: <span v-for="(item, index) in items" v-if="index == 0" class="font-weight-black">Specialism {{item.specialism}}</span></h1>
                             </div>
                         </v-col>
                         <v-col cols="12" md="11">
                             <div>
                                 <p v-for="(item, index) in items" v-if="index == 0">Below is a list of <span class="font-italic">{{item.specialism}}</span> outputs that could potentially be included as part of City's <a href="https://www.ref.ac.uk/panels/units-of-assessment/" target="_blank">B-11 Unit of Assessment</a>                                    (i.e., Computer Science), <a href="https://ref.ac.uk/about/" target="_blank">REF 2021</a> submission.</p>
-                                <p>Where the outputs have been reviewed by external reviewers, the scores in the "<span class="primary--text">External</span>" column.<br>To see comments from the reviewer, click on the arrow (
-                                    <v-icon small color="primary">mdi-arrow-right</v-icon>) in the left most collumn.</p>
+                                <p>Where the outputs have been reviewed by external reviewers, the scores are in the "<span class="primary--text">External</span>" column.<br>To see comments from the reviewer, click on the arrow (
+                                    <v-icon small color="primary">mdi-arrow-right</v-icon>) in the left most column.</p>
+                                
                             </div>
+                        </v-col>
+                    </v-row>
+
+                    <v-row justify="center">
+                        <v-col class="mb-5" cols="12" md="11">
+                            <p>See reviewers general comments under the list of headings bellow. (<em>I realise I need to amend the reviews to clarify which papers some comments refer to. I'll do that when I get the chance - Alex</em>)</p>
+                            <template>
+                                <div><v-expansion-panels multiple>
+                                        <v-expansion-panel v-if="this.suitabilityReview">
+                                            <v-expansion-panel-header class="font-weight-black">Suitability</v-expansion-panel-header>
+                                            <v-expansion-panel-content>
+                                                <span v-html="this.suitabilityReview"></span>
+                                            </v-expansion-panel-content>
+                                        </v-expansion-panel>
+                
+                                        <v-expansion-panel v-if="this.strongweakReview">
+                                            <v-expansion-panel-header class="font-weight-black">Strong or Weak Outputs</v-expansion-panel-header>
+                                            <v-expansion-panel-content>
+                                                <span v-html="this.strongweakReview"></span>
+                                            </v-expansion-panel-content>
+                                        </v-expansion-panel>
+                
+                                        <v-expansion-panel v-if="this.howTosReviews">
+                                            <v-expansion-panel-header class="font-weight-black">"How to" Papers</v-expansion-panel-header>
+                                            <v-expansion-panel-content>
+                                                <span v-html="this.howTosReviews"></span>
+                                            </v-expansion-panel-content>
+                                        </v-expansion-panel>
+                
+                                        <v-expansion-panel v-if="this.hunderwordsReview">
+                                            <v-expansion-panel-header class="font-weight-black">100 Words</v-expansion-panel-header>
+                                            <v-expansion-panel-content>
+                                                <span v-html="this.hunderwordsReview"></span>
+                                            </v-expansion-panel-content>
+                                        </v-expansion-panel>
+                                    </v-expansion-panels>
+                                </div>
+                            </template>
                         </v-col>
                     </v-row>
 
@@ -254,6 +293,19 @@
                                                         <p v-if="item.textReview">
                                                             <strong>Review:</strong> <span v-html="item.textReview"></span>
                                                         </p>
+
+                                                        <p v-if="item.reviewerConfidence">
+                                                            <strong>Reviewer confidence:</strong>
+                                                            <v-chip v-if="item.reviewerConfidence == 'High'" label small class="ma-2" color="green" text-color="white">
+                                                                {{ item.reviewerConfidence }}
+                                                            </v-chip>
+                                                            <v-chip v-if="item.reviewerConfidence == 'Medium'" label small class="ma-2" color="orange" text-color="white">
+                                                                {{ item.reviewerConfidence }}
+                                                            </v-chip>
+                                                            <v-chip v-if="item.reviewerConfidence == 'Low'" label small class="ma-2" color="red" text-color="white">
+                                                                {{ item.reviewerConfidence }}
+                                                            </v-chip>
+                                                        </p>
                                                 </v-card-text>
                                                 <v-card-actions>
                                                     <v-btn text color="blue" small>
@@ -429,7 +481,12 @@
                     dialog: false, // used to toggle the dialog
                     editedItem: {}, // empty holder for edit output dialog
                     index: 0,
-                    reviewers: []
+                    reviewers: [],
+                    overallReview: "",
+                    suitabilityReview: "",
+                    strongweakReview: "",
+                    hotosReview: "",
+                    hunderwordsReview: ""
                 }
             },
             mounted() {
@@ -642,29 +699,34 @@
                 onlyUnique(value, index, self) {
                     return self.indexOf(value) === index;
                 },
-
-
-
-
                 getReviewers(item) {
                     const reviewerAirtableName = "tbl3wygJ0TChPwNrq";
                     const reviewerAirtableView = "viw85HQDLZdkNKXRD";
-                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${reviewerAirtableName}?&view=${reviewerAirtableView}&filterByFormula=IF(%7BreviewerID%7D%2C%22${this.reviewers}%22)`;
-
+                    let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${reviewerAirtableName}?&view=${reviewerAirtableView}&filterByFormula=FIND(%7BreviewerID%7D%2C%22${this.reviewers}%22)`;
                     axios.get(submissionURL, {
                         headers: {
                             Authorization: "Bearer " + apiToken
                         }
                     }).then((response) => {
-                        console.log(response.data.records);
-                    }).catch((error) => {
+                        let reviews = response.data.records;
+                        for (let i = 0; i < reviews.length; i++) {
+                            let rNo = i+1;
+                            if (reviews[i].fields.suitability) {
+                                this.suitabilityReview = this.suitabilityReview + "<br><br>R" + rNo + ": " + reviews[i].fields.suitability;
+                            }
+                            if (reviews[i].fields.strongWeak) {
+                                this.strongweakReview = this.strongweakReview + "<br><br>R" + rNo + ": " + reviews[i].fields.strongWeak;
+                            }
+                            if (reviews[i].fields.howTosReviews) {
+                                this.hotosReview = this.hotosReview + "<br><br>R" + rNo + ": " + reviews[i].fields.howTosReviews;
+                            }
+                            if (reviews[i].fields.hundredWord) {
+                                this.hunderwordsReview = this.hunderwordsReview + "<br><br>R" + rNo + ": " + reviews[i].fields.hundredWord;
+                            }
+
+                        }}).catch((error) => {
                         console.log(error)
                     })
-
-
-
-
-
                 },
                 getOutputMetaData(item) {
                     const elsiverKey = "7f1899f42f07990cb442322cb322c588";
