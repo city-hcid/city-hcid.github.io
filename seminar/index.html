@@ -121,7 +121,7 @@
                                     </p>
                                     <p class="mb-3" v-if="item['fields']['talk-abstract']">
                                         <strong>ABSTRACT: </strong>
-                                        <span class="lbr">{{ item['fields']['talk-abstract'] }}</span>
+                                        <span class="lbr" v-html="item['fields']['talk-abstract']"></span>
                                     </p>
                                     <p class="mb-3" v-if="item['fields']['bio']">
                                         <strong>BIO: </strong>
@@ -154,9 +154,9 @@
 
                                         <span v-if="item['fields']['group-dept']">
                                             <span v-if="item['fields']['org']">
-                                            {{ item['fields']['group-dept'] }}, 
+                                                {{ item['fields']['group-dept'] }}, 
                                             </span>
-                                        <span v-else>
+                                            <span v-else>
                                                 {{ item['fields']['group-dept'] }} 
                                             </span>
                                         </span>
@@ -171,13 +171,12 @@
                                         <span v-if="item['fields']['date-str']">Date: {{ item['fields']['date-str'] }}</span><br />
                                         <span v-if="item['fields']['room']">Room: {{ item['fields']['room'] }}</span>
                                     </p>
-                                    <p class="mb-3" v-if="item['fields']['talk-title']">
-                                        <strong>TITLE: </strong>
-                                        <span>{{ item['fields']['talk-title'] }}</span>
+                                    <p class="mb-3 flow-text" v-if="item['fields']['talk-title']">
+                                        <span class=""><strong>{{ item['fields']['talk-title'] }}</strong></span>
                                     </p>
                                     <p class="mb-3" v-if="item['fields']['talk-abstract']">
                                         <strong>ABSTRACT: </strong>
-                                        <span class="lbr">{{ item['fields']['talk-abstract'] }}</span>
+                                        <span class="lbr" v-html="item['fields']['talk-abstract']"></span>
                                     </p>
                                     <p class="mb-3" v-if="item['fields']['bio']">
                                         <strong>BIO: </strong>
