@@ -62,10 +62,10 @@
                                             <template v-slot:activator="{ on, attrs }">
                                                 <v-edit-dialog :return-value.sync="props.item.rank" large @save="saveItem(props.item,'rank'),save('Rank saved')" @cancel="cancel('Not saved')" @open="open('Rank output')">
                                                     <div v-if="props.item.ref" v-bind="attrs" v-on="on" class="text-truncate text-decoration-underline blue--text text--darken-2">
-                                                        {{ (Math.round(props.item.rank * 100) / 100).toFixed(2) }}
+                                                        {{props.item.rank}}<!-- {{ (Math.round(props.item.rank * 100) / 100).toFixed(1) }} -->
                                                     </div>
                                                     <div v-else v-bind="attrs" v-on="on" class="text-truncate text-decoration-underline grey--text">
-                                                        {{ (Math.round(props.item.rank * 100) / 100).toFixed(2) }}
+                                                        {{props.item.rank}}<!-- {{ (Math.round(props.item.rank * 100) / 100).toFixed(1) }} -->
                                                     </div>
                                                     <template v-slot:input>
                                                         <v-text-field v-model.lazy="props.item.rank" label="Edit" hint="Ent number 1 or above. 1 is highest" flat single-line autofocus>
@@ -536,7 +536,7 @@
                             if (!sessionStorage.loaded) {
                                 for (let i = 0; i < this.items.length; i++) {
                                     if (this.items[i].doi) {
-                                        this.getOutputMetaData(this.items[i])
+                                        // this.getOutputMetaData(this.items[i])
                                         // Only when we want to run all citation counts
                                     }
                                 }
@@ -611,7 +611,8 @@
                             },
                             transformRequest: [(data) => {
                                 if (data.fields.id) {
-                                    delete data.fields.id // must remove id from the data for airtable patch to work
+                                    delete data.fields.id; // must remove id from the data for airtable patch to work
+                                    delete data.fields.index
                                 }
                                 if (key === "saveFormItem") {
                                     delete data.fields.firstName; // must remove all computed fields if saving entire record
