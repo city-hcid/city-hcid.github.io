@@ -36,8 +36,9 @@
                         <v-col cols="12">
                             <v-card>
 
-                                <v-data-table dense show-expand group-by="ref" group-desc :sort-by="['rank', 'lastName']" :sort-desc="[false, false]" mobile-breakpoint="800" items-per-page="200" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand"
-                                    :expanded.sync="expanded">
+                                <!-- <v-data-table dense show-expand group-by="ref" group-desc :sort-by="['rank', 'lastName']" :sort-desc="[false, false]" mobile-breakpoint="800" items-per-page="200" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand" :expanded.sync="expanded"> -->
+
+                                <v-data-table dense show-expand group-by="ref" group-desc mobile-breakpoint="800" items-per-page="200" class="elevation-0" :loading="loading" :headers="headers" :items="items" :single-expand="singleExpand" :expanded.sync="expanded">
 
                                     <!-- Expand icon/column -->
                                     <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
