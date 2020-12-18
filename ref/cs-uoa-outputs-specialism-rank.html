@@ -763,7 +763,7 @@
                             fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
                             if (item.type === "Journal") {
                                 fields.issn = response[0].data.message["ISSN"][0];
-                                if (fields.citeScore) {
+                                if (response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric']) {
                                 fields.citeScore = response[2].data['serial-metadata-response']['entry'][0]['citeScoreYearInfoList']['citeScoreCurrentMetric'];
                                 }
                                 fields.sjr = response[2].data['serial-metadata-response']['entry'][0]['SJRList']['SJR'][0]['$'];
