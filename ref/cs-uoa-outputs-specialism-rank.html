@@ -772,6 +772,8 @@
                             fields.scopus = parseInt(response[1].data["search-results"].entry[0]["citedby-count"]);
                             fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
                             this.saveItem(fields, "outputMetaData");
+                            console.log(fields.title);
+                            console.log("CrossRef cite count: " + fields.crossRef);
                             console.log("Scopus cite count: " + fields.scopus);
                         }).catch((error) => {
                             console.log(error)
@@ -796,6 +798,8 @@
                             fields.scopus = parseInt(response[1].data["search-results"].entry[0]["citedby-count"]);
                             console.log("Update output metadata using doi.");
                             this.saveItem(fields, "outputMetaData");
+                            console.log(fields.title);
+                            console.log("CrossRef cite count: " + fields.crossRef);
                             console.log("Scopus cite count: " + fields.scopus);
                         }).catch((error) => {
                             console.log(error)
