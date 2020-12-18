@@ -771,7 +771,8 @@
                             }
                             fields.scopus = parseInt(response[1].data["search-results"].entry[0]["citedby-count"]);
                             fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
-                            this.saveItem(fields, "outputMetaData")
+                            this.saveItem(fields, "outputMetaData");
+                            console.log("Scopus cite count: " + fields.scopus);
                         }).catch((error) => {
                             console.log(error)
                         })
@@ -779,12 +780,10 @@
                         axios.all([
                             axios.get(crossrefURL),
                             axios.get(scopusURL, {
-                                headers: {
-                                    'Access-Control-Allow-Origin': '*',
-                                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-                                }
+                                scopusHeaders
                             })
                         ]).then((response) => {
+                            console.log("Update output and source metadata using DOI.");
                             fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
                             fields.id = item.id;
                             fields.crossRef = response[0].data.message["is-referenced-by-count"].toString();
@@ -796,7 +795,8 @@
                             }
                             fields.scopus = parseInt(response[1].data["search-results"].entry[0]["citedby-count"]);
                             console.log("Update output metadata using doi.");
-                            this.saveItem(fields, "outputMetaData")
+                            this.saveItem(fields, "outputMetaData");
+                            console.log("Scopus cite count: " + fields.scopus);
                         }).catch((error) => {
                             console.log(error)
                         })
