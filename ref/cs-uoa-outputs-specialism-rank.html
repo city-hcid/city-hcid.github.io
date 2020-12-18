@@ -537,7 +537,7 @@
                             if (!sessionStorage.loaded) {
                                 for (let i = 0; i < this.items.length; i++) {
                                     if (this.items[i].doi) {
-                                        // this.getOutputMetaData(this.items[i])
+                                        this.getOutputMetaData(this.items[i])
                                         // Only when we want to run all citation counts
                                     }
                                 }
@@ -769,7 +769,7 @@
                             if (item.type === "Conference") {
                                 //fields.isbn = response[0].data.message["ISBN"][0];
                             }
-                            fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            fields.scopus = parseInt(response[1].data["search-results"].entry[0]["citedby-count"]);
                             fields.sourceID = response[1].data["search-results"].entry[0]["source-id"];
                             this.saveItem(fields, "outputMetaData")
                         }).catch((error) => {
@@ -794,7 +794,7 @@
                             if (item.type === "Conference") {
                                 fields.isbn = response[0].data.message["ISBN"][0];
                             }
-                            fields.scopus = response[1].data["search-results"].entry[0]["citedby-count"];
+                            fields.scopus = parseInt(response[1].data["search-results"].entry[0]["citedby-count"]);
                             console.log("Update output metadata using doi.");
                             this.saveItem(fields, "outputMetaData")
                         }).catch((error) => {
