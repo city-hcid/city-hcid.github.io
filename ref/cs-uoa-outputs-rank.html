@@ -290,6 +290,12 @@
 
                                                                         See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
                                                                     </p>
+
+                                                                    <p>
+                                                                        <span v-if="item.relativeCitationRatio"><a href="https://plus.dimensions.ai/support/solutions/articles/23000018841-what-is-the-rcr-how-is-the-rcr-score-calculated-" target="_blank">Relative Citation Ratio</a>: {{ item.relativeCitationRatio }}</span><br>
+                                                                        <span v-if="item.fieldCitationRatio"><a href="https://plus.dimensions.ai/support/solutions/articles/23000018848-what-is-the-fcr-how-is-it-calculated-" target="_blank">Field Citation Ratio</a>: {{ item.fieldCitationRatio }}</span>
+                                                                    </p>
+                                                                    
                                                                     <p v-if="item.citeScore">
                                                                         <strong>Journal CiteScore</strong> (<a href="https://www.elsevier.com/editors-update/story/journal-metrics/citescore-a-new-metric-to-help-you-choose-the-right-journal" target="_blank" rel="noopener noreferrer">Elsiver</a>): <strong>{{ item.citeScore }}</strong>
                                                                         <span v-if="item.sjr"><br><strong>Journal rank</strong> (<a href="https://www.scimagojr.com/aboutus.php" target="_blank" rel="noopener noreferrer">SJR</a>): <strong>{{ item.sjr }}</strong></span>
