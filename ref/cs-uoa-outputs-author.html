@@ -591,7 +591,6 @@
                         
                         sessionStorage.clear(); // Forces citation check
                         if (!sessionStorage.loaded) {
-                            console.log("Running citation check: ");
                             for (let i = 0; i < this.items.length; i++) {
                                 if (this.items[i].doi) {
                                     this.getOutputMetaData(this.items[i])
@@ -774,7 +773,6 @@
                     })
                 },
                 getOutputMetaData(item) {
-                    console.log("Let's run the citation checks");
                     sessionStorage.loaded = 1;
                     const elsiverKey = "7f1899f42f07990cb442322cb322c588";
 
