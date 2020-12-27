@@ -14,9 +14,8 @@
     <div id="app">
         <v-app>
 
-            <v-navigation-drawer color="white" permanent expand-on-hover app>
-                <v-divider></v-divider>
-                <v-list nav dense>
+            <v-navigation-drawer dark permanent expand-on-hover app>
+                <v-list color="white--text" nav dense>
 
                     <v-list-item link href="#zeroes" @click="panels(0)">
                         <v-list-item-content>
@@ -72,6 +71,17 @@
                         </v-col>
                         <v-col cols="12" md="11">
 
+                            <div class="p-5">
+                                <p>See list of CS outputs ranked 1 to 4 (and other) below.</p>
+                                <p>Under each heading you can:</p>
+                                <ol>
+                                    <li>Expand the list (click <v-icon color="grey">mdi-chevron-down</v-icon> to right of heading)</li>
+                                    <li>View details of each output, including 100 words, reviews and citation info. (click <v-icon small color="primary">mdi-arrow-right</v-icon> to left of listed output)</li>
+                                    <li>Change the rank of an output (click on the rank in the 2nd column)</li>
+                                </ol>
+
+                            </div>
+
                             <div class="my-5 text-center">
                                 <a href="#zeroes" @click="panels(0)">zeros</a> | <a href="#ones" @click="panels(1)">ones</a> | <a href="#twos" @click="panels(2)">twos</a> | <a href="#threes" @click="panels(3)">threes</a> | <a href="#others" @click="panels(4)">4s/others</a>
                             </div>
@@ -103,7 +113,7 @@
 
                                                     <!-- Primary Author Column -->
                                                     <template v-slot:item.author="props">
-                                                        <span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span>
+                                                        <a :href="'cs-uoa-outputs-author.html?author=' + props.item.authorName"><span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span></a>
                                                     </template>
 
                                                     <!-- Rank Column -->
