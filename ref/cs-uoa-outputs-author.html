@@ -8,12 +8,13 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/roboto-fontface@0.10.0/css/roboto/roboto-fontface.min.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.3.45/css/materialdesignicons.min.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.3.6/dist/vuetify.min.css">
+    <link type="text/css" rel="stylesheet" href="./css/styles.css">
+    <title>Author outputs - REF B11 CS City</title>
 </head>
 
 <body>
     <div id="app">
         <v-app>
-
             <v-navigation-drawer dark permanent expand-on-hover app>
                 <v-list color="white--text" nav dense>
 
@@ -52,7 +53,7 @@
                                 <p>For each output you can:</p>
                                 <ol>
                                     <li>View details, including 100 words, reviews and citation info. (click <v-icon small color="primary">mdi-arrow-right</v-icon> to left of output)</li>
-                                    <li>Move an output to the shortlist (click <v-icon small color="primary">mdi-arrow-right</v-icon> to left of output, and check "Submit to REF?")</li>
+                                    <li>Move an output to the shortlist (click <v-icon small color="primary">mdi-arrow-right</v-icon> in rightmost column, check "Submit to REF?")</li>
                                     <li>Change the rank of an output (click on the rank in the 2nd column)</li>
                                 </ol>
 
@@ -67,7 +68,7 @@
                             <template>
 
                                 <v-card>
-                                    <v-data-table dense show-expand group-by="ref" group-desc hide-default-footer mobile-breakpoint="800" items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items">
+                                    <v-data-table dense show-expand group-by="ref" group-desc hide-default-footer mobile-breakpoint="800" items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items" :item-class="itemRowBackground">
 
                                         <!-- Expand icon/column -->
                                         <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
@@ -563,6 +564,10 @@
                 this.loadItems()
             },
             methods: {
+                itemRowBackground (item) {
+                    console.log(item);
+                    return item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true ? 'style-orange' : 'style-reg'
+                },
                 showEditDialog(item) {
                     this.editedItem = item || {};
                     this.dialog = !this.dialog; /***** could delete? ****/

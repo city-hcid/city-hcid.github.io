@@ -8,12 +8,13 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/roboto-fontface@0.10.0/css/roboto/roboto-fontface.min.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.3.45/css/materialdesignicons.min.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.3.6/dist/vuetify.min.css">
+    <link type="text/css" rel="stylesheet" href="./css/styles.css">
+    <title>Outputs by rank - REF B11 CS City</title>
 </head>
 
 <body>
     <div id="app">
         <v-app>
-
             <v-navigation-drawer dark permanent expand-on-hover app>
                 <v-list color="white--text" nav dense>
 
@@ -60,7 +61,7 @@
                 </v-list>
             </v-navigation-drawer>
 
-            <v-content>
+            <v-main>
                 <v-container>
 
                     <v-row justify="center">
@@ -69,15 +70,20 @@
                                 <h1 class="mt-5 font-weight-bold">UoA B11 REF 2021 Outputs</h1>
                             </div>
                         </v-col>
-                        <v-col cols="12" md="11">
+                        <v-col cols="12">
 
-                            <div class="p-5">
+                            <div class="py-5">
                                 <p>See list of CS outputs ranked 1 to 4 (and other) below.</p>
-                                <p>Under each heading you can:</p>
-                                <ol>
+                                <p class="ml-5">For each heading you can:</p>
+                                <ol class="ml-5">
                                     <li>Expand the list (click <v-icon color="grey">mdi-chevron-down</v-icon> to right of heading)</li>
-                                    <li>View details of each output, including 100 words, reviews and citation info. (click <v-icon small color="primary">mdi-arrow-right</v-icon> to left of listed output)</li>
+                                </ol>
+                                <p class="mt-5 ml-5">For each output you can:</p>
+                                <ol class="ml-5">
+                                    <li>View details, including 100 words, reviews and citation info. (click <v-icon small color="primary">mdi-arrow-right</v-icon> to left of output)</li>
+                                    <li>Move an output to the shortlist (click <v-icon small color="primary">mdi-arrow-right</v-icon> in rightmost column, check "Submit to REF?")</li>
                                     <li>Change the rank of an output (click on the rank in the 2nd column)</li>
+                                    <li>View individual author's outputs (click on author's name)</li>
                                 </ol>
 
                             </div>
@@ -102,7 +108,7 @@
                                         </v-expansion-panel-header>
                                         <v-expansion-panel-content>
                                             <v-card>
-                                                <v-data-table dense show-expand hide-default-footer mobile-breakpoint="800" items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="item">
+                                                <v-data-table dense show-expand hide-default-footer mobile-breakpoint="800" items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="item" :item-class="itemRowBackground">
 
                                                     <!-- Expand icon/column -->
                                                     <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
@@ -467,7 +473,7 @@
                     </v-snackbar>
 
                 </v-container>
-            </v-content>
+            </v-main>
         </v-app>
     </div>
 
@@ -588,13 +594,17 @@
                     form_ilir: '',
                     form_jason: '',
                     form_george: '',
-                    form_lorenzo: '',
+                    form_lorenzo: ''
                 }
             },
             mounted() {
                 this.loadItems()
             },
             methods: {
+                itemRowBackground (item) {
+                    console.log(item);
+                    return item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true ? 'style-orange' : 'style-reg'
+                },
                 panels(item) {
                     if (this.panel.includes(item)) {
                         this.panel = [];
@@ -650,9 +660,6 @@
                         this.table_3 = this.items[3];
                         this.table_4 = this.items[4];
                         this.items = [this.table_0, this.table_1, this.table_2, this.table_3, this.table_4]
-
-
-                        console.log(this.items);
 
                         this.reviewers = this.reviewers.filter(this.onlyUnique);
 
