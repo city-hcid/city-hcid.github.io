@@ -119,7 +119,7 @@
 
                                                     <!-- Primary Author Column -->
                                                     <template v-slot:item.author="props">
-                                                        <a :href="'cs-uoa-outputs-author.html?author=' + props.item.authorName"><span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span></a>
+                                                        <a :href="'cs-uoa-outputs-author.html?author=' + props.item.authorName" target="_blank"><span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span></a>
                                                     </template>
 
                                                     <!-- Rank Column -->
@@ -707,7 +707,18 @@
                         }
                     } else if (key === "saveFormItem") {
                         data = {
-                            fields: item
+                            //fields: item
+                            fields: {
+                                title: item.title,
+                                authors: item.authors,
+                                source: item.source,
+                                doi: item.doi,
+                                type: item.type,
+                                year: item.year,
+                                rank: item.rank,
+                                ref: item.ref,
+                                hundredWords: item.hundredWords
+                            }
                         }
                     } else if (key === "checkOutput") {
                         data = {

@@ -647,7 +647,18 @@
                         }
                     } else if (key === "saveFormItem") {
                         data = {
-                            fields: item
+                            //fields: item
+                            fields: {
+                                title: item.title,
+                                authors: item.authors,
+                                source: item.source,
+                                doi: item.doi,
+                                type: item.type,
+                                year: item.year,
+                                rank: item.rank,
+                                ref: item.ref,
+                                hundredWords: item.hundredWords
+                            }
                         }
                     } else if (key === "checkOutput") {
                         data = {
@@ -697,7 +708,9 @@
                                 delete data.fields.lastName;
                                 delete data.fields.authorName;
                                 delete data.fields.authorID;
-                                delete data.fields.Centre
+                                delete data.fields.Centre;
+                                delete data.fields['output-url'];
+                                delete data.fields['author-url']
                             }
                             return JSON.stringify(data);
                         }]
