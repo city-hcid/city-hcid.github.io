@@ -763,13 +763,6 @@
                                 delete data.fields.id; // must remove id from the data for airtable patch to work
                                 delete data.fields.index
                             }
-                            if (key === "saveFormItem") {
-                                delete data.fields.firstName; // must remove all computed fields if saving entire record
-                                delete data.fields.lastName;
-                                delete data.fields.authorName;
-                                delete data.fields.authorID;
-                                delete data.fields.Centre
-                            }
                             return JSON.stringify(data);
                         }]
                     }
