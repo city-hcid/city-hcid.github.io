@@ -305,8 +305,8 @@
                                                                         <span v-if="item.dimensions"><strong>Dimensions Citations</strong> (<span v-if="item.doi"><a :href="'https://badge.dimensions.ai/details/doi/' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.dimensions.ai/dimensions-apis/" target="_blank">here</a></span>): <strong>{{ item.dimensions }}</strong><br></span>
 
                                                                         See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
-
-                                                                        If you're logged in via City library check <a :href="'http://0-apps.webofknowledge.com.wam.city.ac.uk/full_record.do?product=WOS&search_mode=GeneralSearch&qid=3&DOI=' + item.doi + '&page=1&doc=1'" target="_blank">Web of Science</a>.
+                                                                        <br>
+                                                                        <!-- If you're logged in via City library check <a :href="'http://0-apps.webofknowledge.com.wam.city.ac.uk/full_record.do?product=WOS&search_mode=GeneralSearch&qid=3&DOI=' + item.doi + '&page=1&doc=1'" target="_blank">Web of Science</a>. -->
                                                                     </p>
 
                                                                     <p v-if="item.relativeCitationRatio || item.fieldCitationRatio">
