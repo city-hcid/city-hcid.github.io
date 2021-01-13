@@ -4,6 +4,10 @@ $(function() { // Shorthand for $( document ).ready()
     $('.dropdown-trigger').dropdown({
         hover: true
     });
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+    });
     $('.tabs').tabs();
     $('.sidenav').sidenav()
 })
@@ -33,8 +37,7 @@ var app = new Vue({
                     fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,supervisors,supvervisor-str'),
                     sort: encodeURI('{"field":"last-name","direction":"asc"}')
                 }
-            }
-            ).then(function(response) {
+            }).then(function(response) {
                 self.items = response.data
             }).catch(function(error) {
                 console.log(error)

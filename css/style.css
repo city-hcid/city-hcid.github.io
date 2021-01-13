@@ -4,6 +4,12 @@
 * https://www.gnu.org/licenses/gpl.html
 */
 
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
 .fade-out.aos-animate {
     opacity: 0
 }
