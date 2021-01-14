@@ -80,9 +80,6 @@ Vue.component('template-current', function(resolve, reject) {
                     <span class="small" v-if="item['supvervisor-str']">
                         Supervisors:&nbsp;<span v-for="(i,index) in item['supvervisor-str']"><span v-if="index>0">,&nbsp;</span>{{ i }}</span>
                     </span>
-                    <span class="lbr grey-text text-darken-3" v-if="item['short-bio']">
-                        <br>{{ item['short-bio'] }}<br />
-                    </span>
                 </div>
             </div>
             `
