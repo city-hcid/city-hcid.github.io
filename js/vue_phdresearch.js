@@ -4,6 +4,10 @@ $(function() { // Shorthand for $( document ).ready()
     $('.dropdown-trigger').dropdown({
         hover: true
     });
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+    });
     $('.tabs').tabs();
     $('.sidenav').sidenav()
 })
@@ -33,8 +37,7 @@ var app = new Vue({
                     fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,supervisors,supvervisor-str'),
                     sort: encodeURI('{"field":"last-name","direction":"asc"}')
                 }
-            }
-            ).then(function(response) {
+            }).then(function(response) {
                 self.items = response.data
             }).catch(function(error) {
                 console.log(error)
@@ -76,9 +79,6 @@ Vue.component('template-current', function(resolve, reject) {
                     <span class="small hide" v-if="item['supervisors']" v-for="(id,index) in item.supervisors"><span v-if="index>0">, </span>{{ id }}</span>
                     <span class="small" v-if="item['supvervisor-str']">
                         Supervisors:&nbsp;<span v-for="(i,index) in item['supvervisor-str']"><span v-if="index>0">,&nbsp;</span>{{ i }}</span>
-                    </span>
-                    <span class="lbr grey-text text-darken-3" v-if="item['short-bio']">
-                        <br>{{ item['short-bio'] }}<br />
                     </span>
                 </div>
             </div>

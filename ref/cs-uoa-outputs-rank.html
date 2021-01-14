@@ -76,12 +76,15 @@
                                 <p>See list of CS outputs ranked 1 to 4 (and other) below.</p>
                                 <p class="ml-5">For each heading you can:</p>
                                 <ol class="ml-5">
-                                    <li>Expand the list (click <v-icon color="grey">mdi-chevron-down</v-icon> to right of heading)</li>
+                                    <li>Expand the list (click
+                                        <v-icon color="grey">mdi-chevron-down</v-icon> to right of heading)</li>
                                 </ol>
                                 <p class="mt-5 ml-5">For each output you can:</p>
                                 <ol class="ml-5">
-                                    <li>View details, including 100 words, reviews and citation info. (click <v-icon small color="primary">mdi-arrow-right</v-icon> to left of output)</li>
-                                    <li>Move an output to the shortlist (click <v-icon small color="primary">mdi-arrow-right</v-icon> in rightmost column, check "Submit to REF?")</li>
+                                    <li>View details, including 100 words, reviews and citation info. (click
+                                        <v-icon small color="primary">mdi-arrow-right</v-icon> to left of output)</li>
+                                    <li>Move an output to the shortlist (click
+                                        <v-icon small color="primary">mdi-arrow-right</v-icon> in rightmost column, check "Submit to REF?")</li>
                                     <li>Change the rank of an output (click on the rank in the 2nd column)</li>
                                     <li>View individual author's outputs (click on author's name)</li>
                                 </ol>
@@ -117,13 +120,13 @@
                                                         <v-icon small @click="expand(false)" v-if="isExpanded" color="primary">mdi-arrow-bottom-right</v-icon>
                                                     </template>
 
-                                                    <!-- Primary Author Column -->
-                                                    <template v-slot:item.author="props">
+                            <!-- Primary Author Column -->
+                            <template v-slot:item.author="props">
                                                         <a :href="'cs-uoa-outputs-author.html?author=' + props.item.authorName" target="_blank"><span v-for="first in props.item.firstName">{{ first }}</span> <span v-for="last in props.item.lastName">{{ last }}</span></a>
                                                     </template>
 
-                                                    <!-- Rank Column -->
-                                                    <template v-slot:item.rank="props">
+                            <!-- Rank Column -->
+                            <template v-slot:item.rank="props">
                                                         <v-tooltip bottom>
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-edit-dialog :return-value.sync="props.item.rank" large @save="saveItem(props.item,'rank'),save('Rank saved')" @cancel="cancel('Not saved')" @open="open('Rank output')">
@@ -135,14 +138,14 @@
                                                                         <v-text-field v-model.lazy="props.item.rank" label="Edit" hint="Ent number 1 or above. 1 is highest" flat single-line autofocus>
                                                                         </v-text-field>
                                                                     </template>
-                                                                </v-edit-dialog>
-                                                            </template>
-                                                            <span class="text-center">Select to enter rank -<br>rank order outputs<br>starting from 1 (highest)</span>
-                                                        </v-tooltip>
-                                                    </template>
+                            </v-edit-dialog>
+                            </template>
+                            <span class="text-center">Select to enter rank -<br>rank order outputs<br>starting from 1 (highest)</span>
+                            </v-tooltip>
+                            </template>
 
-                                                    <!-- Self Score Column -->
-                                                    <template v-slot:item.selfscore="props">
+                            <!-- Self Score Column -->
+                            <template v-slot:item.selfscore="props">
                                                         <v-tooltip bottom>
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <span v-if="props.item['Int rate'] && props.item.ref" v-bind="attrs" v-on="on" class="text-truncate">
@@ -167,13 +170,13 @@
 
                                                                 </span>
                                                             </template>
-                                                            <span v-if="props.item['Int rate'] == props.item.reviewerScore" class="text-center">Self scored.<br>Green means a match with reviewer score.</span>
-                                                            <span v-else class="text-center">Self scored.</span>
-                                                        </v-tooltip>
-                                                    </template>
+                            <span v-if="props.item['Int rate'] == props.item.reviewerScore" class="text-center">Self scored.<br>Green means a match with reviewer score.</span>
+                            <span v-else class="text-center">Self scored.</span>
+                            </v-tooltip>
+                            </template>
 
-                                                    <!-- Reviewer Score Column -->
-                                                    <template v-slot:item.reviewerscore="props">
+                            <!-- Reviewer Score Column -->
+                            <template v-slot:item.reviewerscore="props">
                                                         <v-tooltip bottom>
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <span v-if="props.item.reviewerScore" v-bind="attrs" v-on="on" class="text-truncate">
@@ -197,21 +200,21 @@
                                                                     </v-chip>
                                                                 </span>
                                                             </template>
-                                                            <span v-if="props.item.reviewerScore == props.item['Int rate']" class="text-center">Scored by external reviewer.<br>Green means a match with self score.</span>
-                                                            <span v-else class="text-center">Scored by external reviewer.</span>
-                                                        </v-tooltip>
-                                                    </template>
+                            <span v-if="props.item.reviewerScore == props.item['Int rate']" class="text-center">Scored by external reviewer.<br>Green means a match with self score.</span>
+                            <span v-else class="text-center">Scored by external reviewer.</span>
+                            </v-tooltip>
+                            </template>
 
-                                                    <!-- Ouput Column -->
-                                                    <template v-slot:item.output="props">
+                            <!-- Ouput Column -->
+                            <template v-slot:item.output="props">
                                                         <p>
                                                             <span v-if="props.item.doi"><a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a></span>
                                                             <span v-else>{{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em></span>
                                                         </p>
                                                     </template>
 
-                                                    <!-- Citations column -->
-                                                    <template v-slot:item.crossref="props">
+                            <!-- Citations column -->
+                            <template v-slot:item.crossref="props">
                                                         <span>
                                                             <v-tooltip bottom>
                                                                 <template v-slot:activator="{ on, attrs }">
@@ -219,73 +222,73 @@
                                                                         <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
                                                                     </span>
                                                                 </template>
-                                                                <span>From CrossRef api.<br>
+                            <span>From CrossRef api.<br>
                                                                     Click for Google Scholar result.
                                                                     <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                                 </span>
-                                                            </v-tooltip>
-                                                        </span>
-                                                        <span v-if="props.item.scopus">
+                            </v-tooltip>
+                            </span>
+                            <span v-if="props.item.scopus">
                                                             <v-tooltip bottom>
                                                                 <template v-slot:activator="{ on, attrs }">
                                                                     <span v-bind="attrs" v-on="on">
                                                                         <span> / <a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
 
-                                                                    </span>
-                                                                </template>
-                                                                <span>From Elsiver/Scopus api.<br>
+                            </span>
+                            </template>
+                            <span>From Elsiver/Scopus api.<br>
                                                                     Click for Google Scholar result.
                                                                     <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                                 </span>
-                                                            </v-tooltip>
-                                                        </span>
-                                                        <span v-if="props.item.dimensions">
+                            </v-tooltip>
+                            </span>
+                            <span v-if="props.item.dimensions">
                                                             <v-tooltip bottom>
                                                                 <template v-slot:activator="{ on, attrs }">
                                                                     <span v-bind="attrs" v-on="on">
                                                                         <span> / <a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.dimensions}}</a></span>
 
-                                                                    </span>
-                                                                </template>
-                                                                <span>From Dimensions api.<br>
+                            </span>
+                            </template>
+                            <span>From Dimensions api.<br>
                                                                     Click for Google Scholar result.
                                                                     <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                                 </span>
-                                                            </v-tooltip>
-                                                        </span>
-                                                    </template>
+                            </v-tooltip>
+                            </span>
+                            </template>
 
-                                                    <!-- Source Column -->
-                                                    <template v-slot:item.sourcescore="props">
+                            <!-- Source Column -->
+                            <template v-slot:item.sourcescore="props">
                                                         <span>
                                                             <v-tooltip bottom>
                                                                 <template v-slot:activator="{ on, attrs }">
                                                                     <span v-bind="attrs" v-on="on" class="text-truncate">{{ props.item.citeScore }}</span>
                                                                 </template>
-                                                                <p class="text-center">CiteScore: using Elsiver's journal metric</p>
-                                                            </v-tooltip>
-                                                        </span>
-                                                        <span v-if="props.item.sjr">
+                            <p class="text-center">CiteScore: using Elsiver's journal metric</p>
+                            </v-tooltip>
+                            </span>
+                            <span v-if="props.item.sjr">
                                                             <v-tooltip bottom>
                                                                 <template v-slot:activator="{ on, attrs }">
                                                                     <span v-bind="attrs" v-on="on">
                                                                         <span v-bind="attrs" v-on="on" class="text-truncate"> / {{props.item.sjr}}</span>
-                                                                    </span>
-                                                                </template>
-                                                                <p class="mt-2 font-italic" target="_blank">SJR: SCImago journal rank</p>
-                                                            </v-tooltip>
-                                                        </span>
-                                                    </template>
+                            </span>
+                            </template>
+                            <p class="mt-2 font-italic" target="_blank">SJR: SCImago journal rank</p>
+                            </v-tooltip>
+                            </span>
+                            </template>
 
-                                                    <!-- Pencil icon / Edit Column -->
-                                                    <template v-slot:item.actions="props">
+                            <!-- Pencil icon / Edit Column -->
+                            <template v-slot:item.actions="props">
                                                         <div class="text-center text-truncate">
                                                             <v-icon small class="mr-2" @click="showEditDialog(props.item),open('Edit output')" color="primary">mdi-pencil</v-icon>
                                                         </div>
                                                     </template>
 
-                                                    <!-- Expanded row -->
-                                                    <template v-slot:expanded-item="{ headers, item }">
+                            <!-- Expanded row -->
+                            <template v-slot:expanded-item="{ headers, item }">
                                                         <td :colspan="headers.length" :id="item.lastName + item.doi" class="py-4">
 
                                                             <v-card class="mx-auto my-5" max-width="600">
@@ -305,8 +308,9 @@
                                                                         <span v-if="item.dimensions"><strong>Dimensions Citations</strong> (<span v-if="item.doi"><a :href="'https://badge.dimensions.ai/details/doi/' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.dimensions.ai/dimensions-apis/" target="_blank">here</a></span>): <strong>{{ item.dimensions }}</strong><br></span>
 
                                                                         See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
-                                                                        <br>
-                                                                        <!-- If you're logged in via City library check <a :href="'http://0-apps.webofknowledge.com.wam.city.ac.uk/full_record.do?product=WOS&search_mode=GeneralSearch&qid=3&DOI=' + item.doi + '&page=1&doc=1'" target="_blank">Web of Science</a>. -->
+
+                                                                        If you're logged in via City library check <a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Web of Science</a>.
+>>>>>>> d371bb37a6667db35a21194bb8e80959a094b8a4
                                                                     </p>
 
                                                                     <p v-if="item.relativeCitationRatio || item.fieldCitationRatio">
@@ -390,7 +394,7 @@
                                                                             <v-textarea v-model="item.lorenzo" label="Lorenzo" hint="Comments from Lorenzo" auto-grow outlined @change="saveItem(item, 'saveCommentForm'), save('Auto save')"></v-textarea>
                                                                         </v-col>
                                                                         <v-col cols="12" justify="end">
-                                                                            <v-btn class="float-right mr-5" color="primary" @click="saveItem(item, 'saveCommentForm'), save('Form submitted')">Save Comments</v-btn>
+                                                                            <v-btn class="float-right mr-5" color="primary" @click="saveItem(item, 'saveCommentForm'), save('Comments updated')">Save Comments</v-btn>
                                                                         </v-col>
                                                                     </v-row>
                                                                 </v-container>
@@ -399,13 +403,13 @@
                                                         </td>
                                                     </template>
 
-                                                </v-data-table>
+                            </v-data-table>
 
-                                            </v-card>
-                                        </v-expansion-panel-content>
-                                    </v-expansion-panel>
+                            </v-card>
+                            </v-expansion-panel-content>
+                            </v-expansion-panel>
 
-                                </v-expansion-panels>
+                            </v-expansion-panels>
 
                             </template>
 
@@ -603,7 +607,7 @@
                 this.loadItems()
             },
             methods: {
-                itemRowBackground (item) {
+                itemRowBackground(item) {
                     return item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true ? 'style-orange' : 'style-reg'
                 },
                 panels(item) {
@@ -756,18 +760,18 @@
                     }
                     axios[method](url,
                         data, {
-                        headers: {
-                            Authorization: "Bearer " + apiToken,
-                            "Content-Type": "application/json"
-                        },
-                        transformRequest: [(data) => {
-                            if (data.fields.id) {
-                                delete data.fields.id; // must remove id from the data for airtable patch to work
-                                delete data.fields.index
-                            }
-                            return JSON.stringify(data);
-                        }]
-                    }
+                            headers: {
+                                Authorization: "Bearer " + apiToken,
+                                "Content-Type": "application/json"
+                            },
+                            transformRequest: [(data) => {
+                                if (data.fields.id) {
+                                    delete data.fields.id; // must remove id from the data for airtable patch to work
+                                    delete data.fields.index
+                                }
+                                return JSON.stringify(data);
+                            }]
+                        }
                     ).then(response => {
                         if (response.data && response.data.id) {
                             this.editedItem.id = response.data.id
@@ -778,7 +782,7 @@
                         }
                         if (key === "saveFormItem") {
                             this.dialog = !this.dialog;
-                            setTimeout(function () {
+                            setTimeout(function() {
                                 location.reload();
                             }, 500)
                         }
