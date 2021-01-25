@@ -70,7 +70,7 @@
                             <template>
 
                                 <v-card>
-                                    <v-data-table dense show-expand group-by="ref" group-desc hide-default-footer mobile-breakpoint="800" items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items" :item-class="itemRowBackground">
+                                    <v-data-table dense sort-by="rank" show-expand group-by="ref" group-desc hide-default-footer mobile-breakpoint="800" items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items" :item-class="itemRowBackground">
 
                                         <!-- Expand icon/column -->
                                         <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
