@@ -9,6 +9,7 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.3.45/css/materialdesignicons.min.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.3.6/dist/vuetify.min.css">
     <link type="text/css" rel="stylesheet" href="./css/styles.css">
+    <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
     <title>Outputs by rank - REF B11 CS City</title>
 </head>
 
@@ -299,7 +300,6 @@
                                                                         <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}
                                                                     </p>
                                                                     
-
                                                                     <p v-if="item.doi">
                                                                         <span v-if="item.crossRef"><strong>CrossRef Citations</strong> (<span v-if="item.doi"><a :href="'https://search.crossref.org/?from_ui=&q=' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.crossref.org/education/retrieve-metadata/rest-api/" target="_blank">here</a></span>): <strong>{{ item.crossRef }}</strong><br></span>
 
@@ -310,7 +310,8 @@
                                                                         See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
 
                                                                         If you're logged in via City library check <a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Web of Science</a>.
->>>>>>> d371bb37a6667db35a21194bb8e80959a094b8a4
+
+                                                                        <p><span class="__dimensions_badge_embed__" :data-doi="item.doi" data-legend="always"></span></p>
                                                                     </p>
 
                                                                     <p v-if="item.relativeCitationRatio || item.fieldCitationRatio">
