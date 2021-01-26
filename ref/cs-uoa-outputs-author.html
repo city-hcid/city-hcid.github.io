@@ -75,7 +75,7 @@
                                         <!-- Expand icon/column -->
                                         <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
                                             {{ item.index }}.
-                                            <v-icon small @click="expand(true)" v-if="!isExpanded" color="primary">mdi-arrow-right</v-icon>
+                                            <v-icon small @click="expand(true),dimensions(item.doi)" v-if="!isExpanded" color="primary">mdi-arrow-right</v-icon>
                                             <v-icon small @click="expand(false)" v-if="isExpanded" color="primary">mdi-arrow-bottom-right</v-icon>
                                         </template>
 
@@ -266,7 +266,11 @@
                                                             
                                                             <span v-if="item.dimensions"><strong>Dimensions Citations</strong> (<span v-if="item.doi"><a :href="'https://badge.dimensions.ai/details/doi/' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.dimensions.ai/dimensions-apis/" target="_blank">here</a></span>): <strong>{{ item.dimensions }}</strong><br></span>
 
-                                                            See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
+                                                            <p :id="'dimensions_badge_' + item.doi"></p>
+
+                                                            <p>See <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">google scholar</a>.
+
+                                                            See <a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Web of Science</a> (requires City login).</p>
                                                         </p>
 
                                                         <p v-if="item.relativeCitationRatio || item.fieldCitationRatio">
@@ -442,6 +446,7 @@
         </v-app>
     </div>
 
+    <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vuetify@2.3.6/dist/vuetify.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
@@ -566,6 +571,13 @@
                 this.loadItems()
             },
             methods: {
+                dimensions(item) {
+                    setTimeout(function() {
+                        console.log("Doi: " + item);
+                        document.getElementById('dimensions_badge_' + item).innerHTML = '<span class="__dimensions_badge_embed__" data-doi="' + item + '" data-hide-zero-citations="true" data-style="small_circle"></span>';
+                        window.__dimensions_embed.addBadges();
+                    }, 500)
+                },
                 itemRowBackground(item) {
                     return item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true ? 'style-orange' : 'style-reg'
                 },
