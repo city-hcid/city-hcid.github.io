@@ -6,6 +6,10 @@
     background-color: rgb(255, 255, 255)
 }
 
+.style-green {
+    background-color: rgba(193, 250, 196, 0.5)
+}
+
 .textarea {
     font-size: 0.9rem !important;
 }
