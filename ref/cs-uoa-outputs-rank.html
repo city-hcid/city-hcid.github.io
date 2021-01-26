@@ -620,8 +620,10 @@
                 itemRowBackground(item) {
                     if (item.submit == true && item.alex_steph_check != true && item.ed_check != true && item.george_check != true && item.ilir_check != true && item.jason_check != true && item.lorenzo_check != true) {
                         return 'style-green'
-                    } else if (item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true) {
+                    } else if (item.submit == true && (item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true)) {
                         return 'style-orange'
+                    } else if (item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true) {
+                        return 'style-grey'
                     } else {
                         return 'style-reg'
                     }
