@@ -43,14 +43,13 @@
                     <v-row justify="center">
                         <v-col cols="12">
                             <div class="mb-5">
-                                <h1 class="mt-5 font-weight-bold">Outputs for <span v-for="(item, index) in items" v-if="index == 0">{{item.firstName[0]}} {{item.lastName[0]}}</span></h1>
+                                <h1 class="mt-5 font-weight-bold">Output: <span v-for="(item, index) in items" v-if="index == 0">{{item.title}}</span></h1>
                             </div>
                         </v-col>
                         <v-col cols="12" md="11">
 
                             <div class="p-5">
-                                <p>See list of ranked outputs below.</p>
-                                <p>For each output you can:</p>
+                                <p>For this output you can:</p>
                                 <ol>
                                     <li>View details, including 100 words, reviews and citation info. (click
                                         <v-icon small color="primary">mdi-arrow-right</v-icon> to left of output)</li>
@@ -70,12 +69,12 @@
                             <template>
 
                                 <v-card>
-                                    <v-data-table dense sort-by="rank" show-expand group-by="ref" group-desc hide-default-footer mobile-breakpoint="800" items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items" :item-class="itemRowBackground">
+                                    <v-data-table dense show-expand group-by="ref" group-desc hide-default-footer mobile-breakpoint="800" items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items" :item-class="itemRowBackground">
 
                                         <!-- Expand icon/column -->
                                         <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
                                             {{ item.index }}.
-                                            <v-icon small @click="expand(true),dimensions(item.doi)" v-if="!isExpanded" color="primary">mdi-arrow-right</v-icon>
+                                            <v-icon small @click="expand(true)" v-if="!isExpanded" color="primary">mdi-arrow-right</v-icon>
                                             <v-icon small @click="expand(false)" v-if="isExpanded" color="primary">mdi-arrow-bottom-right</v-icon>
                                         </template>
 
@@ -266,11 +265,7 @@
                                                             
                                                             <span v-if="item.dimensions"><strong>Dimensions Citations</strong> (<span v-if="item.doi"><a :href="'https://badge.dimensions.ai/details/doi/' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.dimensions.ai/dimensions-apis/" target="_blank">here</a></span>): <strong>{{ item.dimensions }}</strong><br></span>
 
-                                                            <p :id="'dimensions_badge_' + item.doi"></p>
-
-                                                            <p>See <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">google scholar</a>.
-
-                                                            See <a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Web of Science</a> (requires City login).</p>
+                                                            See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
                                                         </p>
 
                                                         <p v-if="item.relativeCitationRatio || item.fieldCitationRatio">
@@ -446,7 +441,6 @@
         </v-app>
     </div>
 
-    <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vuetify@2.3.6/dist/vuetify.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
@@ -571,13 +565,6 @@
                 this.loadItems()
             },
             methods: {
-                dimensions(item) {
-                    setTimeout(function() {
-                        console.log("Doi: " + item);
-                        document.getElementById('dimensions_badge_' + item).innerHTML = '<span class="__dimensions_badge_embed__" data-doi="' + item + '" data-hide-zero-citations="true" data-style="small_circle"></span>';
-                        window.__dimensions_embed.addBadges();
-                    }, 500)
-                },
                 itemRowBackground(item) {
                     return item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true ? 'style-orange' : 'style-reg'
                 },
@@ -591,10 +578,9 @@
                 },
                 loadItems() {
                     let url = new URL(window.location.href);
-                    let authorid = url.searchParams.get("author");
-                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=review&fields%5B%5D=reviewerScore&fields%5B%5D=Int%20rate&fields%5B%5D=textReview&fields%5B%5D=reviewerConfidence&fields%5B%5D=attachment&fields%5B%5D=reviewer",
-                        sort = "sort%5B2%5D%5Bfield%5D=ref&sort%5B2%5D%5Bdirection%5D=desc",
-                        authorURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%22${authorid}%22%2CauthorID)`;
+                    let outputid = url.searchParams.get("output");
+                    const sort = "sort%5B1%5D%5Bfield%5D=rank&sort%5B1%5D%5Bdirection%5D=asc&sort%5B2%5D%5Bfield%5D=lastName&sort%5B2%5D%5Bdirection%5D=asc",
+                        authorURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%22${outputid}%22%2CoutputID)`;
                     axios.get(authorURL, config)
                         .then((response) => {
                             this.items = response.data.records.map((item) => {

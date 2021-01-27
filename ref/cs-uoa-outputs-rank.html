@@ -15,6 +15,7 @@
 <body>
     <div id="app">
         <v-app>
+
             <v-navigation-drawer dark permanent expand-on-hover app>
                 <v-list color="white--text" nav dense>
 
@@ -64,6 +65,7 @@
             <v-main>
                 <v-container>
 
+                    <!-- Intro blurb -->
                     <v-row justify="center">
                         <v-col cols="12">
                             <div class="mb-5">
@@ -77,14 +79,17 @@
                                 <p class="ml-5">For each heading you can:</p>
                                 <ol class="ml-5">
                                     <li>Expand the list (click
-                                        <v-icon color="grey">mdi-chevron-down</v-icon> to right of heading)</li>
+                                        <v-icon color="grey">mdi-chevron-down</v-icon> to right of heading)
+                                    </li>
                                 </ol>
                                 <p class="mt-5 ml-5">For each output you can:</p>
                                 <ol class="ml-5">
                                     <li>View details, including 100 words, reviews and citation info. (click
-                                        <v-icon small color="primary">mdi-arrow-right</v-icon> to left of output)</li>
+                                        <v-icon small color="primary">mdi-arrow-right</v-icon> to left of output)
+                                    </li>
                                     <li>Move an output to the shortlist (click
-                                        <v-icon small color="primary">mdi-arrow-right</v-icon> in rightmost column, check "Submit to REF?")</li>
+                                        <v-icon small color="primary">mdi-arrow-right</v-icon> in rightmost column, check "Submit to REF?")
+                                    </li>
                                     <li>Change the rank of an output (click on the rank in the 2nd column)</li>
                                     <li>View individual author's outputs (click on author's name)</li>
                                 </ol>
@@ -98,6 +103,7 @@
                         </v-col>
                     </v-row>
 
+                    <!-- Rows -->
                     <v-row justify="center">
                         <v-col cols="12">
 
@@ -106,9 +112,11 @@
                                 <v-expansion-panels v-model="panel" popout multiple>
 
                                     <v-expansion-panel v-for="(item,i) in items">
+
                                         <v-expansion-panel-header>
                                             <h2 class="mt-5 mb-3 ml-2" id="zeroes">Outputs Ranked {{i}}</h2>
                                         </v-expansion-panel-header>
+
                                         <v-expansion-panel-content>
                                             <v-card>
                                                 <v-data-table dense show-expand hide-default-footer mobile-breakpoint="800" items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="item" :item-class="itemRowBackground">
@@ -116,7 +124,7 @@
                                                     <!-- Expand icon/column -->
                                                     <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
                                                         {{ item.index }}.
-                                                        <v-icon small @click="expand(true)" v-if="!isExpanded" color="primary">mdi-arrow-right</v-icon>
+                                                        <v-icon small @click="expand(true),dimensions(item.doi)" v-if="!isExpanded" color="primary">mdi-arrow-right</v-icon>
                                                         <v-icon small @click="expand(false)" v-if="isExpanded" color="primary">mdi-arrow-bottom-right</v-icon>
                                                     </template>
 
@@ -132,7 +140,6 @@
                                                                 <v-edit-dialog :return-value.sync="props.item.rank" large @save="saveItem(props.item,'rank'),save('Rank saved')" @cancel="cancel('Not saved')" @open="open('Rank output')">
                                                                     <div v-bind="attrs" v-on="on" class="text-truncate text-decoration-underline blue--text text--darken-2">
                                                                         {{props.item.rank}}
-                                                                        <!-- {{ (Math.round(props.item.rank * 100) / 100).toFixed(1) }} -->
                                                                     </div>
                                                                     <template v-slot:input>
                                                                         <v-text-field v-model.lazy="props.item.rank" label="Edit" hint="Ent number 1 or above. 1 is highest" flat single-line autofocus>
@@ -167,7 +174,6 @@
                                                                     <v-chip v-else-if="props.item['Int rate'].includes('2') || props.item['Int rate'].includes('1') || props.item['Int rate'].includes('NA')" label small outlined class="ma-2" color="grey" text-color="grey">
                                                                         {{ props.item['Int rate'] }}
                                                                     </v-chip>
-
                                                                 </span>
                                                             </template>
                             <span v-if="props.item['Int rate'] == props.item.reviewerScore" class="text-center">Self scored.<br>Green means a match with reviewer score.</span>
@@ -298,26 +304,34 @@
                                                                         <strong>Title:</strong> {{ item.title }}<br>
                                                                         <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}
                                                                     </p>
-                                                                    
 
                                                                     <p v-if="item.doi">
                                                                         <span v-if="item.crossRef"><strong>CrossRef Citations</strong> (<span v-if="item.doi"><a :href="'https://search.crossref.org/?from_ui=&q=' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.crossref.org/education/retrieve-metadata/rest-api/" target="_blank">here</a></span>): <strong>{{ item.crossRef }}</strong><br></span>
 
                                                                         <span v-if="item.scopus"><strong>Scopus Citations</strong> (<span v-if="item.doi"><a :href="'https://www.scopus.com/results/results.uri?numberOfFields=0&src=s&clickedLink=&edit=&editSaveSearch=&origin=searchbasic&authorTab=&affiliationTab=&advancedTab=&scint=1&menu=search&tablin=&searchterm1=' + item.doi + '&field1=DOI&dateType=Publication_Date_Type&yearFrom=Before+1960&yearTo=Present&loadDate=7&documenttype=All&resetFormLink=&st1=10.1145%2F3364181&st2=&sot=b&sdt=b&sl=20&s=DOI%2810.1145%2F3364181%29&sid=1fd35d44ced67f3f279cb0ba062cac7e&searchId=1fd35d44ced67f3f279cb0ba062cac7e&txGid=74f0c916c996f73a1ee9b1e9174bb1eb&sort=plf-f&originationType=b&rr='" target="_blank">more info</a></span><span v-else>see <a href="https://dev.elsevier.com" target="_blank">here</a></span>): <strong>{{ item.scopus }}</strong><br></span>
-                                                                        
+
                                                                         <span v-if="item.dimensions"><strong>Dimensions Citations</strong> (<span v-if="item.doi"><a :href="'https://badge.dimensions.ai/details/doi/' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.dimensions.ai/dimensions-apis/" target="_blank">here</a></span>): <strong>{{ item.dimensions }}</strong><br></span>
 
-                                                                        See google scholar <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">here</a>.
+                                                                    <p :id="'dimensions_badge_' + item.doi"></p>
 
-                                                                        If you're logged in via City library check <a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Web of Science</a>.
->>>>>>> d371bb37a6667db35a21194bb8e80959a094b8a4
+                                                                    <p>
+                                                                        <span v-if="item.google"><br>Google Scholar: <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">{{item.google}}</a><br></span>
+                                                                        <span v-if="item.msAcademic">Microsoft Academic: <a :href="'https://academic.microsoft.com/search?q=' + item.title + '%20Results&f=&orderBy=0&skip=0&take=10'">{{item.msAcademic}}</a><br></span>
+                                                                        See <a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Web of Science</a> (requires City login).
                                                                     </p>
 
                                                                     <p v-if="item.relativeCitationRatio || item.fieldCitationRatio">
                                                                         <span v-if="item.relativeCitationRatio"><a href="https://plus.dimensions.ai/support/solutions/articles/23000018841-what-is-the-rcr-how-is-the-rcr-score-calculated-" target="_blank">Relative Citation Ratio</a>: {{ item.relativeCitationRatio }}<br></span>
                                                                         <span v-if="item.fieldCitationRatio"><a href="https://plus.dimensions.ai/support/solutions/articles/23000018848-what-is-the-fcr-how-is-it-calculated-" target="_blank">Field Citation Ratio</a>: {{ item.fieldCitationRatio }}</span>
                                                                     </p>
-                                                                    
+
+                                                                    <p>
+                                                                        <span v-if="item.CORE">CORE: {{item.CORE}}<br></span>
+                                                                        <span v-if="item.impactFactor">Impact Factor: {{item.impactFactor}}<br></span>
+                                                                        <span v-if="item.hindex"><a href="http://www.scimagojr.com/" target="_blank">h-index</a>: {{item.hindex}}<br></span>
+                                                                        <span v-if="item.h5index"><a href="https://scholar.google.co.uk/citations?view_op=top_venues&hl=en&vq=eng_humancomputerinteraction" target="_blank">h5-index</a>: {{item.h5index}}<br></span>
+                                                                    </p>
+
                                                                     <p v-if="item.citeScore">
                                                                         <strong>Journal CiteScore</strong> (<a href="https://www.elsevier.com/editors-update/story/journal-metrics/citescore-a-new-metric-to-help-you-choose-the-right-journal" target="_blank" rel="noopener noreferrer">Elsiver</a>): <strong>{{ item.citeScore }}</strong>
                                                                         <span v-if="item.sjr"><br><strong>Journal rank</strong> (<a href="https://www.scimagojr.com/aboutus.php" target="_blank" rel="noopener noreferrer">SJR</a>): <strong>{{ item.sjr }}</strong></span>
@@ -353,42 +367,48 @@
                                                                 <v-container>
 
                                                                     <v-row justify="center">
+                                                                        <v-col cols="9">
+                                                                            <v-textarea v-model="item.decision" label="Reason for decision" hint="Reason for decision" auto-grow outlined></v-textarea>
+                                                                        </v-col>
+                                                                    </v-row>
+
+                                                                    <v-row justify="center">
                                                                         <v-col cols="12">
                                                                             <h3>Comments</h3>
                                                                             <p>If you think the paper should be checked against our ranking criteria, check the checkbox and leave a comment.</p>
                                                                         </v-col>
                                                                         <v-col cols="1">
-                                                                            <v-checkbox  v-model="item.alex_steph_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
+                                                                            <v-checkbox v-model="item.alex_steph_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
                                                                         </v-col>
                                                                         <v-col cols="11">
                                                                             <v-textarea v-model="item.alex_steph" label="Alex/Steph" hint="Comments from Alex or Steph" auto-grow outlined @change="save(saveItem(item, 'saveCommentForm'), 'Auto save')"></v-textarea>
                                                                         </v-col>
                                                                         <v-col cols="1">
-                                                                            <v-checkbox  v-model="item.ed_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
+                                                                            <v-checkbox v-model="item.ed_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
                                                                         </v-col>
                                                                         <v-col cols="11">
                                                                             <v-textarea v-model="item.ed" label="Ed" hint="Comments from Ed" auto-grow outlined @change="saveItem(item, 'saveCommentForm'), save('Auto save')"></v-textarea>
                                                                         </v-col>
                                                                         <v-col cols="1">
-                                                                            <v-checkbox  v-model="item.george_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
+                                                                            <v-checkbox v-model="item.george_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
                                                                         </v-col>
                                                                         <v-col cols="11">
                                                                             <v-textarea v-model="item.george" label="George" hint="Comments from George" auto-grow outlined @change="saveItem(item, 'saveCommentForm'), save('Auto save')"></v-textarea>
                                                                         </v-col>
                                                                         <v-col cols="1">
-                                                                            <v-checkbox  v-model="item.ilir_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
+                                                                            <v-checkbox v-model="item.ilir_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
                                                                         </v-col>
                                                                         <v-col cols="11">
                                                                             <v-textarea v-model="item.ilir" label="Ilir" hint="Comments from Ilir" auto-grow outlined @change="saveItem(item, 'saveCommentForm'), save('Auto save')"></v-textarea>
                                                                         </v-col>
                                                                         <v-col cols="1">
-                                                                            <v-checkbox  v-model="item.jason_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
+                                                                            <v-checkbox v-model="item.jason_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
                                                                         </v-col>
                                                                         <v-col cols="11">
                                                                             <v-textarea v-model="item.jason" label="Jason" hint="Comments from Jason" auto-grow outlined @change="saveItem(item, 'saveCommentForm'), save('Auto save')"></v-textarea>
                                                                         </v-col>
                                                                         <v-col cols="1">
-                                                                            <v-checkbox  v-model="item.lorenzo_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
+                                                                            <v-checkbox v-model="item.lorenzo_check" @change="saveItem(item,'checkOutput')"></v-checkbox>
                                                                         </v-col>
                                                                         <v-col cols="11">
                                                                             <v-textarea v-model="item.lorenzo" label="Lorenzo" hint="Comments from Lorenzo" auto-grow outlined @change="saveItem(item, 'saveCommentForm'), save('Auto save')"></v-textarea>
@@ -480,9 +500,10 @@
 
                 </v-container>
             </v-main>
+
         </v-app>
     </div>
-
+    <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vuetify@2.3.6/dist/vuetify.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
@@ -555,16 +576,6 @@
                     }],
                     panel: [],
                     loading: true,
-                    expanded_0: [],
-                    singleExpand_0: true,
-                    expanded_1: [],
-                    singleExpand_1: true,
-                    expanded_2: [],
-                    singleExpand_2: true,
-                    expanded_3: [],
-                    singleExpand_3: true,
-                    expanded_4: [],
-                    singleExpand_4: true,
                     snack: false,
                     snackColor: '',
                     snackText: '',
@@ -579,7 +590,7 @@
                     },
                     items: [],
                     table_0: [],
-                    table_0: [],
+                    table_1: [],
                     table_2: [],
                     table_3: [],
                     table_4: [],
@@ -607,8 +618,23 @@
                 this.loadItems()
             },
             methods: {
+                dimensions(item) {
+                    setTimeout(function() {
+                        console.log("Doi: " + item);
+                        document.getElementById('dimensions_badge_' + item).innerHTML = '<span class="__dimensions_badge_embed__" data-doi="' + item + '" data-hide-zero-citations="true" data-style="small_circle"></span>';
+                        window.__dimensions_embed.addBadges();
+                    }, 500)
+                },
                 itemRowBackground(item) {
-                    return item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true ? 'style-orange' : 'style-reg'
+                    if (item.submit == true && item.alex_steph_check != true && item.ed_check != true && item.george_check != true && item.ilir_check != true && item.jason_check != true && item.lorenzo_check != true) {
+                        return 'style-green'
+                    } else if (item.submit == true && (item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true)) {
+                        return 'style-orange'
+                    } else if (item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true) {
+                        return 'style-grey'
+                    } else {
+                        return 'style-reg'
+                    }
                 },
                 panels(item) {
                     if (this.panel.includes(item)) {
@@ -623,27 +649,22 @@
                 },
                 closeDialog() {
                     this.dialog = false;
-                    this.close('Not saved');
-                    //localStorage.clear(); /***** here debug so cite counts can be retrieved ****/
-                    //this.sortBy = 'rank'
+                    this.close('Not saved')
                 },
                 loadItems() {
-                    const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=review&fields%5B%5D=reviewerScore&fields%5B%5D=Int%20rate&fields%5B%5D=textReview&fields%5B%5D=reviewerConfidence&fields%5B%5D=attachment&fields%5B%5D=reviewer",
-                        sort = "sort%5B1%5D%5Bfield%5D=rank&sort%5B1%5D%5Bdirection%5D=asc&sort%5B2%5D%5Bfield%5D=lastName&sort%5B2%5D%5Bdirection%5D=asc",
+                    const sort = "sort%5B1%5D%5Bfield%5D=rank&sort%5B1%5D%5Bdirection%5D=asc&sort%5B2%5D%5Bfield%5D=lastName&sort%5B2%5D%5Bdirection%5D=asc",
                         zerosURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%220%22%2CrankRounded)`,
                         onesURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%221%22%2CrankRounded)`,
                         twosURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%222%22%2CrankRounded)`,
                         threesURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%223%22%2CrankRounded)`,
-                        otherssURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=OR(IF(rank%3E%3D4%2CTRUE()%2CFALSE())%2CIF(rank%3DBLANK()%2CTRUE()%2CFALSE()))`;
+                        othersURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=OR(IF(rank%3E%3D4%2CTRUE()%2CFALSE())%2CIF(rank%3DBLANK()%2CTRUE()%2CFALSE()))`;
                     axios.all([
                         axios.get(zerosURL, config),
                         axios.get(onesURL, config),
                         axios.get(twosURL, config),
                         axios.get(threesURL, config),
-                        axios.get(otherssURL, config)
+                        axios.get(othersURL, config)
                     ]).then((response) => {
-
-
 
                         for (let i = 0; i < response.length; i++) {
                             this.items[i] = response[i].data.records.map((item) => {
@@ -669,7 +690,7 @@
                         this.reviewers = this.reviewers.filter(this.onlyUnique);
 
                         this.loading = false; // Removes table loader graphic
-                        this.getReviewers();
+                        //this.getReviewers();
                     }).catch((error) => {
                         console.log(error)
                     })
