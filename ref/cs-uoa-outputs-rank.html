@@ -314,14 +314,22 @@
 
                                                                     <p :id="'dimensions_badge_' + item.doi"></p>
 
-                                                                    <p>See <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">google scholar</a>.
-
-                                                                        See <a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Web of Science</a> (requires City login).</p>
+                                                                    <p>
+                                                                        <span v-if="item.google"><br>Google Scholar: <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">{{item.google}}</a><br></span>
+                                                                        <span v-if="item.msAcademic">Microsoft Academic: <a :href="'https://academic.microsoft.com/search?q=' + item.title + '%20Results&f=&orderBy=0&skip=0&take=10'">{{item.msAcademic}}</a><br></span>
+                                                                        See <a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Web of Science</a> (requires City login).
                                                                     </p>
 
                                                                     <p v-if="item.relativeCitationRatio || item.fieldCitationRatio">
                                                                         <span v-if="item.relativeCitationRatio"><a href="https://plus.dimensions.ai/support/solutions/articles/23000018841-what-is-the-rcr-how-is-the-rcr-score-calculated-" target="_blank">Relative Citation Ratio</a>: {{ item.relativeCitationRatio }}<br></span>
                                                                         <span v-if="item.fieldCitationRatio"><a href="https://plus.dimensions.ai/support/solutions/articles/23000018848-what-is-the-fcr-how-is-it-calculated-" target="_blank">Field Citation Ratio</a>: {{ item.fieldCitationRatio }}</span>
+                                                                    </p>
+
+                                                                    <p>
+                                                                        <span v-if="item.CORE">CORE: {{item.CORE}}<br></span>
+                                                                        <span v-if="item.impactFactor">Impact Factor: {{item.impactFactor}}<br></span>
+                                                                        <span v-if="item.hindex"><a href="http://www.scimagojr.com/" target="_blank">h-index</a>: {{item.hindex}}<br></span>
+                                                                        <span v-if="item.h5index"><a href="https://scholar.google.co.uk/citations?view_op=top_venues&hl=en&vq=eng_humancomputerinteraction" target="_blank">h5-index</a>: {{item.h5index}}<br></span>
                                                                     </p>
 
                                                                     <p v-if="item.citeScore">
