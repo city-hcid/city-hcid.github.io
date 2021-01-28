@@ -350,6 +350,16 @@
                         </v-col>
                     </v-row>
 
+
+                    <v-row>
+                        <v-col cols="12" sm="6">
+                            <v-select v-model="item.classification" :items="classification" label="select ACM classification" outlined dense></v-select>
+                        </v-col>
+                        <v-col cols="4">
+                            <div class="mt-2 px-3 caption"><a href="https://dl.acm.org/ccs" target="_blank">ACM classification scheme</a></div>
+                        </v-col>
+                    </v-row>
+
                     <v-row>
                         <v-col cols="12">
                             <p v-if="item.dimensions"><strong>Dimensions metadata:</strong><br></p>

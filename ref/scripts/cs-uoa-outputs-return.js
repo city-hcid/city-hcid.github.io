@@ -72,6 +72,7 @@ new Vue({
             value: '',
             items: [],
             typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
+            classification: ['hardware', 'computer systems organisation', 'networks', 'software and its engineering', 'theory of computation', 'mathematics of computing', 'information systems', 'security and privacy', 'human-centered computing', 'computing methodologies', 'applied computing'],
             dialog: false, // used to toggle the dialog
             editedItem: {}, // empty holder for edit output dialog
             index: 0,
