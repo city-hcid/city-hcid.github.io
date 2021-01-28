@@ -14,7 +14,6 @@ new Vue({
     vuetify: new Vuetify(),
     data() {
         return {
-            search: '',
             headers: [{
                 text: '',
                 value: 'data-table-expand'
@@ -22,6 +21,7 @@ new Vue({
                 text: 'Primary Author',
                 value: 'author',
                 width: '12%',
+                filterable: true,
                 sortable: false
             }, {
                 text: 'Rank',
@@ -65,17 +65,13 @@ new Vue({
                 width: '10%',
                 sortable: false
             }],
-            panel: [],
             loading: true,
             snack: false,
             snackColor: '',
             snackText: '',
-            sortBy: [],
+            sortBy: '',
             value: '',
             items: [],
-            table_0: [],
-            table_1: [],
-            cites: "",
             typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
             dialog: false, // used to toggle the dialog
             editedItem: {}, // empty holder for edit output dialog
@@ -91,13 +87,20 @@ new Vue({
             form_ilir: '',
             form_jason: '',
             form_george: '',
-            form_lorenzo: ''
+            form_lorenzo: '',
+            search: '',
+            sortDesc: 'false'
         }
     },
     mounted() {
         this.loadItems()
     },
     methods: {
+        activateDesc() {
+            if (this.sortBy == 'scopus') {
+                this.sortDesc = 'true';
+            }
+        },
         dimensions(item) {
             setTimeout(function() {
                 console.log("Doi: " + item);
@@ -303,14 +306,12 @@ new Vue({
         save(msg) {
             this.snack = true;
             this.snackColor = 'success';
-            this.snackText = msg || 'Change uploaded';
-            this.sortBy = 'rank'
+            this.snackText = msg || 'Change uploaded'
         },
         cancel(msg) {
             this.snack = true;
             this.snackColor = 'error';
-            this.snackText = msg || 'Not uploaded';
-            this.sortBy = 'rank'
+            this.snackText = msg || 'Not uploaded'
         },
         open(msg) {
             this.snack = true;
@@ -321,7 +322,6 @@ new Vue({
             this.snack = true;
             this.snackColor = 'error';
             this.snackText = msg || 'Not uploaded';
-            this.sortBy = 'rank'
         },
         onlyUnique(value, index, self) {
             return self.indexOf(value) === index;
