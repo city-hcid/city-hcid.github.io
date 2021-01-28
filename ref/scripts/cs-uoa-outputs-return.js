@@ -69,7 +69,6 @@ new Vue({
             snack: false,
             snackColor: '',
             snackText: '',
-            sortBy: '',
             value: '',
             items: [],
             typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
@@ -89,6 +88,7 @@ new Vue({
             form_george: '',
             form_lorenzo: '',
             search: '',
+            sortBy: '',
             sortDesc: 'false'
         }
     },
@@ -98,6 +98,9 @@ new Vue({
     methods: {
         activateDesc() {
             if (this.sortBy == 'scopus') {
+                this.sortDesc = 'true';
+            }
+            if (this.sortBy == 'rank') {
                 this.sortDesc = 'true';
             }
         },
