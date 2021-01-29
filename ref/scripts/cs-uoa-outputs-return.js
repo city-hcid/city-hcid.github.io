@@ -225,7 +225,7 @@ new Vue({
             } else if (key === "wos") {
                 data = {
                     fields: {
-                        wos: item.wos
+                        wos: parseInt(item.wos)
                     }
                 }
             } else if (key === "saveFormItem") {
