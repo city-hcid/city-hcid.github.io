@@ -72,7 +72,55 @@ new Vue({
             value: '',
             items: [],
             typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
-            classification: ['hardware', 'computer systems organisation', 'networks', 'software and its engineering', 'theory of computation', 'mathematics of computing', 'information systems', 'security and privacy', 'human-centered computing', 'computing methodologies', 'applied computing'],
+            allocation: [
+                'Hardware', 
+                'Computer systems organization', 
+                'Embedded', 
+                'real-time and dependable systems', 
+                'Networks', 
+                'Software organization and properties',
+                'Software notation and tools',
+                'Software creation and management',
+                'Models of computation and formal languages',
+                'Computational complexity and cryptography',
+                'Logic',
+                'Design and analysis of algorithms',
+                'Theory and algorithms for application domains',
+                'Semantics and reasoning',
+                'Discrete mathematics',
+                'Probability and statistics',
+                'Continuous mathematics, analysis, and software',
+                'Data management systems',
+                'Information storage systems',
+                'Information systems applications',
+                'World Wide Web',
+                'Information Retrieval',
+                'Cryptography',
+                'Security and privacy',
+                'Human computer interaction and interaction design',
+                'Collaborative and social computing',
+                'Ubiquitous and mobile computing',
+                'Visualisation',
+                'Accessibility',
+                'Symbolic and algebraic manipulation',
+                'Parallel computing methodologies',
+                'Natural language processing',
+                'Knowledge representation and reasoning',
+                'Planning, search, control and distributed AI',
+                'Computer vision',
+                'Machine learning',
+                'Modelling and simulation',
+                'Computer graphics',
+                'Distributed and concurrent computing',
+                'Applied computing – business and enterprise',
+                'Applied computing – physical sciences and engineering',
+                'Applied computing – life and medical sciences',
+                'Applied computing – law, forensics, social and behavioural sciences',
+                'Applied computing – arts, humanities and other',
+                'Applied computing – operations research',
+                'Applied computing - education',
+                'Applied computing - document management and text processing',
+                'Other'],
             dialog: false, // used to toggle the dialog
             editedItem: {}, // empty holder for edit output dialog
             index: 0,
@@ -222,7 +270,13 @@ new Vue({
                         msAcademic: item.msAcademic
                     }
                 }
-            } else if (key === "wos") {
+            } else if (key === "allocation") {
+                data = {
+                    fields: {
+                        allocation: item.allocation
+                    }
+                }
+            }else if (key === "wos") {
                 data = {
                     fields: {
                         wos: parseInt(item.wos)
