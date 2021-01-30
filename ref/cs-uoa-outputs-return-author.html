@@ -63,7 +63,7 @@
                             <template>
 
                                 <v-card>
-                                    <v-data-table dense sort-by="year" group-desc hide-default-footer items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items" :item-class="itemRowBackground">
+                                    <v-data-table dense show-expand sort-by="year" group-desc hide-default-footer items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items" :item-class="itemRowBackground">
 
                                         <!-- Expand icon/column -->
                                         <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
