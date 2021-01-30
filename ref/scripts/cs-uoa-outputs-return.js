@@ -187,7 +187,7 @@ new Vue({
             this.close('Not saved')
         },
         loadItems() {
-            const sort = "sort%5B1%5D%5Bfield%5D=rank&sort%5B1%5D%5Bdirection%5D=asc&sort%5B2%5D%5Bfield%5D=lastName&sort%5B2%5D%5Bdirection%5D=asc",
+            const sort = "sort%5B1%5D%5Bfield%5D=year&sort%5B1%5D%5Bdirection%5D=asc&sort%5B2%5D%5Bfield%5D=lastName&sort%5B2%5D%5Bdirection%5D=asc",
                 submitURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=if(submit%3D1%2CTRUE()%2CFALSE())`,
                 backupURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=AND(if(rank%3E1.7%2CTRUE()%2CFALSE())%2Cif(rank%3C2.1%2CTRUE()%2CFALSE()))`;
             axios.all([
