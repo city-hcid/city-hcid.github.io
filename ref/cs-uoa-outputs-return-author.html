@@ -63,7 +63,7 @@
                             <template>
 
                                 <v-card>
-                                    <v-data-table dense show-expand sort-by="year" group-desc hide-default-footer items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items" :item-class="itemRowBackground">
+                                    <v-data-table dense show-expand sort-by="year" group-desc group-by="ref" hide-default-footer items-per-page="100" class="elevation-0" :loading="loading" :headers="headers" :items="items" :item-class="itemRowBackground">
 
                                         <!-- Expand icon/column -->
                                         <template v-slot:item.data-table-expand="{item, isExpanded, expand}">
@@ -268,6 +268,17 @@
                                                 </v-card>
 
                                             </td>
+                                        </template>
+                                        
+                                        <!-- Group Header -->
+                                        <template v-slot:group.header="{items, isOpen, toggle}">
+                                            <th colspan="100%">
+                                                <v-btn text icon small color="black" @click="toggle">
+                                                    <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon>
+                                                </v-btn>
+                                                <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed for REF</span>
+                                                <span v-else class="mx-2 subtitle-2">Backup</span>
+                                            </th>
                                         </template>
 
                                     </v-data-table>

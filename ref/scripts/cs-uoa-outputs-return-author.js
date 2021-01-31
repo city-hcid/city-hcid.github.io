@@ -2,7 +2,7 @@
 const apiToken = "keyAKLpRf8ec2XWH9",
     airTableApp = "appunQ0V4X7SQIIk7",
     airTableName = "tblDN6QUoVueC6fkg",
-    airTableView = "viwDxxycZHhOR7uxZ",
+    airTableView = "viwzffT8UqpbHDAnS",
     config = {
         headers: {
             Authorization: "Bearer " + apiToken,
@@ -17,17 +17,12 @@ new Vue({
         return {
             headers: [{
                 text: '',
-                value: 'data-table-expand'
+                value: 'data-table-expand',
+                width: '7%'
             }, {
-                text: 'Primary Author',
-                value: 'author',
-                width: '12%',
-                sortable: false
-            }, {
-                text: 'Rank',
-                value: 'rank',
-                align: 'center',
-                width: '10%',
+                text: 'Authors',
+                value: 'authors',
+                width: '27%',
                 sortable: false
             }, {
                 text: 'Self',
@@ -44,19 +39,19 @@ new Vue({
             }, {
                 text: 'Output',
                 value: 'output',
-                width: '25%',
+                width: '28%',
                 sortable: false
             }, {
                 text: "Citations",
                 value: "crossref",
                 align: 'center',
-                width: '10%',
+                width: '11%',
                 sortable: false
             }, {
                 text: "Source",
                 value: "sourcescore",
                 align: 'center',
-                width: '10%',
+                width: '11%',
                 sortable: false
             }, {
                 text: 'Edit',
@@ -67,16 +62,6 @@ new Vue({
             }],
             panel: [],
             loading: true,
-            expanded_0: [],
-            singleExpand_0: true,
-            expanded_1: [],
-            singleExpand_1: true,
-            expanded_2: [],
-            singleExpand_2: true,
-            expanded_3: [],
-            singleExpand_3: true,
-            expanded_4: [],
-            singleExpand_4: true,
             snack: false,
             snackColor: '',
             snackText: '',
@@ -90,12 +75,6 @@ new Vue({
                 max: value => value.match(/\w+/g).length <= 100 || "Max 100 words"
             },
             items: [],
-            table_0: [],
-            table_0: [],
-            table_2: [],
-            table_3: [],
-            table_4: [],
-            tables: 5,
             cites: "",
             typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
             dialog: false, // used to toggle the dialog
@@ -106,13 +85,7 @@ new Vue({
             suitabilityReview: "",
             strongweakReview: "",
             hotosReview: "",
-            hunderwordsReview: "",
-            form_alex_steph: '',
-            form_ed: '',
-            form_ilir: '',
-            form_jason: '',
-            form_george: '',
-            form_lorenzo: '',
+            hunderwordsReview: ""
         }
     },
     mounted() {
@@ -219,28 +192,6 @@ new Vue({
                         hundredWords: item.hundredWords
                     }
                 }
-            } else if (key === "checkOutput") {
-                data = {
-                    fields: {
-                        alex_steph_check: item.alex_steph_check,
-                        ed_check: item.ed_check,
-                        george_check: item.george_check,
-                        ilir_check: item.ilir_check,
-                        jason_check: item.jason_check,
-                        lorenzo_check: item.lorenzo_check
-                    }
-                }
-            } else if (key === "saveCommentForm") {
-                data = {
-                    fields: {
-                        alex_steph: item.alex_steph,
-                        ed: item.ed,
-                        george: item.george,
-                        ilir: item.ilir,
-                        jason: item.jason,
-                        lorenzo: item.lorenzo
-                    }
-                }
             } else if (key === "outputMetaData") {
                 data = {
                     fields: item
@@ -314,39 +265,6 @@ new Vue({
             this.snackColor = 'error';
             this.snackText = msg || 'Not uploaded';
             this.sortBy = 'rank'
-        },
-        onlyUnique(value, index, self) {
-            return self.indexOf(value) === index;
-        },
-        getReviewers(item) {
-            const reviewerAirtableName = "tbl3wygJ0TChPwNrq";
-            const reviewerAirtableView = "viw85HQDLZdkNKXRD";
-            let submissionURL = `https://api.airtable.com/v0/${airTableApp}/${reviewerAirtableName}?&view=${reviewerAirtableView}&filterByFormula=FIND(%7BreviewerID%7D%2C%22${this.reviewers}%22)`;
-            axios.get(submissionURL, {
-                headers: {
-                    Authorization: "Bearer " + apiToken
-                }
-            }).then((response) => {
-                let reviews = response.data.records;
-                for (let i = 0; i < reviews.length; i++) {
-                    let rNo = i + 1;
-                    if (reviews[i].fields.suitability) {
-                        this.suitabilityReview = this.suitabilityReview + "<br><br>R" + rNo + ": " + reviews[i].fields.suitability;
-                    }
-                    if (reviews[i].fields.strongWeak) {
-                        this.strongweakReview = this.strongweakReview + "<br><br>R" + rNo + ": " + reviews[i].fields.strongWeak;
-                    }
-                    if (reviews[i].fields.howTosReviews) {
-                        this.hotosReview = this.hotosReview + "<br><br>R" + rNo + ": " + reviews[i].fields.howTosReviews;
-                    }
-                    if (reviews[i].fields.hundredWord) {
-                        this.hunderwordsReview = this.hunderwordsReview + "<br><br>R" + rNo + ": " + reviews[i].fields.hundredWord;
-                    }
-
-                }
-            }).catch((error) => {
-                console.log(error)
-            })
         },
         getOutputMetaData(item) {
             sessionStorage.loaded = 1;
