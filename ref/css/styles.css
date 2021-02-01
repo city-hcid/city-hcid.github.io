@@ -48,6 +48,10 @@
     box-shadow: 0 2px 2px rgb(180, 180, 180);
 }
 
+small {
+    font-size: .7rem
+}
+
 .rotate {
     text-align: left;
     -webkit-transform: rotate(-90deg);
