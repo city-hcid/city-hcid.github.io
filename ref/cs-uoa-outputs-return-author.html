@@ -39,18 +39,16 @@
                             <v-alert border="top" colored-border type="info" elevation="2">
 
                                 <p class="font-weight-black">ACTION</p>
-                                <p>We are in the final stages of our preperations for <a href="https://www.ref.ac.uk/" target="_blank">REF 2021</a>.</p>
+                                <p>We are in the final stages of our preparations for <a href="https://www.ref.ac.uk/" target="_blank">REF 2021</a>.</p>
                                 <p>As part of our submission, we plan to return some or all of the outputs listed under "Short-listed outputs" in the top section of the table below.</p>
-                                <p>To finalise our REF submision, can you:</p>
+                                <p>To finalise our REF submission, can you please:</p>
                                 <ol>
-                                    <li>Check whether these outputs are your best publications between 2014 and 2020. Use this <a href="#quality-levels">information</a> to judge an output's quality. <a href="mailto:alex.taylor@city.ac.uk">Email Alex</a> if
-                                        you think you have a better publication missing from the table below.</li>
-                                    <li>Finalise or add the factual 100 word summary. See requirements <a href="#100-word-guidance">below</a>.</li>
+                                    <li>Check whether these outputs are your best publications between 2014 and 2020. Use this <a href="#quality-levels">information</a> to judge an output's quality as set out in the REF guidance. <a href="mailto:alex.taylor@city.ac.uk">Email Alex</a>                                        if you think you have a better publication missing from the table below.</li>
+                                    <li>Finalise or add the factual 100 word summary for each output. See requirements <a href="#100-word-guidance">below</a>.</li>
                                     <li>Select an ACM classification for each output. See list of options <a href="#acm-classification">below</a>.</li>
                                 </ol>
-                                <p class="mt-3 orange--text"><em>To view details, including citation data, the option to select an ACM classification and edit the factual 100 word summaries, click the
-                                    <v-icon small color="primary">mdi-arrow-right</v-icon> to left of each output.</em></p>
-
+                                <p class="mt-3 font-weight-bold">To view details, including citation data, and the option to select an ACM classification and edit the factual 100 word summaries, click the
+                                    <v-icon small color="primary">mdi-arrow-right</v-icon> to left of each output.</p>
                             </v-alert>
 
                         </v-col>
@@ -295,7 +293,7 @@
                             <!-- <v-select v-else v-model="item.allocation[0]" :items="allocation" label="select ACM classification" @change="saveItem(item, 'allocation'), save('Allocation saved')" outlined dense></v-select> -->
                         </v-col>
                         <v-col cols="4">
-                            <div class="mt-2 px-3 caption"><a href="https://dl.acm.org/ccs" target="_blank">ACM classification scheme</a></div>
+                            <div class="mt-1 px-3 caption"><a href="https://dl.acm.org/ccs" target="_blank">ACM classification scheme</a>. Also see <a href="#acm-classification">below</a>.</div>
                         </v-col>
                     </v-row>
 
@@ -373,46 +371,41 @@
                     <!-- 100 words guidance -->
                     <v-row justify="center" class="mt-5">
                         <v-col cols="10">
-                            <h2 id="100-word-guidance">How to write the factual information about significance?</h2>
+                            <h2 id="100-word-guidance">How to write the factual information summary?</h2>
                             (100 Word summaries)
-                            <p>The summaries of your outputs are very important. They are meant to summarise each output's significance and give the REF panel an indication of <em>"factual information about the research questions, methodology or means of
-                                        dissemination, where these are not described within the output itself"</em>. This information will likely have a significant impact on each output's review so it's important you follow the guidance. Also, keep the
-                                summary brief. The REF guidance suggests <em>"in most cases, sufficient information will be provided in significantly fewer words than the 100-word limit"</em>.</p>
+                            <div>The summaries for your outputs are very important. They are meant to demonstrate each output's significance and give the REF panel an indication of <em>"factual information about the research questions, methodology or means of
+                                        dissemination... not described in the output itself"</em>. This information will likely have a significant impact on each output's review so it's important you follow the guidance. Also, keep the summary brief.
+                                The REF guidance suggests <em>"in most cases, sufficient information will be provided in significantly fewer words than the 100-word limit"</em>.</div>
                         </v-col>
                         <v-col cols="10">
                             <h3>Examples:</h3>
-                            <p>The University of Edinburgh have a helpful page with examples <a class="has-text-link" href="https://web.inf.ed.ac.uk/infweb/research/ref/outputs/example-100-words" target="_blank">here</a>.<br> I've provided additional examples
-                                at the bottom of this <a href="100-words.html#examples" target="_blank">page</a>.</p>
+                            <div>The University of Edinburgh have a helpful page with examples <a class="has-text-link" href="https://web.inf.ed.ac.uk/infweb/research/ref/outputs/example-100-words" target="_blank">here</a>.<br> I've collated additional examples
+                                <a href="100-words.html#examples" target="_blank">here</a>.</div>
                         </v-col>
 
                         </v-col>
                         <v-col cols="10">
                             <h3>Include information on:</h3>
                             <ul>
-                                <li><strong>Impact on state of art</strong>, e.g. best paper award, cited as seminal work by important people/institutions. <em>Hint: as a start, use the Dimensions badge to check citations</em>.</li>
-                                <li><strong>Further developments</strong>, e.g. taken up in subsequent research, especially by others, or used as a basis for a major grant or partnership.</li>
+                                <li><strong>Impact on state of art</strong>, e.g. best paper awards, related keynotes, cited as seminal work by important people/institutions. <em>Hint: as a start, use the Dimensions badge to check citations</em>.</li>
+                                <li><strong>Further developments</strong>, e.g. taken up in subsequent research, especially by leaders in the field, or used as a basis for a major grant or partnership.</li>
                                 <li><strong>External recognition</strong>, e.g. used in commercial contexts, informed patents, used by startups, or used in wider societal impact or public policy.</li>
                             </ul>
 
                         </v-col>
                         <v-col cols="10">
-
-                            <h3>Don't include:</h3>
+                            <h3>Do not include:</h3>
                             <ul>
-                                <li>A synopsis e.g. abstract</li>
-                                <li>Citation data</li>
+                                <li>A synopsis. This is not meant to be an abstract.</li>
+                                <li>Citation data. This is provided to the REF panel, independently, likely using Web of Science metadata.</li>
                                 <li>Opinions of the quality of the output. This is for the sub-panel to do.</li>
-                                <li>Non verifiable information</li>
+                                <li>Non verifiable information. You may need to provide information on how to verufy any claims in the 100 words.</li>
                             </ul>
-
                         </v-col>
                         <v-col cols="10">
-
                             <h3>Writing suggestions:</h3>
-
-
                             <ul>
-
+                                <li>Focus a non-expert on the work's contribution and significance.</li>
                                 <li>To structure the information: begin by outlining the context for the work in a single sentence. The second sentence should then start with “This is significant because”, or something similar.</li>
                                 <li>Be succinct, and make factual points that are verifiable (using external references where appropriate).</li>
                                 <li>Compare the contribution to other work in your area if it highlights originality, rigour or significance.</li>
@@ -423,6 +416,7 @@
 
                     <v-divider class="my-5"></v-divider>
 
+                    <!-- Quality and assessment guidance -->
                     <v-row justify="center" class="mt-5">
                         <v-col cols="10">
                             <div id="quality-levels">
@@ -464,12 +458,13 @@
 
                     <v-divider class="my-5"></v-divider>
 
+                    <!-- ACM classification guidance -->
                     <v-row justify="center" class="mt-5">
                         <v-col cols="10">
                             <div id="acm-classification">
                                 <h2>What ACM classification should I use?</h2>
-                                <p>We are required to use the <a href="https://hcid.city/ref/levels" target="_blank">ACM classification scheme</a> to classify all outputs. In the above table, expand the view for each output using the
-                                    <v-icon small color="primary">mdi-arrow-right</v-icon> icon then, select the most appropriate option from the drop down menu. The scheme is as follows:</p>
+                                <p>We are required to use the <a href="https://dl.acm.org/ccs" target="_blank">ACM classification scheme</a> to classify all outputs. In the table above expand the view for each output using the
+                                    <v-icon small color="primary">mdi-arrow-right</v-icon> icon. Then select the most appropriate option from the drop down menu. The scheme is as follows:</p>
                                 <template>
                                   <v-simple-table dense>
                                     <template v-slot:default>
@@ -498,7 +493,6 @@
                             </div>
                         </v-col>
                     </v-row>
-
 
                     <!-- Update entry dialog -->
                     <v-dialog v-model="dialog" max-width="640px">
