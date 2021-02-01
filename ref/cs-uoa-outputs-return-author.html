@@ -82,10 +82,7 @@
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <span v-if="props.item['Int rate'] && props.item.ref" v-bind="attrs" v-on="on" class="text-truncate">
-                                                        <v-chip v-if="props.item['Int rate'] == props.item.reviewerScore" label small outlined class="ma-2" color="green" text-color="green">
-                                                            {{ props.item['Int rate'] }}
-                                                        </v-chip>
-                                                        <v-chip v-else-if="props.item['Int rate'] == '4*'" label small outlined class="ma-2" color="red" text-color="red">
+                                                        <v-chip v-if="props.item['Int rate'] == '4*'" label small outlined class="ma-2" color="green" text-color="green">
                                                             {{ props.item['Int rate'] }}
                                                         </v-chip>
                                                         <v-chip v-else-if="props.item['Int rate'] == '3* +'" label small outlined class="ma-2" color="orange darken-4" text-color="orange darken-4">
@@ -113,10 +110,7 @@
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <span v-if="props.item.reviewerScore" v-bind="attrs" v-on="on" class="text-truncate">
-                                                        <v-chip v-if="props.item.reviewerScore == props.item['Int rate']" label small class="ma-2" color="green" text-color="white">
-                                                            {{ props.item.reviewerScore }}
-                                                        </v-chip>
-                                                        <v-chip v-else-if="props.item.reviewerScore == '4*'" label small class="ma-2" color="red" text-color="white">
+                                                        <v-chip v-if="props.item.reviewerScore == '4*'" label small class="ma-2" color="green" text-color="white">
                                                             {{ props.item.reviewerScore }}
                                                         </v-chip>
                                                         <v-chip v-else-if="props.item.reviewerScore == '3* +'" label small class="ma-2" color="orange darken-4" text-color="white">
@@ -226,50 +220,136 @@
 
                                                 <v-card class="mx-auto my-5" max-width="600">
                                                     <v-card-text>
-                                                        <p><strong>Author(s):</strong> {{ item.authors }}<br>
-                                                            <strong>Year:</strong> {{ item.year }}<br>
-                                                            <strong>Title:</strong> {{ item.title }}<br>
-                                                            <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}
-                                                        </p>
+
+                                                        <v-row>
+                                                            <v-col cols="12" justify="center">
+                                                                <p>
+                                                                    <span class="mt-2 font-weight-black text-uppercase">Output Information:</span>
+                                                                    <p><strong>Associated author:</strong> {{ item.firstName[0] }} {{ item.lastName[0] }}</p>
+                                                                    <strong>Author(s):</strong> {{ item.authors }} <br>
+                                                                    <strong>Year:</strong> {{ item.year }}<br>
+                                                                    <strong>Title:</strong> {{ item.title }}<br>
+                                                                    <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}
+                                                                </p>
+                                                            </v-col>
+                                                        </v-row>
+
+                                                        <v-row>
+                                                            <v-col cols="12" justify="center">
+                                                                <p>
+                                                                    <span class="mt-2 font-weight-black text-uppercase">Output metadata:</span><br>
+
+                                                                    <span v-if="item.crossRef"><strong>CrossRef Citations</strong> (<span v-if="item.doi"><a :href="'https://search.crossref.org/?from_ui=&q=' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.crossref.org/education/retrieve-metadata/rest-api/" target="_blank">here</a></span>): <strong>{{ item.crossRef }}</strong><br></span>
+
+                                                                    <span v-if="item.scopus"><strong>Scopus Citations</strong> (<span v-if="item.doi"><a :href="'https://www.scopus.com/results/results.uri?numberOfFields=0&src=s&clickedLink=&edit=&editSaveSearch=&origin=searchbasic&authorTab=&affiliationTab=&advancedTab=&scint=1&menu=search&tablin=&searchterm1=' + item.doi + '&field1=DOI&dateType=Publication_Date_Type&yearFrom=Before+1960&yearTo=Present&loadDate=7&documenttype=All&resetFormLink=&st1=10.1145%2F3364181&st2=&sot=b&sdt=b&sl=20&s=DOI%2810.1145%2F3364181%29&sid=1fd35d44ced67f3f279cb0ba062cac7e&searchId=1fd35d44ced67f3f279cb0ba062cac7e&txGid=74f0c916c996f73a1ee9b1e9174bb1eb&sort=plf-f&originationType=b&rr='" target="_blank">more info</a></span><span v-else>see <a href="https://dev.elsevier.com" target="_blank">here</a></span>): <strong>{{ item.scopus }}</strong><br></span>
+                                                                </p>
+                                                            </v-col>
+                                                        </v-row>
+
+                                                        <v-row>
+                                                            <v-col cols="4">
+                                                                <template>
+                                                                    <div class="mt-1 px-1">
+                                                                        <v-text-field v-model="item.google" label="Google Scholar" hint="Update Google Scholar citations" @change="saveItem(item, 'google'), save('Saved')" outlined dense></v-text-field>
+                                                                    </div>
+                                                                </template>
+                                                            </v-col>
+                                                            <v-col cols="4">
+                                                                <div class="mt-1 px-3 caption">
+                                                                    <a v-if="item.doi" :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">Search Google Scholar</a>
+                                                                    <a v-else :href="'https://scholar.google.com/scholar?q=' + item.title" target="_blank">Search Google Scholar</a>
+                                                                </div>
+                                                            </v-col>
+                                                        </v-row>
+
+                                                        <v-row>
+                                                            <v-col cols="4">
+                                                                <template>
+                                                                    <div class="mt-1 px-1">
+                                                                        <v-text-field v-model="item.msAcademic" label="Microsoft Academic" hint="Update Microsoft Academic citations" @change="saveItem(item, 'msacademic'), save('Saved')" outlined dense></v-text-field>
+                                                                    </div>
+                                                                </template>
+                                                            </v-col>
+                                                            <v-col cols="4">
+                                                                <div class="mt-2 px-3 caption"><a :href="'https://academic.microsoft.com/search?q=' + item.title + '%20Results&f=&orderBy=0&skip=0&take=10'" target="_blank">Search MS Academic</a></div>
+                                                            </v-col>
+                                                        </v-row>
+
+                                                        <v-row>
+                                                            <v-col cols="4">
+                                                                <template>
+                                                                    <div class="mt-1 px-1">
+                                                                        <v-text-field v-model="item.wos" label="Web of Science" hint="Update Web of Science" @change="saveItem(item, 'wos'), save('Saved')" outlined dense></v-text-field>
+                                                                    </div>
+                                                                </template>
+                                                            </v-col>
+                                                            <v-col cols="4">
+                                                                <div class="mt-2 px-3 caption"><a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Search Web of Science</a> (requires City login)</div>
+                                                            </v-col>
+                                                        </v-row>
 
 
-                                                        <p v-if="item.doi">
-                                                            <span v-if="item.crossRef"><strong>CrossRef Citations</strong> (<span v-if="item.doi"><a :href="'https://search.crossref.org/?from_ui=&q=' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.crossref.org/education/retrieve-metadata/rest-api/" target="_blank">here</a></span>): <strong>{{ item.crossRef }}</strong><br></span>
+                                                        <v-row>
+                                                            <v-col cols="12" sm="6">
+                                                                <v-select v-model="item.classification" label="select ACM classification" :items="allocation" @change="saveItem(item, 'classification'), save('Classification saved')" outlined dense></v-select>
+                                                                <!-- <v-select v-else v-model="item.allocation[0]" :items="allocation" label="select ACM classification" @change="saveItem(item, 'allocation'), save('Allocation saved')" outlined dense></v-select> -->
+                                                            </v-col>
+                                                            <v-col cols="4">
+                                                                <div class="mt-2 px-3 caption"><a href="https://dl.acm.org/ccs" target="_blank">ACM classification scheme</a></div>
+                                                            </v-col>
+                                                        </v-row>
 
-                                                            <span v-if="item.scopus"><strong>Scopus Citations</strong> (<span v-if="item.doi"><a :href="'https://www.scopus.com/results/results.uri?numberOfFields=0&src=s&clickedLink=&edit=&editSaveSearch=&origin=searchbasic&authorTab=&affiliationTab=&advancedTab=&scint=1&menu=search&tablin=&searchterm1=' + item.doi + '&field1=DOI&dateType=Publication_Date_Type&yearFrom=Before+1960&yearTo=Present&loadDate=7&documenttype=All&resetFormLink=&st1=10.1145%2F3364181&st2=&sot=b&sdt=b&sl=20&s=DOI%2810.1145%2F3364181%29&sid=1fd35d44ced67f3f279cb0ba062cac7e&searchId=1fd35d44ced67f3f279cb0ba062cac7e&txGid=74f0c916c996f73a1ee9b1e9174bb1eb&sort=plf-f&originationType=b&rr='" target="_blank">more info</a></span><span v-else>see <a href="https://dev.elsevier.com" target="_blank">here</a></span>): <strong>{{ item.scopus }}</strong><br></span>
+                                                        <v-row>
+                                                            <v-col cols="12">
+                                                                <p v-if="item.dimensions"><strong>Dimensions metadata:</strong><br></p>
+                                                                <p :id="'dimensions_badge_' + item.doi"></p>
+                                                            </v-col>
+                                                        </v-row>
 
-                                                            <span v-if="item.dimensions"><strong>Dimensions Citations</strong> (<span v-if="item.doi"><a :href="'https://badge.dimensions.ai/details/doi/' + item.doi" target="_blank">more info</a></span><span v-else>see <a href="https://www.dimensions.ai/dimensions-apis/" target="_blank">here</a></span>): <strong>{{ item.dimensions }}</strong><br></span>
+                                                        <v-row>
+                                                            <v-col cols="12">
+                                                                <p>
+                                                                    <span class="font-weight-black text-uppercase">Publication meta data:</span><br>
+                                                                    <span v-if="item.CORE"><strong>CORE:</strong> {{item.CORE}}<br></span>
+                                                                    <span v-if="item.impactFactor"><strong>Impact Factor:</strong> {{item.impactFactor}}<br></span>
+                                                                    <span v-if="item.hindex"><strong><a href="http://www.scimagojr.com/" target="_blank">h-index</a>:</strong> {{ item.hindex }}<br></span>
+                                                                    <span v-if="item.h5index"><strong><a href="https://scholar.google.co.uk/citations?view_op=top_venues&hl=en&vq=eng_humancomputerinteraction" target="_blank">h5-index</a>:</strong> {{item.h5index}}<br></span>
+                                                                </p>
+                                                            </v-col>
+                                                        </v-row>
 
-                                                        <p :id="'dimensions_badge_' + item.doi"></p>
+                                                        <v-row>
+                                                            <v-col cols="12">
+                                                                <p v-if="item.citeScore">
+                                                                    <strong>Journal CiteScore</strong> (<a href="https://www.elsevier.com/editors-update/story/journal-metrics/citescore-a-new-metric-to-help-you-choose-the-right-journal" target="_blank" rel="noopener noreferrer">Elsiver</a>):
+                                                                    <strong>{{ item.citeScore }}</strong>
+                                                                    <span v-if="item.sjr"><br><strong>Journal rank</strong> (<a :href="'https://www.scimagojr.com/journalsearch.php?q=' + item.source" target="_blank" rel="noopener noreferrer">SJR</a>): <strong>{{ item.sjr }}</strong></span>
+                                                                </p>
+                                                            </v-col>
+                                                        </v-row>
 
-                                                        <p>See <a :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">google scholar</a>.
-
-                                                            See <a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Web of Science</a> (requires City login).</p>
-                                                        </p>
-
-                                                        <p v-if="item.relativeCitationRatio || item.fieldCitationRatio">
-                                                            <span v-if="item.relativeCitationRatio"><a href="https://plus.dimensions.ai/support/solutions/articles/23000018841-what-is-the-rcr-how-is-the-rcr-score-calculated-" target="_blank">Relative Citation Ratio</a>: {{ item.relativeCitationRatio }}<br></span>
-                                                            <span v-if="item.fieldCitationRatio"><a href="https://plus.dimensions.ai/support/solutions/articles/23000018848-what-is-the-fcr-how-is-it-calculated-" target="_blank">Field Citation Ratio</a>: {{ item.fieldCitationRatio }}</span>
-                                                        </p>
-
-                                                        <p v-if="item.citeScore">
-                                                            <strong>Journal CiteScore</strong> (<a href="https://www.elsevier.com/editors-update/story/journal-metrics/citescore-a-new-metric-to-help-you-choose-the-right-journal" target="_blank" rel="noopener noreferrer">Elsiver</a>): <strong>{{ item.citeScore }}</strong>
-                                                            <span v-if="item.sjr"><br><strong>Journal rank</strong> (<a href="https://www.scimagojr.com/aboutus.php" target="_blank" rel="noopener noreferrer">SJR</a>): <strong>{{ item.sjr }}</strong></span>
-                                                        </p>
-                                                        <p v-if="item.hundredWords" class="mb-5">
-                                                            <strong>100 Words:</strong> <span v-html="item.hundredWords"></span>
-                                                        </p>
+                                                        <v-row>
+                                                            <v-col cols="12">
+                                                                <span class="font-weight-black text-uppercase">REF Info:</span><br>
+                                                                <p class="mb-1">
+                                                                    <v-textarea rows="1" auto-grow v-model="item.hundredWords" hint="Summary of originality, significance and rigour (100 words max)" label="100 word summary" @change="saveItem(item, 'hundredWords'), save('100 words saved')"></v-textarea>
+                                                                </p>
+                                                            </v-col>
+                                                        </v-row>
+                                                        
                                                     </v-card-text>
-                                                    <v-card-actions>
+                                                    
+                                                    <v-card-actions v-if="item.attachment" class="mb-5">
                                                         <v-btn text color="blue" small>
-                                                            <span v-if="item.attachment"><a :href="item.attachment[0].url" target="_new">Download PDF</a></span>
+                                                            <p><a :href="item.attachment[0].url" target="_new">Download PDF</a></p>
                                                         </v-btn>
                                                     </v-card-actions>
+                                                    
                                                 </v-card>
 
                                             </td>
                                         </template>
-                                        
+
                                         <!-- Group Header -->
                                         <template v-slot:group.header="{items, isOpen, toggle}">
                                             <th colspan="100%">

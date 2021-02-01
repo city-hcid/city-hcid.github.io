@@ -2,7 +2,7 @@
 const apiToken = "keyAKLpRf8ec2XWH9",
     airTableApp = "appunQ0V4X7SQIIk7",
     airTableName = "tblDN6QUoVueC6fkg",
-    airTableView = "viwzffT8UqpbHDAnS",
+    airTableView = "viwxVgiASQcOzvIKf",
     config = {
         headers: {
             Authorization: "Bearer " + apiToken,
@@ -60,12 +60,11 @@ new Vue({
                 width: '10%',
                 sortable: false
             }],
-            panel: [],
             loading: true,
             snack: false,
             snackColor: '',
             snackText: '',
-            sortBy: 'reviewerScore',
+            sortBy: 'year',
             value: '',
             rules: {
                 counter: value => {
@@ -75,8 +74,56 @@ new Vue({
                 max: value => value.match(/\w+/g).length <= 100 || "Max 100 words"
             },
             items: [],
-            cites: "",
             typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
+            allocation: [
+                'Hardware', 
+                'Computer systems organization', 
+                'Embedded', 
+                'real-time and dependable systems', 
+                'Networks', 
+                'Software organization and properties',
+                'Software notation and tools',
+                'Software creation and management',
+                'Models of computation and formal languages',
+                'Computational complexity and cryptography',
+                'Logic',
+                'Design and analysis of algorithms',
+                'Theory and algorithms for application domains',
+                'Semantics and reasoning',
+                'Discrete mathematics',
+                'Probability and statistics',
+                'Continuous mathematics, analysis, and software',
+                'Data management systems',
+                'Information storage systems',
+                'Information systems applications',
+                'World Wide Web',
+                'Information Retrieval',
+                'Cryptography',
+                'Security and privacy',
+                'Human computer interaction and interaction design',
+                'Collaborative and social computing',
+                'Ubiquitous and mobile computing',
+                'Visualisation',
+                'Accessibility',
+                'Symbolic and algebraic manipulation',
+                'Parallel computing methodologies',
+                'Natural language processing',
+                'Knowledge representation and reasoning',
+                'Planning, search, control and distributed AI',
+                'Computer vision',
+                'Machine learning',
+                'Modelling and simulation',
+                'Computer graphics',
+                'Distributed and concurrent computing',
+                'Applied computing – business and enterprise',
+                'Applied computing – physical sciences and engineering',
+                'Applied computing – life and medical sciences',
+                'Applied computing – law, forensics, social and behavioural sciences',
+                'Applied computing – arts, humanities and other',
+                'Applied computing – operations research',
+                'Applied computing - education',
+                'Applied computing - document management and text processing',
+                'Other'],
             dialog: false, // used to toggle the dialog
             editedItem: {}, // empty holder for edit output dialog
             index: 0,
@@ -94,13 +141,13 @@ new Vue({
     methods: {
         dimensions(item) {
             setTimeout(function() {
-                console.log("Doi: " + item);
+                console.log("Inserting dimension's badge using DOI: " + item);
                 document.getElementById('dimensions_badge_' + item).innerHTML = '<span class="__dimensions_badge_embed__" data-doi="' + item + '" data-hide-zero-citations="true" data-style="small_circle"></span>';
                 window.__dimensions_embed.addBadges();
             }, 500)
         },
         itemRowBackground(item) {
-            return item.alex_steph_check == true || item.ed_check == true || item.george_check == true || item.ilir_check == true || item.jason_check == true || item.lorenzo_check == true ? 'style-orange' : 'style-reg'
+            return item.ref != true ? 'style-grey' : 'style-reg'
         },
         showEditDialog(item) {
             this.editedItem = item || {};
@@ -115,10 +162,13 @@ new Vue({
             let authorid = url.searchParams.get("author");
             const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=review&fields%5B%5D=reviewerScore&fields%5B%5D=Int%20rate&fields%5B%5D=textReview&fields%5B%5D=reviewerConfidence&fields%5B%5D=attachment&fields%5B%5D=reviewer",
                 sort = "sort%5B2%5D%5Bfield%5D=year&sort%5B2%5D%5Bdirection%5D=asc",
-                authorURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%22${authorid}%22%2CauthorID)`;
+                authorURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%22${authorid}%22%2CARRAYJOIN(cityAuthorIDs%2C%22+%22))`;
             axios.get(authorURL, config)
                 .then((response) => {
                     this.items = response.data.records.map((item) => {
+                        
+                        console.log(item.fields.cityAuthors);
+                        
                         this.index += 1;
                         return {
                             id: item.id,
@@ -146,25 +196,7 @@ new Vue({
                 id = item.id,
                 url = `https://api.airtable.com/v0/${airTableApp}/${airTableName}/${id}`;
 
-            if (key === "rank") {
-                data = {
-                    fields: {
-                        rank: item.rank
-                    }
-                }
-            } else if (key === "ref") {
-                data = {
-                    fields: {
-                        review: item.ref
-                    }
-                }
-            } else if (key === "review") {
-                data = {
-                    fields: {
-                        review: item.review
-                    }
-                }
-            } else if (key === "crossRef") {
+            if (key === "crossRef") {
                 data = {
                     fields: {
                         crossRef: item.crossRef,
@@ -177,6 +209,39 @@ new Vue({
                         scopus: item.scopus
                     }
                 }
+            } else if (key === "google") {
+                data = {
+                    fields: {
+                        google: item.google
+                    }
+                }
+            } else if (key === "msacademic") {
+                data = {
+                    fields: {
+                        msAcademic: item.msAcademic
+                    }
+                }
+            // } else if (key === "allocation") {
+            //     console.log("Allocation set to: " + item.allocation)
+            //     data = {
+            //         fields: {
+            //             allocation: [`${item.allocation}`]
+            //         },
+            //         typecast: true
+            //     }
+            } else if (key === "classification") {
+                console.log("classification set to: " + item.classification)
+                data = {
+                    fields: {
+                        classification: item.classification
+                    }
+                }
+            } else if (key === "hundredWords") {
+                data = {
+                    fields: {
+                        hundredWords: item.hundredWords
+                    }
+                }
             } else if (key === "saveFormItem") {
                 data = {
                     //fields: item
@@ -187,9 +252,7 @@ new Vue({
                         doi: item.doi,
                         type: item.type,
                         year: item.year,
-                        rank: item.rank,
-                        ref: item.ref,
-                        hundredWords: item.hundredWords
+                        rank: item.rank
                     }
                 }
             } else if (key === "outputMetaData") {
