@@ -30,31 +30,34 @@
                     <!-- Intro -->
                     <v-row justify="center">
                         <v-col cols="12">
-                            <div class="mb-5">
+                            <div>
                                 <h1 class="mt-5 font-weight-bold">Outputs for <span v-for="(item, index) in items" v-if="index == 0">{{item.firstName[0]}} {{item.lastName[0]}}</span></h1>
                             </div>
                         </v-col>
-                        <v-col cols="12" md="11">
+                        <v-col cols="12" md="11" class="my-4">
 
-                            <div class="p-5">
-                                <p>We plan to return the following papers as part of our REF 2021 submission.</p>
-                                <p>For each output can you :</p>
+                            <v-alert border="top" colored-border type="info" elevation="2">
+
+                                <p class="font-weight-black">ACTION</p>
+                                <p>We are in the final stages of our preperations for <a href="https://www.ref.ac.uk/" target="_blank">REF 2021</a>.</p>
+                                <p>As part of our submission, we plan to return some or all of the outputs listed under "Short-listed outputs" in the top section of the table below.</p>
+                                <p>To finalise our REF submision, can you:</p>
                                 <ol>
-                                    <li>Check whether these are your best publications between 2014 and 2020. <a href="mailto:alex.taylor@city.ac.uk">Email Alex</a> if you think you have a better publication.</li>
-                                    <li>Finalise or add a 100 word summary. See requirements <a href="#100-word-guidance">below</a>.</li>
-                                    <li>Select an ACM classification for each output. See list of options <a href="">below</a>.</li>
-                                    <li>View details, including 100 words, reviews and citation info. (click
-                                        <v-icon small color="primary">mdi-arrow-right</v-icon> to left of output)
-                                    </li>
+                                    <li>Check whether these outputs are your best publications between 2014 and 2020. Use this <a href="#quality-levels">information</a> to judge an output's quality.<a href="mailto:alex.taylor@city.ac.uk">Email Alex</a> if
+                                        you think you have a better publication missing from the table below.</li>
+                                    <li>Finalise or add the factual 100 word summary. See requirements <a href="#100-word-guidance">below</a>.</li>
+                                    <li>Select an ACM classification for each output. See list of options <a href="#acm-classification">below</a>.</li>
                                 </ol>
+                                <p class="mt-3 orange--text"><em>To view details, including citation data, the option to select an ACM classification and edit the factual 100 word summaries, click the
+                                    <v-icon small color="primary">mdi-arrow-right</v-icon> to left of each output.</em></p>
 
-                            </div>
+                            </v-alert>
 
                         </v-col>
                     </v-row>
 
                     <!-- Table -->
-                    <v-row justify="center" class="mt-5">
+                    <v-row justify="center">
                         <v-col cols="12">
 
                             <template>
@@ -353,8 +356,8 @@
                                                 <v-btn text icon small color="black" @click="toggle">
                                                     <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon>
                                                 </v-btn>
-                                                <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed for REF</span>
-                                                <span v-else class="mx-2 subtitle-2">Backup</span>
+                                                <span v-if="items[0].ref" class="mx-2 subtitle-2">Short-listed outputs</span>
+                                                <span v-else class="mx-2 subtitle-2">Backup outputs</span>
                                             </th>
                                         </template>
 
@@ -410,12 +413,50 @@
                     <v-row justify="center" class="mt-5">
                         <v-col cols="10">
                             <div id="quality-levels">
-                                <h2>How do I use the ACM classification to classify my outputs?</h2>
+                                <h2>How will outputs be judged?</h2>
+                                <p>Outputs will be judged against a <a href="https://hcid.city/ref/levels" target="_blank"><em>quality profile</em></a>:</p>
+                                <ul>
+                                    <li>
+                                        <strong>Four Star</strong>: Quality that is world-leading in terms of originality, significance and rigour.
+                                    </li>
+                                    <li>
+                                        <strong>Three Star</strong>: Quality that is internationally excellent in terms of originality, significance and rigour but which falls short of the highest standards of excellence.
+                                    </li>
+                                    <li>
+                                        <strong>Two Star</strong>: Quality that is recognised internationally in terms of originality, significance and rigour.
+                                    </li>
+                                    <li>
+                                        <strong>One Star</strong>: Quality that is recognised nationally in terms of originality, significance and rigour.
+                                    </li>
+                                    <li>
+                                        <strong>Unclassified</strong>: Quality that falls below the standard of nationally recognised work. Or work which does not meet the published definition of research for the purposes of this assessment.
+                                    </li>
+                                </ul>
+                            </div>
+                        </v-col>
+                        <v-col cols="10">
+                            <h3 id="criteria"><strong>Originality, Significance and Rigour</strong></h3>
+                            <div>
+                                <p>The following will be used to determine the quality profile and start rating:</p>
+                                <ul>
+                                    <li><strong>Originality</strong> will be understood as the extent to which the output introduces a new way of thinking about a subject, or is distinctive or transformative compared with previous work in an academic field.
+                                    </li>
+                                    <li><strong>Significance</strong> will be understood as the extent to which the work has exerted, or is likely to exert, an influence on an academic field or practical applications.</li>
+                                    <li><strong>Rigour</strong> will be understood as the extent to which the purpose of the work is clearly articulated, an appropriate methodology for the research area has been adopted, and compelling evidence presented
+                                        to show that the purpose has been achieved.</li>
+                                </ul>
+                            </div>
+                        </v-col>
+                    </v-row>
+
+                    <v-divider class="my-5"></v-divider>
+
+                    <v-row justify="center" class="mt-5">
+                        <v-col cols="10">
+                            <div id="acm-classification">
+                                <h2>What ACM classification should I use?</h2>
                                 <p>We are required to use the <a href="https://hcid.city/ref/levels" target="_blank">ACM classification scheme</a> to classify all outputs. In the above table, expand the view for each output using the
                                     <v-icon small color="primary">mdi-arrow-right</v-icon> icon then, select the most appropriate option from the drop down menu. The scheme is as follows:</p>
-
-
-
                                 <template>
                                   <v-simple-table dense>
                                     <template v-slot:default>
@@ -441,49 +482,6 @@
                                     </template>
                                 </v-simple-table>
                                 </template>
-
-                            </div>
-                        </v-col>
-                    </v-row>
-
-                    <v-divider class="my-5"></v-divider>
-
-                    <v-row justify="center" class="mt-5">
-                        <v-col cols="10">
-                            <div id="quality-levels">
-                                <h2>How will outputs be judged?</h2>
-                                <p>Outputs will be judged against a <a href="https://hcid.city/ref/levels" target="_blank"><em>quality profile</em></a>:</p>
-                                <ul>
-                                    <li>
-                                        <strong>Four Star</strong>: Quality that is world-leading in terms of originality, significance and rigour.
-                                    </li>
-                                    <li>
-                                        <strong>Three Star</strong>: Quality that is internationally excellent in terms of originality, significance and rigour but which falls short of the highest standards of excellence.
-                                    </li>
-                                    <li>
-                                        <strong>Two Star</strong>: Quality that is recognised internationally in terms of originality, significance and rigour.
-                                    </li>
-                                    <li>
-                                        <strong>One Star</strong>: Quality that is recognised nationally in terms of originality, significance and rigour.
-                                    </li>
-                                    <li>
-                                        <strong>Unclassified</strong>: Quality that falls below the standard of nationally recognised work. Or work which does not meet the published definition of research for the purposes of this assessment.
-                                    </li>
-                                </ul>
-                            </div>
-                        </v-col>
-                        <v-col cols="10">
-
-                            <h3 id="criteria"><strong>Originality, Significance and Rigour</strong></h3>
-                            <div>
-                                <p>The following will be used to determine the quality profile and start rating:</p>
-                                <ul>
-                                    <li><strong>Originality</strong> will be understood as the extent to which the output introduces a new way of thinking about a subject, or is distinctive or transformative compared with previous work in an academic field.
-                                    </li>
-                                    <li><strong>Significance</strong> will be understood as the extent to which the work has exerted, or is likely to exert, an influence on an academic field or practical applications.</li>
-                                    <li><strong>Rigour</strong> will be understood as the extent to which the purpose of the work is clearly articulated, an appropriate methodology for the research area has been adopted, and compelling evidence presented
-                                        to show that the purpose has been achieved.</li>
-                                </ul>
                             </div>
                         </v-col>
                     </v-row>
