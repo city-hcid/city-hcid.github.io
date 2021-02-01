@@ -1,4 +1,3 @@
-
 const apiToken = "keyAKLpRf8ec2XWH9",
     airTableApp = "appunQ0V4X7SQIIk7",
     airTableName = "tblDN6QUoVueC6fkg",
@@ -76,11 +75,11 @@ new Vue({
             items: [],
             typeSelect: ['Journal', 'Conference', 'Book', 'Part of book', 'Patent', 'Code'],
             allocation: [
-                'Hardware', 
-                'Computer systems organization', 
-                'Embedded', 
-                'real-time and dependable systems', 
-                'Networks', 
+                'Hardware',
+                'Computer systems organization',
+                'Embedded',
+                'real-time and dependable systems',
+                'Networks',
                 'Software organization and properties',
                 'Software notation and tools',
                 'Software creation and management',
@@ -123,7 +122,8 @@ new Vue({
                 'Applied computing – operations research',
                 'Applied computing - education',
                 'Applied computing - document management and text processing',
-                'Other'],
+                'Other'
+            ],
             dialog: false, // used to toggle the dialog
             editedItem: {}, // empty holder for edit output dialog
             index: 0,
@@ -161,14 +161,14 @@ new Vue({
             let url = new URL(window.location.href);
             let authorid = url.searchParams.get("author");
             const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=review&fields%5B%5D=reviewerScore&fields%5B%5D=Int%20rate&fields%5B%5D=textReview&fields%5B%5D=reviewerConfidence&fields%5B%5D=attachment&fields%5B%5D=reviewer",
-                sort = "sort%5B2%5D%5Bfield%5D=year&sort%5B2%5D%5Bdirection%5D=asc",
+                sort = "sort%5B1%5D%5Bfield%5D=rank&sort%5B1%5D%5Bdirection%5D=asc&sort%5B2%5D%5Bfield%5D=year&sort%5B2%5D%5Bdirection%5D=asc",
                 authorURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%22${authorid}%22%2CARRAYJOIN(cityAuthorIDs%2C%22+%22))`;
             axios.get(authorURL, config)
                 .then((response) => {
                     this.items = response.data.records.map((item) => {
-                        
+
                         console.log(item.fields.cityAuthors);
-                        
+
                         this.index += 1;
                         return {
                             id: item.id,
@@ -217,18 +217,18 @@ new Vue({
                 }
             } else if (key === "msacademic") {
                 data = {
-                    fields: {
-                        msAcademic: item.msAcademic
+                        fields: {
+                            msAcademic: item.msAcademic
+                        }
                     }
-                }
-            // } else if (key === "allocation") {
-            //     console.log("Allocation set to: " + item.allocation)
-            //     data = {
-            //         fields: {
-            //             allocation: [`${item.allocation}`]
-            //         },
-            //         typecast: true
-            //     }
+                    // } else if (key === "allocation") {
+                    //     console.log("Allocation set to: " + item.allocation)
+                    //     data = {
+                    //         fields: {
+                    //             allocation: [`${item.allocation}`]
+                    //         },
+                    //         typecast: true
+                    //     }
             } else if (key === "classification") {
                 console.log("classification set to: " + item.classification)
                 data = {
