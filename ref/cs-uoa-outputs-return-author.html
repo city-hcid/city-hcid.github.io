@@ -43,9 +43,10 @@
                                 <p>As part of our submission, we plan to return some or all of the outputs listed under "Short-listed outputs" in the top section of the table below.</p>
                                 <p>To finalise our REF submission, can you please:</p>
                                 <ol>
-                                    <li>Check whether these outputs are your best publications between 2014 and 2020. Use this <a href="#quality-levels">information</a> to judge an output's quality as set out in the REF guidance. <a href="mailto:alex.taylor@city.ac.uk">Email Alex</a>                                        if you think you have a better publication missing from the table below.</li>
-                                    <li>Finalise or add the factual 100 word summary for each output. See requirements <a href="#100-word-guidance">below</a>.</li>
+                                    <li>Check whether these outputs are your highest quality publications (between 2014 and 2020). Use this <a href="#quality-levels">information</a> to judge an output's quality as set out in the REF guidance. <a href="mailto:alex.taylor@city.ac.uk">Email Alex</a>                                        if you think you have a better publication missing from the table below.</li>
+                                    <li>Finalise or add the factual 100 word summary of significance for each output. See requirements <a href="#100-word-guidance">below</a>.</li>
                                     <li>Select an ACM classification for each output. See list of options <a href="#acm-classification">below</a>.</li>
+                                    <li>In the editable fields, update the citation data if it's available, i.e. Google Scholar, Microsoft Academic and WoS.</li>
                                 </ol>
                                 <p class="mt-3 font-weight-bold">To view details, including citation data, and the option to select an ACM classification and edit the factual 100 word summaries, click the
                                     <v-icon small color="primary">mdi-arrow-right</v-icon> to left of each output.</p>
@@ -98,8 +99,7 @@
 
                                                     </span>
                                                 </template>
-                            <span v-if="props.item['Int rate'] == props.item.reviewerScore" class="text-center">Self scored.<br>Green means a match with reviewer score.</span>
-                            <span v-else class="text-center">Self scored.</span>
+                            <span class="text-center">Self scored.</span>
                             </v-tooltip>
                             </template>
 
@@ -125,8 +125,9 @@
                                                         </v-chip>
                                                     </span>
                                                 </template>
-                            <span v-if="props.item.reviewerScore == props.item['Int rate']" class="text-center">Scored by external reviewer.<br>Green means a match with self score.</span>
-                            <span v-else class="text-center">Scored by external reviewer.</span>
+                            <span class="text-left">
+                                <p>Scored by external reviewer.</p>
+                                <p>Review: {{ props.item.textReview }}</p></span>
                             </v-tooltip>
                             </template>
 
@@ -330,7 +331,8 @@
                         <v-col cols="12">
                             <span class="font-weight-black text-uppercase">REF Info:</span><br>
                             <p class="mb-1">
-                                <v-textarea rows="1" auto-grow v-model="item.hundredWords" hint="Summary of originality, significance and rigour (100 words max)" label="Summary of output's Significans (100 words max)" @change="saveItem(item, 'hundredWords'), save('100 words saved')"></v-textarea><br> <span class="small"><em>If another author has already entered information above, feel free to add further relevant details. If you aren't able to write in prose for whatever reason, use bullet points and we'll do what we can to help with the text.</em></span>
+                                <v-textarea rows="1" auto-grow v-model="item.hundredWords" hint="Summary of output's significance (100 words max)" label="Summary of output's significance (100 words max)" @change="saveItem(item, 'hundredWords'), save('100 words saved')"></v-textarea>
+                                <span class="small"><em>If another author has already entered information above, feel free to add further relevant details. If you aren't able to write in prose for whatever reason, use bullet points and we'll do what we can to help with the text. If you are not the lead author/researcher you may want to liase with them.</em></span>
                             </p>
                         </v-col>
                     </v-row>
@@ -374,7 +376,7 @@
                             <h2 id="100-word-guidance">How to write the factual information summary?</h2>
                             (100 Word summaries)
                             <div>The summaries for your outputs are very important. They are meant to demonstrate each output's significance and give the REF panel an indication of <em>"factual information about the research questions, methodology or means of
-                                        dissemination... not described in the output itself"</em>. This information will likely have a significant impact on each output's review so it's important you follow the guidance. Also, keep the summary brief.
+                                        dissemination... not described in the output itself"</em>. This information will likely have a significant impact on the review of the output so it's important you follow the guidance. Also, keep the summary brief.
                                 The REF guidance suggests <em>"in most cases, sufficient information will be provided in significantly fewer words than the 100-word limit"</em>.</div>
                         </v-col>
                         <v-col cols="10">
