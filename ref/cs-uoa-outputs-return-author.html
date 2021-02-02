@@ -23,7 +23,7 @@
 
 <body>
     <div id="app">
-        <v-app> 
+        <v-app>
 
             <v-main>
                 <v-container>
@@ -43,13 +43,14 @@
                                 <p>As part of our submission, we plan to return some or all of the outputs listed under "Short-listed outputs" in the top section of the table below.</p>
                                 <p>To finalise our REF submission, can you please:</p>
                                 <ol>
-                                    <li>Check whether these outputs are your highest quality publications (between 2014 and 2020). Use this <a href="#quality-levels">information</a> to judge an output's quality as set out in the REF guidance. <a href="mailto:alex.taylor@city.ac.uk">(Email Alex</a>                                        if you think you have a better publication missing from the table below.)</li>
+                                    <li>Check whether these outputs are your highest quality publications (between 2014 and 2020). Use this <a href="#quality-levels">information</a> to judge an output's quality as set out in the REF guidance. <a href="mailto:alex.taylor@city.ac.uk">(Email Alex</a> if you think you have a better publication missing from the table below.)</li>
                                     <li>Finalise or add the factual 100 word summary of significance for each output. See requirements <a href="#100-word-guidance">below</a>.</li>
                                     <li>Select an ACM classification for each output. See list of options <a href="#acm-classification">below</a>.</li>
                                     <li>In the editable fields, update the citation data if it's available, i.e. Google Scholar, Microsoft Academic and WoS.</li>
                                 </ol>
                                 <p class="mt-3 font-weight-bold">To view details, including citation data, and the option to select an ACM classification and edit the factual 100 word summaries, click the
-                                    <v-icon small color="primary">mdi-arrow-right</v-icon> to the left of each output.</p>
+                                    <v-icon small color="primary">mdi-arrow-right</v-icon> to the left of each output.
+                                </p>
                             </v-alert>
 
                         </v-col>
@@ -71,13 +72,13 @@
                                             <v-icon small @click="expand(false)" v-if="isExpanded" color="primary">mdi-arrow-bottom-right</v-icon>
                                         </template>
 
-                            <!-- City Authors -->
-                            <template v-slot:item.authors="props">
+                                        <!-- City Authors -->
+                                        <template v-slot:item.authors="props">
                                             <span v-for="props.item.authors">{{ props.item.authors }}</span>
                                         </template>
 
-                            <!-- Self Score Column -->
-                            <template v-slot:item.selfscore="props">
+                                        <!-- Self Score Column -->
+                                        <template v-slot:item.selfscore="props">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <span v-if="props.item['Int rate'] && props.item.ref" v-bind="attrs" v-on="on" class="text-truncate">
@@ -99,12 +100,12 @@
 
                                                     </span>
                                                 </template>
-                            <span class="text-center">Self scored.</span>
-                            </v-tooltip>
-                            </template>
+                                                <span class="text-center">Self scored.</span>
+                                            </v-tooltip>
+                                        </template>
 
-                            <!-- Reviewer Score Column -->
-                            <template v-slot:item.reviewerscore="props">
+                                        <!-- Reviewer Score Column -->
+                                        <template v-slot:item.reviewerscore="props">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <span v-if="props.item.reviewerScore" v-bind="attrs" v-on="on" class="text-truncate">
@@ -125,22 +126,23 @@
                                                         </v-chip>
                                                     </span>
                                                 </template>
-                            <span class="text-left">
-                                <p>Scored by external reviewer.</p>
-                                <p>Review: {{ props.item.textReview }}</p></span>
-                            </v-tooltip>
-                            </template>
+                                                <span class="text-left">
+                                                    <p>Scored by external reviewer.</p>
+                                                    <p>Review: {{ props.item.textReview }}</p>
+                                                </span>
+                                            </v-tooltip>
+                                        </template>
 
-                            <!-- Ouput Column -->
-                            <template v-slot:item.output="props">
+                                        <!-- Ouput Column -->
+                                        <template v-slot:item.output="props">
                                             <p>
                                                 <span v-if="props.item.doi"><a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a></span>
                                                 <span v-else>{{props.item.title}} ({{props.item.year}}) <em>{{props.item.source}}</em></span>
                                             </p>
                                         </template>
 
-                            <!-- Citations column -->
-                            <template v-slot:item.crossref="props">
+                                        <!-- Citations column -->
+                                        <template v-slot:item.crossref="props">
                                             <span>
                                                 <v-tooltip bottom>
                                                     <template v-slot:activator="{ on, attrs }">
@@ -148,73 +150,73 @@
                                                             <a v-if="props.item.ref" :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.crossRef}}</a>
                                                         </span>
                                                     </template>
-                            <span>From CrossRef api.<br>
+                                                    <span>From CrossRef api.<br>
                                                         Click for Google Scholar result.
                                                         <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                     </span>
-                            </v-tooltip>
-                            </span>
-                            <span v-if="props.item.scopus">
+                                                </v-tooltip>
+                                            </span>
+                                            <span v-if="props.item.scopus">
                                                 <v-tooltip bottom>
                                                     <template v-slot:activator="{ on, attrs }">
                                                         <span v-bind="attrs" v-on="on">
                                                             <span> / <a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.scopus}}</a></span>
 
-                            </span>
-                            </template>
-                            <span>From Elsiver/Scopus api.<br>
+                                                        </span>
+                                                    </template>
+                                                    <span>From Elsiver/Scopus api.<br>
                                                         Click for Google Scholar result.
                                                         <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                     </span>
-                            </v-tooltip>
-                            </span>
-                            <span v-if="props.item.dimensions">
+                                                </v-tooltip>
+                                            </span>
+                                            <span v-if="props.item.dimensions">
                                                 <v-tooltip bottom>
                                                     <template v-slot:activator="{ on, attrs }">
                                                         <span v-bind="attrs" v-on="on">
                                                             <span> / <a :href="'https://scholar.google.com/scholar?q=' + props.item.doi" target="_blank">{{props.item.dimensions}}</a></span>
 
-                            </span>
-                            </template>
-                            <span>From Dimensions api.<br>
+                                                        </span>
+                                                    </template>
+                                                    <span>From Dimensions api.<br>
                                                         Click for Google Scholar result.
                                                         <p class="mt-2 font-italic" target="_blank">Only retrieved with valid DOI.</p>
                                                     </span>
-                            </v-tooltip>
-                            </span>
-                            </template>
+                                                </v-tooltip>
+                                            </span>
+                                        </template>
 
-                            <!-- Source Column -->
-                            <template v-slot:item.sourcescore="props">
+                                        <!-- Source Column -->
+                                        <template v-slot:item.sourcescore="props">
                                             <span>
                                                 <v-tooltip bottom>
                                                     <template v-slot:activator="{ on, attrs }">
                                                         <span v-bind="attrs" v-on="on" class="text-truncate">{{ props.item.citeScore }}</span>
                                                     </template>
-                            <p class="text-center">CiteScore: using Elsiver's journal metric</p>
-                            </v-tooltip>
-                            </span>
-                            <span v-if="props.item.sjr">
+                                                    <p class="text-center">CiteScore: using Elsiver's journal metric</p>
+                                                </v-tooltip>
+                                            </span>
+                                            <span v-if="props.item.sjr">
                                                 <v-tooltip bottom>
                                                     <template v-slot:activator="{ on, attrs }">
                                                         <span v-bind="attrs" v-on="on">
                                                             <span v-bind="attrs" v-on="on" class="text-truncate"> / {{props.item.sjr}}</span>
-                            </span>
-                            </template>
-                            <p class="mt-2 font-italic" target="_blank">SJR: SCImago journal rank</p>
-                            </v-tooltip>
-                            </span>
-                            </template>
+                                                        </span>
+                                                    </template>
+                                                    <p class="mt-2 font-italic" target="_blank">SJR: SCImago journal rank</p>
+                                                </v-tooltip>
+                                            </span>
+                                        </template>
 
-                            <!-- Pencil icon / Edit Column -->
-                            <template v-slot:item.actions="props">
+                                        <!-- Pencil icon / Edit Column -->
+                                        <template v-slot:item.actions="props">
                                             <div class="text-center text-truncate">
                                                 <v-icon small class="mr-2" @click="showEditDialog(props.item),open('Edit output')" color="primary">mdi-pencil</v-icon>
                                             </div>
                                         </template>
 
-                            <!-- Expanded row -->
-                            <template v-slot:expanded-item="{ headers, item }">
+                                        <!-- Expanded row -->
+                                        <template v-slot:expanded-item="{ headers, item }">
                                             <td :colspan="headers.length" :id="item.lastName + item.doi" class="py-4">
 
                                                 <v-card class="mx-auto my-5" max-width="600">
@@ -224,11 +226,11 @@
                                                             <v-col cols="12" justify="center">
                                                                 <p>
                                                                     <span class="mt-2 font-weight-black text-uppercase">Output Information:</span>
-                                                                    <p><strong>Associated author:</strong> {{ item.firstName[0] }} {{ item.lastName[0] }}</p>
-                                                                    <strong>Author(s):</strong> {{ item.authors }} <br>
-                                                                    <strong>Year:</strong> {{ item.year }}<br>
-                                                                    <strong>Title:</strong> {{ item.title }}<br>
-                                                                    <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}
+                                                                <p><strong>Associated author:</strong> {{ item.firstName[0] }} {{ item.lastName[0] }}</p>
+                                                                <strong>Author(s):</strong> {{ item.authors }} <br>
+                                                                <strong>Year:</strong> {{ item.year }}<br>
+                                                                <strong>Title:</strong> {{ item.title }}<br>
+                                                                <strong v-if="item.source">Conference/Journal:</strong> {{ item.source }}
                                                                 </p>
                                                             </v-col>
                                                         </v-row>
@@ -252,106 +254,106 @@
                                                                         <v-text-field v-model="item.google" label="Google Scholar" hint="Update Google Scholar citations" @change="saveItem(item, 'google'), save('Saved')" outlined dense></v-text-field>
                                                                     </div>
                                                                 </template>
-                        </v-col>
-                        <v-col cols="4">
-                            <div class="mt-1 px-3 caption">
-                                <a v-if="item.doi" :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">Search Google Scholar</a>
-                                <a v-else :href="'https://scholar.google.com/scholar?q=' + item.title" target="_blank">Search Google Scholar</a>
-                            </div>
-                        </v-col>
-                    </v-row>
+                                                            </v-col>
+                                                            <v-col cols="4">
+                                                                <div class="mt-1 px-3 caption">
+                                                                    <a v-if="item.doi" :href="'https://scholar.google.com/scholar?q=' + item.doi" target="_blank">Search Google Scholar</a>
+                                                                    <a v-else :href="'https://scholar.google.com/scholar?q=' + item.title" target="_blank">Search Google Scholar</a>
+                                                                </div>
+                                                            </v-col>
+                                                        </v-row>
 
-                    <v-row>
-                        <v-col cols="4">
-                            <template>
+                                                        <v-row>
+                                                            <v-col cols="4">
+                                                                <template>
                                                                     <div class="mt-1 px-1">
                                                                         <v-text-field v-model="item.msAcademic" label="Microsoft Academic" hint="Update Microsoft Academic citations" @change="saveItem(item, 'msacademic'), save('Saved')" outlined dense></v-text-field>
                                                                     </div>
                                                                 </template>
-                        </v-col>
-                        <v-col cols="4">
-                            <div class="mt-2 px-3 caption"><a :href="'https://academic.microsoft.com/search?q=' + item.title + '%20Results&f=&orderBy=0&skip=0&take=10'" target="_blank">Search MS Academic</a></div>
-                        </v-col>
-                    </v-row>
+                                                            </v-col>
+                                                            <v-col cols="4">
+                                                                <div class="mt-2 px-3 caption"><a :href="'https://academic.microsoft.com/search?q=' + item.title + '%20Results&f=&orderBy=0&skip=0&take=10'" target="_blank">Search MS Academic</a></div>
+                                                            </v-col>
+                                                        </v-row>
 
-                    <v-row>
-                        <v-col cols="4">
-                            <template>
+                                                        <v-row>
+                                                            <v-col cols="4">
+                                                                <template>
                                                                     <div class="mt-1 px-1">
                                                                         <v-text-field v-model="item.wos" label="Web of Science" hint="Update Web of Science" @change="saveItem(item, 'wos'), save('Saved')" outlined dense></v-text-field>
                                                                     </div>
                                                                 </template>
-                        </v-col>
-                        <v-col cols="4">
-                            <div class="mt-2 px-3 caption"><a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Search Web of Science</a> (requires City login)</div>
-                        </v-col>
-                    </v-row>
+                                                            </v-col>
+                                                            <v-col cols="4">
+                                                                <div class="mt-2 px-3 caption"><a href="http://0-apps.webofknowledge.com.wam.city.ac.uk/" target="_blank">Search Web of Science</a> (requires City login)</div>
+                                                            </v-col>
+                                                        </v-row>
 
 
-                    <v-row>
-                        <v-col cols="12" sm="6">
-                            <v-select v-model="item.classification" label="select ACM classification" :items="allocation" @change="saveItem(item, 'classification'), save('Classification saved')" outlined dense></v-select>
-                            <!-- <v-select v-else v-model="item.allocation[0]" :items="allocation" label="select ACM classification" @change="saveItem(item, 'allocation'), save('Allocation saved')" outlined dense></v-select> -->
-                        </v-col>
-                        <v-col cols="4">
-                            <div class="mt-1 px-3 caption"><a href="https://dl.acm.org/ccs" target="_blank">ACM classification scheme</a>. Also see <a href="#acm-classification">below</a>.</div>
-                        </v-col>
-                    </v-row>
+                                                        <v-row>
+                                                            <v-col cols="12" sm="6">
+                                                                <v-select v-model="item.classification" label="select ACM classification" :items="allocation" @change="saveItem(item, 'classification'), save('Classification saved')" outlined dense></v-select>
+                                                                <!-- <v-select v-else v-model="item.allocation[0]" :items="allocation" label="select ACM classification" @change="saveItem(item, 'allocation'), save('Allocation saved')" outlined dense></v-select> -->
+                                                            </v-col>
+                                                            <v-col cols="4">
+                                                                <div class="mt-1 px-3 caption"><a href="https://dl.acm.org/ccs" target="_blank">ACM classification scheme</a>. Also see <a href="#acm-classification">below</a>.</div>
+                                                            </v-col>
+                                                        </v-row>
 
-                    <v-row>
-                        <v-col cols="12">
-                            <p v-if="item.dimensions"><strong>Dimensions metadata:</strong><br></p>
-                            <p :id="'dimensions_badge_' + item.doi"></p>
-                        </v-col>
-                    </v-row>
+                                                        <v-row>
+                                                            <v-col cols="12">
+                                                                <p v-if="item.dimensions"><strong>Dimensions metadata:</strong><br></p>
+                                                                <p :id="'dimensions_badge_' + item.doi"></p>
+                                                            </v-col>
+                                                        </v-row>
 
-                    <v-row>
-                        <v-col cols="12">
-                            <p>
-                                <span class="font-weight-black text-uppercase">Publication meta data:</span><br>
-                                <span v-if="item.CORE"><strong>CORE:</strong> {{item.CORE}}<br></span>
-                                <span v-if="item.impactFactor"><strong>Impact Factor:</strong> {{item.impactFactor}}<br></span>
-                                <span v-if="item.hindex"><strong><a href="http://www.scimagojr.com/" target="_blank">h-index</a>:</strong> {{ item.hindex }}<br></span>
-                                <span v-if="item.h5index"><strong><a href="https://scholar.google.co.uk/citations?view_op=top_venues&hl=en&vq=eng_humancomputerinteraction" target="_blank">h5-index</a>:</strong> {{item.h5index}}<br></span>
-                            </p>
-                        </v-col>
-                    </v-row>
+                                                        <v-row>
+                                                            <v-col cols="12">
+                                                                <p>
+                                                                    <span class="font-weight-black text-uppercase">Publication meta data:</span><br>
+                                                                    <span v-if="item.CORE"><strong>CORE:</strong> {{item.CORE}}<br></span>
+                                                                    <span v-if="item.impactFactor"><strong>Impact Factor:</strong> {{item.impactFactor}}<br></span>
+                                                                    <span v-if="item.hindex"><strong><a href="http://www.scimagojr.com/" target="_blank">h-index</a>:</strong> {{ item.hindex }}<br></span>
+                                                                    <span v-if="item.h5index"><strong><a href="https://scholar.google.co.uk/citations?view_op=top_venues&hl=en&vq=eng_humancomputerinteraction" target="_blank">h5-index</a>:</strong> {{item.h5index}}<br></span>
+                                                                </p>
+                                                            </v-col>
+                                                        </v-row>
 
-                    <v-row>
-                        <v-col cols="12">
-                            <p v-if="item.citeScore">
-                                <strong>Journal CiteScore</strong> (<a href="https://www.elsevier.com/editors-update/story/journal-metrics/citescore-a-new-metric-to-help-you-choose-the-right-journal" target="_blank" rel="noopener noreferrer">Elsiver</a>):
-                                <strong>{{ item.citeScore }}</strong>
-                                <span v-if="item.sjr"><br><strong>Journal rank</strong> (<a :href="'https://www.scimagojr.com/journalsearch.php?q=' + item.source" target="_blank" rel="noopener noreferrer">SJR</a>): <strong>{{ item.sjr }}</strong></span>
-                            </p>
-                        </v-col>
-                    </v-row>
+                                                        <v-row>
+                                                            <v-col cols="12">
+                                                                <p v-if="item.citeScore">
+                                                                    <strong>Journal CiteScore</strong> (<a href="https://www.elsevier.com/editors-update/story/journal-metrics/citescore-a-new-metric-to-help-you-choose-the-right-journal" target="_blank" rel="noopener noreferrer">Elsiver</a>):
+                                                                    <strong>{{ item.citeScore }}</strong>
+                                                                    <span v-if="item.sjr"><br><strong>Journal rank</strong> (<a :href="'https://www.scimagojr.com/journalsearch.php?q=' + item.source" target="_blank" rel="noopener noreferrer">SJR</a>): <strong>{{ item.sjr }}</strong></span>
+                                                                </p>
+                                                            </v-col>
+                                                        </v-row>
 
-                    <v-row>
-                        <v-col cols="12">
-                            <span class="font-weight-black text-uppercase">REF Info:</span><br>
-                            <p class="mb-1">
-                                <v-textarea rows="1" auto-grow v-model="item.hundredWords" hint="Summary of output's significance (100 words max)" label="Summary of output's significance (100 words max)" @change="saveItem(item, 'hundredWords'), save('100 words saved')"></v-textarea>
-                                <span class="small"><em>If another author has already entered information above, feel free to add further relevant details. If you aren't able to write in prose for whatever reason, use bullet points and we'll do what we can to help with the text. If you are not the lead author/researcher you may want to liaise with them.</em></span>
-                            </p>
-                        </v-col>
-                    </v-row>
+                                                        <v-row>
+                                                            <v-col cols="12">
+                                                                <span class="font-weight-black text-uppercase">REF Info:</span><br>
+                                                                <p class="mb-1">
+                                                                    <v-textarea rows="1" auto-grow v-model="item.hundredWords" hint="Summary of output's significance (100 words max)" label="Summary of output's significance (100 words max)" @change="saveItem(item, 'hundredWords'), save('100 words saved')"></v-textarea>
+                                                                    <span class="small"><em>If another author has already entered information above, feel free to add further relevant details. If you aren't able to write in prose for whatever reason, use bullet points and we'll do what we can to help with the text. If you are not the lead author/researcher you may want to liaise with them.</em></span>
+                                                                </p>
+                                                            </v-col>
+                                                        </v-row>
 
-                    </v-card-text>
+                                                    </v-card-text>
 
-                    <v-card-actions v-if="item.attachment" class="mb-5">
-                        <v-btn text color="blue" small>
-                            <p><a :href="item.attachment[0].url" target="_new">Download PDF</a></p>
-                        </v-btn>
-                    </v-card-actions>
+                                                    <v-card-actions v-if="item.attachment" class="mb-5">
+                                                        <v-btn text color="blue" small>
+                                                            <p><a :href="item.attachment[0].url" target="_new">Download PDF</a></p>
+                                                        </v-btn>
+                                                    </v-card-actions>
 
-                    </v-card>
+                                                </v-card>
 
-                    </td>
-                    </template>
+                                            </td>
+                                        </template>
 
-                    <!-- Group Header -->
-                    <template v-slot:group.header="{items, isOpen, toggle}">
+                                        <!-- Group Header -->
+                                        <template v-slot:group.header="{items, isOpen, toggle}">
                                             <th colspan="100%">
                                                 <v-btn text icon small color="black" @click="toggle">
                                                     <v-icon>{{ isOpen ? 'mdi-minus' : 'mdi-plus' }}</v-icon>
@@ -361,13 +363,13 @@
                                             </th>
                                         </template>
 
-                    </v-data-table>
+                                    </v-data-table>
 
-                    </v-card>
+                                </v-card>
 
-                    </template>
+                            </template>
 
-                    </v-col>
+                        </v-col>
                     </v-row>
 
                     <!-- 100 words guidance -->
@@ -376,13 +378,14 @@
                             <h2 id="100-word-guidance">How to write the factual information summary?</h2>
                             (100 Word summaries)
                             <div>The summaries for your outputs are very important. They are meant to demonstrate each output's significance and give the REF panel an indication of <em>"factual information about the research questions, methodology or means of
-                                        dissemination... not described in the output itself"</em>. This information will likely have a significant impact on the review of the output so it's important you follow the guidance. Also, keep the summary brief.
+                                    dissemination... not described in the output itself"</em>. This information will likely have a significant impact on the review of the output so it's important you follow the guidance. Also, keep the summary brief.
                                 The REF guidance suggests <em>"in most cases, sufficient information will be provided in significantly fewer words than the 100-word limit"</em>.</div>
                         </v-col>
                         <v-col cols="10">
                             <h3>Examples:</h3>
                             <div>The University of Edinburgh have a helpful page with examples <a class="has-text-link" href="https://web.inf.ed.ac.uk/infweb/research/ref/outputs/example-100-words" target="_blank">here</a>.<br> I've collated additional examples
-                                <a href="100-words.html#examples" target="_blank">here</a>.</div>
+                                <a href="100-words.html#examples" target="_blank">here</a>.
+                            </div>
                         </v-col>
 
                         </v-col>
@@ -466,31 +469,29 @@
                             <div id="acm-classification">
                                 <h2>What ACM classification should I use?</h2>
                                 <p>We are required to use the <a href="https://dl.acm.org/ccs" target="_blank">ACM classification scheme</a> to classify all outputs. In the table above expand the view for each output using the
-                                    <v-icon small color="primary">mdi-arrow-right</v-icon> icon. Then select the most appropriate option from the drop down menu. The scheme is as follows:</p>
+                                    <v-icon small color="primary">mdi-arrow-right</v-icon> icon. Then select the most appropriate option from the drop down menu. The scheme is as follows:
+                                </p>
                                 <template>
-                                  <v-simple-table dense>
-                                    <template v-slot:default>
-                                      <thead>
-                                        <tr>
-                                          <th class="text-left">
-                                            Classification
-                                          </th>
-                                          <th class="text-left">
-                                            Information
-                                          </th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr
-                                          v-for="item in acmClass"
-                                          :key="item.allocation"
-                                        >
-                                          <td class="font-weight-light small">{{ item.allocation }}</td>
-                                          <td class="font-weight-thin small">{{ item.information }}</td>
-                                        </tr>
-                                      </tbody>
-                                    </template>
-                                </v-simple-table>
+                                    <v-simple-table dense>
+                                        <template v-slot:default>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-left">
+                                                        Classification
+                                                    </th>
+                                                    <th class="text-left">
+                                                        Information
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item in acmClass" :key="item.allocation">
+                                                    <td class="font-weight-light small">{{ item.allocation }}</td>
+                                                    <td class="font-weight-thin small">{{ item.information }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </template>
+                                    </v-simple-table>
                                 </template>
                             </div>
                         </v-col>
