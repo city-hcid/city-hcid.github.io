@@ -104,7 +104,7 @@
                                     </v-tooltip>
                                     </template>
 
-                                    <!-- Ouput Column -->
+                                    <!-- Output Column -->
                                     <template v-slot:item.output="props">
                                         <p v-if="props.item.ref">
                                             {{ props.item.index }}. <span v-if="props.item.doi"><a class="font-weight-medium" :href="'http://dx.doi.org/' + props.item.doi" target="_new">{{props.item.title}}</a> ({{props.item.year}}) <em>{{props.item.source}}</em> <a :href="'http://dx.doi.org/' + props.item.doi" target="_new">DOI</a></span>
