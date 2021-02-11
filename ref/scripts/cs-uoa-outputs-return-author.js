@@ -321,7 +321,8 @@ new Vue({
             suitabilityReview: "",
             strongweakReview: "",
             hotosReview: "",
-            hunderwordsReview: ""
+            hunderwordsReview: "",
+            fullName: ""
         }
     },
     mounted() {
@@ -351,33 +352,37 @@ new Vue({
             let authorid = url.searchParams.get("author");
             const fields = "fields%5B%5D=authorID&fields%5B%5D=authorName&fields%5B%5D=title&fields%5B%5D=firstName&fields%5B%5D=lastName&fields%5B%5D=year&fields%5B%5D=source&fields%5B%5D=authors&fields%5B%5D=type&fields%5B%5D=ref&fields%5B%5D=doi&fields%5B%5D=hundredWords&fields%5B%5D=specialism&fields%5B%5D=rank&fields%5B%5D=crossRef&fields%5B%5D=scopus&fields%5B%5D=refScore&fields%5B%5D=issn&fields%5B%5D=isbn&fields%5B%5D=citeScore&fields%5B%5D=sourceID&fields%5B%5D=sjr&fields%5B%5D=review&fields%5B%5D=reviewerScore&fields%5B%5D=Int%20rate&fields%5B%5D=textReview&fields%5B%5D=reviewerConfidence&fields%5B%5D=attachment&fields%5B%5D=reviewer",
                 sort = "sort%5B0%5D%5Bfield%5D=ref&sort%5B0%5D%5Bdirection%5D=desc&sort%5B1%5D%5Bfield%5D=year&sort%5B1%5D%5Bdirection%5D=asc",
-                authorURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%22${authorid}%22%2CARRAYJOIN(cityAuthorIDs%2C%22+%22))`;
-            axios.get(authorURL, config)
-                .then((response) => {
-                    this.items = response.data.records.map((item) => {
+                outputURL = `https://api.airtable.com/v0/${airTableApp}/${airTableName}?&view=${airTableView}&${sort}&filterByFormula=FIND(%22${authorid}%22%2CARRAYJOIN(cityAuthorIDs%2C%22+%22))`,
+                authorURL = `https://api.airtable.com/v0/${airTableApp}/city-staff/${authorid}`;
+            axios.all([
+                axios.get(outputURL, config),
+                axios.get(authorURL, config)
+            ]).then((response) => {
+                this.fullName = response[1].data.fields.Name;
+                this.items = response[0].data.records.map((item) => {
 
-                        console.log(item.fields.cityAuthors);
+                    console.log(item.fields.cityAuthors);
 
-                        this.index += 1;
-                        return {
-                            id: item.id,
-                            index: this.index,
-                            ...item.fields
-                        }
-                    })
+                    this.index += 1;
+                    return {
+                        id: item.id,
+                        index: this.index,
+                        ...item.fields
+                    }
+                })
 
-                    sessionStorage.clear(); // Forces citation check
-                    if (!sessionStorage.loaded) {
-                        for (let i = 0; i < this.items.length; i++) {
-                            if (this.items[i].doi) {
-                                this.getOutputMetaData(this.items[i])
-                            }
+                sessionStorage.clear(); // Forces citation check
+                if (!sessionStorage.loaded) {
+                    for (let i = 0; i < this.items.length; i++) {
+                        if (this.items[i].doi) {
+                            this.getOutputMetaData(this.items[i])
                         }
                     }
-                    this.loading = false; // Removes table loader graphic
-                }).catch((error) => {
-                    console.log(error)
-                })
+                }
+                this.loading = false; // Removes table loader graphic
+            }).catch((error) => {
+                console.log(error)
+            })
         },
         saveItem(item, key) {
             let data = item,
