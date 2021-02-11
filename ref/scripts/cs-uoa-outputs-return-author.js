@@ -410,6 +410,12 @@ new Vue({
                         msAcademic: item.msAcademic
                     }
                 }
+            } else if (key === "wos") {
+                data = {
+                    fields: {
+                        wos: parseInt(item.wos)
+                    }
+                }
             } else if (key === "classification") {
                 console.log("classification set to: " + item.classification)
                 data = {
