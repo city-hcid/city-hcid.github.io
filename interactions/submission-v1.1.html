@@ -4,14 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
     <link type="text/css" rel="stylesheet" href="./css/styles.css">
     <script defer type="text/javascript" src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-
-    <script defer type="text/javascript" src="http://unpkg.com/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
     
-    <script defer type="text/javascript" src="https://unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
+    <script defer type="text/javascript" src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script defer type="text/javascript" src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
     <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
     <script defer type="text/javascript" src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
@@ -74,9 +72,9 @@
                                 <div v-if="item['fields']['Status'].includes('In process') || item['fields']['Status'].includes('Ready')" class="row justify-content-center align-items-center my-5 ml-3" id="key">
                                     <h3 class="hide-element">Color Key</h3>
                                     <div class="col-12 col-md-8">
-                                        <p><span class="badge badge-danger" aria-label="Red tag">Red</span> We need this information to finalise your submission.</p>
-                                        <p><span class="badge badge-warning" aria-label="Orange tag">Orange</span> This information is optional.</p>
-                                        <p><span class="badge badge-success" aria-label="Green tag">Green</span> We have the information we need.</p>
+                                        <p><span class="badge bg-danger" aria-label="Red tag">Red</span> We need this information to finalise your submission.</p>
+                                        <p><span class="badge bg-warning" aria-label="Orange tag">Orange</span> This information is optional.</p>
+                                        <p><span class="badge bg-success" aria-label="Green tag">Green</span> We have the information we need.</p>
                                     </div>
                                 </div>
 
@@ -96,9 +94,13 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Title of text']" v-on:click="fieldName = 'Title of text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Title of text" data-source="Submission" data-placeholder="Title..."
+                                                    <button v-if="item['fields']['Title of text']" v-on:click="fieldName = 'Title of text'" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Title of text" data-bs-source="Submission" data-bs-placeholder="Title..."
                                                         aria-label="Green tag"><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Title of text'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Title of text" data-source="Submission" data-placeholder="Title..."><span>add...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Title of text'" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Title of text" data-bs-source="Submission" data-bs-placeholder="Title..."><span>add...</span></button>
+
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        Launch demo modal
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -140,11 +142,11 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Author Order']" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Author Order" data-source="Submission" data-placeholder="Author Order..."
+                                                    <button v-if="item['fields']['Author Order']" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Author Order" data-bs-source="Submission" data-bs-placeholder="Author Order..."
                                                         aria-label="Green tag"><span>update...<span></button>
-                                                    <button v-else-if="item['fields']['Coauthors'] && item['fields']['Author Order'] == null" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Author Order"
-                                                        data-source="Submission" data-placeholder="Author Order..."><span>add...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#submissionModal" data-field="Author Order" data-source="Submission" data-placeholder="Author Order..."><span>add...</span></button>
+                                                    <button v-else-if="item['fields']['Coauthors'] && item['fields']['Author Order'] == null" v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Author Order"
+                                                        data-bs-source="Submission" data-bs-placeholder="Author Order..."><span>add...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Author Order'" type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Author Order" data-bs-source="Submission" data-bs-placeholder="Author Order..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -154,8 +156,8 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div class="d-flex flex-row" v-if="item['fields']['Original submission']">
                                                     <div class="p-2 align-items-center" v-for="file in item['fields']['Original submission']">
-                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                        <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']">
+                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-bs-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-else><a v-bind:href="file['url']" data-bs-toggle="tooltip" v-bind:title="file['filename']">
                                                             <!-- <i class="material-icons md-48 text-muted">insert_drive_file</i> -->
                                                             <i style="font-size: 32px" class="fas fa-file md-48 mx-2"></i>
                                                         </a></span>
@@ -175,8 +177,8 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div class="d-flex flex-row" v-if="item['fields']['Final text']">
                                                     <div class="p-2 align-items-center" v-for="file in item['fields']['Final text']">
-                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                        <span v-else><a v-bind:href="file['url']" data-toggle="tooltip" v-bind:title="file['filename']">
+                                                        <span v-if="file['thumbnails']"><a v-bind:href="file['url']" data-bs-toggle="tooltip" v-bind:title="file['filename']"><img v-bind:src="file['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                        <span v-else><a v-bind:href="file['url']" data-bs-toggle="tooltip" v-bind:title="file['filename']">
                                                             <!-- <i class="material-icons md-48 text-muted">insert_drive_file</i> -->
                                                             <i style="font-size: 32px" class="fas fa-file md-48 mx-2"></i>
                                                         </a></span>
@@ -243,8 +245,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Insights']" v-on:click="fieldName = 'Insights'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Insights" data-source="Submission" data-placeholder="Insights..."><span>add...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Insights'" aria-label="Red tag" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Insights" data-source="Submission" data-placeholder="Insights..."><span>add...</span></button>
+                                                    <button v-if="item['fields']['Insights']" v-on:click="fieldName = 'Insights'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Insights" data-bs-source="Submission" data-bs-placeholder="Insights..."><span>add...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Insights'" aria-label="Red tag" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Insights" data-bs-source="Submission" data-bs-placeholder="Insights..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -256,16 +258,16 @@
                                                 <div class="d-flex flex-row img-fluid" v-if="item['fields']['Graphics']">
                                                     <div class="" v-if="item['fields']['Graphics'].length > 4">
                                                         <div class="p-2 align-items-center" v-for="graphic in graphics">
-                                                            <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                            <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']">
+                                                            <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-bs-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                            <span v-else><a v-bind:href="graphic['url']" data-bs-toggle="tooltip" v-bind:title="graphic['filename']">
                                                                 <i style="font-size: 32px" class="fas fa-file-image md-48"></i>
                                                             </a></span>
                                                         </div>
                                                     </div>
                                                     <div class="d-flex flex-row img-fluid" v-else>
                                                         <div class="p-2 align-items-center" v-for="graphic in graphics">
-                                                            <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
-                                                            <span v-else><a v-bind:href="graphic['url']" data-toggle="tooltip" v-bind:title="graphic['filename']">
+                                                            <span v-if="graphic['thumbnails']"><a v-bind:href="graphic['url']" data-bs-toggle="tooltip" v-bind:title="graphic['filename']"><img v-bind:src="graphic['thumbnails']['small']['url']" class="border border-primary rounded" alt="Image thumbnail. Click to download file" height='50'></a></span>
+                                                            <span v-else><a v-bind:href="graphic['url']" data-bs-toggle="tooltip" v-bind:title="graphic['filename']">
                                                                 <i style="font-size: 32px" class="fas fa-file-image md-48"></i>
                                                             </a></span>
                                                         </div>
@@ -295,9 +297,9 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission"
-                                                        data-placeholder="Image captions..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image Captions" data-source="Submission" data-placeholder="Image captions..."><span>add...</span></button>
+                                                    <button v-if="item['fields']['Image Captions']" v-on:click="fieldName = 'Image Captions'" aria-label="Green tag" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Image Captions" data-bs-source="Submission"
+                                                        data-bs-placeholder="Image captions..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Image Captions'" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Image Captions" data-bs-source="Submission" data-bs-placeholder="Image captions..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -314,9 +316,9 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Image alt-text']" v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."
+                                                    <button v-if="item['fields']['Image alt-text']" v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Image alt-text" data-bs-source="Submission" data-bs-placeholder="Image alt-text..."
                                                         aria-label="Green tag"><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#submissionModal" data-field="Image alt-text" data-source="Submission" data-placeholder="Image alt-text..."><span>add...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Image alt-text'" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#submissionModal" data-bs-field="Image alt-text" data-bs-source="Submission" data-bs-placeholder="Image alt-text..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -344,26 +346,28 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Add or update files</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
                                         To update your submission text, or add graphics/images please <a href="mailto:eic@interactions.acm.org" target="_top">email</a> the file(s) to the editorial team.
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ok</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ok</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+
+
                         <!-- Submission Modal -->
-                        <div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                        <div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
 
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="modalLabel">Update</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
                                     <div class="modal-body">
@@ -378,8 +382,8 @@
                                             </div>
 
                                             <div class="form-group mt-3 text-right">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" Name="updateButton" value="Click" onClick="submitForm(this.form)" data-dismiss="modal">Update</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" Name="updateButton" value="Click" onClick="submitForm(this.form)" data-bs-dismiss="modal">Update</button>
                                             </div>
 
                                         </form>
@@ -423,7 +427,7 @@
                                             <td class="align-middle border-right-0" width="65%">
                                                 <div>
 
-                                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".photo-modal-sm">View photo</button>
+                                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target=".photo-modal-sm">View photo</button>
 
                                                     <div class="modal fade photo-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
@@ -431,7 +435,7 @@
 
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="ModalTitle">{{ item['fields']['Name'] }}</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                 </div>
@@ -459,8 +463,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Group']" v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..." aria-label="Green tag"><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Group" data-source="Author" data-placeholder="Group or lab name..."><span>add...</span></button>
+                                                    <button v-if="item['fields']['Group']" v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Group" data-bs-source="Author" data-bs-placeholder="Group or lab name..." aria-label="Green tag"><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Group'" type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Group" data-bs-source="Author" data-bs-placeholder="Group or lab name..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -474,8 +478,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Department']" v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Department" data-source="Author" data-placeholder="Department name..."><span>add...</span></button>
+                                                    <button v-if="item['fields']['Department']" v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Department" data-bs-source="Author" data-bs-placeholder="Department name..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Department'" type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Department" data-bs-source="Author" data-bs-placeholder="Department name..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -489,8 +493,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Organisation']" v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Organisation" data-source="Author" data-placeholder="Organisation name..."><span>add...</span></button>
+                                                    <button v-if="item['fields']['Organisation']" v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Organisation" data-bs-source="Author" data-bs-placeholder="Organisation name..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Organisation'" type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Organisation" data-bs-source="Author" data-bs-placeholder="Organisation name..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -504,8 +508,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Twitter']" v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Twitter" data-source="Author" data-placeholder="Twitter handle..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" data-field="Twitter" data-source="Author" data-placeholder="Twitter handle..."><span>add...</span></button>
+                                                    <button v-if="item['fields']['Twitter']" v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Twitter" data-bs-source="Author" data-bs-placeholder="Twitter handle..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Twitter'" type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Twitter" data-bs-source="Author" data-bs-placeholder="Twitter handle..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -520,8 +524,8 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Short Bio']" v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Short Bio" data-source="Author" data-placeholder="Short Bio..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#updateModal" data-field="Short Bio" data-source="Author" data-placeholder="Short Bio..."><span>add...</span></button>
+                                                    <button v-if="item['fields']['Short Bio']" v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Short Bio" data-bs-source="Author" data-bs-placeholder="Short Bio..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Short Bio'" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Short Bio" data-bs-source="Author" data-bs-placeholder="Short Bio..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -535,9 +539,9 @@
                                             </td>
                                             <td class="align-middle border-left-0" width="10%">
                                                 <div class="text-right">
-                                                    <button v-if="item['fields']['Postal Address']" v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author"
-                                                        data-placeholder="Postal Address..."><span>update...</span></button>
-                                                    <button v-else v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#updateModal" data-field="Postal Address" data-source="Author" data-placeholder="Postal Address..."><span>add...</span></button>
+                                                    <button v-if="item['fields']['Postal Address']" v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Postal Address" data-bs-source="Author"
+                                                        data-bs-placeholder="Postal Address..."><span>update...</span></button>
+                                                    <button v-else v-on:click="fieldName = 'Postal Address'; airtableTable = 'Author'" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-field="Postal Address" data-bs-source="Author" data-bs-placeholder="Postal Address..."><span>add...</span></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -556,7 +560,7 @@
 
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="modalLabel">Update</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
 
                                     <div class="modal-body">
@@ -579,8 +583,8 @@
                                             </div>
 
                                             <div class="form-group mt-3 text-right">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" Name="updateButton" value="Click" onClick="submitForm(this.form)" data-dismiss="modal">Update</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" Name="updateButton" value="Click" onClick="submitForm(this.form)" data-bs-dismiss="modal">Update</button>
                                             </div>
 
                                         </form>
@@ -659,7 +663,31 @@
                 </div>
             </div>
 
+
+
+
+
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
     <template-footer id="footer"></template-footer>
 </body>
