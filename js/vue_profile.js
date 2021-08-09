@@ -1,5 +1,3 @@
-AOS.init();
-
 $(function() {
     $('.dropdown-trigger').dropdown({
         hover: true
@@ -75,11 +73,8 @@ Vue.component('template-profile', function(resolve, reject) {
                         </p>
                         <p v-if="item['long-bio']" class="lbr">{{ item['long-bio'] }}</p>
                         <p v-else class="lbr">{{ item['short-bio'] }}</p>
-                        <p v-if="item['website']">For more see <a v-bind:href="item['website']" target="_new">here</a></p>
-
-                        <h2 v-if="item['select-pubs']" class="m-1 bold">
-                            Selected Publications
-                        </h2>
+                        <p v-if="item['website']">For more, see <a v-bind:href="item['website']" target="_new">here</a>.</p>
+                        <h3 v-if="item['select-pubs']" class="mt-2 mb-1 bold">Selected Publications</h3>
                         <p v-if="item['select-pubs']" class="lbr">{{ item['select-pubs'] }}</p>
                     </div>
                 </div>
