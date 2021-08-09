@@ -8,7 +8,13 @@ $(function() {
 var app = new Vue({
     el: '#profile',
     data: {
-        items: []
+        items: [],
+        markdown: ""
+    },
+    computed: {
+        compiledMarkdown: function() {
+            return marked(this.markdown, { sanitize: true });
+        }
     },
     mounted: function() {
         this.loadItems();
@@ -19,7 +25,7 @@ var app = new Vue({
             let self = this;
             this.items = [];
             let url = '';
-            if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
+            if (location.hostname === "happy-galileo-a42c9d.netlify.app") {
                 url = '../.netlify/functions/hcidRecFn/hcidRecFn.js'
             } else {
                 url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidRecFn/hcidRecFn.js'
@@ -32,7 +38,10 @@ var app = new Vue({
                     fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,long-bio,twitter,scholar,orcid,website,select-pubs')
                 }
             }).then(function(response) {
-                self.items = response.data
+                self.items = response.data;
+                self.items[0]['long-bio'] = marked(self.items[0]['long-bio'], { sanitize: true });
+                self.items[0]['select-pubs'] = marked(self.items[0]['select-pubs'], { sanitize: true });
+                //console.log(this.markdown)
             }).catch(function(error) {
                 console.log(error)
             })
@@ -69,11 +78,11 @@ Vue.component('template-profile', function(resolve, reject) {
                                 <a itemprop="sameAs" v-bind:content="'https://orcid.org/' + item['orcid']" v-bind:href="'https://orcid.org/' + item['orcid']" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">https://orcid.org/{{ item['orcid'] }}</a>
                             </div>
                         </p>
-                        <p v-if="item['long-bio']" class="lbr">{{ item['long-bio'] }}</p>
+                        <p v-if="item['long-bio']" v-html="item['long-bio']"></p>
                         <p v-else class="lbr">{{ item['short-bio'] }}</p>
                         <p v-if="item['website']">For more, see <a v-bind:href="item['website']" target="_new">here</a>.</p>
-                        <h3 v-if="item['select-pubs']" class="mt-2 mb-1 bold">Selected Publications</h3>
-                        <p v-if="item['select-pubs']" class="lbr">{{ item['select-pubs'] }}</p>
+                        <h3 v-if="item['select-pubs']" class="mt-4 mb-1 bold">Selected Publications</h3>
+                        <p v-if="item['select-pubs']" v-html="item['select-pubs']"></p>
                     </div>
                 </div>
             </div>
