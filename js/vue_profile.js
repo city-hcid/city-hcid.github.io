@@ -73,7 +73,8 @@ Vue.component('template-profile', function(resolve, reject) {
                                 <a itemprop="sameAs" v-bind:content="'https://orcid.org/' + item['orcid']" v-bind:href="'https://orcid.org/' + item['orcid']" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">https://orcid.org/{{ item['orcid'] }}</a>
                             </div>
                         </p>
-                        <p v-if="item['short-bio']" class="lbr">{{ item['long-bio'] }}</p>
+                        <p v-if="item['long-bio']" class="lbr">{{ item['long-bio'] }}</p>
+                        <p v-else class="lbr">{{ item['short-bio'] }}</p>
                     </div>
                 </div>
             </div>
