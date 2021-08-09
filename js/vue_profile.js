@@ -32,7 +32,7 @@ var app = new Vue({
                     table: encodeURI('members'),
                     view: encodeURI('Grid view'),
                     filter: encodeURI('({name-id}="' + name + '")'),
-                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,long-bio,twitter,scholar,orcid')
+                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,long-bio,twitter,scholar,orcid,website,select-pubs')
                 }
             }).then(function(response) {
                 self.items = response.data;
@@ -75,6 +75,12 @@ Vue.component('template-profile', function(resolve, reject) {
                         </p>
                         <p v-if="item['long-bio']" class="lbr">{{ item['long-bio'] }}</p>
                         <p v-else class="lbr">{{ item['short-bio'] }}</p>
+                        <p v-if="item['website']">For more see <a v-bind:href="item['website']" target="_new">here</a></p>
+
+                        <h2 v-if="item['select-pubs']" class="m-1 bold">
+                            Selected Publications
+                        </h2>
+                        <p v-if="item['select-pubs']" class="lbr">{{ item['select-pubs'] }}</p>
                     </div>
                 </div>
             </div>
