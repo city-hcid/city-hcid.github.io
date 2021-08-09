@@ -17,7 +17,6 @@ var app = new Vue({
         loadItems: function() {
             let name = new URL(window.location.href).searchParams.get("name");
             let self = this;
-            //let fields = "fields%5B%5D=name&fields%5B%5D=twitter&fields%5B%5D=scholar&fields%5B%5D=orcid&fields%5B%5D=status&fields%5B%5D=photo-url&fields%5B%5D=short-bio&fields%5B%5D=url&fields%5B%5D=post";
             this.items = [];
             let url = '';
             if (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
@@ -33,8 +32,7 @@ var app = new Vue({
                     fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,long-bio,twitter,scholar,orcid,website,select-pubs')
                 }
             }).then(function(response) {
-                self.items = response.data;
-                console.log(self.items)
+                self.items = response.data
             }).catch(function(error) {
                 console.log(error)
             })
