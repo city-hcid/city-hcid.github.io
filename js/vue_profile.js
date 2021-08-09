@@ -32,7 +32,7 @@ var app = new Vue({
                     table: encodeURI('members'),
                     view: encodeURI('Grid view'),
                     filter: encodeURI('({name-id}="' + name + '")'),
-                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,twitter,scholar,orcid')
+                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,long-bio,twitter,scholar,orcid')
                 }
             }).then(function(response) {
                 self.items = response.data;
