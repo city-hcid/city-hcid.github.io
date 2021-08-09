@@ -38,8 +38,8 @@ var app = new Vue({
                 }
             }).then(function(response) {
                 self.items = response.data;
-                self.items[0]['long-bio'] = marked(self.items[0]['long-bio'], { sanitize: true });
-                self.items[0]['select-pubs'] = marked(self.items[0]['select-pubs'], { sanitize: true })
+                if (self.items[0]['long-bio']) { self.items[0]['long-bio'] = marked(self.items[0]['long-bio'], { sanitize: true }) };
+                if (self.items[0]['select-pubs']) { self.items[0]['select-pubs'] = marked(self.items[0]['select-pubs'], { sanitize: true }) }
             }).catch(function(error) {
                 console.log(error)
             })
