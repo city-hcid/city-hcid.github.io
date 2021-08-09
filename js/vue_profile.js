@@ -8,8 +8,7 @@ $(function() {
 var app = new Vue({
     el: '#profile',
     data: {
-        items: [],
-        markdown: ""
+        items: []
     },
     computed: {
         compiledMarkdown: function() {
@@ -40,8 +39,7 @@ var app = new Vue({
             }).then(function(response) {
                 self.items = response.data;
                 self.items[0]['long-bio'] = marked(self.items[0]['long-bio'], { sanitize: true });
-                self.items[0]['select-pubs'] = marked(self.items[0]['select-pubs'], { sanitize: true });
-                //console.log(this.markdown)
+                self.items[0]['select-pubs'] = marked(self.items[0]['select-pubs'], { sanitize: true })
             }).catch(function(error) {
                 console.log(error)
             })
