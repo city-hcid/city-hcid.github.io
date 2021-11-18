@@ -32,8 +32,8 @@
                     </div>
                     <div id="app-forum">
                         <table class="table table-striped table-sm table-hover table-bordered table-responsive-md">
-                            <thead class="bg-dark text-white">
-                                <tr class="py-0">
+                            <thead class="table-dark">
+                                <tr>
                                     <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Issue:</th>
                                     <th v-for="issue in issues" class="align-top font-weight-normal text-left border-0 py-0" width="10%">
                                         <table-head v-bind:head="issue['fields']['months']" v-bind:view_id="issue['fields']['view-id']" v-bind:dialogue="issue['fields']['dialogue']"></table-head>
@@ -83,7 +83,7 @@
                     </div>
                     <div id="appColumnists">
                         <table class="table table-striped table-sm table-hover table-bordered table-responsive-md">
-                            <thead class="bg-dark text-white">
+                            <thead class="table-dark">
                                 <tr class="py-0">
                                     <th colspan="2" class="align-top font-weight-bold text-right border-0 py-0" width="35%">Issue:</th>
                                     <th v-for="issue in issues" class="align-top font-weight-normal text-left border-0 py-0" width="10%">
