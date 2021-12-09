@@ -110,8 +110,9 @@ var app_sub = new Vue({
                             // Get the version number for filename
                             let v = l + 1;
                             console.log(l);
+                            var uploadDate = new Date();
                             // Generate filename
-                            fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Title of text'] + "-v" + v + "." + extn;
+                            fileName = self.items[0].fields['Primary Contact'] + "-" + self.items[0].fields['Title of text'] + "-v" + v + "_" + uploadDate.toDateString() + "." + extn;
                             fileName = fileName.replace(/ /g, "_");
                             console.log(fileName);
                             // Generate airtable endpoint
