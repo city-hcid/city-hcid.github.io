@@ -4,11 +4,8 @@ $(function() { // Shorthand for $( document ).ready()
     $('.dropdown-trigger').dropdown({
         hover: true
     });
-    $('.carousel.carousel-slider').carousel({
-        fullWidth: true,
-        indicators: true
-    });
     $('.tabs').tabs();
+    $('.slider').slider({duration:1000});
     $('.sidenav').sidenav()
 })
 
