@@ -72,14 +72,6 @@ Vue.component('template-header', {
                 :class="navLinkClass"
                 :title="item.name">{{ item.name }}</a>
             </li>
-            /* <li v-for="(item,index) in dropDownCentre" v-if="index>0" @click="active = !active" :class="active" 
-            :id="'sideNavItem' + item.name.replace(/ /g,'_')">
-                <a 
-                :href="item.url"
-                :class="navLinkClass"
-                :title="item.name">{{ item.name }}</a>
-            </li>
-            <li class="divider" tabindex="-1"></li> */
             <li v-for="(item, index) in dropDownSeminar" @click="active = !active" :class="active" :id="item.id">
                 <a v-if="index == 0"
                 :href="item.url"
@@ -103,18 +95,6 @@ Vue.component('template-header', {
                 :class="dropDownSubLinkClass"
                 :title="item.name">{{ item.name }}</a>
             </li>
-            /* <li class="divider" tabindex="-1"></li>
-            <li v-for="(item, index) in dropDownReading" @click="active = !active" :class="active" :id="item.id">
-                <a v-if="index == 0"
-                :href="item.url"
-                :class="dropDownLinkClass"
-                :title="item.name">{{ item.name }}</a>
-                <a v-else
-                :href="item.url"
-                :class="dropDownSubLinkClass"
-                :title="item.name">{{ item.name }}</a>
-            </li>
-            <li class="divider" tabindex="-1"></li> */
             <li v-for="(item, index) in dropDownSeminar" @click="active = !active" :class="active" :id="item.id">
                 <a v-if="index == 0"
                 :href="item.url"
