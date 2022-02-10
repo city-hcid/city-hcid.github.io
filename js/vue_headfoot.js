@@ -13,18 +13,18 @@ Vue.component('template-header', {
                 { url: "../centre/phd-research", name: "PhD Research" },
                 { url: "../centre/projects", name: "Projects" }
             ],
-            dropDownCentre: [
+            /*dropDownCentre: [
                 { url: "../centre/calendar", name: "Calendar", id: "dropDownCentre_Calendar" },
                 { url: "../centre/phd-research", name: "PhD Research", id: "dropDownPhD_Research" }
             ],
             dropDownReading: [
                 { url: "../centre/reading-group", name: "Reading Group", id: "dropDownReading_Group" },
                 { url: "../centre/reading-group-calendar", name: "Calendar", id: "dropDownReadings_Calendar" }
-            ],
+            ],*/
             dropDownSeminar: [
                 { url: "../seminar/", name: "Seminar Series", id: "dropDownSeminar_Series" },
                 { url: "../seminar/speakers", name: "Speakers", id: "dropDownSeminar_Speakers" },
-                { url: "../seminar/calendar", name: "Calendar", id: "dropDownSeminar_Calendar" }
+                //{ url: "../seminar/calendar", name: "Calendar", id: "dropDownSeminar_Calendar" }
             ]
         }
     },
