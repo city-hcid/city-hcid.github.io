@@ -13,18 +13,18 @@ Vue.component('template-header', {
                 { url: "../centre/phd-research", name: "PhD Research" },
                 { url: "../centre/projects", name: "Projects" }
             ],
-            /*dropDownCentre: [
+            dropDownCentre: [
                 { url: "../centre/calendar", name: "Calendar", id: "dropDownCentre_Calendar" },
                 { url: "../centre/phd-research", name: "PhD Research", id: "dropDownPhD_Research" }
             ],
             dropDownReading: [
                 { url: "../centre/reading-group", name: "Reading Group", id: "dropDownReading_Group" },
                 { url: "../centre/reading-group-calendar", name: "Calendar", id: "dropDownReadings_Calendar" }
-            ],*/
+            ],
             dropDownSeminar: [
                 { url: "../seminar/", name: "Seminar Series", id: "dropDownSeminar_Series" },
                 { url: "../seminar/speakers", name: "Speakers", id: "dropDownSeminar_Speakers" },
-                //{ url: "../seminar/calendar", name: "Calendar", id: "dropDownSeminar_Calendar" }
+                { url: "../seminar/calendar", name: "Calendar", id: "dropDownSeminar_Calendar" }
             ]
         }
     },
@@ -72,6 +72,14 @@ Vue.component('template-header', {
                 :class="navLinkClass"
                 :title="item.name">{{ item.name }}</a>
             </li>
+            <li v-for="(item,index) in dropDownCentre" v-if="index>0" @click="active = !active" :class="active" 
+            :id="'sideNavItem' + item.name.replace(/ /g,'_')">
+                <a 
+                :href="item.url"
+                :class="navLinkClass"
+                :title="item.name">{{ item.name }}</a>
+            </li>
+            <li class="divider" tabindex="-1"></li>
             <li v-for="(item, index) in dropDownSeminar" @click="active = !active" :class="active" :id="item.id">
                 <a v-if="index == 0"
                 :href="item.url"
@@ -89,6 +97,24 @@ Vue.component('template-header', {
             <li  @click="active = !active" :class="active" id="navItemHCID">
                 <a class="active menu-header menu-selection" href="https://hcid.city">HCID</a>
             </li>
+            <li v-for="item in dropDownCentre" @click="active = !active" :class="active" :id="item.id">
+                <a 
+                :href="item.url"
+                :class="dropDownSubLinkClass"
+                :title="item.name">{{ item.name }}</a>
+            </li>
+            <li class="divider" tabindex="-1"></li>
+            <li v-for="(item, index) in dropDownReading" @click="active = !active" :class="active" :id="item.id">
+                <a v-if="index == 0"
+                :href="item.url"
+                :class="dropDownLinkClass"
+                :title="item.name">{{ item.name }}</a>
+                <a v-else
+                :href="item.url"
+                :class="dropDownSubLinkClass"
+                :title="item.name">{{ item.name }}</a>
+            </li>
+            <li class="divider" tabindex="-1"></li>
             <li v-for="(item, index) in dropDownSeminar" @click="active = !active" :class="active" :id="item.id">
                 <a v-if="index == 0"
                 :href="item.url"
