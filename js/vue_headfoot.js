@@ -89,12 +89,6 @@ Vue.component('template-header', {
             <li  @click="active = !active" :class="active" id="navItemHCID">
                 <a class="active menu-header menu-selection" href="https://hcid.city">HCID</a>
             </li>
-            <li v-for="item in dropDownCentre" @click="active = !active" :class="active" :id="item.id">
-                <a 
-                :href="item.url"
-                :class="dropDownSubLinkClass"
-                :title="item.name">{{ item.name }}</a>
-            </li>
             <li v-for="(item, index) in dropDownSeminar" @click="active = !active" :class="active" :id="item.id">
                 <a v-if="index == 0"
                 :href="item.url"
