@@ -4,6 +4,8 @@
 * https://www.gnu.org/licenses/gpl.html
 */
 
+.timeline-Header-title, .timeline-Footer.u-floatLeft { display:none }
+
 .img-responsive {
     max-width: 100%;
     height: auto;
