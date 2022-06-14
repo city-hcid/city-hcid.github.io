@@ -40,6 +40,9 @@
                                 <span v-if="item['fields']['long-name']" class="lbr">
                                     {{ item['fields']['long-name'] }}
                                 </span>
+                                <p v-if="item['fields']['page-image-url']"><img class="responsive-img" v-bind:src="item['fields']['page-image-url']" v-bind:alt="item['fields']['project-name'] + ' visual'" style="max-height:10rem" />
+                                    <span class="lbr grey-text text-darken-2 center-align">{{ item['fields']['page-image-caption'] }}</span>
+                                </p>
                                 <p v-if="item['fields']['about']">
                                     <strong>About: </strong>
                                     <span class="lbr grey-text text-darken-2">{{ item['fields']['about'] }}</span>
@@ -54,7 +57,8 @@
                                 </p>
                                 <p v-if="item['fields']['members']" class="pb-5">
                                     <strong>Researchers: </strong>
-                                    <span class="lbr grey-text text-darken-2">{{ item['fields']['members-str'] }}</span>
+                                    <span class="lbr grey-text text-darken-2">{{ item['fields']['members-str'] }}</span><span v-if="item['collaborators']" class="lbr grey-text text-darken-2">, {{ item['collaborators'] }}</span>
+                                </p>
                                 </p>
                             </div>
                         </div>
