@@ -33,7 +33,7 @@ var app = new Vue({
                     params: {
                         table: encodeURI('projects'),
                         view: encodeURI('live'),
-                        fields: encodeURI('project-name,image-url,project-url,long-name,about,lead,lead-url,members,members-str,lead-str,research-theme'),
+                        fields: encodeURI('project-name,image-url,project-url,long-name,about,lead,lead-url,collaborators,members,members-str,lead-str,research-theme'),
                         sort: encodeURI('{"field":"project-name","direction":"asc"}')
                     }
                 }),
@@ -41,7 +41,7 @@ var app = new Vue({
                     params: {
                         table: encodeURI('projects'),
                         view: encodeURI('archive'),
-                        fields: encodeURI('project-name,image-url,project-url,long-name,about,lead,lead-url,members,members-str,lead-str,research-theme'),
+                        fields: encodeURI('project-name,image-url,project-url,long-name,about,lead,lead-url,collaborators,members,members-str,lead-str,research-theme'),
                         sort: encodeURI('{"field":"project-name","direction":"asc"}')
                     }
                 })
@@ -72,7 +72,9 @@ Vue.component('template-project', {
                 </p>
                 <p class="pb-5">
                     <strong>Project members: </strong>
-                    <span v-if="item['lead']" class="lbr grey-text text-darken-2"><a v-bind:href="item['lead-url']">{{ item['lead-str'] }}</a> (lead)</span><span v-if="item['members']" class="lbr grey-text text-darken-2">, {{ item['members-str'] }}</span>
+                    <span v-if="item['lead']" class="lbr grey-text text-darken-2"><a v-bind:href="item['lead-url']">{{ item['lead-str'] }}</a> (lead)</span>
+                    <span v-if="item['members']" class="lbr grey-text text-darken-2">, {{ item['members-str'] }}</span>
+                    <span v-if="item['collaborators']" class="lbr grey-text text-darken-2">, {{ item['collaborators'] }}</span>
                 </p>
             </div>
         </div>
