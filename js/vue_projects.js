@@ -41,7 +41,7 @@ var app = new Vue({
                     params: {
                         table: encodeURI('projects'),
                         view: encodeURI('archive'),
-                        fields: encodeURI('project-name,image-url,project-url,long-name,about,lead,lead-url,collaborators,members,members-str,lead-str,research-theme'),
+                        fields: encodeURI('project-name,image-url,project-url,long-name,about,lead,lead-url,collaborators,collaborators-long,members,members-str,lead-str,research-theme'),
                         sort: encodeURI('{"field":"project-name","direction":"asc"}')
                     }
                 })
