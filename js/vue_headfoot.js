@@ -1,19 +1,19 @@
-Vue.component('template-header', {
-    props: ['item', 'subhead', 'subtitle', 'page'],
-    data: function() {
-        return {
-            active: false,
-            navLinkClass: "grey-text text-darken-2",
-            dropDownLinkClass: "menu-header",
-            dropDownSubLinkClass: "menu-subheader",
-            navList: [
-                { url: "../centre/charter", name: "Charter" },
-                { url: "../centre/members", name: "Members" },
-                { url: "../centre/research", name: "Research" },
-                { url: "../centre/phd-research", name: "PhD Research" },
-                { url: "../centre/projects", name: "Projects" }
-            ],
-            /*dropDownCentre: [
+Vue.component("template-header", {
+	props: ["item", "subhead", "subtitle", "page"],
+	data: function () {
+		return {
+			active: false,
+			navLinkClass: "grey-text text-darken-2",
+			dropDownLinkClass: "menu-header",
+			dropDownSubLinkClass: "menu-subheader",
+			navList: [
+				{ url: "../centre/charter", name: "Charter" },
+				{ url: "../centre/members", name: "Members" },
+				{ url: "../centre/research", name: "Research" },
+				{ url: "../centre/phd-research", name: "PhD Research" },
+				{ url: "../centre/projects", name: "Projects" },
+			],
+			/*dropDownCentre: [
                 { url: "../centre/calendar", name: "Calendar", id: "dropDownCentre_Calendar" },
                 { url: "../centre/phd-research", name: "PhD Research", id: "dropDownPhD_Research" }
             ],
@@ -21,23 +21,27 @@ Vue.component('template-header', {
                 { url: "../centre/reading-group", name: "Reading Group", id: "dropDownReading_Group" },
                 { url: "../centre/reading-group-calendar", name: "Calendar", id: "dropDownReadings_Calendar" }
             ],*/
-            dropDownSeminar: [
-                { url: "../seminar/", name: "Seminar Series", id: "dropDownSeminar_Series" },
-                { url: "../seminar/speakers", name: "Speakers", id: "dropDownSeminar_Speakers" },
-                //{ url: "../seminar/calendar", name: "Calendar", id: "dropDownSeminar_Calendar" }
-            ]
-        }
-    },
-    mounted: function() {
-        if (this.page == "Charter") {
-            $("#navItem" + this.page).addClass("active hide-on-med-and-down");
-        } else {
-            $("#navItem" + this.page).addClass("active");
-            $("#dropDown" + this.page).addClass("active");
-            $("#sideNavItem" + this.page).addClass("active")
-        }
-    },
-    template: `
+			dropDownSeminar: [
+				{ url: "../seminar/", name: "Seminar Series", id: "dropDownSeminar_Series" },
+				{
+					url: "../seminar/speakers",
+					name: "Speakers",
+					id: "dropDownSeminar_Speakers",
+				},
+				//{ url: "../seminar/calendar", name: "Calendar", id: "dropDownSeminar_Calendar" }
+			],
+		};
+	},
+	mounted: function () {
+		if (this.page == "Charter") {
+			$("#navItem" + this.page).addClass("active hide-on-med-and-down");
+		} else {
+			$("#navItem" + this.page).addClass("active");
+			$("#dropDown" + this.page).addClass("active");
+			$("#sideNavItem" + this.page).addClass("active");
+		}
+	},
+	template: `
     <header>
         <div class="navbar-fixed">
             <nav class="no-shadows">
@@ -115,15 +119,15 @@ Vue.component('template-header', {
             </div>
         </div>
     </header>
-    `
+    `,
 });
 new Vue({
-    el: '#header'
+	el: "#header",
 });
-Vue.component('template-footer', function(resolve, reject) {
-    setTimeout(function() {
-        resolve({
-            template: `
+Vue.component("template-footer", function (resolve, reject) {
+	setTimeout(function () {
+		resolve({
+			template: `
             <footer class="page-footer grey lighten-5">
                 <div class="container">
                     <div class="row">
@@ -133,6 +137,9 @@ Vue.component('template-footer', function(resolve, reject) {
                             </h5>
                             <div>
                                 <a class="link grey-text text-darken-4" href="https://hcid.city">Centre for Human-Computer Interaction Design</a>
+                            </div>
+                            <div>
+                                <a class="grey-text text-lighten-1 link" rel="me" href="https://hci.social/@hcid">On Mastodon</a>
                             </div>
                         </div>
                         <div id="address" aria-label="Address" class="col l4 offset-l2 s12 mt-4">
@@ -170,13 +177,13 @@ Vue.component('template-footer', function(resolve, reject) {
                     </div>
                 </div>
             </footer>
-            `
-        })
-    }, 500)
+            `,
+		});
+	}, 500);
 });
 new Vue({
-    el: '#footer'
-})
+	el: "#footer",
+});
 
 var app_id = "appVrmQAGy96E1jEP";
 var app_key = "key8l5YZtQ9FyUoxF";
