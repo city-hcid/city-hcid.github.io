@@ -39,7 +39,7 @@ var app = new Vue({
 							table: encodeURI("projects"),
 							view: encodeURI("live"),
 							fields: encodeURI(
-								"project-name,image-url,project-url,long-name,about,lead,lead-url,collaborators,collaborators-long,members,members-str,lead-str,research-theme"
+								"project-name,image-url,project-url,long-name,about,lead,lead-url,collaborators,collaborators-long,members,members-str,lead-str,research-theme,paper-citation"
 							),
 							sort: encodeURI('{"field":"project-name","direction":"asc"}'),
 						},
@@ -49,7 +49,7 @@ var app = new Vue({
 							table: encodeURI("projects"),
 							view: encodeURI("archive"),
 							fields: encodeURI(
-								"project-name,image-url,project-url,long-name,about,lead,lead-url,collaborators,collaborators-long,members,members-str,lead-str,research-theme"
+								"project-name,image-url,project-url,long-name,about,lead,lead-url,collaborators,collaborators-long,members,members-str,lead-str,research-theme,paper-citation"
 							),
 							sort: encodeURI('{"field":"project-name","direction":"asc"}'),
 						},
@@ -79,7 +79,9 @@ Vue.component("template-project", {
                 <span v-if="item['long-name']" class="lbr">{{ item['long-name'] }}</span>
                 <p>
                     <strong>About: </strong>
-                    <span v-if="item['about']" class="lbr grey-text text-darken-2">{{ item['about'] }}</span> <span v-if="item['project-url']" class="lbr grey-text text-darken-2">See more <a v-bind:href="item['project-url']" target="_blank">here</a>.</span>
+                    <span v-if="item['about']" class="lbr grey-text text-darken-2">{{ item['about'] }}</span> 
+                    <span v-if="item['paper-doi']" class="lbr grey-text text-darken-2">See <a v-bind:href="item['paper-doi']" target="_blank">{{ item['paper-citation'] }}</a>.</span> 
+                    <span v-if="item['project-url']" class="lbr grey-text text-darken-2">See more <a v-bind:href="item['project-url']" target="_blank">here</a>.</span>
                 </p>
                 <p class="pb-5">
                     <strong>Project members: </strong>
