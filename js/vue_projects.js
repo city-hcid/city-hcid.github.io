@@ -83,7 +83,7 @@ Vue.component("template-project", {
                     <span v-if="item['paper-doi']" class="lbr grey-text text-darken-2">See <a v-bind:href="item['paper-doi']" target="_blank">{{ item['paper-citation'] }}</a>.</span> 
                     <span v-if="item['project-url']" class="lbr grey-text text-darken-2">See more <a v-bind:href="item['project-url']" target="_blank">here</a>.</span>
                 </p>
-                <p class="pb-5">
+                <p  v-if="item['lead']" class="pb-5">
                     <strong>Project members: </strong>
                     <span v-if="item['lead']" class="lbr grey-text text-darken-2"><a v-bind:href="item['lead-url']">{{ item['lead-str'] }}</a> (lead)</span><span v-if="item['members']" class="lbr grey-text text-darken-2">, {{ item['members-str'] }}</span><span v-if="item['collaborators-long']" class="lbr grey-text text-darken-2">, {{ item['collaborators-long'] }}</span><span v-else-if="item['collaborators']" class="lbr grey-text text-darken-2">, {{ item['collaborators'] }}</span><span v-else> </span>
                 </p>
