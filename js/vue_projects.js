@@ -79,7 +79,7 @@ Vue.component("template-project", {
                 <span v-if="item['long-name']" class="lbr">{{ item['long-name'] }}</span>
                 <p>
                     <strong>About: </strong>
-                    <span v-if="item['about']" class="lbr grey-text text-darken-2">{{ item['about'] }}</span> <span v-if="item['project-url']" class="lbr grey-text text-darken-2">See more <a href="{{ item['project-url'] }}" target="_blank">here</a>.</span>
+                    <span v-if="item['about']" class="lbr grey-text text-darken-2">{{ item['about'] }}</span> <span v-if="item['project-url']" class="lbr grey-text text-darken-2">See more <a v-bind:href="item['project-url']" target="_blank">here</a>.</span>
                 </p>
                 <p class="pb-5">
                     <strong>Project members: </strong>
