@@ -1,53 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="HCID, seminar, talks" />
+		<meta
+			name="description"
+			content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems."
+		/>
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		/>
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css"
+		/>
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://unpkg.com/aos@next/dist/aos.css"
+		/>
+		<link type="text/css" rel="stylesheet" href="../css/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>HCID | Calendar</title>
+	</head>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HCID, seminar, talks" />
-    <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link type="text/css" rel="stylesheet" href="../css/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HCID | Calendar</title>
-</head>
+	<body>
+		<template-header
+			id="header"
+			subhead="<br>calendar"
+			subtitle=""
+			page="Centre_Calendar"
+		></template-header>
 
-<body>
+		<main style="min-height: 32vh">
+			<div class="container" style="padding-bottom: 5rem">
+				<div class="row">
+					<div class="col s12 m9 l10">
+						<div class="section">
+							<p>
+								<iframe
+									src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showDate=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=city.hcid%40gmail.com&amp;color=%23b90e28&amp;src=p1gfrhphub8boo56dge0n5db1s%40group.calendar.google.com&amp;color=%23B1365F&amp;ctz=Europe%2FLondon"
+									style="border-width: 0"
+									width="800"
+									height="600"
+									frameborder="0"
+									scrolling="no"
+								></iframe>
+							</p>
+						</div>
+						<div class="section">
+							<p>
+								<a
+									href="https://calendar.google.com/calendar/ical/city.hcid%40gmail.com/public/basic.ics"
+									>Subscribe (ical)</a
+								><br />
+								<a
+									href="https://calendar.google.com/calendar/embed?src=city.hcid%40gmail.com&ctz=Europe%2FLondon"
+									>Google Calender</a
+								>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
 
-    <template-header id="header" subhead="<br>calendar" subtitle="" page="Centre_Calendar"></template-header>
+		<template-footer id="footer"></template-footer>
 
-    <main style="min-height: 32vh">
-        <div class="container" style="padding-bottom:5rem;">
-            <div class="row">
-                <div class="col s12 m9 l10">
-                    <div class="section">
-                        <p>
-                            <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showDate=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=city.hcid%40gmail.com&amp;color=%23b90e28&amp;src=p1gfrhphub8boo56dge0n5db1s%40group.calendar.google.com&amp;color=%23B1365F&amp;ctz=Europe%2FLondon"
-                                style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-                        </p>
-                    </div>
-                    <div class="section">
-                        <p>
-                            <a href="https://calendar.google.com/calendar/ical/city.hcid%40gmail.com/public/basic.ics">Subscribe (ical)</a><br>
-                            <a href="https://calendar.google.com/calendar/embed?src=city.hcid%40gmail.com&ctz=Europe%2FLondon">Google Calender</a>
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
-
-    <template-footer id="footer"></template-footer>
-
-    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script type="text/javascript" src="../js/vue_headfoot.js"></script>
-    <script type="text/javascript" src="../js/scripts.js"></script>
-</body>
-
+		<script src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+		<script
+			type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+		></script>
+		<script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+		<script type="text/javascript" src="../js/vue_headfoot.js"></script>
+		<script type="text/javascript" src="../js/scripts.js"></script>
+	</body>
 </html>

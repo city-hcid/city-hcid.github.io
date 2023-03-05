@@ -1,66 +1,129 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://unpkg.com/bootstrap@latest/dist/css/bootstrap.min.css"
+		/>
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
+		/>
+		<link type="text/css" rel="stylesheet" href="./css/styles.css" />
+		<script
+			defer
+			type="text/javascript"
+			src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"
+		></script>
+		<script
+			defer
+			type="text/javascript"
+			src="https://unpkg.com/bootstrap@latest/dist/js/bootstrap.bundle.min.js"
+		></script>
+		<script
+			defer
+			type="text/javascript"
+			src="https://unpkg.com/vue@latest/dist/vue.min.js"
+		></script>
+		<script
+			defer
+			type="text/javascript"
+			src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"
+		></script>
+		<script
+			defer
+			type="text/javascript"
+			src="https://unpkg.com/axios@latest/dist/axios.min.js"
+		></script>
+		<script
+			defer
+			type="text/javascript"
+			src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"
+		></script>
+		<script defer type="text/javascript" src="js/vue_components.js"></script>
+		<script defer type="text/javascript" src="js/vue_issue.js"></script>
+		<title>interactions magazine | Issue</title>
+	</head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap@latest/dist/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
-    <link type="text/css" rel="stylesheet" href="./css/styles.css">
-    <script defer type="text/javascript" src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-    <script defer type="text/javascript" src="http://unpkg.com/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
-    <script defer type="text/javascript" src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
-    <script defer type="text/javascript" src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
-    <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
-    <script defer type="text/javascript" src="http://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
-    <script defer type="text/javascript" src="js/vue_components.js"></script>
-    <script defer type="text/javascript" src="js/vue_issue.js"></script>
-    <title>interactions magazine | Issue</title>
-</head>
+	<body>
+		<main>
+			<div class="container">
+				<template-header id="header" subtitle="" subtext=""></template-header>
 
-<body>
-    <main>
-        <div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-10">
+						<div id="app">
+							<div v-for="(item, index) in items">
+								<div v-if="index == 0" class="mb-5" id="issue-title">
+									<h2 id="subtitle">
+										Issue: {{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }}
+									</h2>
+									<h3 v-if="dialogue">Dialogue: {{ dialogue }}</h3>
+									<p class="my-4 font-weight-light">
+										List of provisional content for the {{ item['fields']['Target Issue'] }} {{
+										item['fields']['Target Year'] }} issue of the
+										<a href="https://interactions.acm.org/" target="_blank"
+											>ACM interactions magazine</a
+										>. Details are subject to change.
+									</p>
+								</div>
+							</div>
 
-            <template-header id="header" subtitle="" subtext=""></template-header>
-            </template-header>
-
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10">
-                    <div id="app">
-                        <div v-for="(item, index) in items">
-                            <div v-if="index == 0" class="mb-5" id="issue-title">
-                                <h2 id="subtitle">Issue: {{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }}</h2>
-                                <h3 v-if="dialogue">Dialogue: {{ dialogue }}</h3>
-                                <p class="my-4 font-weight-light">List of provisional content for the {{ item['fields']['Target Issue'] }} {{ item['fields']['Target Year'] }} issue of the <a href="https://interactions.acm.org/" target="_blank">ACM interactions magazine</a>. Details are
-                                    subject to change.</p>
-                            </div>
-                        </div>
-
-                        <template>
-                            <b-table striped hover responsive small bordered head-variant="dark" :fields="fields" :items="items">
-                                <template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
-                        <template v-slot:cell(Type)="data">{{ data.item.fields.Type }}</template>
-                        <template v-slot:cell(primaryContact)="data">
-                                    <span v-if="data.item['fields']['Primary Contact'] == 'Provisional/Planned Content'">TBA</span>
-                                    <span v-else-if="data.item['fields']['Primary Contact']">{{ data.item['fields']['Primary Contact'] }}</span>
-                                    <span v-else>TBA</span>
-                                </template>
-                        <template v-slot:cell(titleOfText)="data">{{ data.item['fields']['Title of text'] }}</template> -->
-                        <template v-slot:cell(Status)="data">
-                                    <b-badge variant="danger" v-if="data.item.fields.Status == 'Pending'">{{ data.item.fields.Status[0] }}</b-badge>
-                                    <b-badge variant="warning" v-if="data.item.fields.Status == 'In process'">{{ data.item.fields.Status[0] }}</b-badge>
-                                    <b-badge variant="success" v-if="data.item.fields.Status == 'Ready'">{{ data.item.fields.Status[0] }}</b-badge>
-                                    <b-badge variant="secondary" v-if="data.item.fields.Status == 'Planning'">{{ data.item.fields.Status[0] }}</b-badge>
-                                </template>
-                        </b-table>
-                        </template>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <template-footer id="footer"></template-footer>
-</body>
-
+							<template>
+								<b-table
+									striped
+									hover
+									responsive
+									small
+									bordered
+									head-variant="dark"
+									:fields="fields"
+									:items="items"
+								>
+									<template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
+									<template v-slot:cell(Type)="data">{{ data.item.fields.Type }}</template>
+									<template v-slot:cell(primaryContact)="data">
+										<span
+											v-if="data.item['fields']['Primary Contact'] == 'Provisional/Planned Content'"
+											>TBA</span
+										>
+										<span v-else-if="data.item['fields']['Primary Contact']"
+											>{{ data.item['fields']['Primary Contact'] }}</span
+										>
+										<span v-else>TBA</span>
+									</template>
+									<template v-slot:cell(titleOfText)="data"
+										>{{ data.item['fields']['Title of text'] }}</template
+									>
+									-->
+									<template v-slot:cell(Status)="data">
+										<b-badge variant="danger" v-if="data.item.fields.Status == 'Pending'"
+											>{{ data.item.fields.Status[0] }}</b-badge
+										>
+										<b-badge variant="warning" v-if="data.item.fields.Status == 'In process'"
+											>{{ data.item.fields.Status[0] }}</b-badge
+										>
+										<b-badge variant="success" v-if="data.item.fields.Status == 'Ready'"
+											>{{ data.item.fields.Status[0] }}</b-badge
+										>
+										<b-badge variant="secondary" v-if="data.item.fields.Status == 'Planning'"
+											>{{ data.item.fields.Status[0] }}</b-badge
+										>
+									</template>
+								</b-table>
+							</template>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<template-footer id="footer"></template-footer>
+	</body>
 </html>

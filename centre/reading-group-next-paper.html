@@ -1,180 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="HCID, seminar, talks" />
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		/>
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css"
+		/>
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://unpkg.com/aos@next/dist/aos.css"
+		/>
+		<link type="text/css" rel="stylesheet" href="../css/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>HCID | Reading Group</title>
+		<style>
+			.collection-item:after {
+				content: "";
+				/* This is necessary for the pseudo element to work. */
+				display: block;
+				/* This will put the pseudo element on its own line. */
+				margin: 0 1rem 2rem auto;
+				/* This will center the border. */
+				width: 90%;
+				/* Change this to whatever width you want. */
+				padding-top: 5rem;
+				/* This creates some space between the element and the border. */
+				border-bottom: 1px solid #ddd;
+				/* This creates the border. Replace black with whatever color you want. */
+			}
+		</style>
+	</head>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HCID, seminar, talks" />
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link type="text/css" rel="stylesheet" href="../css/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HCID | Reading Group</title>
-    <style>
-        .collection-item:after {
-            content: "";
-            /* This is necessary for the pseudo element to work. */
-            display: block;
-            /* This will put the pseudo element on its own line. */
-            margin: 0 1rem 2rem auto;
-            /* This will center the border. */
-            width: 90%;
-            /* Change this to whatever width you want. */
-            padding-top: 5rem;
-            /* This creates some space between the element and the border. */
-            border-bottom: 1px solid #ddd;
-            /* This creates the border. Replace black with whatever color you want. */
-        }
-    </style>
-</head>
+	<body>
+		<header>
+			<div class="navbar-fixed">
+				<nav class="no-shadows">
+					<div class="nav-wrapper white">
+						<a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"
+							><i class="material-icons grey-text text-darken-2">menu</i></a
+						>
+						<ul id="nav-mobile" class="left hide-on-small-and-down">
+							<li class="active">
+								<a
+									class="dropdown-trigger grey-text text-darken-2"
+									href="#!"
+									data-target="dropdown1"
+									>HCID</a
+								>
+							</li>
+							<li><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
+							<li><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
+							<li>
+								<a href="../centre/projects" class="grey-text text-darken-2">Projects</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
 
-<body>
-    <header>
-        <div class="navbar-fixed">
-            <nav class="no-shadows">
-                <div class="nav-wrapper white">
-                    <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
-                    <ul id="nav-mobile" class="left hide-on-small-and-down">
-                        <li class="active"><a class="dropdown-trigger grey-text text-darken-2" href="#!" data-target="dropdown1">HCID</a></li>
-                        <li><a href="../centre/charter" class="grey-text text-darken-2">Charter</a></li>
-                        <li><a href="../centre/members" class="grey-text text-darken-2">Members</a></li>
-                        <li><a href="../centre/projects" class="grey-text text-darken-2">Projects</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
+			<!-- Side nav structure -->
+			<ul class="sidenav" id="mobile-nav">
+				<li><a class="menu-header" href="../">HCID</a></li>
+				<li><a href="../centre/charter" class="menu-subheader">Charter</a></li>
+				<li><a href="../centre/members" class="menu-subheader">Members</a></li>
+				<li><a href="../centre/projects" class="menu-subheader">Projects</a></li>
+				<li><a href="../centre/calendar" class="menu-subheader">Calendar</a></li>
+				<li class="divider" tabindex="-1"></li>
+				<li class="active">
+					<a class="menu-header" href="../centre/reading-group">Reading Group</a>
+				</li>
+				<li>
+					<a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a>
+				</li>
+				<li class="divider" tabindex="-1"></li>
+				<li><a class="menu-header" href="../seminar/">Seminar Series</a></li>
+				<li><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+				<li><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+				<li class="divider" tabindex="-1"></li>
+				<li><a class="menu-header" href="../msc/student-photos">MSc Students</a></li>
+				<li><a class="menu-subheader" href="../msc/calendar">Calendar</a></li>
+			</ul>
 
-        <!-- Side nav structure -->
-        <ul class="sidenav" id="mobile-nav">
-            <li><a class="menu-header" href="../">HCID</a></li>
-            <li><a href="../centre/charter" class="menu-subheader">Charter</a></li>
-            <li><a href="../centre/members" class="menu-subheader">Members</a></li>
-            <li><a href="../centre/projects" class="menu-subheader">Projects</a></li>
-            <li><a href="../centre/calendar" class="menu-subheader">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li class="active"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
-            <li><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../seminar/">Seminar Series</a></li>
-            <li><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
-            <li><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../msc/student-photos">MSc Students</a></li>
-            <li><a class="menu-subheader" href="../msc/calendar">Calendar</a></li>
-        </ul>
+			<!-- HCID dropdown menu -->
+			<ul id="dropdown1" class="dropdown-content">
+				<li><a class="menu-header" href="../">HCID</a></li>
+				<li><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
+				<li class="divider" tabindex="-1"></li>
+				<li class="active">
+					<a class="menu-header" href="../centre/reading-group">Reading Group</a>
+				</li>
+				<li>
+					<a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a>
+				</li>
+				<li class="divider" tabindex="-1"></li>
+				<li><a class="menu-header" href="../seminar/">Seminar Series</a></li>
+				<li><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
+				<li><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
+				<li class="divider" tabindex="-1"></li>
+				<li><a class="menu-header" href="../msc/student-photos">MSc Students</a></li>
+				<li><a class="menu-subheader" href="../msc/calendar">Calendar</a></li>
+			</ul>
 
-        <!-- HCID dropdown menu -->
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a class="menu-header" href="../">HCID</a></li>
-            <li><a class="menu-subheader" href="../centre/calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li class="active"><a class="menu-header" href="../centre/reading-group">Reading Group</a></li>
-            <li><a class="menu-subheader" href="../centre/reading-group-calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../seminar/">Seminar Series</a></li>
-            <li><a class="menu-subheader" href="../seminar/speakers">Speakers</a></li>
-            <li><a class="menu-subheader" href="../seminar/calendar">Calendar</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a class="menu-header" href="../msc/student-photos">MSc Students</a></li>
-            <li><a class="menu-subheader" href="../msc/calendar">Calendar</a></li>
-        </ul>
+			<!-- Page title -->
+			<div class="container" style="padding-bottom: 5rem">
+				<div class="row">
+					<div class="col s12 m9 l10">
+						<h1 class="page-title">
+							<a class="black-text" href="../">HCID</a
+							><span class="red-text">:<br />Reading Group</span>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m9 l10" id="next-reading">
+						<h2>Next Reading</h2>
+						<div id="app">
+							<div class="row">
+								<div
+									class="card blue-grey darken-1 col s12 m7"
+									v-if="item['fields']['reference-1']"
+								>
+									<div class="card-content white-text">
+										<span class="card-title">{{ item['fields']['reference-1'] }}</span><br />
+										<p v-if="item['fields']['abstract-1']">
+											ABSTRACT:<br />
+											<span class="lbr">{{ item['fields']['abstract-1'] }}</span>
+										</p>
+									</div>
+									<div class="card-action" v-if="item['fields']['library-link-1']">
+										<a v-bind:href="item['fields']['library-link-1']"> Library</a>
+									</div>
+									<div class="card-action" v-else-if="item['fields']['download-link-1']">
+										<a v-bind:href="item['fields']['download-link-1']"> URL</a>
+									</div>
+								</div>
+							</div>
 
-        <!-- Page title -->
-        <div class="container" style="padding-bottom:5rem;">
-            <div class="row">
-                <div class="col s12 m9 l10">
-                    <h1 class="page-title">
-                        <a class="black-text" href="../">HCID</a><span class="red-text">:<br>Reading Group</span>
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main>
+							<div class="row">
+								<div
+									class="card blue-grey darken-1 col s12 m7"
+									v-if="item['fields']['reference-2']"
+								>
+									<div class="card-content white-text">
+										<span class="card-title">{{ item['fields']['reference-2'] }}</span><br />
+										<p v-if="item['fields']['abstract-2']">
+											ABSTRACT:<br />
+											<span class="lbr">{{ item['fields']['abstract-2'] }}</span>
+										</p>
+									</div>
+									<div class="card-action" v-if="item['fields']['library-link-2']">
+										<a v-bind:href="item['fields']['library-link-2']"> Library</a>
+									</div>
+									<div class="card-action" v-else-if="item['fields']['download-link-2']">
+										<a v-bind:href="item['fields']['download-link-2']"> URL</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
 
-        <div class="container">
-            <div class="row">
-                <div class="col s12 m9 l10" id="next-reading">
-                    <h2>Next Reading</h2>
-                    <div id="app">
-                        <div class="row">
-                            <div class="card blue-grey darken-1 col s12 m7" v-if="item['fields']['reference-1']">
-                                <div class="card-content white-text">
-                                    <span class="card-title">{{ item['fields']['reference-1'] }}</span><br>
-                                    <p v-if="item['fields']['abstract-1']">ABSTRACT:<br>
-                                        <span class="lbr">{{ item['fields']['abstract-1'] }}</span>
-                                    </p>
-                                </div>
-                                <div class="card-action" v-if="item['fields']['library-link-1']">
-                                    <a v-bind:href="item['fields']['library-link-1']"> Library</a>
-                                </div>
-                                <div class="card-action" v-else-if="item['fields']['download-link-1']">
-                                    <a v-bind:href="item['fields']['download-link-1']"> URL</a>
-                                </div>
-                            </div>
-                        </div>
+		<template-footer id="footer"></template-footer>
 
-                        <div class="row">
-                            <div class="card blue-grey darken-1 col s12 m7" v-if="item['fields']['reference-2']">
-                                <div class="card-content white-text">
-                                    <span class="card-title">{{ item['fields']['reference-2'] }}</span><br>
-                                    <p v-if="item['fields']['abstract-2']">ABSTRACT:<br>
-                                        <span class="lbr">{{ item['fields']['abstract-2'] }}</span>
-                                    </p>
-                                </div>
-                                <div class="card-action" v-if="item['fields']['library-link-2']">
-                                    <a v-bind:href="item['fields']['library-link-2']"> Library</a>
-                                </div>
-                                <div class="card-action" v-else-if="item['fields']['download-link-2']">
-                                    <a v-bind:href="item['fields']['download-link-2']"> URL</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+		<script src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+		<script
+			type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+		></script>
+		<script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+		<script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+		<script type="text/javascript" src="../js/vue_headfoot.js"></script>
+		<script type="text/javascript" src="../js/scripts.js"></script>
 
-    <template-footer id="footer"></template-footer>
-
-    <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script type="text/javascript" src="../js/vue_headfoot.js"></script>
-    <script type="text/javascript" src="../js/scripts.js"></script>
-
-    <script type="text/javascript">
-        var app = new Vue({
-            el: '#app',
-            data: {
-                items: []
-            },
-            mounted: function() {
-                this.loadItems();
-            },
-            methods: {
-                loadItems: function() {
-                    var self = this;
-                    this.items = [];
-                    axios.get(
-                        "https://api.airtable.com/v0/" + app_id + "/reading-group?view=next-reading", {
-                            headers: {
-                                Authorization: "Bearer " + app_key
-                            }
-                        }
-                    ).then(function(response) {
-                        self.items = response.data.records
-                    }).catch(function(error) {
-                        console.log(error)
-                    })
-                }
-            }
-        })
-    </script>
-</body>
-
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					items: [],
+				},
+				mounted: function () {
+					this.loadItems();
+				},
+				methods: {
+					loadItems: function () {
+						var self = this;
+						this.items = [];
+						axios
+							.get(
+								"https://api.airtable.com/v0/" + app_id + "/reading-group?view=next-reading",
+								{
+									headers: {
+										Authorization: "Bearer " + app_key,
+									},
+								}
+							)
+							.then(function (response) {
+								self.items = response.data.records;
+							})
+							.catch(function (error) {
+								console.log(error);
+							});
+					},
+				},
+			});
+		</script>
+	</body>
 </html>
