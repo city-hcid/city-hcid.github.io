@@ -1,86 +1,180 @@
 <span?xml version="1.0" encoding="utf-8" ?>
-    <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml">
+	<!DOCTYPE html>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta
+				name="keywords"
+				content="hci,chi,ux,design,ux design,hcid,hci city,hcid city,hci london"
+			/>
+			<meta
+				name="description"
+				content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems."
+			/>
+			<link
+				type="text/css"
+				rel="stylesheet"
+				href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			/>
+			<link
+				type="text/css"
+				rel="stylesheet"
+				href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css"
+			/>
+			<link
+				type="text/css"
+				rel="stylesheet"
+				href="https://unpkg.com/aos@next/dist/aos.css"
+			/>
+			<link type="text/css" rel="stylesheet" href="../css/style.css" />
+			<script
+				defer
+				type="text/javascript"
+				src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"
+			></script>
+			<script
+				defer
+				type="text/javascript"
+				src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+			></script>
+			<script
+				defer
+				type="text/javascript"
+				src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"
+			></script>
+			<script
+				defer
+				type="text/javascript"
+				src="https://unpkg.com/axios@latest/dist/axios.min.js"
+			></script>
+			<script
+				defer
+				type="text/javascript"
+				src="https://unpkg.com/aos@next/dist/aos.js"
+			></script>
+			<script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
+			<script defer type="text/javascript" src="../js/vue_project_new.js"></script>
+			<title>HCID | Project</title>
+		</head>
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="keywords" content="hci,chi,ux,design,ux design,hcid,hci city,hcid city,hci london" />
-        <meta name="description" content="HCID is a research group based at City, University of London. Its prime focus is the relationship between people and innovative technology with the aim of creating more useful and usable systems." />
-        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <link type="text/css" rel="stylesheet" href="https://unpkg.com/materialize-css@latest/dist/css/materialize.min.css" />
-        <link type="text/css" rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        <link type="text/css" rel="stylesheet" href="../css/style.css" />
-        <script defer type="text/javascript" src="https://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
-        <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script defer type="text/javascript" src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
-        <script defer type="text/javascript" src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
-        <script defer type="text/javascript" src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script defer type="text/javascript" src="../js/vue_headfoot.js"></script>
-        <script defer type="text/javascript" src="../js/vue_project.js"></script>
-        <title>HCID | Project</title>
-    </head>
+		<body>
+			<template-header
+				id="header"
+				subtitle=""
+				subhead="<br>project"
+				page="Projects"
+			></template-header>
 
-    <body>
+			<main>
+				<div class="container">
+					<div class="row">
+						<div id="app">
+							<div class="col s10">
+								<div
+									v-bind:id="item['fields']['project-name']"
+									v-for="item in items"
+									v-if="item['fields']['project-name']"
+									class="my-5"
+								>
+									<a
+										v-if="item['fields']['image-url']"
+										v-bind:href="item['fields']['project-url']"
+										><img
+											class="responsive-img"
+											v-bind:src="item['fields']['image-url']"
+											v-bind:alt="item['fields']['project-name'] + ' icon'"
+											style="max-height: 8rem"
+									/></a>
+									<div>
+										<h1 v-if="item['fields']['image-url'] == null" class="bold mb-1">
+											<span v-if="item['fields']['project-url']"
+												><a v-bind:href="item['fields']['project-url']" class="black-text"
+													>{{ item['fields']['project-name'] }}</a
+												></span
+											>
+											<span v-else
+												><a
+													v-bind:href="'/centre/project?name=' + item['fields']['project-name']"
+													class="black-text"
+													>{{ item['fields']['project-name'] }}</a
+												></span
+											>
+										</h1>
+										<p v-if="item['fields']['long-name']" class="h2 bold">
+											{{ item['fields']['long-name'] }}
+										</p>
+										<p v-if="item['fields']['page-image-url']" class="mt-4">
+											<img
+												class="responsive-img"
+												v-bind:src="item['fields']['page-image-url']"
+												v-bind:alt="item['fields']['project-name'] + ' visual'"
+												style="max-height: 18rem"
+											/><br />
+											<span class="lbr grey-text text-darken-1"
+												>{{ item['fields']['page-image-caption'] }}</span
+											>
+										</p>
+										<p v-if="item['fields']['about']">
+											<strong>About: </strong>
+											<span class="lbr grey-text text-darken-2">{{ item['fields']['about'] }}</span>
+										</p>
+										<p v-if="item['fields']['lead']">
+											<strong>Principle Investigator: </strong>
+											<span class="lbr grey-text text-darken-2"
+												><a v-bind:href="item['fields']['lead-url']"
+													>{{ item['fields']['lead-str'] }}</a
+												></span
+											>
 
-        <template-header id="header" subtitle="" subhead="<br>project" page="Projects"></template-header>
+											<span v-if="item['fields']['members']" class="pb-5">
+												<br />
+												<strong>Researchers: </strong>
+												<span class="lbr grey-text text-darken-2"
+													>{{ item['fields']['members-str'] }}</span
+												><span
+													v-if="item['fields']['collaborators']"
+													class="lbr grey-text text-darken-2"
+													>, {{ item['fields']['collaborators'] }}</span
+												>
+											</span>
 
-        <main>
-            <div class="container">
-                <div class="row">
-                    <div id="app">
-                        <div class="col s10">
-                            <div v-bind:id="item['fields']['project-name']" v-for="item in items" v-if="item['fields']['project-name']" class="my-5">
-                                <a v-if="item['fields']['image-url']" v-bind:href="item['fields']['project-url']"><img class="responsive-img" v-bind:src="item['fields']['image-url']" v-bind:alt="item['fields']['project-name'] + ' icon'" style="max-height:8rem" /></a>
-                                <div>
-                                    <h1 v-if="item['fields']['image-url'] == null" class="bold mb-1">
-                                        <span v-if="item['fields']['project-url']"><a v-bind:href="item['fields']['project-url']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
-                                        <span v-else><a v-bind:href="'/centre/project?name=' + item['fields']['project-name']" class="black-text">{{ item['fields']['project-name'] }}</a></span>
-                                    </h1>
-                                    <p v-if="item['fields']['long-name']" class="h2 bold">
-                                        {{ item['fields']['long-name'] }}
-                                    </p>
-                                    <p v-if="item['fields']['page-image-url']" class="mt-4"><img class="responsive-img" v-bind:src="item['fields']['page-image-url']" v-bind:alt="item['fields']['project-name'] + ' visual'" style="max-height:18rem" /><br>
-                                        <span class="lbr grey-text text-darken-1">{{ item['fields']['page-image-caption'] }}</span>
-                                    </p>
-                                    <p v-if="item['fields']['about']">
-                                        <strong>About: </strong>
-                                        <span class="lbr grey-text text-darken-2">{{ item['fields']['about'] }}</span>
-                                    </p>
-                                    <p v-if="item['fields']['lead']">
-                                        <strong>Principle Investigator: </strong>
-                                        <span class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['lead-url']">{{ item['fields']['lead-str'] }}</a></span>
+											<span
+												v-if="item['fields']['academic-partners'] || item['fields']['org-partners']"
+											>
+												<br />
+												<strong>Partners: </strong>
+												<span class="lbr grey-text text-darken-2"
+													>{{ item['fields']['academic-partners'] }}</span
+												><span v-if="item['fields']['org-partners']" class="lbr grey-text text-darken-2"
+													>, {{ item['fields']['org-partners'] }}</span
+												>
+											</span>
 
-                                        <span v-if="item['fields']['members']" class="pb-5">
-                                            <br>
-                                        <strong>Researchers: </strong>
-                                        <span class="lbr grey-text text-darken-2">{{ item['fields']['members-str'] }}</span><span v-if="item['fields']['collaborators']" class="lbr grey-text text-darken-2">, {{ item['fields']['collaborators'] }}</span>
-                                        </span>
+											<span v-if="item['fields']['funder']">
+												<br />
+												<strong>Funder: </strong>
+												<span v-if="item['fields']['funder-url']" class="lbr grey-text text-darken-2"
+													><a v-bind:href="item['fields']['funder-url']"
+														>{{ item['fields']['funder'] }}</a
+													></span
+												>
+												<span v-else class="lbr grey-text text-darken-2"
+													>{{ item['fields']['funder'] }}</span
+												>
+											</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
 
-                                        <span v-if="item['fields']['academic-partners'] || item['fields']['org-partners']">
-                                            <br>
-                                        <strong>Partners: </strong>
-                                        <span class="lbr grey-text text-darken-2">{{ item['fields']['academic-partners'] }}</span><span v-if="item['fields']['org-partners']" class="lbr grey-text text-darken-2">, {{ item['fields']['org-partners'] }}</span>
-                                        </span>
+			<template-footer id="footer"></template-footer>
 
-                                        <span v-if="item['fields']['funder']">
-                                            <br>
-                                            <strong>Funder: </strong>
-                                            <span v-if="item['fields']['funder-url']" class="lbr grey-text text-darken-2"><a v-bind:href="item['fields']['funder-url']">{{ item['fields']['funder'] }}</a></span>
-                                        <span v-else class="lbr grey-text text-darken-2">{{ item['fields']['funder'] }}</span>
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <template-footer id="footer"></template-footer>
-
-        <!--     <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
+			<!--     <script src="http://unpkg.com/jquery@latest/dist/jquery.slim.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="http://unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="https://unpkg.com/axios@latest/dist/axios.min.js"></script>
@@ -118,6 +212,6 @@
             }
         })
     </script>-->
-    </body>
-
-    </html>
+		</body>
+	</html></span?xml
+>
