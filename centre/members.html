@@ -84,7 +84,8 @@
                 <div class="row">
                     <div class="col s12 m11 mb-1">
                         <div class="col s12 m4 offset-m1 mb-1">
-                            <h2>Visiting</h2>
+                            <h2 class="show-on-large">Honorary Posts</h2>
+                            <h2 class="hide-on-large">Honorary</h2>
                         </div>
                         <div class="col s12 m7 mb-1">
                             <h2>Alumni</h2>
@@ -94,12 +95,12 @@
                 <div class="row">
                     <div class="col s12 m11 mb-1">
                         <div class="col s12 m4 offset-m1">
-                            <h3 class="reg mt-0 mb-1">Honorary Senior Visiting Fellow</h3>
+                            <h3 class="reg mt-0 mb-1">Senior Visiting Fellow</h3>
                             <template-alum v-for="item in items" :item="item" post="Honorary Senior Visiting Fellow"></template-alum>
-                            <h3 class="reg mt-4 mb-1">Honorary Visiting Fellows (CASS)</h3>
-                            <template-alum v-for="item in items" :item="item" post="Honorary Visiting Fellows (CASS)"></template-alum>
-                            <h3 class="reg mt-4 mb-1">Honorary Visiting Fellows</h3>
-                            <template-alum v-for="item in items" :item="item" post="Honorary Visiting Fellows"></template-alum>
+                            <h3 class="reg mt-4 mb-1 hide">Honorary Visiting Fellows (CASS)</h3>
+                            <template-alum v-for="item in items" :item="item" post="Honorary Visiting Fellow (Bayes)"></template-alum>
+                            <h3 class="reg mt-4 mb-1">Visiting Fellow</h3>
+                            <template-alum v-for="item in items" :item="item" post="Honorary Visiting Fellow"></template-alum>
                         </div>
                         <div class="col s12 m7" style="column-count: 3;column-width: 28%;column-gap: 5%">
                             <template-alum v-for="item in items" :item="item" post="Previous Staff and Students"></template-alum>
