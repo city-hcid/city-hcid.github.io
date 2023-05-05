@@ -31,7 +31,7 @@ var app = new Vue({
                 params: {
                     table: encodeURI('members'),
                     view: encodeURI('phds'),
-                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,supervisors,supvervisor-str'),
+                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,supervisors,supvervisor-str,phd_text'),
                     sort: encodeURI('{"field":"last-name","direction":"asc"}')
                 }
             }).then(function(response) {
@@ -99,7 +99,7 @@ Vue.component('template-past', function(resolve, reject) {
                     {{ item['name'] }}
                 </span>
                 <p v-if="item['phd_text']">
-                        {{ item['phd_text'] }}
+                    {{ item['phd_text'] }}
                 </p>
             </div>
             `
