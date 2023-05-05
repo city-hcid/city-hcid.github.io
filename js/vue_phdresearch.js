@@ -98,6 +98,9 @@ Vue.component('template-past', function(resolve, reject) {
                 <span v-else>
                     {{ item['name'] }}
                 </span>
+                <p v-if="item['phd_text']">
+                        {{ item['phd_text'] }}
+                </p>
             </div>
             `
         })
