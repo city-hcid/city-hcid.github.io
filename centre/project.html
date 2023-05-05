@@ -146,8 +146,10 @@
 											<strong>Partners: </strong>
 											<span class="lbr grey-text text-darken-2"
 												>{{ item['fields']['academic-partners'] }}</span
+											><span v-if="item['fields']['academic-partners'] && item['fields']['org-partners']" class="lbr grey-text text-darken-2"
+												>, </span
 											><span v-if="item['fields']['org-partners']" class="lbr grey-text text-darken-2"
-												>, {{ item['fields']['org-partners'] }}</span
+												>{{ item['fields']['org-partners'] }}</span
 											>
 										</span>
 
