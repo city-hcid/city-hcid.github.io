@@ -89,17 +89,19 @@ Vue.component('template-past', function(resolve, reject) {
         resolve({
             props: ['item'],
             template: `
-            <div class="col s10 offset-s2 my-2">
-                <span v-if="item['bio-url']">
-                    <a class="link" v-bind:href="item['bio-url']">
+            <div class="col s10 my-2">
+                <p>
+                    <span v-if="item['bio-url']">
+                        <a class="link" v-bind:href="item['bio-url']">
+                            {{ item['name'] }}
+                        </a>
+                    </span>
+                    <span v-else>
                         {{ item['name'] }}
-                    </a>
-                </span>
-                <span v-else>
-                    {{ item['name'] }}
-                </span>
-                <p v-if="item['phd_text']">
-                    {{ item['phd_text'] }}
+                    </span>
+                    <span v-if="item['phd_text']">
+                        {{ item['phd_text'] }}
+                    </span>
                 </p>
             </div>
             `

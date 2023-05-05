@@ -87,53 +87,53 @@
                 <div class="col s12 mt-4">
                     <div class="slider">
                         <ul class="slides">
-                            <li class="green">
+                            <li class="white">
                                 <div class="m-5 pt-2 valign-wrapper">
                                     <div class="col s12 m5 l3 mt-sm-5 mt-md-1 center-align hide-on-small-only">
                                         <img src="https://hcid.city/centre/photos/axel_niklasson.jpg" alt="Axel Niklasson" class="circle img-responsive">
                                     </div>
                                     <div class="col s12 m7">
-                                        <h2 class="white-text">Axel Niklasson</h2>
-                                        <p class="white-text">Supervisors: Alex Taylor, Stephann Makri</p>
-                                        <p class="white-text">Axel's current research centres on the introduction of AI in team collaboration. Previous to his academic work, Axel enjoyed a 20-year international career in telecom, media and software engineering. He earned his
+                                        <h2>Axel Niklasson</h2>
+                                        <p>Supervisors: Alex Taylor, Stephann Makri</p>
+                                        <p>Axel's current research centres on the introduction of AI in team collaboration. Previous to his academic work, Axel enjoyed a 20-year international career in telecom, media and software engineering. He earned his
                                             MSc from Lund University, Sweden.</p>
                                     </div>
                                 </div>
                             </li>
-                            <li class="red">
+                            <li class="white">
                                 <div class="m-5 pt-2 valign-wrapper">
                                     <div class="col s12 m5 hide-on-small-only">
                                     </div>
                                     <div class="col s12 m7">
-                                        <h2 class="white-text">Linda Berube</h2>
-                                        <p class="white-text">Supervisors: Ernesto Priego, Stephann Makri</p>
-                                        <p class="white-text">Linda is an AHRC Collaborative Doctoral Programme student, working with The British Library. Her research is based on a mixed-methods and interdisciplinary approach to understanding the UK digital comics creation-to-consumption
+                                        <h2>Linda Berube</h2>
+                                        <p>Supervisors: Ernesto Priego, Stephann Makri</p>
+                                        <p>Linda is an AHRC Collaborative Doctoral Programme student, working with The British Library. Her research is based on a mixed-methods and interdisciplinary approach to understanding the UK digital comics creation-to-consumption
                                             cycle.
                                         </p>
                                     </div>
                                 </div>
                             </li>
-                            <li class="orange darken-1">
+                            <li class="white">
                                 <div class="m-5 pt-2 valign-wrapper">
                                     <div class="col s12 m5 l3 mt-sm-5 mt-md-1 center-align hide-on-small-only">
                                         <img src="https://hcid.city/centre/photos/beatrice_vincenzi.jpg" alt="Beatrice Vincenzi" class="circle img-responsive">
                                     </div>
                                     <div class="col s12 m7">
-                                        <h2 class="white-text">Beatrice Vincenzi</h2>
-                                        <p class="white-text">Supervisors: Alex Taylor, Simone Stumpf</p>
-                                        <p class="white-text">Beatrice is a 3 year PhD student and her research explores AI assistive technology for people with visual impairment to augment sighted guiding partnership and social interaction in navigation.</p>
+                                        <h2>Beatrice Vincenzi</h2>
+                                        <p>Supervisors: Alex Taylor, Simone Stumpf</p>
+                                        <p>Beatrice is a 3 year PhD student and her research explores AI assistive technology for people with visual impairment to augment sighted guiding partnership and social interaction in navigation.</p>
                                     </div>
                                 </div>
                             </li>
-                            <li class="purple darken-3">
+                            <li class="white">
                                 <div class="m-5 pt-2 valign-wrapper">
                                     <div class="col s12 m5 l3 mt-sm-5 mt-md-1 center-align hide-on-small-only">
                                         <img src="https://dl.airtable.com/.attachmentThumbnails/f1f0afbfd42380f8cd08b6c8dbd6974a/34ad995f" alt="Srravya Chandhiramowuli" class="circle img-responsive">
                                     </div>
                                     <div class="col s12 m7">
-                                        <h2 class="white-text">Srravya Chandhiramowuli</h2>
-                                        <p class="white-text">Supervisors: Alex Taylor, Sara Heitlinger</p>
-                                        <p class="white-text">Srravya is a PhD student at HCID. Her research interests lie in examining the implications of computing technologies (including apps, data, algorithms and more) for labour processes and work practices.</p>
+                                        <h2>Srravya Chandhiramowuli</h2>
+                                        <p>Supervisors: Alex Taylor, Sara Heitlinger</p>
+                                        <p>Srravya is a PhD student at HCID. Her research interests lie in examining the implications of computing technologies (including apps, data, algorithms and more) for labour processes and work practices.</p>
                                     </div>
                                 </div>
                             </li>
@@ -153,7 +153,7 @@
                     </div>
                     <div id="app">
                         <div class="mb-5" id="current">
-                            <template-current v-for="item in items" v-if="item['status'].includes('phd') && !item['status'].includes('alum')|| item['status'].includes('phd') && !item['status'].includes('staff')" :item="item"></template-current>
+                            <template-current v-for="item in items" v-if="item['status'].includes('phd') && (item['post']==='PhD'" :item="item"></template-current>
                         </div>
                         <div class="mb-5" id="past">
                             <div class="row">
