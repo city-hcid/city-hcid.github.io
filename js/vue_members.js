@@ -35,7 +35,7 @@ var app = new Vue({
                 }
             }).then(function(response) {
                 self.items = response.data,
-                console.log( self.items)
+                console.log(response)
             }).catch(function(error) {
                 console.log(error)
             })

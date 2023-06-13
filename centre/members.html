@@ -77,8 +77,8 @@
             </div>
             <div class="container" id="staff">
                 <div class="row">
-                    <template-staff v-for="item in items" v-if="item['status'].includes('staff') || item['status'].includes('research')" :item="item" members="staff"></template-members>
-                    <!-- <template-staff v-for="item in items" v-if="item['status']=='staff' || item['status']=='research'" :item="item" members="staff"></template-members> -->
+                    <!-- <template-staff v-for="item in items" v-if="item['status'].includes('staff') || item['status'].includes('research')" :item="item" members="staff"></template-members>-->
+                    <template-staff v-for="item in items" v-if="item['status']=='staff' || item['status']=='research'" :item="item" members="staff"></template-members>
                 </div>
             </div>
             <div class="container hide-on-small-only" id="alum">
