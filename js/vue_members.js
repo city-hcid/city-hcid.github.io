@@ -34,7 +34,8 @@ var app = new Vue({
                     sort: encodeURI('{"field":"last-name","direction":"asc"}')
                 }
             }).then(function(response) {
-                self.items = response.data
+                self.items = response.data,
+                console.log( self.items)
             }).catch(function(error) {
                 console.log(error)
             })
