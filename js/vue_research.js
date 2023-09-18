@@ -58,7 +58,7 @@ Vue.component('template-projects', function(resolve, reject) {
     setTimeout(function() {
         resolve({
             props: ['item', 'theme'],
-            template: `<span v-if="item['research-theme'].includes(theme)"><a href="item['project-url']" target="_blank">{{ item['project-name'] }}</a>, </span>`
+            template: `<span v-if="item['research-theme'].includes(theme)"><a :href="item['project-url']" target="_blank">{{ item['project-name'] }}</a>, </span>`
         })
     }, 200)
 })
