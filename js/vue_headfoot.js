@@ -106,7 +106,7 @@ Vue.component("template-header", {
         </ul>
 
         <!-- Page title -->
-        <div class="container py-5 my-5">
+        <div class="container py-3 my-3">
             <div class="row">
                 <div class="col s6 l12">
                     <h1 class="page-title">

@@ -44,7 +44,7 @@ Vue.component('template-project', {
         <div v-bind:id="item['project-name']" v-if="item['project-name']" class="my-5">
             <a v-if="item['image-url']" v-bind:href="item['project-url']"><img class="responsive-img" v-bind:src="item['image-url']" v-bind:alt="item['project-name'] + ' icon'" style="max-height:8rem" /></a>
             <div>
-                <h1 v-if="item['image-url'] == null" class="bold mb-1">
+                <h1 v-if="item['image-url'] == null" class="bold mb-3">
                     <span v-if="item['project-url']"><a v-bind:href="item['project-url']" class="black-text">{{ item['project-name'] }}</a></span>
                     <span v-else><a v-bind:href="'/centre/project?name=' + item['project-name']" class="black-text">{{ item['project-name'] }}</a></span>
                 </h1>
