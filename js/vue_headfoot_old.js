@@ -130,7 +130,7 @@ Vue.component('template-header', {
         <!-- Page title -->
         <div class="container py-5 my-5">
             <div class="row">
-                <div class="col s6 l4">
+                <div class="col s6 l12">
                     <h1 class="page-title">
                         <a href="https://hcid.city">HCID</a>.<span v-html="subhead"></span>
                     </h1>
