@@ -59,7 +59,7 @@ Vue.component("template-header", {
                             :title="item.name">{{ item.name }}</a>
                         </li>
                     </ul>
-                    <a v-if="page == 'HCID'" href="https://www.city.ac.uk" class="brand-logo right" style="opacity: 0.9;" aria-label="Image link to City University website"><img class="hide-on-small-and-down" data-aos data-aos-delay="2000" data-aos-easing="ease-in-out-quad" data-aos-duration="2000" src="https://www.city.ac.uk/__data/assets/git_bridge/0018/344007/main/i/logo/city-uol-logo-responsive.svg" alt="City University logo"></a>
+                    <a v-if="page == 'HCID'" href="https://www.city.ac.uk" class="brand-logo right" style="opacity: 0.9;" aria-label="Image link to City University website"><img class="hide-on-small-and-down fade-out" data-aos data-aos-delay="2000" data-aos-easing="ease-in-out-quad" data-aos-duration="2000" src="https://www.city.ac.uk/__data/assets/git_bridge/0018/344007/main/i/logo/city-uol-logo-responsive.svg" alt="City University logo"></a>
                 </div>
             </nav>
         </div>
