@@ -23,7 +23,7 @@ var app = new Vue({
             this.items = [];
             let url = '';
             if (location.hostname === "localhost" || location.hostname === "happy-galileo-a42c9d.netlify.app") {
-                url = '../.netlify/functions/hcidFn/hcidFn.js'
+                url = '/.netlify/functions/hcidFn/hcidFn.js'
             } else {
                 url = 'https://happy-galileo-a42c9d.netlify.app/.netlify/functions/hcidFn/hcidFn.js'
             };
