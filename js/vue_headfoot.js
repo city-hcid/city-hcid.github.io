@@ -9,7 +9,7 @@ Vue.component("template-header", {
 			navList: [
 				{ url: "../centre/charter", name: "Charter" },
 				{ url: "../centre/members", name: "Members" },
-				{ url: "../centre/research", name: "Research" },
+				{ url: "../centre/research", name: "Research Areas" },
 				{ url: "../centre/phd-research", name: "PhD Research" },
 				{ url: "../centre/projects", name: "Research Projects" },
 			],
