@@ -147,9 +147,13 @@ Vue.component("template-footer", function (resolve, reject) {
                             <div>
                                 <a class="link grey-text text-darken-4" href="https://hcid.city">Centre for Human-Computer Interaction Design</a>
                             </div>
-                            <div>
+<!--                            <div>
                                 <a class="grey-text text-lighten-1 link" rel="me" href="https://hci.social/@hcid">On Mastodon</a>
                             </div>
+                            -->
+                            <div>
+                            <a class="grey-text text-lighten-1 link" rel="me" href="https://twitter.com/cityuni_hcid">On Twitter</a>
+                        </div>
                         </div>
                         <div id="address" aria-label="Address" class="col l4 offset-l2 s12 mt-4">
                             <ul>
