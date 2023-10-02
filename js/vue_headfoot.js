@@ -7,6 +7,7 @@ Vue.component("template-header", {
 			dropDownLinkClass: "menu-header",
 			dropDownSubLinkClass: "menu-subheader",
 			navList: [
+                { url: "https://hcid.city", name: "HCID" },
 				{ url: "../centre/charter", name: "Charter" },
 				{ url: "../centre/members", name: "Members" },
 				{ url: "../centre/research", name: "Research Areas" },
@@ -21,13 +22,16 @@ Vue.component("template-header", {
                 { url: "../centre/reading-group", name: "Reading Group", id: "dropDownReading_Group" },
                 { url: "../centre/reading-group-calendar", name: "Calendar", id: "dropDownReadings_Calendar" }
             ],*/
-			dropDownSeminar: [
-				{ url: "../seminar/", name: "Seminar Series", id: "dropDownSeminar_Series" },
-				{
-					url: "../seminar/speakers",
-					name: "Speakers",
-					id: "dropDownSeminar_Speakers",
-				},
+
+            dropDownSeminar: [
+				// { url: "../seminar/", name: "Seminar Series", id: "dropDownSeminar_Series" },
+                //TEST TB
+				// {
+				// 	url: "../seminar/speakers",
+				// 	name: "Speakers",
+				// 	id: "dropDownSeminar_Speakers",
+				// },
+                //END TB
 				//{ url: "../seminar/calendar", name: "Calendar", id: "dropDownSeminar_Calendar" }
 			],
 		};
@@ -48,9 +52,11 @@ Vue.component("template-header", {
                 <div class="nav-wrapper white">
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons grey-text text-darken-2">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-small-and-down">
+     <!--TEMP TB
                         <li @click="active = !active" :class="active" id="navItemHCID">
-                            <a class="dropdown-trigger" :class="navLinkClass" href="#!" data-target="dropdown1">HCID</a>
+                            <a class="dropdown-trigger" :class="navLinkClass" href="#!" data-target="dropdown1">HCID3</a>
                         </li>
+                -->
                         <li v-for="item in navList" @click="active = !active" :class="active" 
                         :id="'navItem' + item.name.replace(/ /g,'_')">
                             <a 
@@ -66,9 +72,11 @@ Vue.component("template-header", {
 
         <!-- Side nav structure -->
         <ul class="sidenav" id="mobile-nav">
-            <li @click="active = !active" :class="active" id="navItemHCID">
+ <!--TEMP TB
+        <li @click="active = !active" :class="active" id="navItemHCID">
                 <a class="menu-header" href="https://hcid.city">HCID</a>
             </li>
+        -->
             <li v-for="item in navList" @click="active = !active" :class="active" 
             :id="'sideNavItem' + item.name.replace(/ /g,'_')">
                 <a 
@@ -76,6 +84,7 @@ Vue.component("template-header", {
                 :class="navLinkClass"
                 :title="item.name">{{ item.name }}</a>
             </li>
+            
             <li v-for="(item, index) in dropDownSeminar" @click="active = !active" :class="active" :id="item.id">
                 <a v-if="index == 0"
                 :href="item.url"
