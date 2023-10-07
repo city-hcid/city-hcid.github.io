@@ -114,7 +114,9 @@
                         </div>
                         <div class="mb-5" id="past">
                             <div class="row">
-                                <template-past v-for="item in items" v-if="item['status'].includes('phd') && (item['status'].includes('alum') || item['status'].includes('staff'))" :item="item" post="Previous Staff and Students"></template-past>
+                                <!-- <template-past v-for="item in items" v-if="item['status'].includes('phd') && (item['status'].includes('alum') || item['status'].includes('staff'))" :item="item" post="Previous Staff and Students"></template-past> 
+                                 -->
+                                <template-past v-for="item in items" v-if="item['roles'].includes('phd-alum')" :item="item" post="Previous Staff and Students"></template-past> 
                             </div>
                         </div>
                     </div>

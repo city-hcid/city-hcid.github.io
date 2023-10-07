@@ -30,8 +30,8 @@ var app = new Vue({
             axios.get(url, {
                 params: {
                     table: encodeURI('members'),
-                    view: encodeURI('phds'),
-                    fields: encodeURI('name,first-name,last-name,status,bio-url,photo-url,post,short-bio,supervisors,supvervisor-str,phd_text'),
+                    view: encodeURI('phdsall'),
+                    fields: encodeURI('name,first-name,last-name,status,roles,bio-url,photo-url,post,short-bio,supervisors,supvervisor-str,phd_text'),
                     sort: encodeURI('{"field":"last-name","direction":"asc"}')
                 }
             }).then(function(response) {
