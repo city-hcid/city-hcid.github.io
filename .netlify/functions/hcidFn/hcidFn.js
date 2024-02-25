@@ -36,11 +36,8 @@ exports.handler = function (event, context, callback) {
 				data.push(record.fields);
 			});
 			
-			console.log("fetch next page");
 			// Proceed to the next page
 			fetchNextPage();
-			console.log("fetch next page");
-
 	
 		}, function done(err) {
 			if (err) {
