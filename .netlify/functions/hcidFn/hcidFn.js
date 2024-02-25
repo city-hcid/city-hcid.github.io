@@ -24,6 +24,8 @@ exports.handler = function (event, context, callback) {
 		});
 	};
 
+	var data = []; 
+
 	new Airtable({ apiKey: hcid_personal_access_token })
 		.base(HCID_ID)(table)
 		.select({
