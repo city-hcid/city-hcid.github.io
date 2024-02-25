@@ -30,16 +30,17 @@ exports.handler = function (event, context, callback) {
 			view: view,
 			fields: fields,
 			sort: sort,
-		}).eachPage(function page(records, fetchNextPage) {
-    
+		})
+		.firstPage((err, records) => {
+			if (err) {
+				console.error(err);
+				return;
+			}
 			var data = [];
 			for (i in records) {
 				data.push(records[i].fields);
 			}
 			send(data);
-			
-			fetchNextPage();
-		
+			console.log(data); //send records if you are using self.items = response.data.records and item['fields']...
 		});
-
 };
