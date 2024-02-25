@@ -30,7 +30,7 @@ exports.handler = function (event, context, callback) {
 			view: view,
 			fields: fields,
 			sort: sort,
-		}).eachPage(function page(records) {
+		}).eachPage(function page(records, fetchNextPage) {
     
 			var data = [];
 			for (i in records) {
