@@ -30,16 +30,22 @@ exports.handler = function (event, context, callback) {
 			view: view,
 			fields: fields,
 			sort: sort,
-		}).firstPage((err, records) => {
+		}).eachPage(function page(records, fetchNextPage) {
+			// Add records to the data array
+			records.forEach(function(record) {
+				data.push(record.fields);
+			});
+			
+			// Proceed to the next page
+			fetchNextPage();
+	
+		}, function done(err) {
 			if (err) {
 				console.error(err);
 				return;
 			}
-			var data = [];
-			for (i in records) {
-				data.push(records[i].fields);
-			}
-			send(data);
-			console.log(data); //send records if you are using self.items = response.data.records and item['fields']...
+			// All records have been retrieved and added to the data array
+			send(data); // Now send the complete array
+			
 		});
 };
