@@ -31,21 +31,22 @@ exports.handler = function (event, context, callback) {
 			fields: fields,
 			sort: sort,
 		}).eachPage(function page(records, fetchNextPage) {
-			var data = [];
+			// Add records to the data array
 			records.forEach(function(record) {
 				data.push(record.fields);
-				console.log('Retrieved', record.fields);
 			});
-	
-			send(data); // Assuming send is a function you've defined to handle the data
 			
+			// Proceed to the next page
 			fetchNextPage();
+	
 		}, function done(err) {
 			if (err) {
 				console.error(err);
 				return;
 			}
-			console.log('All records have been retrieved');
+			// All records have been retrieved and added to the data array
+			send(data); // Now send the complete array
+			console.log('All records have been retrieved and sent');
 		});
 	
 };
