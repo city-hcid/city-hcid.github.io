@@ -35,10 +35,8 @@ exports.handler = function (event, context, callback) {
 			records.forEach(function(record) {
 				data.push(record.fields);
 			});
-			
 			// Proceed to the next page
 			fetchNextPage();
-	
 		}, function done(err) {
 			if (err) {
 				console.error(err);
